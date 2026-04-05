@@ -221,6 +221,7 @@ const baseRules = {
           title={node.name}
           src={node.src}
           key={state.key}
+          style={{ display: 'inline', verticalAlign: '-0.4em' }}
         />
       ) : (
         <span key={state.key}>{node.surrogate}</span>
