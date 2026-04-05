@@ -2,10 +2,16 @@ export class PoracleApiClient {
   constructor(baseUrl, secret) {
     this.baseUrl = baseUrl.replace(/\/$/, '');
     this.secret = secret;
+    // When using the Vite proxy, requests go through /poracle-api/ on the same origin
+    this.useProxy = false;
+  }
+
+  get effectiveBase() {
+    return this.useProxy ? '/poracle-api' : this.baseUrl;
   }
 
   async fetch(path, options = {}) {
-    const res = await fetch(`${this.baseUrl}${path}`, {
+    const res = await fetch(`${this.effectiveBase}${path}`, {
       ...options,
       headers: {
         'Content-Type': 'application/json',
@@ -42,18 +48,32 @@ export class PoracleApiClient {
   }
 
   async health() {
-    // Try /health first (no auth needed)
+    // First try direct (works if PoracleNG has CORS enabled)
     try {
       const res = await fetch(`${this.baseUrl}/health`);
-      if (res.ok) return res.json();
+      if (res.ok) {
+        this.useProxy = false;
+        return res.json();
+      }
     } catch {
-      // Network error — server might not be reachable
+      // CORS blocked or network error — try the Vite proxy
     }
-    // Fallback: try an authenticated endpoint to verify both connectivity and auth
+
+    // Try via Vite dev proxy (avoids CORS entirely)
     try {
-      return await this.fetch('/api/config/poracleWeb');
-    } catch (err) {
-      throw new Error(`Cannot connect to ${this.baseUrl} — is PoracleNG running? (${err.message})`);
+      const res = await fetch('/poracle-api/health');
+      if (res.ok) {
+        this.useProxy = true;
+        return res.json();
+      }
+    } catch {
+      // Proxy not configured or server not reachable
     }
+
+    throw new Error(
+      `Cannot connect to ${this.baseUrl}. ` +
+      `If PoracleNG lacks CORS headers, the Vite proxy can help — ` +
+      `set PORACLE_URL=${this.baseUrl} and restart the dev server.`
+    );
   }
 }
