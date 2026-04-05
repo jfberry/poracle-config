@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 import TopBar from './components/TopBar';
+import TemplateEditor from './components/TemplateEditor';
 import DiscordPreview from './components/DiscordPreview';
 import StatusBar from './components/StatusBar';
 import { useDts } from './hooks/useDts';
@@ -52,12 +53,9 @@ export default function App() {
         availableTypes={dts.availableTypes} availableIds={dts.availableIds}
         onLoadFile={handleLoadFile} onSave={handleSave} />
       <div className="flex flex-1 min-h-0">
-        {/* Left panel — Template Editor placeholder */}
-        <div className="w-1/3 border-r border-gray-700 overflow-y-auto p-3">
-          <div className="text-gray-500 text-sm">Template Editor — coming in Task 9</div>
-          <pre className="text-xs text-gray-400 mt-2 whitespace-pre-wrap">
-            {JSON.stringify(dts.currentTemplate?.template, null, 2)}
-          </pre>
+        {/* Left panel — Template Editor */}
+        <div className="w-1/3 border-r border-gray-700">
+          <TemplateEditor template={dts.currentTemplate?.template} onChange={dts.updateTemplate} />
         </div>
         {/* Middle panel — Tag Picker placeholder */}
         <div className="w-60 border-r border-gray-700 overflow-y-auto p-3">
