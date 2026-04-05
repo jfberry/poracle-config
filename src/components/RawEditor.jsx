@@ -20,7 +20,7 @@ export default function RawEditor({ value, onChange }) {
     });
     const state = EditorState.create({
       doc: value,
-      extensions: [basicSetup, json(), oneDark, updateListener],
+      extensions: [basicSetup, json(), oneDark, EditorView.lineWrapping, updateListener],
     });
     const view = new EditorView({ state, parent: containerRef.current });
     viewRef.current = view;
