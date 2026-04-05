@@ -42,6 +42,10 @@ export class PoracleApiClient {
   }
 
   async health() {
-    return this.fetch('/health');
+    // /health doesn't require auth - use plain fetch
+    const res = await fetch(`${this.baseUrl}/health`);
+    if (res.ok) return res.json();
+    // Fallback: try an authenticated endpoint
+    return this.fetch('/api/config/poracleWeb');
   }
 }

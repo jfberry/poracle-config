@@ -1,5 +1,6 @@
 export default function TopBar({
   filters, setFilters, availableTypes, availableIds, onLoadFile, onSave,
+  showMiddle, onToggleMiddle,
 }) {
   return (
     <div className="flex items-center justify-between px-4 py-2 bg-gray-900 border-b border-gray-700 text-sm">
@@ -28,6 +29,8 @@ export default function TopBar({
         </select>
       </div>
       <div className="flex gap-2">
+        <button onClick={onToggleMiddle}
+          className={`px-3 py-0.5 rounded text-sm border border-gray-600 hover:bg-gray-700 ${showMiddle ? 'bg-gray-700 text-blue-300' : 'bg-gray-800 text-gray-400'}`}>{showMiddle ? 'Hide Tags' : 'Show Tags'}</button>
         <button onClick={onLoadFile}
           className="bg-gray-800 text-teal-300 px-3 py-0.5 rounded text-sm border border-gray-600 hover:bg-gray-700">Load File</button>
         <button onClick={onSave}

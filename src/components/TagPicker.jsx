@@ -61,6 +61,7 @@ const helpers = [
 export default function TagPicker({ type, onInsertTag }) {
   const [showRaw, setShowRaw] = useState(false);
   const [showDeprecated, setShowDeprecated] = useState(false);
+  const [lastCopied, setLastCopied] = useState(null);
 
   const grouped = useMemo(() => {
     const fields = getFieldsForType(type);
@@ -87,6 +88,8 @@ export default function TagPicker({ type, onInsertTag }) {
       onInsertTag(tag);
     }
     navigator.clipboard?.writeText(tag).catch(() => {});
+    setLastCopied(tag);
+    setTimeout(() => setLastCopied(null), 2000);
   };
 
   const handleHelperClick = (snippet) => {
@@ -94,10 +97,20 @@ export default function TagPicker({ type, onInsertTag }) {
       onInsertTag(snippet);
     }
     navigator.clipboard?.writeText(snippet).catch(() => {});
+    setLastCopied(snippet);
+    setTimeout(() => setLastCopied(null), 2000);
   };
 
   return (
     <div className="flex flex-col h-full">
+      <div className="px-2 pt-1 shrink-0">
+        {lastCopied && (
+          <div className="mb-1 px-2 py-1 bg-green-900/30 border border-green-700 rounded text-green-300 text-xs font-mono">
+            Copied: {lastCopied}
+          </div>
+        )}
+        <p className="text-gray-600 text-[10px] mb-1">Click a tag to copy, then paste into editor</p>
+      </div>
       <div className="flex-1 overflow-y-auto px-2 py-1 space-y-3">
         {Object.entries(grouped).map(([category, fields]) => (
           <div key={category}>

@@ -58,6 +58,11 @@ export function useDts() {
             (t) => t.type === merged.type && t.platform === merged.platform
           );
           if (firstMatch) merged.id = String(firstMatch.id);
+          // Reset test scenario for new type
+          const scenarios = getTestScenarioNames(merged.type);
+          if (scenarios.length > 0) {
+            setTestScenario(scenarios[0]);
+          }
         }
         return merged;
       });
@@ -66,15 +71,22 @@ export function useDts() {
   );
 
   const loadTemplates = useCallback((entries) => {
-    setTemplates(entries);
-    if (entries.length > 0) {
-      const first = entries[0];
+    // Normalize IDs to strings
+    const normalized = entries.map(e => ({ ...e, id: String(e.id) }));
+    setTemplates(normalized);
+    if (normalized.length > 0) {
+      const first = normalized[0];
       setFilters({
         type: first.type,
         platform: first.platform || 'discord',
         language: first.language || 'en',
         id: String(first.id),
       });
+      // Set test scenario for the new type
+      const scenarios = getTestScenarioNames(first.type);
+      if (scenarios.length > 0) {
+        setTestScenario(scenarios[0]);
+      }
     }
   }, []);
 
