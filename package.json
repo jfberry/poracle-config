@@ -4,6 +4,7 @@
   "license": "MIT",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "homepage": "https://leovoel.github.io/embed-visualizer/",
   "scripts": {
     "dev": "vite",
@@ -16,7 +17,10 @@
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
+    "@tailwindcss/postcss": "^4.2.2",
     "@vitejs/plugin-react": "^6.0.1",
+    "postcss": "^8.5.8",
+    "tailwindcss": "^4.2.2",
     "vite": "^8.0.3"
   }
 }
