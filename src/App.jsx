@@ -17,16 +17,21 @@ export default function App() {
   const [showMiddle, setShowMiddle] = useState(true);
   const [customTestData, setCustomTestData] = useState(null);
   const [apiFields, setApiFields] = useState(null);
+  const [apiTestScenarios, setApiTestScenarios] = useState(null);
 
-  // Fetch fields from API when connected and type changes
+  // Fetch fields and test scenarios from API when connected and type changes
   useEffect(() => {
     if (!api.connected || !api.client) {
       setApiFields(null);
+      setApiTestScenarios(null);
       return;
     }
     api.client.getFields(dts.filters.type)
       .then((result) => setApiFields(result.fields || null))
       .catch(() => setApiFields(null));
+    api.client.getTestdata(dts.filters.type)
+      .then((result) => setApiTestScenarios(result.testdata || null))
+      .catch(() => setApiTestScenarios(null));
   }, [api.connected, api.client, dts.filters.type]);
 
   const activeTestData = customTestData || dts.currentTestData;
@@ -61,10 +66,10 @@ export default function App() {
     }
   }, [api, dts]);
 
-  const handleEnrich = useCallback(async () => {
+  const handleEnrich = useCallback(async (webhookData) => {
     if (!api.client) return;
     try {
-      const result = await api.client.enrichWebhook(dts.filters.type, activeTestData);
+      const result = await api.client.enrichWebhook(dts.filters.type, webhookData || activeTestData);
       if (result.variables) {
         setCustomTestData(result.variables);
       }
@@ -157,6 +162,7 @@ export default function App() {
                   scenarios={dts.availableScenarios}
                   currentScenario={dts.testScenario}
                   onScenarioChange={handleScenarioChange}
+                  apiScenarios={apiTestScenarios}
                   onEnrich={api.connected ? handleEnrich : null}
                 />
               )}

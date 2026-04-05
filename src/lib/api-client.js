@@ -47,6 +47,11 @@ export class PoracleApiClient {
     return this.fetch(`/api/dts/fields/${type}`);
   }
 
+  async getTestdata(type) {
+    const params = type ? `?type=${encodeURIComponent(type)}` : '';
+    return this.fetch(`/api/dts/testdata${params}`);
+  }
+
   async health() {
     // First try direct (works if PoracleNG has CORS enabled)
     try {
