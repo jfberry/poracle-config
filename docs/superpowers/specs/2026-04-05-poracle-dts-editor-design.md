@@ -102,6 +102,8 @@ Field display rules:
 
 Clicking a tag inserts `{{fieldName}}` (or `{{{fieldName}}}` for URL fields) at the cursor position in the active editor field.
 
+**Context-aware scoping:** The tag picker is aware of the cursor's position within block helpers. When inside a `{{#each pvpGreat}}` block, the picker shows the PVP entry fields (`rank`, `cp`, `fullName`, `level`, `percentage`, `cap`, etc.) instead of top-level fields. Similarly, inside `{{#pokemon id form}}`, it shows the pokemon block context (`name`, `baseStats`, `typeEmoji`, `formName`, etc.). Inside `{{#getPowerUpCost}}`, it shows `stardust`, `candy`, `xlCandy`. The top-level fields remain accessible via `../fieldName` (shown in a collapsible "Parent scope" section). The field metadata from `GET /api/dts/fields/{type}` includes block helper scopes — each block helper that creates a new context lists the fields available within it.
+
 Helpers section shows common Handlebars constructs (`{{#if}}`, `{{#each}}`, `{{#unless}}`, `{{round}}`, `{{numberFormat}}`, etc.) and inserts snippet templates with cursor placement.
 
 **Test Data tab**: Shows and allows editing of the webhook JSON / enriched variable map being used for the preview. Features:
@@ -286,6 +288,59 @@ Response:
       "deprecated": true,
       "rawWebhook": false,
       "preferredAlternative": "googleMapUrl"
+    }
+  ],
+  "blockScopes": [
+    {
+      "helper": "each",
+      "iterableFields": ["pvpGreat", "pvpUltra", "pvpLittle", "matched", "weaknessList"],
+      "scopes": {
+        "pvpGreat": {
+          "description": "PVP Great League entry",
+          "fields": [
+            {"name": "rank", "type": "int", "description": "PVP rank"},
+            {"name": "cp", "type": "int", "description": "CP at this rank"},
+            {"name": "fullName", "type": "string", "description": "Pokemon name + form"},
+            {"name": "level", "type": "number", "description": "Level at this rank"},
+            {"name": "levelWithCap", "type": "string", "description": "Level with cap notation"},
+            {"name": "percentage", "type": "number", "description": "Stat product percentage"},
+            {"name": "cap", "type": "int", "description": "Level cap"},
+            {"name": "evolution", "type": "int", "description": "Evolution ID (0 if none)"}
+          ]
+        },
+        "weaknessList": {
+          "description": "Weakness category",
+          "fields": [
+            {"name": "value", "type": "string", "description": "Weakness multiplier"},
+            {"name": "types", "type": "array", "description": "Array of {typeId, name, typeEmoji}"}
+          ]
+        }
+      }
+    },
+    {
+      "helper": "pokemon",
+      "args": ["id", "form"],
+      "description": "Looks up pokemon by ID and form, provides block context",
+      "fields": [
+        {"name": "name", "type": "string", "description": "Translated pokemon name"},
+        {"name": "nameEng", "type": "string", "description": "English pokemon name"},
+        {"name": "fullName", "type": "string", "description": "Name + form"},
+        {"name": "formName", "type": "string", "description": "Translated form name"},
+        {"name": "typeName", "type": "string", "description": "Comma-separated type names"},
+        {"name": "typeEmoji", "type": "string", "description": "Type emojis concatenated"},
+        {"name": "baseStats", "type": "object", "description": "{baseAttack, baseDefense, baseStamina}"},
+        {"name": "hasEvolutions", "type": "bool", "description": "Has evolutions"}
+      ]
+    },
+    {
+      "helper": "getPowerUpCost",
+      "args": ["levelStart", "levelEnd"],
+      "description": "Power-up cost between two levels",
+      "fields": [
+        {"name": "stardust", "type": "int", "description": "Stardust cost"},
+        {"name": "candy", "type": "int", "description": "Candy cost"},
+        {"name": "xlCandy", "type": "int", "description": "XL Candy cost"}
+      ]
     }
   ]
 }
