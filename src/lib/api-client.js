@@ -56,6 +56,19 @@ export class PoracleApiClient {
     return this.fetch('/api/dts/partials');
   }
 
+  async sendTest(template, variables, targetId, { targetType = 'discord:user', language = 'en', platform = 'discord' } = {}) {
+    return this.fetch('/api/dts/sendtest', {
+      method: 'POST',
+      body: JSON.stringify({
+        template,
+        variables,
+        target: { id: targetId, type: targetType },
+        language,
+        platform,
+      }),
+    });
+  }
+
   async health() {
     // First try direct (works if PoracleNG has CORS enabled)
     try {

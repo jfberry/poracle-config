@@ -1,6 +1,6 @@
 export default function TopBar({
   filters, setFilters, availableTypes, availableIds, availableLanguages = ['en'], onLoadFile, onSave,
-  showMiddle, onToggleMiddle,
+  showMiddle, onToggleMiddle, sendTestButton,
 }) {
   return (
     <div className="flex items-center justify-between px-4 py-2 bg-gray-900 border-b border-gray-700 text-sm">
@@ -28,7 +28,8 @@ export default function TopBar({
           {availableLanguages.map((l) => <option key={l} value={l}>{l}</option>)}
         </select>
       </div>
-      <div className="flex gap-2">
+      <div className="flex items-center gap-2">
+        {sendTestButton}
         <button onClick={onToggleMiddle}
           className={`px-3 py-0.5 rounded text-sm border border-gray-600 hover:bg-gray-700 ${showMiddle ? 'bg-gray-700 text-blue-300' : 'bg-gray-800 text-gray-400'}`}>{showMiddle ? 'Hide Tags' : 'Show Tags'}</button>
         <button onClick={onLoadFile}

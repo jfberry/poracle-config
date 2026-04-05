@@ -4,6 +4,7 @@ import TemplateEditor from './components/TemplateEditor';
 import TagPicker from './components/TagPicker';
 import TestDataPanel from './components/TestDataPanel';
 import DiscordPreview from './components/DiscordPreview';
+import SendTestButton from './components/SendTestButton';
 import StatusBar from './components/StatusBar';
 import { useDts } from './hooks/useDts';
 import { useHandlebars } from './hooks/useHandlebars';
@@ -104,6 +105,16 @@ export default function App() {
     }
   }, [api.client, dts.filters.type, activeTestData]);
 
+  const handleSendTest = useCallback(async (targetId) => {
+    if (!api.client || !dts.currentTemplate?.template) return;
+    await api.client.sendTest(
+      dts.currentTemplate.template,
+      activeTestData,
+      targetId,
+      { language: dts.filters.language, platform: dts.filters.platform }
+    );
+  }, [api.client, dts.currentTemplate, activeTestData, dts.filters.language, dts.filters.platform]);
+
   const handleInsertTag = useCallback((tag) => {
     // For now, just copy to clipboard. Future: insert at cursor in active editor field.
     navigator.clipboard?.writeText(tag).catch(() => {});
@@ -147,7 +158,8 @@ export default function App() {
         availableTypes={dts.availableTypes} availableIds={dts.availableIds}
         availableLanguages={dts.availableLanguages}
         onLoadFile={handleLoadFile} onSave={handleSave}
-        showMiddle={showMiddle} onToggleMiddle={() => setShowMiddle((v) => !v)} />
+        showMiddle={showMiddle} onToggleMiddle={() => setShowMiddle((v) => !v)}
+        sendTestButton={api.connected && <SendTestButton onSend={handleSendTest} />} />
       <div className="flex flex-1 min-h-0">
         {/* Left panel — Template Editor */}
         <div className="flex-1 min-w-0 border-r border-gray-700">
