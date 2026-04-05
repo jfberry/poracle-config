@@ -7,10 +7,12 @@ import DiscordPreview from './components/DiscordPreview';
 import StatusBar from './components/StatusBar';
 import { useDts } from './hooks/useDts';
 import { useHandlebars } from './hooks/useHandlebars';
+import { useApi } from './hooks/useApi';
 
 export default function App() {
   const dts = useDts();
   const { render, renderError } = useHandlebars();
+  const api = useApi();
   const [middleTab, setMiddleTab] = useState('tags');
   const [customTestData, setCustomTestData] = useState(null);
 
@@ -25,6 +27,20 @@ export default function App() {
     dts.setTestScenario(scenario);
     setCustomTestData(null);
   }, [dts.setTestScenario]);
+
+  const handleConnect = useCallback(async (url, secret) => {
+    const client = await api.connect(url, secret);
+    if (client) {
+      try {
+        const result = await client.getTemplates();
+        if (result.templates) {
+          dts.loadTemplates(result.templates);
+        }
+      } catch (err) {
+        console.error('Failed to load templates:', err);
+      }
+    }
+  }, [api, dts]);
 
   const handleInsertTag = useCallback((tag) => {
     // For now, just copy to clipboard. Future: insert at cursor in active editor field.
@@ -116,7 +132,8 @@ export default function App() {
           <DiscordPreview data={renderedData} error={renderError} />
         </div>
       </div>
-      <StatusBar connected={false} testScenario={dts.testScenario} error={renderError} />
+      <StatusBar connected={api.connected} url={api.url} testScenario={dts.testScenario}
+        error={renderError || api.error} onConnect={handleConnect} onDisconnect={api.disconnect} />
     </div>
   );
 }
