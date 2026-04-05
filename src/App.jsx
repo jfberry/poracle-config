@@ -1,6 +1,8 @@
-import { useMemo } from 'react';
+import { useState, useMemo, useCallback } from 'react';
 import TopBar from './components/TopBar';
 import TemplateEditor from './components/TemplateEditor';
+import TagPicker from './components/TagPicker';
+import TestDataPanel from './components/TestDataPanel';
 import DiscordPreview from './components/DiscordPreview';
 import StatusBar from './components/StatusBar';
 import { useDts } from './hooks/useDts';
@@ -9,11 +11,25 @@ import { useHandlebars } from './hooks/useHandlebars';
 export default function App() {
   const dts = useDts();
   const { render, renderError } = useHandlebars();
+  const [middleTab, setMiddleTab] = useState('tags');
+  const [customTestData, setCustomTestData] = useState(null);
+
+  const activeTestData = customTestData || dts.currentTestData;
 
   const renderedData = useMemo(() => {
     if (!dts.currentTemplate?.template) return {};
-    return render(dts.currentTemplate.template, dts.currentTestData) || {};
-  }, [dts.currentTemplate, dts.currentTestData, render]);
+    return render(dts.currentTemplate.template, activeTestData) || {};
+  }, [dts.currentTemplate, activeTestData, render]);
+
+  const handleScenarioChange = useCallback((scenario) => {
+    dts.setTestScenario(scenario);
+    setCustomTestData(null);
+  }, [dts.setTestScenario]);
+
+  const handleInsertTag = useCallback((tag) => {
+    // For now, just copy to clipboard. Future: insert at cursor in active editor field.
+    navigator.clipboard?.writeText(tag).catch(() => {});
+  }, []);
 
   const handleLoadFile = () => {
     const input = document.createElement('input');
@@ -57,9 +73,43 @@ export default function App() {
         <div className="w-1/3 border-r border-gray-700">
           <TemplateEditor template={dts.currentTemplate?.template} onChange={dts.updateTemplate} />
         </div>
-        {/* Middle panel — Tag Picker placeholder */}
-        <div className="w-60 border-r border-gray-700 overflow-y-auto p-3">
-          <div className="text-gray-500 text-sm">Tag Picker — coming in Task 10</div>
+        {/* Middle panel — Tags / Test Data */}
+        <div className="w-60 border-r border-gray-700 flex flex-col min-h-0">
+          <div className="flex shrink-0 border-b border-gray-700">
+            <button
+              onClick={() => setMiddleTab('tags')}
+              className={`flex-1 text-xs py-1.5 text-center transition-colors ${
+                middleTab === 'tags'
+                  ? 'text-blue-400 border-b-2 border-blue-400 bg-gray-900'
+                  : 'text-gray-500 hover:text-gray-300'
+              }`}
+            >
+              Tags
+            </button>
+            <button
+              onClick={() => setMiddleTab('data')}
+              className={`flex-1 text-xs py-1.5 text-center transition-colors ${
+                middleTab === 'data'
+                  ? 'text-blue-400 border-b-2 border-blue-400 bg-gray-900'
+                  : 'text-gray-500 hover:text-gray-300'
+              }`}
+            >
+              Test Data
+            </button>
+          </div>
+          <div className="flex-1 min-h-0">
+            {middleTab === 'tags' ? (
+              <TagPicker type={dts.filters.type} onInsertTag={handleInsertTag} />
+            ) : (
+              <TestDataPanel
+                testData={activeTestData}
+                onTestDataChange={setCustomTestData}
+                scenarios={dts.availableScenarios}
+                currentScenario={dts.testScenario}
+                onScenarioChange={handleScenarioChange}
+              />
+            )}
+          </div>
         </div>
         {/* Right panel — Discord Preview */}
         <div className="flex-1">
