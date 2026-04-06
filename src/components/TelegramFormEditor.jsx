@@ -1,9 +1,30 @@
-import { useCallback, useRef } from 'react';
+import { useCallback, useRef, useMemo } from 'react';
 import FormatToolbar from './FormatToolbar';
 
 const inputClass =
   'w-full bg-gray-800 text-gray-200 border border-gray-600 rounded px-2 py-1 text-sm font-mono focus:outline-none focus:border-blue-500';
 const labelClass = 'block text-xs text-gray-400 mb-1';
+
+// Match the invisible-link preview image hack: [​](url) or [ ](url) or [\u200A](url)
+// The link text is either empty, a zero-width space, a hair space, or a regular space
+const PREVIEW_IMAGE_RE = /\[[\s\u200B\u200A]*\]\(([^)]+)\)/;
+
+function extractPreviewImage(content) {
+  if (!content) return { url: '', cleanContent: content || '' };
+  const match = content.match(PREVIEW_IMAGE_RE);
+  if (!match) return { url: '', cleanContent: content };
+  return {
+    url: match[1],
+    cleanContent: content.replace(match[0], '').replace(/^\n+/, ''),
+  };
+}
+
+function injectPreviewImage(content, url) {
+  if (!url) return content || '';
+  // Prepend the invisible link at the start
+  const prefix = `[\u200A](${url})`;
+  return content ? `${prefix}\n${content}` : prefix;
+}
 
 export default function TelegramFormEditor({ template, onChange }) {
   const formRef = useRef(null);
@@ -21,8 +42,65 @@ export default function TelegramFormEditor({ template, onChange }) {
     [template, onChange]
   );
 
+  // Extract preview image from content
+  const { url: previewImageUrl, cleanContent } = useMemo(
+    () => extractPreviewImage(template?.content),
+    [template?.content]
+  );
+
+  // Update content without the preview image (user edits clean content)
+  const handleContentChange = useCallback(
+    (newCleanContent) => {
+      const updated = { ...template };
+      if (previewImageUrl) {
+        updated.content = injectPreviewImage(newCleanContent, previewImageUrl);
+      } else {
+        updated.content = newCleanContent;
+      }
+      if (!updated.content) delete updated.content;
+      onChange(updated);
+    },
+    [template, onChange, previewImageUrl]
+  );
+
+  // Update preview image URL
+  const handlePreviewImageChange = useCallback(
+    (newUrl) => {
+      const updated = { ...template };
+      if (newUrl) {
+        updated.content = injectPreviewImage(cleanContent, newUrl);
+        // Auto-enable webpage_preview when using preview image
+        updated.webpage_preview = true;
+      } else {
+        updated.content = cleanContent || undefined;
+        if (!updated.content) delete updated.content;
+      }
+      onChange(updated);
+    },
+    [template, onChange, cleanContent]
+  );
+
   return (
     <div ref={formRef} className="p-3 space-y-3">
+      {/* Preview Image (extracted from invisible link hack) */}
+      <div>
+        <label className={labelClass}>
+          Preview Image URL
+          <span className="text-gray-600 ml-1 font-normal">(shown via link preview)</span>
+        </label>
+        <input
+          className={inputClass}
+          value={previewImageUrl}
+          onChange={(e) => handlePreviewImageChange(e.target.value)}
+          placeholder="{{{staticMap}}} — image shown in message via link preview"
+        />
+        {previewImageUrl && (
+          <p className="text-[10px] text-teal-500 mt-0.5">
+            Inserts as invisible link. Webpage preview auto-enabled.
+          </p>
+        )}
+      </div>
+
       {/* Content */}
       <div>
         <div className="flex items-center justify-between mb-1">
@@ -31,8 +109,8 @@ export default function TelegramFormEditor({ template, onChange }) {
         </div>
         <textarea
           className={inputClass + ' min-h-[120px] resize-y'}
-          value={template?.content ?? ''}
-          onChange={(e) => update('content', e.target.value)}
+          value={cleanContent}
+          onChange={(e) => handleContentChange(e.target.value)}
           placeholder="Message content (supports Handlebars + Telegram Markdown)"
           rows={8}
         />
@@ -70,7 +148,7 @@ export default function TelegramFormEditor({ template, onChange }) {
           className={inputClass}
           value={template?.photo ?? ''}
           onChange={(e) => update('photo', e.target.value)}
-          placeholder="Photo/image URL (optional)"
+          placeholder="Sent as a separate photo message (optional)"
         />
       </div>
 
@@ -97,6 +175,9 @@ export default function TelegramFormEditor({ template, onChange }) {
             className="rounded"
           />
           Show link previews
+          {previewImageUrl && !template?.webpage_preview && (
+            <span className="text-yellow-500 text-[10px]">⚠ Required for preview image</span>
+          )}
         </label>
       </div>
 
