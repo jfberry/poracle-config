@@ -1,16 +1,7 @@
-import { useEffect } from 'react';
 import ConfigSidebar from './ConfigSidebar';
 import ConfigSection from './ConfigSection';
-import { useConfig } from '../hooks/useConfig';
 
-export default function ConfigEditor({ apiClient }) {
-  const config = useConfig(apiClient);
-
-  // Load config on mount
-  useEffect(() => {
-    config.load();
-  }, [apiClient]);
-
+export default function ConfigEditor({ config }) {
   if (config.loading) {
     return (
       <div className="flex items-center justify-center h-full text-gray-500">
@@ -54,14 +45,11 @@ export default function ConfigEditor({ apiClient }) {
             values={config.values[config.activeSection]}
             originalValues={config.originalValues[config.activeSection]}
             onUpdateField={config.updateField}
-            onUpdateTable={config.updateTable}
             resolveIds={config.resolveIds}
+            dirtyFieldNames={new Set(Object.keys(config.dirtyFields.dirty[config.activeSection] || {}))}
           />
         )}
       </div>
     </div>
   );
 }
-
-// Export the hook result type for App.jsx to use for save/dirty
-export { useConfig };

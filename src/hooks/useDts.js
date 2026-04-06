@@ -2,6 +2,12 @@ import { useState, useCallback, useMemo } from 'react';
 import { defaultTemplates, getDefaultTemplate } from '../data/default-dts';
 import { getTestScenario, getTestScenarioNames } from '../data/test-data';
 
+function normalizeEntries(entries) {
+  return entries
+    .filter((e) => e.template || e.templateFile)
+    .map((e) => ({ ...e, id: String(e.id ?? '1'), platform: e.platform || 'discord', language: e.language || 'en' }));
+}
+
 export function useDts() {
   const [templates, setTemplates] = useState(defaultTemplates);
   const [filters, setFilters] = useState({
@@ -11,6 +17,11 @@ export function useDts() {
     id: 'default-monster',
   });
   const [testScenario, setTestScenario] = useState('hundo');
+
+  const resetScenarioForType = useCallback((type) => {
+    const scenarios = getTestScenarioNames(type);
+    if (scenarios.length > 0) setTestScenario(scenarios[0]);
+  }, []);
 
   // Find current template: match type+platform+id, prefer matching language but fall back
   const currentTemplate = useMemo(() => {
@@ -107,11 +118,7 @@ export function useDts() {
         }
 
         if (typeChanged) {
-          // Reset test scenario for new type
-          const scenarios = getTestScenarioNames(merged.type);
-          if (scenarios.length > 0) {
-            setTestScenario(scenarios[0]);
-          }
+          resetScenarioForType(merged.type);
         }
 
         return merged;
@@ -121,15 +128,7 @@ export function useDts() {
   );
 
   const loadTemplates = useCallback((entries) => {
-    // Normalize IDs to strings, default missing fields
-    const normalized = entries
-      .filter((e) => e.template || e.templateFile) // skip entries without templates
-      .map((e) => ({
-        ...e,
-        id: String(e.id ?? '1'),
-        platform: e.platform || 'discord',
-        language: e.language || 'en',
-      }));
+    const normalized = normalizeEntries(entries);
     if (normalized.length === 0) {
       alert('No valid template entries found in file');
       return;
@@ -142,12 +141,8 @@ export function useDts() {
       language: first.language,
       id: first.id,
     });
-    // Set test scenario for the new type
-    const scenarios = getTestScenarioNames(first.type);
-    if (scenarios.length > 0) {
-      setTestScenario(scenarios[0]);
-    }
-  }, []);
+    resetScenarioForType(first.type);
+  }, [resetScenarioForType]);
 
   const selectTemplate = useCallback((template) => {
     setFilters({
@@ -156,21 +151,12 @@ export function useDts() {
       language: template.language || 'en',
       id: String(template.id),
     });
-    // Reset test scenario for the new type
-    const scenarios = getTestScenarioNames(template.type);
-    if (scenarios.length > 0) {
-      setTestScenario(scenarios[0]);
-    }
-  }, []);
+    resetScenarioForType(template.type);
+  }, [resetScenarioForType]);
 
   // Import entries into the current template set (merge, don't replace)
   const importTemplates = useCallback((entries) => {
-    const normalized = entries.map((e) => ({
-      ...e,
-      id: String(e.id ?? '1'),
-      platform: e.platform || 'discord',
-      language: e.language || 'en',
-    }));
+    const normalized = normalizeEntries(entries);
 
     setTemplates((prev) => {
       const merged = [...prev];
@@ -200,12 +186,9 @@ export function useDts() {
         language: first.language,
         id: first.id,
       });
-      const scenarios = getTestScenarioNames(first.type);
-      if (scenarios.length > 0) {
-        setTestScenario(scenarios[0]);
-      }
+      resetScenarioForType(first.type);
     }
-  }, []);
+  }, [resetScenarioForType]);
 
   return {
     templates, filters, setFilters: setFiltersWithAutoId,

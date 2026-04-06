@@ -1,9 +1,6 @@
 import { useCallback, useRef } from 'react';
 import FormatToolbar from './FormatToolbar';
-
-const inputClass =
-  'w-full bg-gray-800 text-gray-200 border border-gray-600 rounded px-2 py-1 text-sm font-mono focus:outline-none focus:border-blue-500';
-const labelClass = 'block text-xs text-gray-400 mb-1';
+import { inputClass, labelClass } from '../lib/styles';
 
 function Section({ title, children }) {
   return (
@@ -84,6 +81,7 @@ export default function FormEditor({ template, onChange }) {
 
   return (
     <div ref={formRef} className="p-3 space-y-3">
+      <FormatToolbar targetRef={formRef} />
       {/* Color */}
       <div>
         <label className={labelClass}>Color</label>
@@ -119,10 +117,7 @@ export default function FormEditor({ template, onChange }) {
 
       {/* Title */}
       <div>
-        <div className="flex items-center justify-between mb-1">
-          <label className="text-xs text-gray-400">Title</label>
-          <FormatToolbar targetRef={formRef} />
-        </div>
+        <label className={labelClass}>Title</label>
         <input
           className={inputClass}
           value={embed.title ?? ''}
@@ -144,10 +139,7 @@ export default function FormEditor({ template, onChange }) {
 
       {/* Description */}
       <div>
-        <div className="flex items-center justify-between mb-1">
-          <label className="text-xs text-gray-400">Description</label>
-          <FormatToolbar targetRef={formRef} />
-        </div>
+        <label className={labelClass}>Description</label>
         <textarea
           className={inputClass + ' min-h-[80px] resize-y'}
           value={embed.description ?? ''}
@@ -180,10 +172,7 @@ export default function FormEditor({ template, onChange }) {
               />
             </div>
             <div>
-              <div className="flex items-center justify-between mb-1">
-                <label className="text-xs text-gray-400">Value</label>
-                <FormatToolbar targetRef={formRef} />
-              </div>
+              <label className={labelClass}>Value</label>
               <textarea
                 className={inputClass + ' min-h-[40px] resize-y'}
                 value={field.value ?? ''}

@@ -1,9 +1,6 @@
 import { useCallback, useRef, useMemo } from 'react';
 import FormatToolbar from './FormatToolbar';
-
-const inputClass =
-  'w-full bg-gray-800 text-gray-200 border border-gray-600 rounded px-2 py-1 text-sm font-mono focus:outline-none focus:border-blue-500';
-const labelClass = 'block text-xs text-gray-400 mb-1';
+import { inputClass, labelClass } from '../lib/styles';
 
 // Match the invisible-link preview image hack: [​](url) or [ ](url) or [\u200A](url)
 // The link text is either empty, a zero-width space, a hair space, or a regular space
@@ -82,6 +79,7 @@ export default function TelegramFormEditor({ template, onChange }) {
 
   return (
     <div ref={formRef} className="p-3 space-y-3">
+      <FormatToolbar targetRef={formRef} />
       {/* Preview Image (extracted from invisible link hack) */}
       <div>
         <label className={labelClass}>
@@ -103,10 +101,7 @@ export default function TelegramFormEditor({ template, onChange }) {
 
       {/* Content */}
       <div>
-        <div className="flex items-center justify-between mb-1">
-          <label className="text-xs text-gray-400">Content</label>
-          <FormatToolbar targetRef={formRef} />
-        </div>
+        <label className={labelClass}>Content</label>
         <textarea
           className={inputClass + ' min-h-[120px] resize-y'}
           value={cleanContent}

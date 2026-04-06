@@ -89,10 +89,7 @@ export default function TagPicker({ type, onInsertTag, apiFields, blockContext, 
   }, [allFields]);
 
   const doInsert = (text) => {
-    const inserted = onInsertTag?.(text);
-    if (!inserted) {
-      navigator.clipboard?.writeText(text).catch(() => {});
-    }
+    onInsertTag?.(text);
     setLastInserted(text.length > 40 ? text.substring(0, 37) + '...' : text);
     setTimeout(() => setLastInserted(null), 2000);
   };

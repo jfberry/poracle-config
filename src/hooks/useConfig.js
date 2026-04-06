@@ -13,6 +13,7 @@ export function useConfig(apiClient) {
   // Fetch schema and values
   const load = useCallback(async () => {
     if (!apiClient) return;
+    resolveCache.current.clear();
     setLoading(true);
     setError(null);
     try {
@@ -39,14 +40,6 @@ export function useConfig(apiClient) {
     setValues((prev) => ({
       ...prev,
       [section]: { ...prev[section], [field]: value },
-    }));
-  }, []);
-
-  // Update a table (array) value
-  const updateTable = useCallback((section, tableName, tableValue) => {
-    setValues((prev) => ({
-      ...prev,
-      [section]: { ...prev[section], [tableName]: tableValue },
     }));
   }, []);
 
@@ -203,7 +196,6 @@ export function useConfig(apiClient) {
     saveResult,
     load,
     updateField,
-    updateTable,
     dirtyFields,
     dirtySections,
     restartRequired,

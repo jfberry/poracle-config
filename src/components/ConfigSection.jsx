@@ -1,80 +1,9 @@
-import { useEffect, useMemo } from 'react';
 import ConfigField from './ConfigField';
 import ConfigTagInput from './ConfigTagInput';
 import ConfigTable from './ConfigTable';
 
-export default function ConfigSection({ section, values, originalValues, onUpdateField, onUpdateTable, resolveIds }) {
+export default function ConfigSection({ section, values, originalValues, onUpdateField, resolveIds, dirtyFieldNames }) {
   const sectionValues = values || {};
-  const sectionOriginal = originalValues || {};
-
-  // Collect IDs that need resolving in this section
-  useEffect(() => {
-    if (!resolveIds) return;
-
-    const request = { discord: {}, telegram: {} };
-    let hasIds = false;
-
-    for (const field of section.fields) {
-      if (!field.resolve) continue;
-      const val = sectionValues[field.name];
-      if (!val) continue;
-
-      const ids = Array.isArray(val) ? val : [String(val)];
-      if (ids.length === 0) continue;
-
-      const [platform, type] = field.resolve.split(':');
-      if (platform === 'discord') {
-        const key = type === 'user|role' ? 'users' : type === 'target' ? 'users' : type + 's';
-        request.discord[key] = [...(request.discord[key] || []), ...ids];
-        if (type === 'user|role') {
-          request.discord.roles = [...(request.discord.roles || []), ...ids];
-        }
-        if (type === 'target') {
-          request.discord.channels = [...(request.discord.channels || []), ...ids];
-        }
-        hasIds = true;
-      } else if (platform === 'telegram') {
-        request.telegram.chats = [...(request.telegram.chats || []), ...ids];
-        hasIds = true;
-      }
-    }
-
-    // Also check table fields
-    for (const table of section.tables || []) {
-      const tableVal = sectionValues[table.name];
-      if (!Array.isArray(tableVal)) continue;
-      for (const entry of tableVal) {
-        for (const field of table.fields) {
-          if (!field.resolve) continue;
-          const val = entry[field.name];
-          if (!val) continue;
-          const ids = Array.isArray(val) ? val : [String(val)];
-          const [platform, type] = field.resolve.split(':');
-          if (platform === 'discord') {
-            const key = type + 's';
-            request.discord[key] = [...(request.discord[key] || []), ...ids];
-            hasIds = true;
-          } else if (platform === 'telegram') {
-            request.telegram.chats = [...(request.telegram.chats || []), ...ids];
-            hasIds = true;
-          }
-        }
-      }
-    }
-
-    if (hasIds) {
-      // Clean up empty arrays
-      for (const platform of ['discord', 'telegram']) {
-        for (const [key, ids] of Object.entries(request[platform])) {
-          if (ids.length === 0) delete request[platform][key];
-        }
-        if (Object.keys(request[platform]).length === 0) delete request[platform];
-      }
-      if (Object.keys(request).length > 0) {
-        resolveIds(request);
-      }
-    }
-  }, [section.name, resolveIds]);
 
   // Evaluate dependency visibility
   const isVisible = (field) => {
@@ -85,9 +14,7 @@ export default function ConfigSection({ section, values, originalValues, onUpdat
     return String(parentValue) === String(field.dependsOn.value);
   };
 
-  const isDirty = (fieldName) => {
-    return JSON.stringify(sectionValues[fieldName]) !== JSON.stringify(sectionOriginal[fieldName]);
-  };
+  const isDirty = (fieldName) => dirtyFieldNames ? dirtyFieldNames.has(fieldName) : false;
 
   return (
     <div className="p-4">
@@ -138,7 +65,7 @@ export default function ConfigSection({ section, values, originalValues, onUpdat
             <ConfigTable
               table={table}
               value={sectionValues[table.name]}
-              onChange={(v) => onUpdateTable(section.name, table.name, v)}
+              onChange={(v) => onUpdateField(section.name, table.name, v)}
               resolveIds={resolveIds}
             />
           </div>

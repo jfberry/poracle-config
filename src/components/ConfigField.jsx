@@ -1,7 +1,5 @@
 import { useState } from 'react';
-
-const inputClass =
-  'w-full bg-gray-800 text-gray-200 border border-gray-600 rounded px-2 py-1.5 text-sm font-mono focus:outline-none focus:border-blue-500';
+import { inputClass } from '../lib/styles';
 
 function ResolvedLabel({ id, resolved }) {
   if (!resolved) return <span className="font-mono">{id}</span>;

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { ResolvedLabel } from './ConfigField';
+import { inputBase } from '../lib/styles';
 
 export default function ConfigTagInput({ value, onChange, resolve, resolveIds, field }) {
   const [input, setInput] = useState('');
@@ -78,7 +79,7 @@ export default function ConfigTagInput({ value, onChange, resolve, resolveIds, f
       </div>
       <div className="flex gap-1.5">
         <input
-          className="flex-1 bg-gray-800 text-gray-200 border border-gray-600 rounded px-2 py-1 text-sm font-mono focus:outline-none focus:border-blue-500"
+          className={`flex-1 ${inputBase}`}
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={handleKeyDown}

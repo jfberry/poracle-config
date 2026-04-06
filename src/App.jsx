@@ -15,6 +15,21 @@ import { useHandlebars } from './hooks/useHandlebars';
 import { useApi } from './hooks/useApi';
 import { useInsertAtCursor } from './hooks/useInsertAtCursor';
 
+// DTS template types -> testdata webhook types
+const dtsToWebhookType = {
+  monster: 'pokemon',
+  monsterNoIv: 'pokemon',
+  raid: 'raid',
+  egg: 'raid',
+  invasion: 'pokestop',
+  lure: 'pokestop',
+  quest: 'quest',
+  nest: 'nest',
+  gym: 'gym',
+  'fort-update': 'fort_update',
+  maxbattle: 'max_battle',
+};
+
 export default function App() {
   const dts = useDts();
   const { render, renderError, setPartials } = useHandlebars();
@@ -29,21 +44,6 @@ export default function App() {
   const [offlineMode, setOfflineMode] = useState(false);
   const [activeTab, setActiveTab] = useState('templates');
   const config = useConfig(api.connected ? api.client : null);
-
-  // DTS template types → testdata webhook types
-  const dtsToWebhookType = {
-    monster: 'pokemon',
-    monsterNoIv: 'pokemon',
-    raid: 'raid',
-    egg: 'raid',
-    invasion: 'pokestop',
-    lure: 'pokestop',
-    quest: 'quest',
-    nest: 'nest',
-    gym: 'gym',
-    'fort-update': 'fort_update',
-    maxbattle: 'max_battle',
-  };
 
   // Fetch fields and test scenarios from API when connected and type changes
   useEffect(() => {
@@ -321,7 +321,7 @@ export default function App() {
         </div>
       ) : (
         <div className="flex-1 min-h-0">
-          <ConfigEditor apiClient={api.client} />
+          <ConfigEditor config={config} />
         </div>
       )}
       <StatusBar
