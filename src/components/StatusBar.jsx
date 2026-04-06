@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export default function StatusBar({ connected, url, testScenario, error, onConnect, onDisconnect }) {
+export default function StatusBar({ connected, url, testScenario, error, configDirtyCount, onConnect, onDisconnect }) {
   const [showConnect, setShowConnect] = useState(false);
   const [apiUrl, setApiUrl] = useState('http://localhost:3030');
   const [apiSecret, setApiSecret] = useState('');
@@ -33,6 +33,9 @@ export default function StatusBar({ connected, url, testScenario, error, onConne
       </div>
       <div className="flex items-center gap-3">
         {error && <span className="text-red-400">{error}</span>}
+        {configDirtyCount > 0 && (
+          <span className="text-blue-400">{configDirtyCount} unsaved config change{configDirtyCount !== 1 ? 's' : ''}</span>
+        )}
         {testScenario && <span className="text-yellow-300">Test: {testScenario}</span>}
       </div>
     </div>
