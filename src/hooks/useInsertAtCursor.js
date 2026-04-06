@@ -96,21 +96,23 @@ export function useInsertAtCursor() {
       'value'
     ).set;
 
-    const pos = cursorPosRef.current;
-    const braceContext = insideHandlebars(el.value, pos);
+    const start = el.selectionStart ?? cursorPosRef.current;
+    const end = el.selectionEnd ?? start;
+    const braceContext = insideHandlebars(el.value, start);
 
     // If cursor is inside {{ }} or {{{ }}}, insert just the field name
     const insertText = braceContext ? stripBraces(text) : text;
 
-    const before = el.value.substring(0, pos);
-    const after = el.value.substring(pos);
+    // Replace selected text (or insert at cursor if no selection)
+    const before = el.value.substring(0, start);
+    const after = el.value.substring(end);
     const newValue = before + insertText + after;
 
     nativeInputValueSetter.call(el, newValue);
     el.dispatchEvent(new Event('input', { bubbles: true }));
 
     // Restore focus and set cursor after inserted text
-    const newPos = pos + insertText.length;
+    const newPos = start + insertText.length;
     requestAnimationFrame(() => {
       el.focus();
       el.setSelectionRange(newPos, newPos);
