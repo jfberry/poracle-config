@@ -1,5 +1,6 @@
 import { useState, useMemo } from 'react';
-import { getFieldsForType } from '../lib/field-definitions';
+import { getFieldsForType, getBlockScope, blockScopes } from '../lib/field-definitions';
+import { generateEachSnippet, generatePokemonSnippet, generatePowerUpCostSnippet } from '../lib/handlebars-context';
 
 const categoryColors = {
   pokemon: 'text-yellow-300',
@@ -21,6 +22,7 @@ const categoryColors = {
   invasion: 'text-rose-400',
   lure: 'text-teal-400',
   nest: 'text-lime-400',
+  cost: 'text-amber-300',
   other: 'text-gray-400',
 };
 
@@ -32,23 +34,27 @@ const urlFields = new Set([
 
 const helpers = [
   { label: '{{#if ...}}', snippet: '{{#if fieldName}}...{{/if}}', desc: 'Conditional block' },
-  { label: '{{#each ...}}', snippet: '{{#each arrayField}}...{{/each}}', desc: 'Iterate array' },
   { label: '{{#unless ...}}', snippet: '{{#unless fieldName}}...{{/unless}}', desc: 'Inverse conditional' },
   { label: '{{round ...}}', snippet: '{{round fieldName}}', desc: 'Round number' },
   { label: '{{numberFormat ...}}', snippet: '{{numberFormat fieldName 2}}', desc: 'Format decimals' },
   { label: '{{#eq a b}}', snippet: '{{#eq fieldA "value"}}...{{else}}...{{/eq}}', desc: 'Equals check' },
   { label: '{{#compare ...}}', snippet: '{{#compare fieldA ">" fieldB}}...{{/compare}}', desc: 'Comparison operator' },
-  { label: '{{#forEach ...}}', snippet: '{{#forEach arrayField}}{{this}}{{#unless isLast}}, {{/unless}}{{/forEach}}', desc: 'Iterate with isFirst/isLast' },
 ];
 
-export default function TagPicker({ type, onInsertTag, apiFields }) {
+// Fields that have iterable block scopes (for "insert each block" buttons)
+const iterableFieldNames = ['pvpGreat', 'pvpUltra', 'pvpLittle', 'matched', 'weaknessList', 'evolutions'];
+
+export default function TagPicker({ type, onInsertTag, apiFields, blockContext }) {
   const [showRaw, setShowRaw] = useState(false);
   const [showDeprecated, setShowDeprecated] = useState(false);
   const [lastInserted, setLastInserted] = useState(null);
 
+  const allFields = useMemo(() => {
+    return apiFields && apiFields.length > 0 ? apiFields : getFieldsForType(type);
+  }, [type, apiFields]);
+
   const grouped = useMemo(() => {
-    const fields = apiFields && apiFields.length > 0 ? apiFields : getFieldsForType(type);
-    const filtered = fields.filter((f) => {
+    const filtered = allFields.filter((f) => {
       if (f.rawWebhook && !showRaw) return false;
       if (f.deprecated && !showDeprecated) return false;
       return true;
@@ -61,38 +67,119 @@ export default function TagPicker({ type, onInsertTag, apiFields }) {
       groups[cat].push(f);
     }
     return groups;
-  }, [type, showRaw, showDeprecated, apiFields]);
+  }, [allFields, showRaw, showDeprecated]);
 
-  const handleClick = (field) => {
-    const tag = urlFields.has(field.name) ? `{{{${field.name}}}}` : `{{${field.name}}}`;
-    const inserted = onInsertTag?.(tag);
-    if (!inserted) {
-      navigator.clipboard?.writeText(tag).catch(() => {});
+  // Get block scope fields when cursor is inside a block helper
+  const scopeFields = useMemo(() => {
+    if (!blockContext) return null;
+    // For {{#each X}} blocks, look up the scope for X
+    if (blockContext.helper === 'each' || blockContext.helper === 'forEach') {
+      return getBlockScope(blockContext.arg);
     }
-    setLastInserted(tag);
+    // For named block helpers like {{#pokemon}} or {{#getPowerUpCost}}
+    return getBlockScope(blockContext.helper);
+  }, [blockContext]);
+
+  // Find iterable fields in current type for "insert block" section
+  const iterableFields = useMemo(() => {
+    return allFields.filter((f) =>
+      f.type === 'array' || iterableFieldNames.includes(f.name)
+    );
+  }, [allFields]);
+
+  const doInsert = (text) => {
+    const inserted = onInsertTag?.(text);
+    if (!inserted) {
+      navigator.clipboard?.writeText(text).catch(() => {});
+    }
+    setLastInserted(text.length > 40 ? text.substring(0, 37) + '...' : text);
     setTimeout(() => setLastInserted(null), 2000);
   };
 
-  const handleHelperClick = (snippet) => {
-    const inserted = onInsertTag?.(snippet);
-    if (!inserted) {
-      navigator.clipboard?.writeText(snippet).catch(() => {});
-    }
-    setLastInserted(snippet);
-    setTimeout(() => setLastInserted(null), 2000);
+  const handleClick = (field) => {
+    const tag = urlFields.has(field.name) ? `{{{${field.name}}}}` : `{{${field.name}}}`;
+    doInsert(tag);
   };
 
   return (
     <div className="flex flex-col h-full">
       <div className="px-2 pt-1 shrink-0">
         {lastInserted && (
-          <div className="mb-1 px-2 py-1 bg-green-900/30 border border-green-700 rounded text-green-300 text-xs font-mono">
+          <div className="mb-1 px-2 py-1 bg-green-900/30 border border-green-700 rounded text-green-300 text-xs font-mono truncate">
             Inserted: {lastInserted}
           </div>
         )}
         <p className="text-gray-600 text-[10px] mb-1">Hover for description. Click to insert at cursor.</p>
       </div>
       <div className="flex-1 overflow-y-auto px-2 py-1 space-y-3">
+
+        {/* Block context — shown when cursor is inside a block helper */}
+        {blockContext && scopeFields && (
+          <div className="border border-purple-700/50 bg-purple-900/20 rounded p-1.5">
+            <div className="text-[10px] font-bold uppercase tracking-wider mb-1 text-purple-400">
+              Inside {'{{'}#{blockContext.helper} {blockContext.arg}{'}}'}
+            </div>
+            <div className="flex flex-wrap gap-1">
+              {scopeFields.map((f) => (
+                <button
+                  key={f.name}
+                  onClick={() => handleClick(f)}
+                  title={f.description || f.name}
+                  className="text-[11px] px-1.5 py-0.5 rounded cursor-pointer bg-purple-900/30 text-purple-300 font-medium border border-transparent hover:border-purple-500 transition-colors"
+                >
+                  {f.name}
+                </button>
+              ))}
+              <button
+                onClick={() => doInsert('{{../}}')}
+                title="Access parent scope field"
+                className="text-[11px] px-1.5 py-0.5 rounded cursor-pointer bg-gray-800/40 text-gray-500 border border-transparent hover:border-gray-500 transition-colors"
+              >
+                ../
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Insert block helpers for iterable fields */}
+        {iterableFields.length > 0 && (
+          <div>
+            <div className="text-[10px] font-bold uppercase tracking-wider mb-1 text-purple-400">
+              Insert Block
+            </div>
+            <div className="flex flex-wrap gap-1">
+              {iterableFields.map((f) => (
+                <button
+                  key={`block-${f.name}`}
+                  onClick={() => {
+                    const scope = getBlockScope(f.name);
+                    doInsert(generateEachSnippet(f.name, scope));
+                  }}
+                  title={`Insert {{#each ${f.name}}}...{{/each}} block`}
+                  className="text-[11px] px-1.5 py-0.5 rounded cursor-pointer bg-purple-900/20 text-purple-300 border border-purple-800/50 hover:border-purple-500 transition-colors"
+                >
+                  #each {f.name}
+                </button>
+              ))}
+              <button
+                onClick={() => doInsert(generatePokemonSnippet())}
+                title="Insert {{#pokemon id form}}...{{/pokemon}} block"
+                className="text-[11px] px-1.5 py-0.5 rounded cursor-pointer bg-purple-900/20 text-purple-300 border border-purple-800/50 hover:border-purple-500 transition-colors"
+              >
+                #pokemon
+              </button>
+              <button
+                onClick={() => doInsert(generatePowerUpCostSnippet())}
+                title="Insert {{#getPowerUpCost start end}}...{{/getPowerUpCost}} block"
+                className="text-[11px] px-1.5 py-0.5 rounded cursor-pointer bg-purple-900/20 text-purple-300 border border-purple-800/50 hover:border-purple-500 transition-colors"
+              >
+                #getPowerUpCost
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Regular fields by category */}
         {Object.entries(grouped).map(([category, fields]) => (
           <div key={category}>
             <div className={`text-[10px] font-bold uppercase tracking-wider mb-1 ${categoryColors[category] || 'text-gray-400'}`}>
@@ -130,7 +217,7 @@ export default function TagPicker({ type, onInsertTag, apiFields }) {
             {helpers.map((h) => (
               <button
                 key={h.label}
-                onClick={() => handleHelperClick(h.snippet)}
+                onClick={() => doInsert(h.snippet)}
                 title={`${h.desc}\n${h.snippet}`}
                 className="text-[11px] px-1.5 py-0.5 rounded cursor-pointer bg-gray-800/60 text-gray-400 border border-transparent hover:border-gray-500 transition-colors"
               >

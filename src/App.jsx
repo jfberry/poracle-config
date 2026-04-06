@@ -15,7 +15,7 @@ export default function App() {
   const dts = useDts();
   const { render, renderError, setPartials } = useHandlebars();
   const api = useApi();
-  const { containerRef: editorContainerRef, insertAtCursor } = useInsertAtCursor();
+  const { containerRef: editorContainerRef, insertAtCursor, blockContext } = useInsertAtCursor();
   const [middleTab, setMiddleTab] = useState('tags');
   const [showMiddle, setShowMiddle] = useState(true);
   const [customTestData, setCustomTestData] = useState(null);
@@ -199,7 +199,7 @@ export default function App() {
             </div>
             <div className="flex-1 min-h-0">
               {middleTab === 'tags' ? (
-                <TagPicker type={dts.filters.type} onInsertTag={handleInsertTag} apiFields={apiFields} />
+                <TagPicker type={dts.filters.type} onInsertTag={handleInsertTag} apiFields={apiFields} blockContext={blockContext} />
               ) : (
                 <TestDataPanel
                   testData={activeTestData}

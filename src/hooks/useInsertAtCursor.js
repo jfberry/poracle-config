@@ -1,12 +1,24 @@
-import { useRef, useCallback, useEffect } from 'react';
+import { useRef, useState, useCallback, useEffect } from 'react';
+import { detectBlockContext } from '../lib/handlebars-context';
 
 /**
  * Tracks the last focused input/textarea in a container and provides
  * an insert function that inserts text at the cursor position.
+ * Also detects handlebars block context at the cursor.
  */
 export function useInsertAtCursor() {
   const activeElementRef = useRef(null);
   const cursorPosRef = useRef(0);
+  const [blockContext, setBlockContext] = useState(null);
+
+  const updateBlockContext = useCallback((el) => {
+    if (!el || (el.tagName !== 'INPUT' && el.tagName !== 'TEXTAREA')) {
+      return;
+    }
+    const pos = el.selectionStart ?? 0;
+    const ctx = detectBlockContext(el.value, pos);
+    setBlockContext(ctx);
+  }, []);
 
   // Track focus and cursor position on any input/textarea
   const handleFocusIn = useCallback((e) => {
@@ -14,8 +26,9 @@ export function useInsertAtCursor() {
     if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
       activeElementRef.current = el;
       cursorPosRef.current = el.selectionStart ?? el.value.length;
+      updateBlockContext(el);
     }
-  }, []);
+  }, [updateBlockContext]);
 
   // Track cursor movement (clicks, arrow keys)
   const handleSelect = useCallback((e) => {
@@ -23,8 +36,9 @@ export function useInsertAtCursor() {
     if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
       activeElementRef.current = el;
       cursorPosRef.current = el.selectionStart ?? el.value.length;
+      updateBlockContext(el);
     }
-  }, []);
+  }, [updateBlockContext]);
 
   // Attach listeners to the editor container
   const containerRef = useRef(null);
@@ -112,5 +126,5 @@ export function useInsertAtCursor() {
     return true;
   }, []);
 
-  return { containerRef, insertAtCursor };
+  return { containerRef, insertAtCursor, blockContext };
 }
