@@ -161,9 +161,10 @@ export default function App() {
 
   return (
     <div className="flex flex-col h-screen bg-gray-950 text-gray-200">
-      <TopBar filters={dts.filters} setFilters={dts.setFilters}
-        availableTypes={dts.availableTypes} availableIds={dts.availableIds}
-        availableLanguages={dts.availableLanguages}
+      <TopBar
+        templates={dts.templates}
+        currentTemplate={dts.currentTemplate}
+        onSelectTemplate={dts.selectTemplate}
         onLoadFile={handleLoadFile} onSave={handleSave}
         showMiddle={showMiddle} onToggleMiddle={() => setShowMiddle((v) => !v)}
         sendTestButton={api.connected && <SendTestButton onSend={handleSendTest} />} />

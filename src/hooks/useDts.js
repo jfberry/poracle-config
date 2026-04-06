@@ -149,11 +149,25 @@ export function useDts() {
     }
   }, []);
 
+  const selectTemplate = useCallback((template) => {
+    setFilters({
+      type: template.type,
+      platform: template.platform || 'discord',
+      language: template.language || 'en',
+      id: String(template.id),
+    });
+    // Reset test scenario for the new type
+    const scenarios = getTestScenarioNames(template.type);
+    if (scenarios.length > 0) {
+      setTestScenario(scenarios[0]);
+    }
+  }, []);
+
   return {
     templates, filters, setFilters: setFiltersWithAutoId,
     currentTemplate, currentTestData,
     testScenario, setTestScenario,
     availableTypes, availableIds, availableLanguages, availableScenarios,
-    updateTemplate, loadTemplates,
+    updateTemplate, loadTemplates, selectTemplate,
   };
 }
