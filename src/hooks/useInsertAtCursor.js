@@ -44,6 +44,48 @@ export function useInsertAtCursor() {
     };
   }, [handleFocusIn, handleSelect]);
 
+  /**
+   * Check if the cursor is inside a handlebars expression.
+   * Returns false if not inside braces, 2 for {{ }}, 3 for {{{ }}}.
+   */
+  function insideHandlebars(value, pos) {
+    const before = value.substring(0, pos);
+    // Find the last opening {{ or {{{ before cursor
+    const lastTriple = before.lastIndexOf('{{{');
+    const lastDouble = before.lastIndexOf('{{');
+
+    // No opening braces before cursor
+    if (lastDouble === -1) return false;
+
+    // Check if it's a triple brace
+    const openPos = lastTriple !== -1 && lastTriple >= lastDouble - 1 ? lastTriple : lastDouble;
+    const isTriple = lastTriple !== -1 && lastTriple === openPos;
+
+    // Check there's no matching close between the open and cursor
+    const afterOpen = before.substring(openPos);
+    if (isTriple) {
+      if (afterOpen.indexOf('}}}') !== -1) return false;
+      return 3;
+    } else {
+      if (afterOpen.indexOf('}}') !== -1) return false;
+      return 2;
+    }
+  }
+
+  /**
+   * Strip handlebars braces from text if present.
+   * "{{fieldName}}" → "fieldName", "{{{fieldName}}}" → "fieldName"
+   */
+  function stripBraces(text) {
+    if (text.startsWith('{{{') && text.endsWith('}}}')) {
+      return text.slice(3, -3);
+    }
+    if (text.startsWith('{{') && text.endsWith('}}')) {
+      return text.slice(2, -2);
+    }
+    return text;
+  }
+
   const insertAtCursor = useCallback((text) => {
     const el = activeElementRef.current;
     if (!el) return false;
@@ -55,15 +97,20 @@ export function useInsertAtCursor() {
     ).set;
 
     const pos = cursorPosRef.current;
+    const braceContext = insideHandlebars(el.value, pos);
+
+    // If cursor is inside {{ }} or {{{ }}}, insert just the field name
+    const insertText = braceContext ? stripBraces(text) : text;
+
     const before = el.value.substring(0, pos);
     const after = el.value.substring(pos);
-    const newValue = before + text + after;
+    const newValue = before + insertText + after;
 
     nativeInputValueSetter.call(el, newValue);
     el.dispatchEvent(new Event('input', { bubbles: true }));
 
     // Restore focus and set cursor after inserted text
-    const newPos = pos + text.length;
+    const newPos = pos + insertText.length;
     requestAnimationFrame(() => {
       el.focus();
       el.setSelectionRange(newPos, newPos);
