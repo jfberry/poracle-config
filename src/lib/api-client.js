@@ -56,6 +56,29 @@ export class PoracleApiClient {
     return this.fetch('/api/dts/partials');
   }
 
+  async getConfigSchema() {
+    return this.fetch('/api/config/schema');
+  }
+
+  async getConfigValues(section) {
+    const params = section ? `?section=${encodeURIComponent(section)}` : '';
+    return this.fetch(`/api/config/values${params}`);
+  }
+
+  async saveConfigValues(updates) {
+    return this.fetch('/api/config/values', {
+      method: 'POST',
+      body: JSON.stringify(updates),
+    });
+  }
+
+  async resolve(request) {
+    return this.fetch('/api/resolve', {
+      method: 'POST',
+      body: JSON.stringify(request),
+    });
+  }
+
   async sendTest(template, variables, targetId, { targetType = 'discord:user', language = 'en', platform = 'discord' } = {}) {
     return this.fetch('/api/dts/sendtest', {
       method: 'POST',
