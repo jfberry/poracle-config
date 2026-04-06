@@ -93,6 +93,28 @@ export default function FormEditor({ template, onChange }) {
         />
       </div>
 
+      {/* Author */}
+      <Section title="Author">
+        <div>
+          <label className={labelClass}>Name</label>
+          <input
+            className={inputClass}
+            value={embed.author?.name ?? ''}
+            onChange={(e) => updateNested('author', 'name', e.target.value)}
+            placeholder="Author name"
+          />
+        </div>
+        <div>
+          <label className={labelClass}>Icon URL</label>
+          <input
+            className={inputClass}
+            value={embed.author?.icon_url ?? ''}
+            onChange={(e) => updateNested('author', 'icon_url', e.target.value)}
+            placeholder="Author icon URL"
+          />
+        </div>
+      </Section>
+
       {/* Title */}
       <div>
         <label className={labelClass}>Title</label>
@@ -124,83 +146,6 @@ export default function FormEditor({ template, onChange }) {
           onChange={(e) => updateEmbed('description', e.target.value)}
           placeholder="Embed description (supports Handlebars)"
           rows={4}
-        />
-      </div>
-
-      {/* Thumbnail */}
-      <div>
-        <label className={labelClass}>Thumbnail URL</label>
-        <input
-          className={inputClass}
-          value={embed.thumbnail?.url ?? ''}
-          onChange={(e) => updateNested('thumbnail', 'url', e.target.value)}
-          placeholder="Thumbnail image URL"
-        />
-      </div>
-
-      {/* Image */}
-      <div>
-        <label className={labelClass}>Image URL</label>
-        <input
-          className={inputClass}
-          value={embed.image?.url ?? ''}
-          onChange={(e) => updateNested('image', 'url', e.target.value)}
-          placeholder="Large image URL"
-        />
-      </div>
-
-      {/* Author */}
-      <Section title="Author">
-        <div>
-          <label className={labelClass}>Name</label>
-          <input
-            className={inputClass}
-            value={embed.author?.name ?? ''}
-            onChange={(e) => updateNested('author', 'name', e.target.value)}
-            placeholder="Author name"
-          />
-        </div>
-        <div>
-          <label className={labelClass}>Icon URL</label>
-          <input
-            className={inputClass}
-            value={embed.author?.icon_url ?? ''}
-            onChange={(e) => updateNested('author', 'icon_url', e.target.value)}
-            placeholder="Author icon URL"
-          />
-        </div>
-      </Section>
-
-      {/* Footer */}
-      <Section title="Footer">
-        <div>
-          <label className={labelClass}>Text</label>
-          <input
-            className={inputClass}
-            value={embed.footer?.text ?? ''}
-            onChange={(e) => updateNested('footer', 'text', e.target.value)}
-            placeholder="Footer text"
-          />
-        </div>
-        <div>
-          <label className={labelClass}>Icon URL</label>
-          <input
-            className={inputClass}
-            value={embed.footer?.icon_url ?? ''}
-            onChange={(e) => updateNested('footer', 'icon_url', e.target.value)}
-            placeholder="Footer icon URL"
-          />
-        </div>
-      </Section>
-
-      {/* Timestamp */}
-      <div>
-        <label className={labelClass}>Timestamp</label>
-        <input
-          className={inputClass}
-          value={embed.timestamp ?? ''}
-          onChange={(e) => updateEmbed('timestamp', e.target.value)}
-          placeholder="e.g. {{timestamp}} or ISO string"
         />
       </div>
 
@@ -254,6 +199,61 @@ export default function FormEditor({ template, onChange }) {
           + Add Field
         </button>
       </Section>
+
+      {/* Thumbnail */}
+      <div>
+        <label className={labelClass}>Thumbnail URL</label>
+        <input
+          className={inputClass}
+          value={embed.thumbnail?.url ?? ''}
+          onChange={(e) => updateNested('thumbnail', 'url', e.target.value)}
+          placeholder="Thumbnail image URL"
+        />
+      </div>
+
+      {/* Image */}
+      <div>
+        <label className={labelClass}>Image URL</label>
+        <input
+          className={inputClass}
+          value={embed.image?.url ?? ''}
+          onChange={(e) => updateNested('image', 'url', e.target.value)}
+          placeholder="Large image URL"
+        />
+      </div>
+
+      {/* Footer */}
+      <Section title="Footer">
+        <div>
+          <label className={labelClass}>Text</label>
+          <input
+            className={inputClass}
+            value={embed.footer?.text ?? ''}
+            onChange={(e) => updateNested('footer', 'text', e.target.value)}
+            placeholder="Footer text"
+          />
+        </div>
+        <div>
+          <label className={labelClass}>Icon URL</label>
+          <input
+            className={inputClass}
+            value={embed.footer?.icon_url ?? ''}
+            onChange={(e) => updateNested('footer', 'icon_url', e.target.value)}
+            placeholder="Footer icon URL"
+          />
+        </div>
+      </Section>
+
+      {/* Timestamp */}
+      <div>
+        <label className={labelClass}>Timestamp</label>
+        <input
+          className={inputClass}
+          value={embed.timestamp ?? ''}
+          onChange={(e) => updateEmbed('timestamp', e.target.value)}
+          placeholder="e.g. {{timestamp}} or ISO string"
+        />
+      </div>
     </div>
   );
 }
