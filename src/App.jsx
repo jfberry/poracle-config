@@ -153,20 +153,30 @@ export default function App() {
 
   const handleSave = async () => {
     if (api.connected && api.client) {
+      if (!dts.currentTemplate) {
+        alert('No template selected');
+        return;
+      }
       try {
-        const result = await api.client.saveTemplates(dts.templates);
-        alert(`Saved to PoracleNG: ${result.updated || 0} updated, ${result.inserted || 0} inserted`);
+        // Save only the current template, not all templates
+        const entry = {
+          id: String(dts.currentTemplate.id || ''),
+          type: dts.currentTemplate.type,
+          platform: dts.currentTemplate.platform,
+          language: dts.currentTemplate.language || '',
+          template: dts.currentTemplate.template,
+        };
+        if (dts.currentTemplate.name) entry.name = dts.currentTemplate.name;
+        if (dts.currentTemplate.description) entry.description = dts.currentTemplate.description;
+        if (dts.currentTemplate.default) entry.default = true;
+
+        const result = await api.client.saveTemplates([entry]);
+        alert(`Saved to PoracleNG (${result.saved || 0} template${result.saved !== 1 ? 's' : ''})`);
       } catch (err) {
         alert('Failed to save to PoracleNG: ' + err.message);
       }
     } else {
-      const blob = new Blob([JSON.stringify(dts.templates, null, 2)], { type: 'application/json' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'dts.json';
-      a.click();
-      URL.revokeObjectURL(url);
+      handleDownload();
     }
   };
 
