@@ -9,11 +9,13 @@ import StatusBar from './components/StatusBar';
 import { useDts } from './hooks/useDts';
 import { useHandlebars } from './hooks/useHandlebars';
 import { useApi } from './hooks/useApi';
+import { useInsertAtCursor } from './hooks/useInsertAtCursor';
 
 export default function App() {
   const dts = useDts();
   const { render, renderError, setPartials } = useHandlebars();
   const api = useApi();
+  const { containerRef: editorContainerRef, insertAtCursor } = useInsertAtCursor();
   const [middleTab, setMiddleTab] = useState('tags');
   const [showMiddle, setShowMiddle] = useState(true);
   const [customTestData, setCustomTestData] = useState(null);
@@ -116,9 +118,14 @@ export default function App() {
   }, [api.client, dts.currentTemplate, activeTestData, dts.filters.language, dts.filters.platform]);
 
   const handleInsertTag = useCallback((tag) => {
-    // For now, just copy to clipboard. Future: insert at cursor in active editor field.
-    navigator.clipboard?.writeText(tag).catch(() => {});
-  }, []);
+    // Try to insert at cursor in the active form field
+    const inserted = insertAtCursor(tag);
+    if (!inserted) {
+      // Fallback: copy to clipboard
+      navigator.clipboard?.writeText(tag).catch(() => {});
+    }
+    return inserted;
+  }, [insertAtCursor]);
 
   const handleLoadFile = () => {
     const input = document.createElement('input');
@@ -162,7 +169,7 @@ export default function App() {
         sendTestButton={api.connected && <SendTestButton onSend={handleSendTest} />} />
       <div className="flex flex-1 min-h-0">
         {/* Left panel — Template Editor */}
-        <div className="flex-1 min-w-0 border-r border-gray-700">
+        <div ref={editorContainerRef} className="flex-1 min-w-0 border-r border-gray-700">
           <TemplateEditor template={dts.currentTemplate?.template} onChange={dts.updateTemplate} />
         </div>
         {/* Middle panel — Tags / Test Data (collapsible) */}
