@@ -21,7 +21,7 @@ export default function ConnectScreen({ onConnect, onImportFile, error }) {
     <div className="flex items-center justify-center min-h-screen bg-gray-950 text-gray-200">
       <div className="w-full max-w-md p-6 space-y-6">
         <div className="text-center space-y-2">
-          <h1 className="text-2xl font-bold text-blue-400">Poracle DTS Editor</h1>
+          <h1 className="text-2xl font-bold text-blue-400">Poracle Config</h1>
           <p className="text-gray-400 text-sm">Connect to your PoracleNG instance to edit DTS templates</p>
         </div>
 

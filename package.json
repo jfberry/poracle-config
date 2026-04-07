@@ -1,11 +1,12 @@
 {
-  "name": "embed-visualizer",
+  "name": "poracle-config",
   "author": "leovoel",
   "license": "MIT",
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "homepage": "https://jfberry.github.io/poracle-embed-visualizer/",
+  "homepage": "https://jfberry.github.io/poracle-config/",
+  "repository": "https://github.com/jfberry/poracle-config",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
