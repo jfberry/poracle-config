@@ -1002,6 +1002,309 @@ git commit -m "docs: add DTS editor API endpoints to API.md"
 
 ---
 
+## Task 7: GET /api/dts/testdata — Test Webhook Scenarios
+
+**Files:**
+- Create: `processor/internal/api/dts_testdata.go`
+- Modify: `processor/cmd/processor/main.go` (register route)
+
+Returns the test webhook scenarios from `config/testdata.json`. The DTS editor uses these as raw webhook payloads to send through the enrich endpoint for realistic previews.
+
+- [ ] **Step 1: Create the testdata handler**
+
+Create `processor/internal/api/dts_testdata.go`:
+
+```go
+package api
+
+import (
+	"encoding/json"
+	"net/http"
+	"os"
+	"path/filepath"
+
+	"github.com/gin-gonic/gin"
+	log "github.com/sirupsen/logrus"
+)
+
+// TestDataEntry represents a single test scenario from testdata.json.
+type TestDataEntry struct {
+	Type     string          `json:"type"`
+	Test     string          `json:"test"`
+	Location string          `json:"location"`
+	Webhook  json.RawMessage `json:"webhook"`
+}
+
+// HandleDTSTestdata returns test webhook scenarios for the DTS editor.
+// GET /api/dts/testdata?type=pokemon
+// Without type filter, returns all scenarios grouped by type.
+func HandleDTSTestdata(configDir, fallbackDir string) gin.HandlerFunc {
+	return func(c *gin.Context) {
+		filterType := c.Query("type")
+
+		// Load testdata.json
+		path := filepath.Join(configDir, "testdata.json")
+		data, err := os.ReadFile(path)
+		if err != nil {
+			path = filepath.Join(fallbackDir, "testdata.json")
+			data, err = os.ReadFile(path)
+			if err != nil {
+				c.JSON(http.StatusNotFound, gin.H{"status": "error", "message": "testdata.json not found"})
+				return
+			}
+		}
+
+		var entries []TestDataEntry
+		if err := json.Unmarshal(data, &entries); err != nil {
+			log.Errorf("dts testdata: parse error: %v", err)
+			c.JSON(http.StatusInternalServerError, gin.H{"status": "error", "message": "failed to parse testdata.json"})
+			return
+		}
+
+		// Filter by type if specified
+		if filterType != "" {
+			var filtered []TestDataEntry
+			for _, e := range entries {
+				if e.Type == filterType {
+					filtered = append(filtered, e)
+				}
+			}
+			entries = filtered
+		}
+
+		c.JSON(http.StatusOK, gin.H{"status": "ok", "testdata": entries})
+	}
+}
+```
+
+- [ ] **Step 2: Register route in main.go**
+
+Inside the `if proc.dtsRenderer != nil` block:
+
+```go
+apiGroup.GET("/dts/testdata", api.HandleDTSTestdata(
+	filepath.Join(cfg.BaseDir, "config"),
+	filepath.Join(cfg.BaseDir, "fallbacks"),
+))
+```
+
+- [ ] **Step 3: Test the endpoint**
+
+```bash
+# List all test scenarios
+curl -s -H "X-Poracle-Secret: $SECRET" http://localhost:3030/api/dts/testdata | jq '.testdata | length'
+
+# List pokemon scenarios
+curl -s -H "X-Poracle-Secret: $SECRET" "http://localhost:3030/api/dts/testdata?type=pokemon" | jq '.testdata[] | .test'
+
+# Get a specific scenario's webhook
+curl -s -H "X-Poracle-Secret: $SECRET" "http://localhost:3030/api/dts/testdata?type=pokemon" | jq '.testdata[] | select(.test=="hundo") | .webhook'
+```
+
+- [ ] **Step 4: Commit**
+
+```bash
+git add processor/internal/api/dts_testdata.go processor/cmd/processor/main.go
+git commit -m "feat: add GET /api/dts/testdata endpoint for test webhook scenarios"
+```
+
+---
+
+## Task 8: GET /api/dts/partials — Handlebars Partials
+
+**Files:**
+- Create: `processor/internal/api/dts_partials.go` (or add to `dts.go`)
+- Modify: `processor/cmd/processor/main.go` (register route)
+
+Returns the Handlebars partials from `config/partials.json`. The DTS editor needs to register these so templates using `{{> partialName}}` render correctly.
+
+- [ ] **Step 1: Add Partials() method to TemplateStore**
+
+The TemplateStore already loads partials in `loadPartials()` and stores them as `ts.partials` (a `map[string]string`). Add a public accessor:
+
+```go
+// Partials returns the registered Handlebars partials as a name→template map.
+func (ts *TemplateStore) Partials() map[string]string {
+	ts.mu.RLock()
+	defer ts.mu.RUnlock()
+	// Return a copy
+	result := make(map[string]string, len(ts.partials))
+	for k, v := range ts.partials {
+		result[k] = v
+	}
+	return result
+}
+```
+
+- [ ] **Step 2: Add handler**
+
+```go
+// HandleDTSPartials returns Handlebars partials for the DTS editor.
+// GET /api/dts/partials
+func HandleDTSPartials(ts *dts.TemplateStore) gin.HandlerFunc {
+	return func(c *gin.Context) {
+		c.JSON(http.StatusOK, gin.H{"status": "ok", "partials": ts.Partials()})
+	}
+}
+```
+
+- [ ] **Step 3: Register route**
+
+```go
+apiGroup.GET("/dts/partials", api.HandleDTSPartials(proc.dtsRenderer.Templates()))
+```
+
+- [ ] **Step 4: Test**
+
+```bash
+curl -s -H "X-Poracle-Secret: $SECRET" http://localhost:3030/api/dts/partials | jq .
+```
+
+Expected: `{"status":"ok","partials":{"remainingTime":"{{#if tthh}}...","otherPartial":"..."}}`
+
+- [ ] **Step 5: Commit**
+
+```bash
+git commit -m "feat: add GET /api/dts/partials endpoint"
+```
+
+---
+
+## Task 9: POST /api/dts/sendtest — Send Rendered Test Message
+
+**Files:**
+- Create: `processor/internal/api/dts_sendtest.go` (or add to `dts.go`)
+- Modify: `processor/cmd/processor/main.go` (register route)
+
+Renders a DTS template with provided variables and delivers the message to a Discord/Telegram user. This lets the DTS editor send the *currently being edited* template with the *currently enriched* data, so the user sees exactly what Discord would render.
+
+- [ ] **Step 1: Create the handler**
+
+```go
+// HandleDTSSendTest renders a template with provided variables and delivers to a user.
+// POST /api/dts/sendtest
+//
+// Request body:
+//   {
+//     "template": {"embed": {"title": "{{name}}", ...}},  // the DTS template object
+//     "variables": {"name": "Magikarp", "cp": 212, ...},   // enriched variable map
+//     "target": {"id": "123456789", "type": "discord:user"},
+//     "language": "en",
+//     "platform": "discord"
+//   }
+//
+// The handler:
+// 1. JSON-stringifies the template object
+// 2. Compiles it as a Handlebars template
+// 3. Renders with the provided variables
+// 4. Parses the rendered JSON into a message object
+// 5. Delivers via the dispatcher (same path as normal alerts)
+func HandleDTSSendTest(dispatcher Dispatcher, ts *dts.TemplateStore) gin.HandlerFunc {
+    return func(c *gin.Context) {
+        var req struct {
+            Template  any            `json:"template"`
+            Variables map[string]any `json:"variables"`
+            Target    struct {
+                ID   string `json:"id"`
+                Type string `json:"type"`
+            } `json:"target"`
+            Language string `json:"language"`
+            Platform string `json:"platform"`
+        }
+        if err := c.ShouldBindJSON(&req); err != nil {
+            c.JSON(http.StatusBadRequest, gin.H{"status": "error", "message": err.Error()})
+            return
+        }
+
+        if req.Target.ID == "" {
+            c.JSON(http.StatusBadRequest, gin.H{"status": "error", "message": "target.id is required"})
+            return
+        }
+        if req.Target.Type == "" {
+            req.Target.Type = "discord:user"
+        }
+        if req.Language == "" {
+            req.Language = "en"
+        }
+        if req.Platform == "" {
+            req.Platform = "discord"
+        }
+
+        // Stringify template, compile, render with variables
+        templateJSON, err := json.Marshal(req.Template)
+        if err != nil {
+            c.JSON(http.StatusBadRequest, gin.H{"status": "error", "message": "invalid template: " + err.Error()})
+            return
+        }
+
+        compiled, err := raymond.Parse(string(templateJSON))
+        if err != nil {
+            c.JSON(http.StatusBadRequest, gin.H{"status": "error", "message": "template compile error: " + err.Error()})
+            return
+        }
+
+        // Register partials
+        partials := ts.Partials()
+        if len(partials) > 0 {
+            compiled.RegisterPartials(partials)
+        }
+
+        df := raymond.NewDataFrame()
+        df.Set("language", req.Language)
+        df.Set("platform", req.Platform)
+
+        rendered, err := compiled.ExecWith(req.Variables, df)
+        if err != nil {
+            c.JSON(http.StatusInternalServerError, gin.H{"status": "error", "message": "render error: " + err.Error()})
+            return
+        }
+
+        // Parse rendered JSON into message
+        var message any
+        if err := json.Unmarshal([]byte(rendered), &message); err != nil {
+            c.JSON(http.StatusInternalServerError, gin.H{"status": "error", "message": "rendered template is not valid JSON: " + err.Error()})
+            return
+        }
+
+        // Deliver via dispatcher (same as postMessage)
+        // Construct a delivery job and send it
+        // ... (use the same delivery mechanism as HandleDeliverMessages)
+
+        c.JSON(http.StatusOK, gin.H{"status": "ok", "message": "sent"})
+    }
+}
+```
+
+**Note for implementing agent:** The delivery mechanism depends on the existing dispatcher interface. Look at how `HandleDeliverMessages` / `HandlePostMessage` works in the codebase — it accepts a message object and a target (id + type), and sends via Discord REST API or Telegram Bot API. Reuse that same delivery path. The key difference from `POST /api/test` is that here we provide the template and variables directly rather than going through the enrichment pipeline.
+
+- [ ] **Step 2: Register route**
+
+```go
+apiGroup.POST("/dts/sendtest", api.HandleDTSSendTest(proc.dispatcher, proc.dtsRenderer.Templates()))
+```
+
+- [ ] **Step 3: Test**
+
+```bash
+curl -s -X POST -H "X-Poracle-Secret: $SECRET" -H "Content-Type: application/json" \
+  http://localhost:3030/api/dts/sendtest \
+  -d '{
+    "template": {"embed": {"title": "Test: {{name}}", "description": "CP: {{cp}}"}},
+    "variables": {"name": "Magikarp", "cp": 212},
+    "target": {"id": "YOUR_DISCORD_ID", "type": "discord:user"}
+  }'
+```
+
+Expected: User receives a Discord DM with the rendered embed.
+
+- [ ] **Step 4: Commit**
+
+```bash
+git commit -m "feat: add POST /api/dts/sendtest for sending test messages from editor"
+```
+
+---
+
 ## Summary
 
 | Task | Endpoint | Purpose |
@@ -1012,6 +1315,9 @@ git commit -m "docs: add DTS editor API endpoints to API.md"
 | 4 | `POST /api/dts/enrich` | Enrich webhook → return variable map |
 | 5 | `GET /api/dts/fields/:type` | Field metadata for tag picker |
 | 6 | Update API.md | Document new endpoints |
+| 7 | `GET /api/dts/testdata` | Test webhook scenarios from testdata.json |
+| 8 | `GET /api/dts/partials` | Handlebars partials for template rendering |
+| 9 | `POST /api/dts/sendtest` | Render + deliver test message to a user |
 
 **Important notes for the implementing agent:**
 - Check the actual method signatures in `processor/internal/enrichment/*.go` — the `Enrich*` methods may have different signatures than shown. Look at `test.go` for the real call pattern.
