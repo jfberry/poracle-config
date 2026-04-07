@@ -137,6 +137,7 @@ export default function ConfigSection({
               value={sectionValues[table.name]}
               onChange={(v) => onUpdateField(section.name, table.name, v)}
               resolveIds={resolveIds}
+              geofenceAreas={geofenceAreas}
             />
           </div>
         ))}

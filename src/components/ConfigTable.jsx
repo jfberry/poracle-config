@@ -2,7 +2,7 @@ import { useState } from 'react';
 import ConfigField from './ConfigField';
 import ConfigTagInput from './ConfigTagInput';
 
-export default function ConfigTable({ table, value, onChange, resolveIds }) {
+export default function ConfigTable({ table, value, onChange, resolveIds, geofenceAreas }) {
   const [expandedIndex, setExpandedIndex] = useState(null);
   const entries = Array.isArray(value) ? value : [];
 
@@ -80,6 +80,7 @@ export default function ConfigTable({ table, value, onChange, resolveIds }) {
                         resolve={field.resolve}
                         resolveIds={resolveIds}
                         field={field}
+                        suggestions={field.resolve === 'geofence:area' ? geofenceAreas : undefined}
                       />
                     </div>
                   );
