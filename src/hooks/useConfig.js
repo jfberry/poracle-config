@@ -8,6 +8,7 @@ export function useConfig(apiClient) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [saveResult, setSaveResult] = useState(null);
+  const [geofenceAreas, setGeofenceAreas] = useState([]);
   const resolveCache = useRef(new Map());
 
   // Fetch schema and values
@@ -27,6 +28,18 @@ export function useConfig(apiClient) {
       setOriginalValues(JSON.parse(JSON.stringify(valuesRes.values || {})));
       if (sections.length > 0) {
         setActiveSection((prev) => prev || sections[0].name);
+      }
+      try {
+        const geo = await apiClient.getGeofenceAll();
+        const areas = Array.isArray(geo)
+          ? geo
+          : (geo.geofences || geo.areas || geo.geofence || []);
+        const names = areas
+          .map((a) => (typeof a === 'string' ? a : (a?.name || a?.id)))
+          .filter(Boolean);
+        setGeofenceAreas(names);
+      } catch {
+        setGeofenceAreas([]);
       }
     } catch (err) {
       setError(err.message);
@@ -201,5 +214,6 @@ export function useConfig(apiClient) {
     restartRequired,
     save,
     resolveIds,
+    geofenceAreas,
   };
 }

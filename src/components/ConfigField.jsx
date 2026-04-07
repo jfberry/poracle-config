@@ -177,8 +177,10 @@ function MapField({ value, onChange }) {
   );
 }
 
-export default function ConfigField({ field, value, onChange, isDirty }) {
+export default function ConfigField({ field, value, onChange, isDirty, defaultValue, originalValue, onReset, onClearOverride }) {
   const { name, type, description, hotReload, sensitive, options } = field;
+
+  const isOverridden = JSON.stringify(originalValue) !== JSON.stringify(defaultValue);
 
   return (
     <div className={`py-2 ${isDirty ? 'border-l-2 border-blue-500 pl-3' : 'pl-3'}`}>
@@ -189,6 +191,26 @@ export default function ConfigField({ field, value, onChange, isDirty }) {
         )}
         {isDirty && (
           <span className="text-[10px] text-blue-400">modified</span>
+        )}
+        {isDirty && onReset && (
+          <button
+            type="button"
+            onClick={onReset}
+            title="Revert to loaded value"
+            className="text-[10px] text-gray-400 hover:text-gray-200 border border-gray-700 rounded px-1"
+          >
+            ↶ undo
+          </button>
+        )}
+        {isOverridden && onClearOverride && (
+          <button
+            type="button"
+            onClick={onClearOverride}
+            title="Clear override (reset to schema default)"
+            className="text-[10px] text-gray-400 hover:text-gray-200 border border-gray-700 rounded px-1"
+          >
+            × default
+          </button>
         )}
       </div>
       {description && (

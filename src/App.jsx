@@ -52,13 +52,15 @@ export default function App() {
       setApiTestScenarios(null);
       return;
     }
+    let cancelled = false;
     api.client.getFields(dts.filters.type)
-      .then((result) => setApiFields(result.fields || null))
-      .catch(() => setApiFields(null));
+      .then((result) => { if (!cancelled) setApiFields(result.fields || null); })
+      .catch(() => { if (!cancelled) setApiFields(null); });
     const webhookType = dtsToWebhookType[dts.filters.type] || dts.filters.type;
     api.client.getTestdata(webhookType)
-      .then((result) => setApiTestScenarios(result.testdata || null))
-      .catch(() => setApiTestScenarios(null));
+      .then((result) => { if (!cancelled) setApiTestScenarios(result.testdata || null); })
+      .catch(() => { if (!cancelled) setApiTestScenarios(null); });
+    return () => { cancelled = true; };
   }, [api.connected, api.client, dts.filters.type]);
 
   // Load config when connected and switching to config tab

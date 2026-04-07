@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react';
 import { ResolvedLabel } from './ConfigField';
 import { inputBase } from '../lib/styles';
 
-export default function ConfigTagInput({ value, onChange, resolve, resolveIds, field }) {
+export default function ConfigTagInput({ value, onChange, resolve, resolveIds, field, suggestions }) {
+  const datalistId = suggestions && suggestions.length > 0 ? `dl-${field.name}` : undefined;
   const [input, setInput] = useState('');
   const [resolved, setResolved] = useState({});
 
@@ -84,7 +85,15 @@ export default function ConfigTagInput({ value, onChange, resolve, resolveIds, f
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={handleKeyDown}
           placeholder={`Add ${field.name}... (Enter to add)`}
+          list={datalistId}
         />
+        {datalistId && (
+          <datalist id={datalistId}>
+            {suggestions.map((s) => (
+              <option key={s} value={s} />
+            ))}
+          </datalist>
+        )}
         <button
           onClick={addItem}
           className="text-xs text-blue-400 hover:text-blue-300 px-2 border border-gray-600 rounded"

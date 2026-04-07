@@ -72,6 +72,10 @@ export class PoracleApiClient {
     });
   }
 
+  async getGeofenceAll() {
+    return this.fetch('/api/geofence/all');
+  }
+
   async resolve(request) {
     return this.fetch('/api/resolve', {
       method: 'POST',
