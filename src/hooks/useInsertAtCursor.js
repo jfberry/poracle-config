@@ -1,4 +1,4 @@
-import { useRef, useState, useCallback, useEffect } from 'react';
+import { useRef, useState, useCallback } from 'react';
 import { detectBlockContext } from '../lib/handlebars-context';
 
 /**
@@ -20,8 +20,8 @@ export function useInsertAtCursor() {
     setBlockContext(ctx);
   }, []);
 
-  // Track focus and cursor position on any input/textarea
-  const handleFocusIn = useCallback((e) => {
+  // Handlers — stable since they only use refs
+  const handleEvent = useCallback((e) => {
     const el = e.target;
     if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
       activeElementRef.current = el;
@@ -30,33 +30,26 @@ export function useInsertAtCursor() {
     }
   }, [updateBlockContext]);
 
-  // Track cursor movement (clicks, arrow keys)
-  const handleSelect = useCallback((e) => {
-    const el = e.target;
-    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-      activeElementRef.current = el;
-      cursorPosRef.current = el.selectionStart ?? el.value.length;
-      updateBlockContext(el);
+  // Callback ref: attach/detach listeners when the container element changes.
+  // Using a ref object instead of useEffect avoids the bug where the effect
+  // runs before the ref is attached, leaving listeners unbound.
+  const attachedRef = useRef(null);
+  const containerRef = useCallback((node) => {
+    if (attachedRef.current) {
+      const prev = attachedRef.current;
+      prev.removeEventListener('focusin', handleEvent);
+      prev.removeEventListener('select', handleEvent);
+      prev.removeEventListener('click', handleEvent);
+      prev.removeEventListener('keyup', handleEvent);
     }
-  }, [updateBlockContext]);
-
-  // Attach listeners to the editor container
-  const containerRef = useRef(null);
-
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-    container.addEventListener('focusin', handleFocusIn);
-    container.addEventListener('select', handleSelect);
-    container.addEventListener('click', handleSelect);
-    container.addEventListener('keyup', handleSelect);
-    return () => {
-      container.removeEventListener('focusin', handleFocusIn);
-      container.removeEventListener('select', handleSelect);
-      container.removeEventListener('click', handleSelect);
-      container.removeEventListener('keyup', handleSelect);
-    };
-  }, [handleFocusIn, handleSelect]);
+    attachedRef.current = node;
+    if (node) {
+      node.addEventListener('focusin', handleEvent);
+      node.addEventListener('select', handleEvent);
+      node.addEventListener('click', handleEvent);
+      node.addEventListener('keyup', handleEvent);
+    }
+  }, [handleEvent]);
 
   /**
    * Check if the cursor is inside a handlebars expression.
@@ -102,7 +95,7 @@ export function useInsertAtCursor() {
 
   const insertAtCursor = useCallback((text) => {
     const el = activeElementRef.current;
-    if (!el) return false;
+    if (!el || !document.body.contains(el)) return false;
 
     const start = el.selectionStart ?? cursorPosRef.current;
     const end = el.selectionEnd ?? start;
@@ -111,16 +104,39 @@ export function useInsertAtCursor() {
     // If cursor is inside {{ }} or {{{ }}}, insert just the field name
     const insertText = braceContext ? stripBraces(text) : text;
 
-    // Focus and set selection so execCommand operates on the right range
+    // Restore focus + selection
     el.focus();
     el.setSelectionRange(start, end);
 
-    // Use execCommand('insertText') to preserve the browser's native undo stack.
-    // This inserts text as if the user typed it — Cmd+Z works naturally.
-    document.execCommand('insertText', false, insertText);
+    // Try execCommand first (preserves native undo)
+    let inserted = false;
+    try {
+      inserted = document.execCommand('insertText', false, insertText);
+    } catch {
+      inserted = false;
+    }
 
-    // Update cursor tracking
+    // Fallback for React-controlled inputs where execCommand may not propagate:
+    // use the native value setter then dispatch an input event so React picks it up.
+    if (!inserted || el.value.substring(start, start + insertText.length) !== insertText) {
+      const before = el.value.substring(0, start);
+      const after = el.value.substring(end);
+      const newValue = before + insertText + after;
+
+      const proto = el.tagName === 'TEXTAREA'
+        ? window.HTMLTextAreaElement.prototype
+        : window.HTMLInputElement.prototype;
+      const setter = Object.getOwnPropertyDescriptor(proto, 'value').set;
+      setter.call(el, newValue);
+      el.dispatchEvent(new Event('input', { bubbles: true }));
+    }
+
+    // Place cursor after the inserted text
     const newPos = start + insertText.length;
+    requestAnimationFrame(() => {
+      el.focus();
+      el.setSelectionRange(newPos, newPos);
+    });
     cursorPosRef.current = newPos;
 
     return true;

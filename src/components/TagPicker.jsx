@@ -44,6 +44,11 @@ const helpers = [
 // Fields that have iterable block scopes (for "insert each block" buttons)
 const iterableFieldNames = ['pvpGreat', 'pvpUltra', 'pvpLittle', 'matched', 'weaknessList', 'evolutions'];
 
+// Prevent the button from stealing focus from the active editor input.
+// Without this, document.activeElement loses the input on click, which
+// breaks document.execCommand('insertText') in useInsertAtCursor.
+const noFocusSteal = (e) => e.preventDefault();
+
 export default function TagPicker({ type, onInsertTag, apiFields, blockContext, partials }) {
   const [expandedPartial, setExpandedPartial] = useState(null);
   const [showRaw, setShowRaw] = useState(false);
@@ -89,8 +94,14 @@ export default function TagPicker({ type, onInsertTag, apiFields, blockContext, 
   }, [allFields]);
 
   const doInsert = (text) => {
-    onInsertTag?.(text);
-    setLastInserted(text.length > 40 ? text.substring(0, 37) + '...' : text);
+    const inserted = onInsertTag?.(text);
+    if (inserted) {
+      setLastInserted(text.length > 40 ? text.substring(0, 37) + '...' : text);
+    } else {
+      // Fallback: copy to clipboard so the user can paste manually
+      navigator.clipboard?.writeText(text).catch(() => {});
+      setLastInserted(`Copied: ${text.length > 30 ? text.substring(0, 27) + '...' : text}`);
+    }
     setTimeout(() => setLastInserted(null), 2000);
   };
 
@@ -121,6 +132,7 @@ export default function TagPicker({ type, onInsertTag, apiFields, blockContext, 
               {scopeFields.map((f) => (
                 <button
                   key={f.name}
+                  onMouseDown={noFocusSteal}
                   onClick={() => handleClick(f)}
                   title={f.description || f.name}
                   className="text-[11px] px-1.5 py-0.5 rounded cursor-pointer bg-purple-900/30 text-purple-300 font-medium border border-transparent hover:border-purple-500 transition-colors"
@@ -129,6 +141,7 @@ export default function TagPicker({ type, onInsertTag, apiFields, blockContext, 
                 </button>
               ))}
               <button
+                onMouseDown={noFocusSteal}
                 onClick={() => doInsert('{{../}}')}
                 title="Access parent scope field"
                 className="text-[11px] px-1.5 py-0.5 rounded cursor-pointer bg-gray-800/40 text-gray-500 border border-transparent hover:border-gray-500 transition-colors"
@@ -149,6 +162,7 @@ export default function TagPicker({ type, onInsertTag, apiFields, blockContext, 
               {iterableFields.map((f) => (
                 <button
                   key={`block-${f.name}`}
+                  onMouseDown={noFocusSteal}
                   onClick={() => {
                     const scope = getBlockScope(f.name);
                     doInsert(generateEachSnippet(f.name, scope));
@@ -160,6 +174,7 @@ export default function TagPicker({ type, onInsertTag, apiFields, blockContext, 
                 </button>
               ))}
               <button
+                onMouseDown={noFocusSteal}
                 onClick={() => doInsert(generatePokemonSnippet())}
                 title="Insert {{#pokemon id form}}...{{/pokemon}} block"
                 className="text-[11px] px-1.5 py-0.5 rounded cursor-pointer bg-purple-900/20 text-purple-300 border border-purple-800/50 hover:border-purple-500 transition-colors"
@@ -167,6 +182,7 @@ export default function TagPicker({ type, onInsertTag, apiFields, blockContext, 
                 #pokemon
               </button>
               <button
+                onMouseDown={noFocusSteal}
                 onClick={() => doInsert(generatePowerUpCostSnippet())}
                 title="Insert {{#getPowerUpCost start end}}...{{/getPowerUpCost}} block"
                 className="text-[11px] px-1.5 py-0.5 rounded cursor-pointer bg-purple-900/20 text-purple-300 border border-purple-800/50 hover:border-purple-500 transition-colors"
@@ -187,6 +203,7 @@ export default function TagPicker({ type, onInsertTag, apiFields, blockContext, 
               {fields.map((f) => (
                 <button
                   key={f.name}
+                  onMouseDown={noFocusSteal}
                   onClick={() => handleClick(f)}
                   title={`${f.description || f.name}${f.deprecated && f.preferredAlternative ? `\n→ use ${f.preferredAlternative}` : ''}`}
                   className={`text-[11px] px-1.5 py-0.5 rounded cursor-pointer border border-transparent hover:border-gray-500 transition-colors ${
@@ -215,6 +232,7 @@ export default function TagPicker({ type, onInsertTag, apiFields, blockContext, 
             {helpers.map((h) => (
               <button
                 key={h.label}
+                onMouseDown={noFocusSteal}
                 onClick={() => doInsert(h.snippet)}
                 title={`${h.desc}\n${h.snippet}`}
                 className="text-[11px] px-1.5 py-0.5 rounded cursor-pointer bg-gray-800/60 text-gray-400 border border-transparent hover:border-gray-500 transition-colors"
@@ -242,6 +260,7 @@ export default function TagPicker({ type, onInsertTag, apiFields, blockContext, 
                   </button>
                   <div className="flex-1 min-w-0">
                     <button
+                      onMouseDown={noFocusSteal}
                       onClick={() => doInsert(`{{> ${name}}}`)}
                       title={`Insert {{> ${name}}}\n\n${content.substring(0, 200)}`}
                       className="text-[11px] font-mono text-amber-300 hover:text-amber-200 transition-colors truncate block w-full text-left"
