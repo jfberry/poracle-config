@@ -49,11 +49,12 @@ const iterableFieldNames = ['pvpGreat', 'pvpUltra', 'pvpLittle', 'matched', 'wea
 // breaks document.execCommand('insertText') in useInsertAtCursor.
 const noFocusSteal = (e) => e.preventDefault();
 
-export default function TagPicker({ type, onInsertTag, apiFields, blockContext, partials }) {
+export default function TagPicker({ type, onInsertTag, apiFields, blockContext, partials, emojis }) {
   const [expandedPartial, setExpandedPartial] = useState(null);
   const [showRaw, setShowRaw] = useState(false);
   const [showDeprecated, setShowDeprecated] = useState(false);
   const [lastInserted, setLastInserted] = useState(null);
+  const [emojiSearch, setEmojiSearch] = useState('');
 
   const allFields = useMemo(() => {
     return apiFields && apiFields.length > 0 ? apiFields : getFieldsForType(type);
@@ -242,6 +243,42 @@ export default function TagPicker({ type, onInsertTag, apiFields, blockContext, 
             ))}
           </div>
         </div>
+
+        {/* Emoji section */}
+        {emojis && Object.keys(emojis).length > 0 && (
+          <div>
+            <div className="text-[10px] font-bold uppercase tracking-wider mb-1 text-pink-400">
+              Emojis ({Object.keys(emojis).length})
+            </div>
+            <input
+              type="text"
+              value={emojiSearch}
+              onChange={(e) => setEmojiSearch(e.target.value)}
+              placeholder="Search emoji keys..."
+              className="w-full bg-gray-800 text-gray-200 px-2 py-1 rounded border border-gray-600 text-[11px] mb-1.5 focus:border-pink-500 focus:outline-none"
+            />
+            <div className="flex flex-wrap gap-1">
+              {Object.entries(emojis)
+                .filter(([key]) => !emojiSearch || key.toLowerCase().includes(emojiSearch.toLowerCase()))
+                .slice(0, 60)
+                .map(([key, value]) => (
+                  <button
+                    key={key}
+                    onMouseDown={noFocusSteal}
+                    onClick={() => doInsert(`{{getEmoji '${key}'}}`)}
+                    title={`Insert {{getEmoji '${key}'}} → renders as ${value}`}
+                    className="text-[11px] px-1.5 py-0.5 rounded cursor-pointer bg-pink-900/20 text-pink-300 border border-pink-800/50 hover:border-pink-500 transition-colors flex items-center gap-1"
+                  >
+                    <span className="text-gray-400 max-w-[20px] truncate">{value.length < 4 ? value : '🔣'}</span>
+                    <span>{key}</span>
+                  </button>
+                ))}
+            </div>
+            {emojiSearch && Object.entries(emojis).filter(([k]) => k.toLowerCase().includes(emojiSearch.toLowerCase())).length > 60 && (
+              <p className="text-[10px] text-gray-600 mt-1">Showing first 60 — refine search to narrow</p>
+            )}
+          </div>
+        )}
 
         {/* Partials section */}
         {partials && Object.keys(partials).length > 0 && (

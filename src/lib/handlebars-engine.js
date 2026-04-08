@@ -1,6 +1,8 @@
 import Handlebars from 'handlebars';
 import { registerAllHelpers } from './handlebars-helpers';
-import { registerGameHelpers } from './handlebars-game-helpers';
+import { registerGameHelpers, setEmojiMap, getEmojiMap, setActivePlatform } from './handlebars-game-helpers';
+
+export { setEmojiMap, getEmojiMap, setActivePlatform };
 
 export function createEngine() {
   const hbs = Handlebars.create();
@@ -30,7 +32,8 @@ export function renderTemplate(engine, templateStr, data) {
   return compiled(data);
 }
 
-export function renderDtsTemplate(engine, templateObj, data) {
+export function renderDtsTemplate(engine, templateObj, data, platform) {
+  if (platform) setActivePlatform(platform);
   const templateStr = JSON.stringify(templateObj);
   const rendered = renderTemplate(engine, templateStr, data);
   try {

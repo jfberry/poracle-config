@@ -1,8 +1,29 @@
 /**
  * Dummy game-data-dependent Handlebars helpers.
  * These return placeholder values since real game data is not available in the browser.
- * They will be replaced with real implementations when game data is loaded.
+ * Some helpers (getEmoji) read from a runtime-mutable registry so the editor can
+ * inject real data fetched from the PoracleNG API.
  */
+
+// Mutable per-platform emoji registry. Populated via setEmojiMap from the
+// app once it has fetched /api/dts/emoji?platform=...
+const emojiRegistry = { discord: {}, telegram: {} };
+
+// The active platform — set by the engine before rendering so {{getEmoji "key"}}
+// without an explicit platform argument picks the right map.
+let activePlatform = 'discord';
+
+export function setEmojiMap(platform, map) {
+  emojiRegistry[platform] = map || {};
+}
+
+export function getEmojiMap(platform) {
+  return emojiRegistry[platform] || {};
+}
+
+export function setActivePlatform(platform) {
+  activePlatform = platform || 'discord';
+}
 
 export function registerGameHelpers(hbs) {
   hbs.registerHelper('pokemonName', (id) => `Pokemon #${id}`);
@@ -44,7 +65,13 @@ export function registerGameHelpers(hbs) {
   hbs.registerHelper('moveEmoji', () => '');
   hbs.registerHelper('moveEmojiEng', () => '');
   hbs.registerHelper('moveEmojiAlt', () => '');
-  hbs.registerHelper('getEmoji', (key) => String(key));
+  hbs.registerHelper('getEmoji', function (key, platform) {
+    // Handlebars passes its options object as the last arg if no platform was supplied
+    const explicitPlatform = typeof platform === 'string' ? platform : null;
+    const p = explicitPlatform || activePlatform;
+    const map = emojiRegistry[p] || {};
+    return map[key] !== undefined ? map[key] : String(key);
+  });
   hbs.registerHelper('translateAlt', (text) => String(text));
   hbs.registerHelper('getPowerUpCost', function (startLevel, endLevel, options) {
     const result = { stardust: 0, candy: 0, xlCandy: 0 };

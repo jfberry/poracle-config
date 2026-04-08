@@ -56,6 +56,11 @@ export class PoracleApiClient {
     return this.fetch('/api/dts/partials');
   }
 
+  async getEmoji(platform) {
+    const params = platform ? `?platform=${encodeURIComponent(platform)}` : '';
+    return this.fetch(`/api/dts/emoji${params}`);
+  }
+
   async getConfigSchema() {
     return this.fetch('/api/config/schema');
   }

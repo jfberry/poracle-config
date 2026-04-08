@@ -50,7 +50,7 @@ function getEnrichType(dtsType) {
 
 export default function App() {
   const dts = useDts();
-  const { render, renderError, setPartials } = useHandlebars();
+  const { render, renderError, setPartials, setEmojis } = useHandlebars();
   const api = useApi();
   const { containerRef: editorContainerRef, insertAtCursor, blockContext } = useInsertAtCursor();
   const [middleTab, setMiddleTab] = useState('tags');
@@ -59,6 +59,7 @@ export default function App() {
   const [apiFields, setApiFields] = useState(null);
   const [apiTestScenarios, setApiTestScenarios] = useState(null);
   const [partials, setPartialsState] = useState(null);
+  const [emojis, setEmojisState] = useState({ discord: {}, telegram: {} });
   const [offlineMode, setOfflineMode] = useState(false);
   const [activeTab, setActiveTab] = useState('templates');
   const config = useConfig(api.connected ? api.client : null);
@@ -120,12 +121,12 @@ export default function App() {
     if (!dts.currentTemplate?.template) return {};
     if (!activeTestData || Object.keys(activeTestData).length === 0) return {};
     try {
-      return render(dts.currentTemplate.template, activeTestData) || {};
+      return render(dts.currentTemplate.template, activeTestData, dts.filters.platform) || {};
     } catch (err) {
       console.error('Render error:', err);
       return {};
     }
-  }, [dts.currentTemplate, activeTestData, render]);
+  }, [dts.currentTemplate, activeTestData, render, dts.filters.platform]);
 
   const handleScenarioChange = useCallback((scenario) => {
     dts.setTestScenario(scenario);
@@ -152,8 +153,22 @@ export default function App() {
       } catch (err) {
         console.error('Failed to load partials:', err);
       }
+      // Fetch per-platform emoji maps
+      try {
+        const [discordEmoji, telegramEmoji] = await Promise.all([
+          client.getEmoji('discord').catch(() => ({})),
+          client.getEmoji('telegram').catch(() => ({})),
+        ]);
+        const dMap = discordEmoji.emoji || {};
+        const tMap = telegramEmoji.emoji || {};
+        setEmojis('discord', dMap);
+        setEmojis('telegram', tMap);
+        setEmojisState({ discord: dMap, telegram: tMap });
+      } catch (err) {
+        console.error('Failed to load emojis:', err);
+      }
     }
-  }, [api.connect, dts.loadTemplates, setPartials]);
+  }, [api.connect, dts.loadTemplates, setPartials, setEmojis]);
 
   const handleEnrich = useCallback(async (webhookData) => {
     if (!api.client) return;
@@ -343,7 +358,14 @@ export default function App() {
                 </div>
                 <div className="flex-1 min-h-0">
                   {middleTab === 'tags' ? (
-                    <TagPicker type={dts.filters.type} onInsertTag={handleInsertTag} apiFields={apiFields} blockContext={blockContext} partials={partials} />
+                    <TagPicker
+                      type={dts.filters.type}
+                      onInsertTag={handleInsertTag}
+                      apiFields={apiFields}
+                      blockContext={blockContext}
+                      partials={partials}
+                      emojis={emojis[dts.filters.platform] || {}}
+                    />
                   ) : (
                     <TestDataPanel
                       testData={activeTestData}
