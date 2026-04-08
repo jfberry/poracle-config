@@ -177,7 +177,7 @@ function MapField({ value, onChange }) {
   );
 }
 
-export default function ConfigField({ field, value, onChange, isDirty, defaultValue, originalValue, onReset, onClearOverride }) {
+export default function ConfigField({ field, value, onChange, isDirty, defaultValue, originalValue, onReset, onClearOverride, isOverridden: isOverriddenBadge }) {
   const { name, type, description, hotReload, sensitive, options } = field;
 
   const isOverridden = JSON.stringify(originalValue) !== JSON.stringify(defaultValue);
@@ -186,6 +186,9 @@ export default function ConfigField({ field, value, onChange, isDirty, defaultVa
     <div className={`py-2 ${isDirty ? 'border-l-2 border-blue-500 pl-3' : 'pl-3'}`}>
       <div className="flex items-center gap-2 mb-1">
         <label className="text-sm text-gray-300 font-medium">{name}</label>
+        {isOverriddenBadge && (
+          <span className="text-[9px] px-1 py-px bg-teal-900/40 text-teal-300 rounded" title="Currently set in overrides.json (web editor)">via editor</span>
+        )}
         {!hotReload && (
           <span className="text-[10px] text-amber-500" title="Requires restart to take effect">🔄</span>
         )}

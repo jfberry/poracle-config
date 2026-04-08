@@ -12,7 +12,9 @@ export default function ConfigSection({
   search,
   showDeprecated,
   geofenceAreas,
+  overriddenFields,
 }) {
+  const isOverridden = (name) => overriddenFields ? overriddenFields.has(`${section.name}.${name}`) : false;
   const sectionValues = values || {};
   const sectionOriginal = originalValues || {};
 
@@ -73,6 +75,9 @@ export default function ConfigSection({
               <div key={field.name} className={`py-2 ${isDirty(field.name) ? 'border-l-2 border-blue-500 pl-3' : 'pl-3'}`}>
                 <div className="flex items-center gap-2 mb-1">
                   <label className="text-sm text-gray-300 font-medium">{field.name}</label>
+                  {isOverridden(field.name) && (
+                    <span className="text-[9px] px-1 py-px bg-teal-900/40 text-teal-300 rounded" title="Currently set in overrides.json (web editor)">via editor</span>
+                  )}
                   {!field.hotReload && (
                     <span className="text-[10px] text-amber-500" title="Requires restart">🔄</span>
                   )}
@@ -108,6 +113,7 @@ export default function ConfigSection({
                   resolveIds={resolveIds}
                   field={field}
                   suggestions={field.resolve === 'geofence:area' ? geofenceAreas : undefined}
+                  sensitive={field.sensitive === true}
                 />
               </div>
             );
@@ -124,6 +130,7 @@ export default function ConfigSection({
               originalValue={sectionOriginal[field.name]}
               onReset={() => onUpdateField(section.name, field.name, sectionOriginal[field.name])}
               onClearOverride={() => onUpdateField(section.name, field.name, field.default)}
+              isOverridden={isOverridden(field.name)}
             />
           );
         })}
@@ -138,6 +145,9 @@ export default function ConfigSection({
               onChange={(v) => onUpdateField(section.name, table.name, v)}
               resolveIds={resolveIds}
               geofenceAreas={geofenceAreas}
+              overriddenFields={overriddenFields}
+              sectionName={section.name}
+              tableName={table.name}
             />
           </div>
         ))}

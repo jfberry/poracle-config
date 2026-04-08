@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { ResolvedLabel } from './ConfigField';
 import { inputBase } from '../lib/styles';
 
-export default function ConfigTagInput({ value, onChange, resolve, resolveIds, field, suggestions }) {
+export default function ConfigTagInput({ value, onChange, resolve, resolveIds, field, suggestions, sensitive }) {
   const datalistId = suggestions && suggestions.length > 0 ? `dl-${field.name}` : undefined;
   const [input, setInput] = useState('');
   const [resolved, setResolved] = useState({});
@@ -11,6 +11,7 @@ export default function ConfigTagInput({ value, onChange, resolve, resolveIds, f
 
   // Resolve IDs when items change
   useEffect(() => {
+    if (sensitive) return;
     if (!resolve || !resolveIds || items.length === 0) return;
 
     const request = buildResolveRequest(resolve, items);
@@ -28,7 +29,7 @@ export default function ConfigTagInput({ value, onChange, resolve, resolveIds, f
     if (!items.includes(trimmed)) {
       onChange([...items, trimmed]);
       // Resolve the new item
-      if (resolve && resolveIds) {
+      if (!sensitive && resolve && resolveIds) {
         const request = buildResolveRequest(resolve, [trimmed]);
         if (request) {
           resolveIds(request).then((result) => {
@@ -63,7 +64,9 @@ export default function ConfigTagInput({ value, onChange, resolve, resolveIds, f
             key={item}
             className="inline-flex items-center gap-1 bg-gray-800 border border-gray-600 rounded px-2 py-0.5 text-xs"
           >
-            {resolve && resolved[item] ? (
+            {sensitive ? (
+              <span className="font-mono text-gray-300 tracking-widest">••••</span>
+            ) : resolve && resolved[item] ? (
               <ResolvedLabel id={item} resolved={resolved[item]} />
             ) : (
               <span className="font-mono text-gray-300">{item}</span>
@@ -81,10 +84,11 @@ export default function ConfigTagInput({ value, onChange, resolve, resolveIds, f
       <div className="flex gap-1.5">
         <input
           className={`flex-1 ${inputBase}`}
+          type={sensitive ? 'password' : 'text'}
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={handleKeyDown}
-          placeholder={`Add ${field.name}... (Enter to add)`}
+          placeholder={sensitive ? 'Add new key...' : `Add ${field.name}... (Enter to add)`}
           list={datalistId}
         />
         {datalistId && (

@@ -9,6 +9,7 @@ export function useConfig(apiClient) {
   const [error, setError] = useState(null);
   const [saveResult, setSaveResult] = useState(null);
   const [geofenceAreas, setGeofenceAreas] = useState([]);
+  const [overriddenFields, setOverriddenFields] = useState(new Set());
   const resolveCache = useRef(new Map());
 
   // Fetch schema and values
@@ -26,6 +27,7 @@ export function useConfig(apiClient) {
       setSchema(sections);
       setValues(valuesRes.values || {});
       setOriginalValues(JSON.parse(JSON.stringify(valuesRes.values || {})));
+      setOverriddenFields(new Set(valuesRes.overridden || []));
       if (sections.length > 0) {
         setActiveSection((prev) => prev || sections[0].name);
       }
@@ -114,6 +116,14 @@ export function useConfig(apiClient) {
       throw err;
     }
   }, [apiClient, dirtyFields, values]);
+
+  // Migrate config.toml to overrides.json
+  const migrate = useCallback(async () => {
+    if (!apiClient) throw new Error('Not connected');
+    const result = await apiClient.migrateConfig();
+    await load();
+    return result;
+  }, [apiClient, load]);
 
   // Resolve IDs — batch resolve and cache
   const resolveIds = useCallback(async (request) => {
@@ -215,5 +225,7 @@ export function useConfig(apiClient) {
     save,
     resolveIds,
     geofenceAreas,
+    overriddenFields,
+    migrate,
   };
 }
