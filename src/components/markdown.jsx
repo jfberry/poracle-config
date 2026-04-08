@@ -351,6 +351,13 @@ const baseRules = {
   },
   text: {
     ...SimpleMarkdown.defaultRules.text,
+    // Override the default match to also stop at our missing-emoji sentinel ⟦.
+    // The default text regex treats ⟦ as a regular Unicode character (U+27E6
+    // is in \u00c0-\uffff) so it would consume it greedily and prevent the
+    // missingEmoji rule from ever firing mid-string.
+    match(source) {
+      return /^[\s\S]+?(?=⟦|[^0-9A-Za-z\s\u00c0-\uffff]|\n\n| {2,}\n|\w+:\S|$)/.exec(source);
+    },
     parse(capture, recurseParse, state) {
       return state.nested ? {
         content: capture[0]
