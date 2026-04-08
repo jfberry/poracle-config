@@ -9,6 +9,7 @@ import TelegramPreview from './components/TelegramPreview';
 import SendTestButton from './components/SendTestButton';
 import ConfigEditor from './components/ConfigEditor';
 import StatusBar from './components/StatusBar';
+import ResizeHandle from './components/ResizeHandle';
 import { useDts } from './hooks/useDts';
 import { useConfig } from './hooks/useConfig';
 import { useHandlebars } from './hooks/useHandlebars';
@@ -61,6 +62,32 @@ export default function App() {
   const [offlineMode, setOfflineMode] = useState(false);
   const [activeTab, setActiveTab] = useState('templates');
   const config = useConfig(api.connected ? api.client : null);
+
+  // Panel widths in pixels (persisted)
+  const [leftWidth, setLeftWidth] = useState(() => {
+    const stored = localStorage.getItem('panel-left-width');
+    return stored ? parseInt(stored, 10) : 480;
+  });
+  const [middleWidth, setMiddleWidth] = useState(() => {
+    const stored = localStorage.getItem('panel-middle-width');
+    return stored ? parseInt(stored, 10) : 256;
+  });
+
+  const resizeLeft = useCallback((delta) => {
+    setLeftWidth((w) => {
+      const next = Math.max(240, Math.min(w + delta, window.innerWidth - 400));
+      localStorage.setItem('panel-left-width', String(next));
+      return next;
+    });
+  }, []);
+
+  const resizeMiddle = useCallback((delta) => {
+    setMiddleWidth((w) => {
+      const next = Math.max(160, Math.min(w + delta, 600));
+      localStorage.setItem('panel-middle-width', String(next));
+      return next;
+    });
+  }, []);
 
   // Fetch fields and test scenarios from API when connected and type changes
   useEffect(() => {
@@ -285,42 +312,53 @@ export default function App() {
       {activeTab === 'templates' ? (
         <div className="flex flex-1 min-h-0">
           {/* Left panel — Template Editor */}
-          <div ref={editorContainerRef} className="flex-1 min-w-0 border-r border-gray-700">
+          <div
+            ref={editorContainerRef}
+            className="min-w-0 shrink-0"
+            style={{ width: `${leftWidth}px` }}
+          >
             <TemplateEditor template={dts.currentTemplate?.template} onChange={dts.updateTemplate} platform={dts.filters.platform} />
           </div>
+          <ResizeHandle onResize={resizeLeft} />
           {/* Middle panel — Tags / Test Data (collapsible) */}
           {showMiddle && (
-            <div className="w-64 border-r border-gray-700 flex flex-col min-h-0 shrink-0">
-              <div className="flex shrink-0 border-b border-gray-700">
-                <button
-                  onClick={() => setMiddleTab('tags')}
-                  className={`flex-1 text-xs py-1.5 text-center transition-colors ${tabClass(middleTab === 'tags')}`}
-                >
-                  Tags
-                </button>
-                <button
-                  onClick={() => setMiddleTab('data')}
-                  className={`flex-1 text-xs py-1.5 text-center transition-colors ${tabClass(middleTab === 'data')}`}
-                >
-                  Test Data
-                </button>
+            <>
+              <div
+                className="flex flex-col min-h-0 shrink-0"
+                style={{ width: `${middleWidth}px` }}
+              >
+                <div className="flex shrink-0 border-b border-gray-700">
+                  <button
+                    onClick={() => setMiddleTab('tags')}
+                    className={`flex-1 text-xs py-1.5 text-center transition-colors ${tabClass(middleTab === 'tags')}`}
+                  >
+                    Tags
+                  </button>
+                  <button
+                    onClick={() => setMiddleTab('data')}
+                    className={`flex-1 text-xs py-1.5 text-center transition-colors ${tabClass(middleTab === 'data')}`}
+                  >
+                    Test Data
+                  </button>
+                </div>
+                <div className="flex-1 min-h-0">
+                  {middleTab === 'tags' ? (
+                    <TagPicker type={dts.filters.type} onInsertTag={handleInsertTag} apiFields={apiFields} blockContext={blockContext} partials={partials} />
+                  ) : (
+                    <TestDataPanel
+                      testData={activeTestData}
+                      onTestDataChange={setCustomTestData}
+                      scenarios={dts.availableScenarios}
+                      currentScenario={dts.testScenario}
+                      onScenarioChange={handleScenarioChange}
+                      apiScenarios={apiTestScenarios}
+                      onEnrich={api.connected ? handleEnrich : null}
+                    />
+                  )}
+                </div>
               </div>
-              <div className="flex-1 min-h-0">
-                {middleTab === 'tags' ? (
-                  <TagPicker type={dts.filters.type} onInsertTag={handleInsertTag} apiFields={apiFields} blockContext={blockContext} partials={partials} />
-                ) : (
-                  <TestDataPanel
-                    testData={activeTestData}
-                    onTestDataChange={setCustomTestData}
-                    scenarios={dts.availableScenarios}
-                    currentScenario={dts.testScenario}
-                    onScenarioChange={handleScenarioChange}
-                    apiScenarios={apiTestScenarios}
-                    onEnrich={api.connected ? handleEnrich : null}
-                  />
-                )}
-              </div>
-            </div>
+              <ResizeHandle onResize={resizeMiddle} />
+            </>
           )}
           {/* Right panel — Discord Preview */}
           <div className="flex-1 min-w-0">
