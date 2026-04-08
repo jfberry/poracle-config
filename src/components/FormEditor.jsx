@@ -15,6 +15,20 @@ export default function FormEditor({ template, onChange }) {
   const formRef = useRef(null);
   const embed = template?.embed || {};
 
+  // Update a top-level template field (content, username, avatar_url, etc.)
+  const updateRoot = useCallback(
+    (key, value) => {
+      const updated = { ...template };
+      if (value === '' || value === undefined) {
+        delete updated[key];
+      } else {
+        updated[key] = value;
+      }
+      onChange(updated);
+    },
+    [template, onChange]
+  );
+
   const updateEmbed = useCallback(
     (key, value) => {
       const newEmbed = { ...embed };
@@ -82,6 +96,39 @@ export default function FormEditor({ template, onChange }) {
   return (
     <div ref={formRef} className="p-3 space-y-3">
       <FormatToolbar targetRef={formRef} />
+
+      {/* Message — top-level template fields (outside the embed) */}
+      <Section title="Message">
+        <div>
+          <label className={labelClass}>Content</label>
+          <textarea
+            className={inputClass + ' min-h-[60px] resize-y'}
+            value={template?.content ?? ''}
+            onChange={(e) => updateRoot('content', e.target.value)}
+            placeholder="Plain text message above the embed (optional)"
+            rows={3}
+          />
+        </div>
+        <div>
+          <label className={labelClass}>Username (webhook)</label>
+          <input
+            className={inputClass}
+            value={template?.username ?? ''}
+            onChange={(e) => updateRoot('username', e.target.value)}
+            placeholder="Override the bot's display name (webhook only)"
+          />
+        </div>
+        <div>
+          <label className={labelClass}>Avatar URL (webhook)</label>
+          <input
+            className={inputClass}
+            value={template?.avatar_url ?? ''}
+            onChange={(e) => updateRoot('avatar_url', e.target.value)}
+            placeholder="Override the bot's avatar (webhook only)"
+          />
+        </div>
+      </Section>
+
       {/* Color */}
       <div>
         <label className={labelClass}>Color</label>
@@ -251,7 +298,7 @@ export default function FormEditor({ template, onChange }) {
           className={inputClass}
           value={embed.timestamp ?? ''}
           onChange={(e) => updateEmbed('timestamp', e.target.value)}
-          placeholder="e.g. {{timestamp}} or ISO string"
+          placeholder="e.g. {{nowISO}} or ISO 8601 string"
         />
       </div>
     </div>
