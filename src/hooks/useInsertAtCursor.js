@@ -111,16 +111,39 @@ export function useInsertAtCursor() {
     // If cursor is inside {{ }} or {{{ }}}, insert just the field name
     const insertText = braceContext ? stripBraces(text) : text;
 
-    // Focus and set selection so execCommand operates on the right range
+    // Restore focus + selection
     el.focus();
     el.setSelectionRange(start, end);
 
-    // Use execCommand('insertText') to preserve the browser's native undo stack.
-    // This inserts text as if the user typed it — Cmd+Z works naturally.
-    document.execCommand('insertText', false, insertText);
+    // Try execCommand first (preserves native undo)
+    let inserted = false;
+    try {
+      inserted = document.execCommand('insertText', false, insertText);
+    } catch {
+      inserted = false;
+    }
 
-    // Update cursor tracking
+    // Fallback for React-controlled inputs where execCommand may not propagate:
+    // use the native value setter then dispatch an input event so React picks it up.
+    if (!inserted || el.value.substring(start, start + insertText.length) !== insertText) {
+      const before = el.value.substring(0, start);
+      const after = el.value.substring(end);
+      const newValue = before + insertText + after;
+
+      const proto = el.tagName === 'TEXTAREA'
+        ? window.HTMLTextAreaElement.prototype
+        : window.HTMLInputElement.prototype;
+      const setter = Object.getOwnPropertyDescriptor(proto, 'value').set;
+      setter.call(el, newValue);
+      el.dispatchEvent(new Event('input', { bubbles: true }));
+    }
+
+    // Place cursor after the inserted text
     const newPos = start + insertText.length;
+    requestAnimationFrame(() => {
+      el.focus();
+      el.setSelectionRange(newPos, newPos);
+    });
     cursorPosRef.current = newPos;
 
     return true;
