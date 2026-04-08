@@ -42,6 +42,119 @@ function StringField({ value, onChange, placeholder }) {
   );
 }
 
+function ColorArrayField({ value, onChange, minLength, maxLength }) {
+  const items = Array.isArray(value) ? value : [];
+  const count = Math.max(minLength || 0, items.length);
+  const fixed = minLength && minLength === maxLength;
+
+  const updateAt = (i, color) => {
+    const updated = [...items];
+    while (updated.length <= i) updated.push('#000000');
+    updated[i] = color;
+    onChange(updated);
+  };
+
+  const removeAt = (i) => {
+    onChange(items.filter((_, idx) => idx !== i));
+  };
+
+  const addItem = () => {
+    onChange([...items, '#000000']);
+  };
+
+  const atMax = maxLength && items.length >= maxLength;
+
+  return (
+    <div className="space-y-1.5">
+      <div className="flex flex-wrap gap-2">
+        {Array.from({ length: count }).map((_, i) => {
+          const color = items[i] || '#000000';
+          return (
+            <div key={i} className="flex items-center gap-1">
+              <input
+                type="color"
+                value={color}
+                onChange={(e) => updateAt(i, e.target.value)}
+                className="w-8 h-8 rounded cursor-pointer bg-transparent border border-gray-600"
+              />
+              <span className="text-[10px] font-mono text-gray-500">{color}</span>
+              {!fixed && (
+                <button
+                  onClick={() => removeAt(i)}
+                  className="text-red-400 hover:text-red-300 text-xs"
+                  type="button"
+                >
+                  ×
+                </button>
+              )}
+            </div>
+          );
+        })}
+      </div>
+      {!fixed && (
+        <button
+          onClick={addItem}
+          disabled={atMax}
+          className="text-xs text-blue-400 hover:text-blue-300 disabled:text-gray-600 disabled:cursor-not-allowed"
+          type="button"
+        >
+          + Add color
+        </button>
+      )}
+    </div>
+  );
+}
+
+function IntArrayField({ value, onChange, minLength, maxLength }) {
+  const items = Array.isArray(value) ? value : [];
+
+  const updateAt = (i, num) => {
+    const updated = [...items];
+    updated[i] = num;
+    onChange(updated);
+  };
+
+  const removeAt = (i) => {
+    onChange(items.filter((_, idx) => idx !== i));
+  };
+
+  const addItem = () => {
+    onChange([...items, 0]);
+  };
+
+  const atMax = maxLength && items.length >= maxLength;
+
+  return (
+    <div className="space-y-1">
+      {items.map((n, i) => (
+        <div key={i} className="flex gap-1.5 items-center">
+          <input
+            type="number"
+            value={n}
+            onChange={(e) => updateAt(i, parseInt(e.target.value, 10) || 0)}
+            className={inputClass + ' w-32'}
+          />
+          <button
+            onClick={() => removeAt(i)}
+            className="text-red-400 hover:text-red-300 text-xs"
+            type="button"
+          >
+            ×
+          </button>
+        </div>
+      ))}
+      <button
+        onClick={addItem}
+        disabled={atMax}
+        className="text-xs text-blue-400 hover:text-blue-300 disabled:text-gray-600 disabled:cursor-not-allowed"
+        type="button"
+      >
+        + Add
+      </button>
+    </div>
+  );
+}
+
 // String field with ID resolution (for fields with resolve hint)
 function ResolvableStringField({ value, onChange, resolve, resolveIds, placeholder }) {
   const [resolved, setResolved] = useState(null);
@@ -137,13 +250,14 @@ function ResolvableStringField({ value, onChange, resolve, resolveIds, placehold
   );
 }
 
-function NumberField({ value, onChange, isFloat }) {
+function NumberField({ value, onChange, isFloat, placeholder }) {
   return (
     <input
       className={inputClass}
       type="number"
       step={isFloat ? 'any' : '1'}
       value={value ?? ''}
+      placeholder={placeholder}
       onChange={(e) => {
         const v = e.target.value;
         if (v === '') onChange(undefined);
@@ -169,11 +283,14 @@ function BoolField({ value, onChange, label }) {
 
 function SelectField({ value, onChange, options }) {
   const radioName = useId();
-  if (options.length <= 5) {
+  const visibleOptions = options.filter(
+    (opt) => !opt.deprecated || String(value) === String(opt.value)
+  );
+  if (visibleOptions.length <= 5) {
     // Radio group
     return (
       <div className="space-y-1.5">
-        {options.map((opt) => (
+        {visibleOptions.map((opt) => (
           <label key={opt.value} className="flex items-start gap-2 cursor-pointer">
             <input
               type="radio"
@@ -183,7 +300,12 @@ function SelectField({ value, onChange, options }) {
               className="mt-1"
             />
             <div>
-              <span className="text-sm text-gray-200">{opt.label}</span>
+              <span className="text-sm text-gray-200">
+                {opt.label}
+                {opt.deprecated && (
+                  <span className="text-amber-500 text-[10px] ml-1">(deprecated)</span>
+                )}
+              </span>
               {opt.description && (
                 <span className="block text-[11px] text-gray-500">{opt.description}</span>
               )}
@@ -200,8 +322,10 @@ function SelectField({ value, onChange, options }) {
       value={value ?? ''}
       onChange={(e) => onChange(e.target.value)}
     >
-      {options.map((opt) => (
-        <option key={opt.value} value={opt.value}>{opt.label}</option>
+      {visibleOptions.map((opt) => (
+        <option key={opt.value} value={opt.value}>
+          {opt.label}{opt.deprecated ? ' (deprecated)' : ''}
+        </option>
       ))}
     </select>
   );
@@ -292,15 +416,30 @@ function MapField({ value, onChange }) {
   );
 }
 
-export default function ConfigField({ field, value, onChange, isDirty, defaultValue, originalValue, onReset, onClearOverride, isOverridden: isOverriddenBadge, resolveIds }) {
+export default function ConfigField({ field, value, onChange, isDirty, defaultValue, originalValue, onReset, onClearOverride, isOverridden: isOverriddenBadge, resolveIds, disabled, disabledReason, validationIssue }) {
   const { name, type, description, hotReload, sensitive, options, resolve } = field;
 
   const isOverridden = JSON.stringify(originalValue) !== JSON.stringify(defaultValue);
+  const placeholder = field.hideDefault ? String(field.default ?? '') : undefined;
+
+  const issueSeverity = validationIssue?.severity;
+  const borderClass = issueSeverity === 'error'
+    ? 'border-l-2 border-red-500'
+    : issueSeverity === 'warning'
+    ? 'border-l-2 border-amber-500'
+    : isDirty
+    ? 'border-l-2 border-blue-500'
+    : '';
 
   return (
-    <div className={`py-2 ${isDirty ? 'border-l-2 border-blue-500 pl-3' : 'pl-3'}`}>
+    <div className={`py-2 pl-3 ${borderClass}`}>
       <div className="flex items-center gap-2 mb-1">
-        <label className="text-sm text-gray-300 font-medium">{name}</label>
+        <label
+          className="text-sm text-gray-300 font-medium"
+          title={disabled && disabledReason ? disabledReason : undefined}
+        >
+          {name}
+        </label>
         {isOverriddenBadge && (
           <span className="text-[9px] px-1 py-px bg-teal-900/40 text-teal-300 rounded" title="Currently set in overrides.json (web editor)">via editor</span>
         )}
@@ -335,22 +474,36 @@ export default function ConfigField({ field, value, onChange, isDirty, defaultVa
         <p className="text-[11px] text-gray-500 mb-1.5">{description}</p>
       )}
 
-      {sensitive ? (
-        <SensitiveField value={value} onChange={onChange} />
-      ) : type === 'bool' ? (
-        <BoolField value={value} onChange={onChange} label={description} />
-      ) : type === 'select' && options ? (
-        <SelectField value={value} onChange={onChange} options={options} />
-      ) : type === 'int' ? (
-        <NumberField value={value} onChange={onChange} isFloat={false} />
-      ) : type === 'float' ? (
-        <NumberField value={value} onChange={onChange} isFloat={true} />
-      ) : type === 'map' ? (
-        <MapField value={value} onChange={onChange} />
-      ) : resolve ? (
-        <ResolvableStringField value={value} onChange={onChange} resolve={resolve} resolveIds={resolveIds} />
-      ) : (
-        <StringField value={value} onChange={onChange} />
+      <div className={disabled ? 'pointer-events-none opacity-50' : ''}>
+        {sensitive ? (
+          <SensitiveField value={value} onChange={onChange} />
+        ) : type === 'bool' ? (
+          <BoolField value={value} onChange={onChange} label={description} />
+        ) : type === 'select' && options ? (
+          <SelectField value={value} onChange={onChange} options={options} />
+        ) : type === 'int' ? (
+          <NumberField value={value} onChange={onChange} isFloat={false} placeholder={placeholder} />
+        ) : type === 'float' ? (
+          <NumberField value={value} onChange={onChange} isFloat={true} placeholder={placeholder} />
+        ) : type === 'map' ? (
+          <MapField value={value} onChange={onChange} />
+        ) : type === 'color[]' ? (
+          <ColorArrayField value={value} onChange={onChange} minLength={field.minLength} maxLength={field.maxLength} />
+        ) : type === 'int[]' ? (
+          <IntArrayField value={value} onChange={onChange} minLength={field.minLength} maxLength={field.maxLength} />
+        ) : resolve ? (
+          <ResolvableStringField value={value} onChange={onChange} resolve={resolve} resolveIds={resolveIds} placeholder={placeholder} />
+        ) : (
+          <StringField value={value} onChange={onChange} placeholder={placeholder} />
+        )}
+      </div>
+      {(type === 'color[]' || type === 'int[]') && Array.isArray(value) && field.minLength && value.length < field.minLength && (
+        <p className="text-[11px] text-red-400 mt-1">Minimum {field.minLength} entries required</p>
+      )}
+      {validationIssue && (
+        <p className={`text-[11px] mt-1 ${issueSeverity === 'error' ? 'text-red-400' : 'text-amber-400'}`}>
+          {validationIssue.message}
+        </p>
       )}
     </div>
   );

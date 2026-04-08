@@ -262,6 +262,7 @@ export default function App() {
         sendTestButton={api.connected && <SendTestButton onSend={handleSendTest} />}
         configDirtyCount={config.dirtyFields.count}
         configRestartRequired={config.restartRequired.required}
+        configHasErrors={config.hasValidationErrors}
         onConfigSave={api.connected ? handleConfigSave : null}
       />
       {activeTab === 'templates' ? (

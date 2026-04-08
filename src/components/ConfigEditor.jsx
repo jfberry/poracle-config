@@ -145,6 +145,7 @@ export default function ConfigEditor({ config }) {
             showDeprecated={showDeprecated}
             geofenceAreas={config.geofenceAreas}
             overriddenFields={config.overriddenFields}
+            validationIssues={config.validationIssues}
           />
         ) : null}
       </div>

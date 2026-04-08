@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { ResolvedLabel } from './ConfigField';
 import { inputBase } from '../lib/styles';
 
-export default function ConfigTagInput({ value, onChange, resolve, resolveIds, field, suggestions, sensitive }) {
+export default function ConfigTagInput({ value, onChange, resolve, resolveIds, field, suggestions, sensitive, minLength, maxLength, disabled }) {
   const datalistId = suggestions && suggestions.length > 0 ? `dl-${field.name}` : undefined;
   const [input, setInput] = useState('');
   const [resolved, setResolved] = useState({});
@@ -56,8 +56,11 @@ export default function ConfigTagInput({ value, onChange, resolve, resolveIds, f
     }
   };
 
+  const atMax = maxLength && items.length >= maxLength;
+  const belowMin = minLength && items.length < minLength;
+
   return (
-    <div>
+    <div className={disabled ? 'pointer-events-none opacity-50' : ''}>
       <div className="flex flex-wrap gap-1.5 mb-1.5">
         {items.map((item) => (
           <span
@@ -100,12 +103,16 @@ export default function ConfigTagInput({ value, onChange, resolve, resolveIds, f
         )}
         <button
           onClick={addItem}
-          className="text-xs text-blue-400 hover:text-blue-300 px-2 border border-gray-600 rounded"
+          disabled={atMax}
+          className="text-xs text-blue-400 hover:text-blue-300 px-2 border border-gray-600 rounded disabled:text-gray-600 disabled:cursor-not-allowed"
           type="button"
         >
           Add
         </button>
       </div>
+      {belowMin && (
+        <p className="text-[11px] text-red-400 mt-1">Minimum {minLength} entries required</p>
+      )}
     </div>
   );
 }

@@ -10,6 +10,7 @@ export function useConfig(apiClient) {
   const [saveResult, setSaveResult] = useState(null);
   const [geofenceAreas, setGeofenceAreas] = useState([]);
   const [overriddenFields, setOverriddenFields] = useState(new Set());
+  const [validationIssues, setValidationIssues] = useState([]);
   const resolveCache = useRef(new Map());
 
   // Fetch schema and values
@@ -95,6 +96,28 @@ export function useConfig(apiClient) {
     }
     return { required: fields.length > 0, fields };
   }, [schema, dirtyFields]);
+
+  // Debounced server-side validation of dirty fields
+  useEffect(() => {
+    if (!apiClient || dirtyFields.count === 0) {
+      setValidationIssues([]);
+      return;
+    }
+    const timer = setTimeout(async () => {
+      try {
+        const result = await apiClient.validateConfig(dirtyFields.dirty);
+        setValidationIssues(result.issues || []);
+      } catch {
+        // Silent
+      }
+    }, 500);
+    return () => clearTimeout(timer);
+  }, [apiClient, dirtyFields]);
+
+  const hasValidationErrors = useMemo(
+    () => validationIssues.some((i) => i.severity === 'error'),
+    [validationIssues]
+  );
 
   // Which sections have dirty fields (for sidebar dots)
   const dirtySections = useMemo(() => {
@@ -249,5 +272,7 @@ export function useConfig(apiClient) {
     geofenceAreas,
     overriddenFields,
     migrate,
+    validationIssues,
+    hasValidationErrors,
   };
 }

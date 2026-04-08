@@ -7,7 +7,7 @@ export default function TopBar({
   onImport, onExport, onSave, connected,
   showMiddle, onToggleMiddle, sendTestButton,
   // Config props
-  configDirtyCount, configRestartRequired, onConfigSave,
+  configDirtyCount, configRestartRequired, onConfigSave, configHasErrors,
 }) {
   return (
     <div className="flex items-center justify-between px-4 py-2 bg-gray-900 border-b border-gray-700 text-sm">
@@ -83,9 +83,11 @@ export default function TopBar({
                   : 'bg-gray-800 text-teal-300'
                 : 'bg-gray-800 text-gray-500 cursor-not-allowed'
             }`}
-            disabled={configDirtyCount === 0}
-            title={configRestartRequired ? 'Some changes require restart' : 'Save config changes'}>
-            {configDirtyCount === 0
+            disabled={configDirtyCount === 0 || configHasErrors}
+            title={configHasErrors ? 'Fix validation errors before saving' : configRestartRequired ? 'Some changes require restart' : 'Save config changes'}>
+            {configHasErrors
+              ? 'Validation errors'
+              : configDirtyCount === 0
               ? 'No changes'
               : configRestartRequired
                 ? `Save (restart required)`
