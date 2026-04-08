@@ -70,12 +70,15 @@ function ResolvableStringField({ value, onChange, resolve, resolveIds, placehold
       if (resolve === 'destination') {
         found = result.destinations?.[value] || null;
       } else {
-        const [platform] = resolve.split(':');
+        const [platform, type] = resolve.split(':');
         const platformResult = result[platform];
         if (platformResult) {
-          for (const typeMap of Object.values(platformResult)) {
+          // Pick the first matched type and remember the kind
+          for (const [matchedType, typeMap] of Object.entries(platformResult)) {
             if (typeMap[value]) {
-              found = typeMap[value];
+              // Convert plural type ("channels") to singular ("channel") for kind
+              const singular = matchedType.endsWith('s') ? matchedType.slice(0, -1) : matchedType;
+              found = { ...typeMap[value], kind: `${platform}:${singular}` };
               break;
             }
           }
