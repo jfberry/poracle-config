@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef } from 'react';
+import { useState, useCallback, useRef, useMemo } from 'react';
 import { PoracleApiClient } from '../lib/api-client';
 
 export function useApi() {
@@ -31,5 +31,8 @@ export function useApi() {
     setError(null);
   }, []);
 
-  return { connected, url, error, client: clientRef.current, connect, disconnect };
+  return useMemo(
+    () => ({ connected, url, error, client: clientRef.current, connect, disconnect }),
+    [connected, url, error, connect, disconnect]
+  );
 }

@@ -1,4 +1,4 @@
-import { useRef, useEffect, useCallback } from 'react';
+import { useEffect, useCallback } from 'react';
 
 const formats = [
   { label: 'B', title: 'Bold', before: '**', after: '**', style: 'font-bold', shortcut: 'b' },
@@ -45,30 +45,15 @@ function applyFormat(el, format) {
  * Wraps selected text or inserts markers at cursor.
  * Supports keyboard shortcuts (Cmd/Ctrl + B, I, U, D, E, K).
  *
- * Tracks the last focused input/textarea so clicking toolbar buttons
- * (which steal focus) still works correctly.
+ * Uses document.activeElement at click time — the button's onMouseDown
+ * preventDefault keeps focus on the input, so it remains active.
  */
 export default function FormatToolbar({ targetRef }) {
-  const lastInputRef = useRef(null);
-  const lastSelectionRef = useRef({ start: 0, end: 0 });
-
-  // Track which input was last focused and its selection
+  // Keyboard shortcuts: Cmd/Ctrl + key, attached to the container only.
   useEffect(() => {
     const container = targetRef?.current;
     if (!container) return;
 
-    const track = (e) => {
-      const el = e.target;
-      if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-        lastInputRef.current = el;
-        lastSelectionRef.current = {
-          start: el.selectionStart,
-          end: el.selectionEnd,
-        };
-      }
-    };
-
-    // Keyboard shortcuts: Cmd/Ctrl + key
     const handleKeyDown = (e) => {
       if (!(e.metaKey || e.ctrlKey)) return;
       const format = shortcutMap[e.key.toLowerCase()];
@@ -81,28 +66,15 @@ export default function FormatToolbar({ targetRef }) {
       applyFormat(el, format);
     };
 
-    container.addEventListener('focusin', track);
-    container.addEventListener('keyup', track);
-    container.addEventListener('mouseup', track);
-    container.addEventListener('select', track);
     container.addEventListener('keydown', handleKeyDown);
-
     return () => {
-      container.removeEventListener('focusin', track);
-      container.removeEventListener('keyup', track);
-      container.removeEventListener('mouseup', track);
-      container.removeEventListener('select', track);
       container.removeEventListener('keydown', handleKeyDown);
     };
   }, [targetRef]);
 
   const handleFormat = useCallback((format) => {
-    const el = lastInputRef.current;
-    if (!el) return;
-
-    const { start, end } = lastSelectionRef.current;
-    el.focus();
-    el.setSelectionRange(start, end);
+    const el = document.activeElement;
+    if (!el || (el.tagName !== 'INPUT' && el.tagName !== 'TEXTAREA')) return;
     applyFormat(el, format);
   }, []);
 

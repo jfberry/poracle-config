@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { ResolvedLabel } from './ConfigField';
 import { inputBase } from '../lib/styles';
+import { buildResolveRequest, extractResolvedMap } from '../lib/resolve-utils';
 
 export default function ConfigTagInput({ value, onChange, resolve, resolveIds, field, suggestions, sensitive, minLength, maxLength, disabled }) {
   const datalistId = suggestions && suggestions.length > 0 ? `dl-${field.name}` : undefined;
@@ -117,73 +118,3 @@ export default function ConfigTagInput({ value, onChange, resolve, resolveIds, f
   );
 }
 
-// Build a resolve request from a resolve hint string and list of IDs
-function buildResolveRequest(resolveHint, ids) {
-  if (!resolveHint || ids.length === 0) return null;
-
-  if (resolveHint === 'destination') {
-    return { destinations: ids };
-  }
-
-  // Parse hint: "discord:user", "discord:role", "discord:channel", "discord:user|role", "telegram:chat"
-  const [platform, type] = resolveHint.split(':');
-
-  if (platform === 'discord') {
-    if (type === 'user|role') {
-      // Try both
-      return { discord: { users: ids, roles: ids } };
-    }
-    if (type === 'target') {
-      return { discord: { users: ids, channels: ids } };
-    }
-    return { discord: { [type + 's']: ids } };
-  }
-
-  if (platform === 'telegram') {
-    return { telegram: { chats: ids } };
-  }
-
-  return null;
-}
-
-// Extract a flat id->resolved map from the resolve response
-function extractResolvedMap(resolveHint, result) {
-  const map = {};
-
-  if (resolveHint === 'destination') {
-    if (result.destinations) {
-      for (const [id, data] of Object.entries(result.destinations)) {
-        map[id] = data;
-      }
-    }
-    return map;
-  }
-
-  const [platform] = resolveHint.split(':');
-
-  if (platform === 'discord' && result.discord) {
-    // Merge all resolved types (for user|role, both users and roles are returned)
-    for (const [matchedType, resolved] of Object.entries(result.discord)) {
-      const singular = matchedType.endsWith('s') ? matchedType.slice(0, -1) : matchedType;
-      for (const [id, data] of Object.entries(resolved)) {
-        // Don't overwrite if already mapped (first match wins)
-        if (!map[id]) {
-          map[id] = { ...data, kind: `discord:${singular}` };
-        }
-      }
-    }
-  }
-
-  if (platform === 'telegram' && result.telegram) {
-    for (const [matchedType, resolved] of Object.entries(result.telegram)) {
-      const singular = matchedType.endsWith('s') ? matchedType.slice(0, -1) : matchedType;
-      for (const [id, data] of Object.entries(resolved)) {
-        if (!map[id]) {
-          map[id] = { ...data, kind: `telegram:${singular}` };
-        }
-      }
-    }
-  }
-
-  return map;
-}

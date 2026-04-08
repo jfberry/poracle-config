@@ -60,6 +60,17 @@ export default function TelegramFormEditor({ template, onChange }) {
     [template, onChange, previewImageUrl]
   );
 
+  const updateVenueField = useCallback((key, val) => {
+    const venue = { ...template?.venue };
+    if (val) venue[key] = val;
+    else delete venue[key];
+    if (Object.keys(venue).length === 0) {
+      update('venue', undefined);
+    } else {
+      update('venue', venue);
+    }
+  }, [template, update]);
+
   // Update preview image URL
   const handlePreviewImageChange = useCallback(
     (newUrl) => {
@@ -184,19 +195,7 @@ export default function TelegramFormEditor({ template, onChange }) {
           <input
             className={inputClass}
             value={template?.venue?.title ?? ''}
-            onChange={(e) => {
-              const venue = { ...template?.venue };
-              if (e.target.value) {
-                venue.title = e.target.value;
-              } else {
-                delete venue.title;
-              }
-              if (Object.keys(venue).length === 0) {
-                update('venue', undefined);
-              } else {
-                update('venue', venue);
-              }
-            }}
+            onChange={(e) => updateVenueField('title', e.target.value)}
             placeholder="Venue title"
           />
         </div>
@@ -205,19 +204,7 @@ export default function TelegramFormEditor({ template, onChange }) {
           <input
             className={inputClass}
             value={template?.venue?.address ?? ''}
-            onChange={(e) => {
-              const venue = { ...template?.venue };
-              if (e.target.value) {
-                venue.address = e.target.value;
-              } else {
-                delete venue.address;
-              }
-              if (Object.keys(venue).length === 0) {
-                update('venue', undefined);
-              } else {
-                update('venue', venue);
-              }
-            }}
+            onChange={(e) => updateVenueField('address', e.target.value)}
             placeholder="Venue address"
           />
         </div>

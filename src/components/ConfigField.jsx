@@ -1,5 +1,6 @@
 import { useState, useEffect, useId } from 'react';
 import { inputClass } from '../lib/styles';
+import { buildResolveRequest, extractResolvedMap } from '../lib/resolve-utils';
 
 // Map kind → display icon
 const KIND_ICONS = {
@@ -165,45 +166,13 @@ function ResolvableStringField({ value, onChange, resolve, resolveIds, placehold
       return;
     }
     let cancelled = false;
-    let request;
-
-    if (resolve === 'destination') {
-      // Unknown-type ID — let the processor try everything
-      request = { destinations: [value] };
-    } else {
-      const [platform, type] = resolve.split(':');
-      if (platform === 'discord') {
-        if (type === 'user|role') request = { discord: { users: [value], roles: [value] } };
-        else if (type === 'target') request = { discord: { users: [value], channels: [value] } };
-        else request = { discord: { [type + 's']: [value] } };
-      } else if (platform === 'telegram') {
-        request = { telegram: { chats: [value] } };
-      }
-    }
+    const request = buildResolveRequest(resolve, [value]);
     if (!request) return;
 
     resolveIds(request).then((result) => {
       if (cancelled) return;
-      let found = null;
-
-      if (resolve === 'destination') {
-        found = result.destinations?.[value] || null;
-      } else {
-        const [platform, type] = resolve.split(':');
-        const platformResult = result[platform];
-        if (platformResult) {
-          // Pick the first matched type and remember the kind
-          for (const [matchedType, typeMap] of Object.entries(platformResult)) {
-            if (typeMap[value]) {
-              // Convert plural type ("channels") to singular ("channel") for kind
-              const singular = matchedType.endsWith('s') ? matchedType.slice(0, -1) : matchedType;
-              found = { ...typeMap[value], kind: `${platform}:${singular}` };
-              break;
-            }
-          }
-        }
-      }
-      setResolved(found);
+      const map = extractResolvedMap(resolve, result);
+      setResolved(map[value] || null);
     });
     return () => { cancelled = true; };
   }, [value, resolve, resolveIds]);

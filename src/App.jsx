@@ -14,6 +14,7 @@ import { useConfig } from './hooks/useConfig';
 import { useHandlebars } from './hooks/useHandlebars';
 import { useApi } from './hooks/useApi';
 import { useInsertAtCursor } from './hooks/useInsertAtCursor';
+import { tabClass } from './lib/styles';
 
 // DTS template types -> testdata webhook types
 const dtsToWebhookType = {
@@ -109,7 +110,7 @@ export default function App() {
         console.error('Failed to load partials:', err);
       }
     }
-  }, [api, dts, setPartials]);
+  }, [api.connect, dts.loadTemplates, setPartials]);
 
   const handleEnrich = useCallback(async (webhookData) => {
     if (!api.client) return;
@@ -277,21 +278,13 @@ export default function App() {
               <div className="flex shrink-0 border-b border-gray-700">
                 <button
                   onClick={() => setMiddleTab('tags')}
-                  className={`flex-1 text-xs py-1.5 text-center transition-colors ${
-                    middleTab === 'tags'
-                      ? 'text-blue-400 border-b-2 border-blue-400 bg-gray-900'
-                      : 'text-gray-500 hover:text-gray-300'
-                  }`}
+                  className={`flex-1 text-xs py-1.5 text-center transition-colors ${tabClass(middleTab === 'tags')}`}
                 >
                   Tags
                 </button>
                 <button
                   onClick={() => setMiddleTab('data')}
-                  className={`flex-1 text-xs py-1.5 text-center transition-colors ${
-                    middleTab === 'data'
-                      ? 'text-blue-400 border-b-2 border-blue-400 bg-gray-900'
-                      : 'text-gray-500 hover:text-gray-300'
-                  }`}
+                  className={`flex-1 text-xs py-1.5 text-center transition-colors ${tabClass(middleTab === 'data')}`}
                 >
                   Test Data
                 </button>

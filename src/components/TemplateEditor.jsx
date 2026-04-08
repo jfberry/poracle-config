@@ -2,6 +2,7 @@ import { useState, useCallback } from 'react';
 import FormEditor from './FormEditor';
 import TelegramFormEditor from './TelegramFormEditor';
 import RawEditor from './RawEditor';
+import { tabClass } from '../lib/styles';
 
 export default function TemplateEditor({ template, onChange, platform }) {
   const [mode, setMode] = useState('form');
@@ -23,24 +24,10 @@ export default function TemplateEditor({ template, onChange, platform }) {
   return (
     <div className="flex flex-col h-full">
       <div className="flex gap-2 px-3 py-1.5 border-b border-gray-700 text-sm">
-        <button
-          onClick={() => setMode('form')}
-          className={
-            mode === 'form'
-              ? 'text-blue-400 border-b-2 border-blue-400 pb-1'
-              : 'text-gray-500 pb-1'
-          }
-        >
+        <button onClick={() => setMode('form')} className={tabClass(mode === 'form')}>
           Form
         </button>
-        <button
-          onClick={() => setMode('raw')}
-          className={
-            mode === 'raw'
-              ? 'text-blue-400 border-b-2 border-blue-400 pb-1'
-              : 'text-gray-500 pb-1'
-          }
-        >
+        <button onClick={() => setMode('raw')} className={tabClass(mode === 'raw')}>
           Raw JSON
         </button>
       </div>
