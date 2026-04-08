@@ -35,6 +35,11 @@ function parseTelegramMarkdown(text) {
     .replace(/~~(.+?)~~/g, '<del>$1</del>')
     // Links: [text](url)
     .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="tg-link">$1</a>')
+    // Missing emoji sentinel ⟦key⟧ → badge
+    .replace(
+      /⟦([^⟧]+)⟧/g,
+      '<span title="Missing emoji key: $1" style="display:inline-block;padding:0 4px;margin:0 2px;font-size:10px;font-family:monospace;color:#fbbf24;background-color:rgba(251,191,36,0.15);border:1px dashed rgba(251,191,36,0.5);border-radius:3px;vertical-align:middle">?$1</span>'
+    )
     // Newlines
     .replace(/\n/g, '<br/>');
 

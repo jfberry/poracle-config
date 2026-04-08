@@ -228,6 +228,37 @@ const baseRules = {
       );
     }
   },
+  missingEmoji: {
+    order: SimpleMarkdown.defaultRules.text.order,
+    match(source) {
+      return /^⟦([^⟧]+)⟧/.exec(source);
+    },
+    parse(capture) {
+      return { key: capture[1] };
+    },
+    react(node, recurseOutput, state) {
+      return (
+        <span
+          key={state.key}
+          title={`Missing emoji key: ${node.key}`}
+          style={{
+            display: 'inline-block',
+            padding: '0 4px',
+            margin: '0 2px',
+            fontSize: '10px',
+            fontFamily: 'monospace',
+            color: '#fbbf24',
+            backgroundColor: 'rgba(251, 191, 36, 0.15)',
+            border: '1px dashed rgba(251, 191, 36, 0.5)',
+            borderRadius: '3px',
+            verticalAlign: 'middle',
+          }}
+        >
+          ?{node.key}
+        </span>
+      );
+    }
+  },
   customEmoji: {
     order: SimpleMarkdown.defaultRules.text.order,
     match(source) {

@@ -70,7 +70,11 @@ export function registerGameHelpers(hbs) {
     const explicitPlatform = typeof platform === 'string' ? platform : null;
     const p = explicitPlatform || activePlatform;
     const map = emojiRegistry[p] || {};
-    return map[key] !== undefined ? map[key] : String(key);
+    if (map[key] !== undefined) return map[key];
+    // Wrap unresolved keys in a sentinel that the markdown renderer turns into a
+    // visible "missing emoji" badge. Using ⟦ ⟧ (mathematical brackets) since
+    // they're unlikely to appear in user text.
+    return `⟦${key}⟧`;
   });
   hbs.registerHelper('translateAlt', (text) => String(text));
   hbs.registerHelper('getPowerUpCost', function (startLevel, endLevel, options) {
