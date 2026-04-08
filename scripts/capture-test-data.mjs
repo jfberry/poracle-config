@@ -90,15 +90,29 @@ async function main() {
       continue;
     }
 
+    // For pokestop-derived types, filter scenarios to only those matching this DTS type.
+    // Invasions have grunt_type/character/display_type set; lures have lure_id/lure_expiration.
+    const filtered = scenarios.filter((s) => {
+      if (webhookType !== 'pokestop') return true;
+      const w = s.webhook;
+      const isInvasion = w.grunt_type !== undefined || w.character !== undefined || w.display_type !== undefined || w.incident_grunt_type !== undefined;
+      const isLure = w.lure_id !== undefined || w.lure_expiration !== undefined || w.lure_type !== undefined;
+      if (dtsType === 'invasion') return isInvasion && !isLure;
+      if (dtsType === 'lure') return isLure;
+      return false;
+    });
+
     result[dtsType] = {};
 
-    for (const scenario of scenarios) {
+    for (const scenario of filtered) {
       const name = scenario.test;
       try {
+        // Send the DTS type (invasion/lure) to enrich, not the webhook type (pokestop).
+        // The enrich endpoint understands the specific DTS types directly.
         const enriched = await fetchJson('/api/dts/enrich', {
           method: 'POST',
           body: JSON.stringify({
-            type: webhookType,
+            type: dtsType === 'monsterNoIv' ? 'pokemon' : (dtsType === 'egg' ? 'raid' : dtsType),
             webhook: scenario.webhook,
             language: 'en',
           }),

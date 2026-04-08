@@ -16,7 +16,9 @@ import { useApi } from './hooks/useApi';
 import { useInsertAtCursor } from './hooks/useInsertAtCursor';
 import { tabClass } from './lib/styles';
 
-// DTS template types -> testdata webhook types
+// DTS template type -> testdata webhook type (used for GET /api/dts/testdata).
+// The testdata.json file groups invasion/lure under "pokestop" because that's
+// the upstream webhook type, so we have to ask for that bucket.
 const dtsToWebhookType = {
   monster: 'pokemon',
   monsterNoIv: 'pokemon',
@@ -30,6 +32,20 @@ const dtsToWebhookType = {
   'fort-update': 'fort_update',
   maxbattle: 'max_battle',
 };
+
+// DTS template type -> enrich type (used for POST /api/dts/enrich).
+// Enrich understands the specific DTS types directly, so invasion stays
+// as "invasion" (not "pokestop" which the enrich endpoint rejects).
+const dtsToEnrichType = {
+  monsterNoIv: 'pokemon',
+  egg: 'raid',
+  'fort-update': 'fort_update',
+  maxbattle: 'max_battle',
+};
+
+function getEnrichType(dtsType) {
+  return dtsToEnrichType[dtsType] || dtsType;
+}
 
 export default function App() {
   const dts = useDts();
@@ -115,8 +131,8 @@ export default function App() {
   const handleEnrich = useCallback(async (webhookData) => {
     if (!api.client) return;
     try {
-      const webhookType = dtsToWebhookType[dts.filters.type] || dts.filters.type;
-      const result = await api.client.enrichWebhook(webhookType, webhookData || activeTestData, dts.filters.language);
+      const enrichType = getEnrichType(dts.filters.type);
+      const result = await api.client.enrichWebhook(enrichType, webhookData || activeTestData, dts.filters.language);
       if (result.variables) {
         setCustomTestData(result.variables);
       }

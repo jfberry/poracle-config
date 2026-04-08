@@ -4,7 +4,7 @@
  * AUTO-GENERATED — do not edit by hand.
  * Regenerate with: PORACLE_URL=... PORACLE_SECRET=... node scripts/capture-test-data.mjs
  *
- * Captured: 2026-04-08T12:08:20.204Z
+ * Captured: 2026-04-08T12:12:13.369Z
  */
 
 export const testScenarios = {
@@ -61,13 +61,13 @@ export const testScenarios = {
       "cp": 718,
       "dawnTime": false,
       "def": 1,
-      "disappearTime": "13:18:19",
-      "disappear_time": 1775650699,
+      "disappearTime": "13:22:13",
+      "disappear_time": 1775650933,
       "disappear_time_verified": true,
       "display_pokemon_form": null,
       "display_pokemon_id": null,
       "distance": 0,
-      "distime": "13:18:19",
+      "distime": "13:22:13",
       "duskTime": false,
       "emoji": [
         "🐦",
@@ -135,8 +135,8 @@ export const testScenarios = {
       "neighbourhood": "",
       "nextHourTimestamp": 1775653200,
       "nightTime": false,
-      "now": "2026-04-08T12:08:19Z",
-      "nowISO": "2026-04-08T12:08:19.524Z",
+      "now": "2026-04-08T12:12:13Z",
+      "nowISO": "2026-04-08T12:12:13.295Z",
       "pokemonId": 587,
       "pokemon_id": 587,
       "pokemon_level": 18,
@@ -341,7 +341,7 @@ export const testScenarios = {
       "streetName": "Whitehall Road",
       "streetNumber": "",
       "suburb": "Harbledown and Rough Common",
-      "time": "13:18:19",
+      "time": "13:22:13",
       "tth": {
         "days": 0,
         "hours": 0,
@@ -374,52 +374,40 @@ export const testScenarios = {
       "wazeMapUrl": "https://www.waze.com/ul?ll=51.274645,1.059287&navigate=yes&zoom=17",
       "weaknessList": [
         {
-          "typeEmoji": "🗿❄",
+          "typeEmoji": "❄🗿",
           "typeEmojiKeys": [
-            "type-rock",
-            "type-ice"
+            "type-ice",
+            "type-rock"
           ],
-          "typeName": "Rock, Ice",
+          "typeName": "Ice, Rock",
           "types": [
-            {
-              "emoji": "🗿",
-              "emojiKey": "type-rock",
-              "name": "Rock",
-              "typeId": 6
-            },
             {
               "emoji": "❄",
               "emojiKey": "type-ice",
               "name": "Ice",
               "typeId": 15
+            },
+            {
+              "emoji": "🗿",
+              "emojiKey": "type-rock",
+              "name": "Rock",
+              "typeId": 6
             }
           ],
           "value": 2
         },
         {
-          "typeEmoji": "🐦🔩👊🌿⛰️🐛",
+          "typeEmoji": "👊🐛⛰️🐦🌿🔩",
           "typeEmojiKeys": [
-            "type-flying",
-            "type-steel",
             "type-fighting",
-            "type-grass",
+            "type-bug",
             "type-ground",
-            "type-bug"
+            "type-flying",
+            "type-grass",
+            "type-steel"
           ],
-          "typeName": "Flying, Steel, Fighting, Grass, Ground, Bug",
+          "typeName": "Fighting, Bug, Ground, Flying, Grass, Steel",
           "types": [
-            {
-              "emoji": "🐦",
-              "emojiKey": "type-flying",
-              "name": "Flying",
-              "typeId": 3
-            },
-            {
-              "emoji": "🔩",
-              "emojiKey": "type-steel",
-              "name": "Steel",
-              "typeId": 9
-            },
             {
               "emoji": "👊",
               "emojiKey": "type-fighting",
@@ -427,10 +415,10 @@ export const testScenarios = {
               "typeId": 2
             },
             {
-              "emoji": "🌿",
-              "emojiKey": "type-grass",
-              "name": "Grass",
-              "typeId": 12
+              "emoji": "🐛",
+              "emojiKey": "type-bug",
+              "name": "Bug",
+              "typeId": 7
             },
             {
               "emoji": "⛰️",
@@ -439,10 +427,22 @@ export const testScenarios = {
               "typeId": 5
             },
             {
-              "emoji": "🐛",
-              "emojiKey": "type-bug",
-              "name": "Bug",
-              "typeId": 7
+              "emoji": "🐦",
+              "emojiKey": "type-flying",
+              "name": "Flying",
+              "typeId": 3
+            },
+            {
+              "emoji": "🌿",
+              "emojiKey": "type-grass",
+              "name": "Grass",
+              "typeId": 12
+            },
+            {
+              "emoji": "🔩",
+              "emojiKey": "type-steel",
+              "name": "Steel",
+              "typeId": 9
             }
           ],
           "value": 0.5
@@ -512,13 +512,13 @@ export const testScenarios = {
       "cp": 1041,
       "dawnTime": false,
       "def": 15,
-      "disappearTime": "13:18:19",
-      "disappear_time": 1775650699,
+      "disappearTime": "13:22:13",
+      "disappear_time": 1775650933,
       "disappear_time_verified": true,
       "display_pokemon_form": null,
       "display_pokemon_id": null,
       "distance": 0,
-      "distime": "13:18:19",
+      "distime": "13:22:13",
       "duskTime": false,
       "emoji": [
         "🌿",
@@ -623,8 +623,8 @@ export const testScenarios = {
       "neighbourhood": "",
       "nextHourTimestamp": 1775653200,
       "nightTime": false,
-      "now": "2026-04-08T12:08:19Z",
-      "nowISO": "2026-04-08T12:08:19.595Z",
+      "now": "2026-04-08T12:12:13Z",
+      "nowISO": "2026-04-08T12:12:13.298Z",
       "pokemonId": 102,
       "pokemon_id": 102,
       "pokemon_level": 32,
@@ -830,7 +830,7 @@ export const testScenarios = {
       "streetName": "Church Hill",
       "streetNumber": "",
       "suburb": "Kingsnorth",
-      "time": "13:18:19",
+      "time": "13:22:13",
       "tth": {
         "days": 0,
         "hours": 0,
@@ -879,23 +879,17 @@ export const testScenarios = {
           "value": 4
         },
         {
-          "typeEmoji": "👻🌑🐦🔥☠❄",
+          "typeEmoji": "🌑🐦☠🔥❄👻",
           "typeEmojiKeys": [
-            "type-ghost",
             "type-dark",
             "type-flying",
-            "type-fire",
             "type-poison",
-            "type-ice"
+            "type-fire",
+            "type-ice",
+            "type-ghost"
           ],
-          "typeName": "Ghost, Dark, Flying, Fire, Poison, Ice",
+          "typeName": "Dark, Flying, Poison, Fire, Ice, Ghost",
           "types": [
-            {
-              "emoji": "👻",
-              "emojiKey": "type-ghost",
-              "name": "Ghost",
-              "typeId": 8
-            },
             {
               "emoji": "🌑",
               "emojiKey": "type-dark",
@@ -909,38 +903,50 @@ export const testScenarios = {
               "typeId": 3
             },
             {
-              "emoji": "🔥",
-              "emojiKey": "type-fire",
-              "name": "Fire",
-              "typeId": 10
-            },
-            {
               "emoji": "☠",
               "emojiKey": "type-poison",
               "name": "Poison",
               "typeId": 4
             },
             {
+              "emoji": "🔥",
+              "emojiKey": "type-fire",
+              "name": "Fire",
+              "typeId": 10
+            },
+            {
               "emoji": "❄",
               "emojiKey": "type-ice",
               "name": "Ice",
               "typeId": 15
+            },
+            {
+              "emoji": "👻",
+              "emojiKey": "type-ghost",
+              "name": "Ghost",
+              "typeId": 8
             }
           ],
           "value": 2
         },
         {
-          "typeEmoji": "💧🌿⚡👊🔮⛰️",
+          "typeEmoji": "👊💧🌿⚡🔮⛰️",
           "typeEmojiKeys": [
+            "type-fighting",
             "type-water",
             "type-grass",
             "type-electric",
-            "type-fighting",
             "type-psychic",
             "type-ground"
           ],
-          "typeName": "Water, Grass, Electric, Fighting, Psychic, Ground",
+          "typeName": "Fighting, Water, Grass, Electric, Psychic, Ground",
           "types": [
+            {
+              "emoji": "👊",
+              "emojiKey": "type-fighting",
+              "name": "Fighting",
+              "typeId": 2
+            },
             {
               "emoji": "💧",
               "emojiKey": "type-water",
@@ -958,12 +964,6 @@ export const testScenarios = {
               "emojiKey": "type-electric",
               "name": "Electric",
               "typeId": 13
-            },
-            {
-              "emoji": "👊",
-              "emojiKey": "type-fighting",
-              "name": "Fighting",
-              "typeId": 2
             },
             {
               "emoji": "🔮",
@@ -1038,13 +1038,13 @@ export const testScenarios = {
       "cp": 937,
       "dawnTime": false,
       "def": 14,
-      "disappearTime": "13:18:19",
-      "disappear_time": 1775650699,
+      "disappearTime": "13:22:13",
+      "disappear_time": 1775650933,
       "disappear_time_verified": true,
       "display_pokemon_form": null,
       "display_pokemon_id": null,
       "distance": 0,
-      "distime": "13:18:19",
+      "distime": "13:22:13",
       "duskTime": false,
       "emoji": [
         "🐦",
@@ -1131,8 +1131,8 @@ export const testScenarios = {
       "neighbourhood": "",
       "nextHourTimestamp": 1775653200,
       "nightTime": false,
-      "now": "2026-04-08T12:08:19Z",
-      "nowISO": "2026-04-08T12:08:19.694Z",
+      "now": "2026-04-08T12:12:13Z",
+      "nowISO": "2026-04-08T12:12:13.301Z",
       "pokemonId": 177,
       "pokemon_id": 177,
       "pokemon_level": 30,
@@ -1465,7 +1465,7 @@ export const testScenarios = {
       "streetName": "Staplestreet Road",
       "streetNumber": "",
       "suburb": "Hernhill",
-      "time": "13:18:19",
+      "time": "13:22:13",
       "tth": {
         "days": 0,
         "hours": 0,
@@ -1498,15 +1498,15 @@ export const testScenarios = {
       "wazeMapUrl": "https://www.waze.com/ul?ll=51.303825,0.959628&navigate=yes&zoom=17",
       "weaknessList": [
         {
-          "typeEmoji": "🗿⚡🌑❄👻",
+          "typeEmoji": "🗿⚡❄👻🌑",
           "typeEmojiKeys": [
             "type-rock",
             "type-electric",
-            "type-dark",
             "type-ice",
-            "type-ghost"
+            "type-ghost",
+            "type-dark"
           ],
-          "typeName": "Rock, Electric, Dark, Ice, Ghost",
+          "typeName": "Rock, Electric, Ice, Ghost, Dark",
           "types": [
             {
               "emoji": "🗿",
@@ -1521,12 +1521,6 @@ export const testScenarios = {
               "typeId": 13
             },
             {
-              "emoji": "🌑",
-              "emojiKey": "type-dark",
-              "name": "Dark",
-              "typeId": 17
-            },
-            {
               "emoji": "❄",
               "emojiKey": "type-ice",
               "name": "Ice",
@@ -1537,6 +1531,12 @@ export const testScenarios = {
               "emojiKey": "type-ghost",
               "name": "Ghost",
               "typeId": 8
+            },
+            {
+              "emoji": "🌑",
+              "emojiKey": "type-dark",
+              "name": "Dark",
+              "typeId": 17
             }
           ],
           "value": 2
@@ -1647,13 +1647,13 @@ export const testScenarios = {
       "cp": 197,
       "dawnTime": false,
       "def": 15,
-      "disappearTime": "13:18:19",
-      "disappear_time": 1775650699,
+      "disappearTime": "13:22:13",
+      "disappear_time": 1775650933,
       "disappear_time_verified": true,
       "display_pokemon_form": null,
       "display_pokemon_id": null,
       "distance": 0,
-      "distime": "13:18:19",
+      "distime": "13:22:13",
       "duskTime": false,
       "emoji": [
         "⚡"
@@ -1770,8 +1770,8 @@ export const testScenarios = {
       "neighbourhood": "",
       "nextHourTimestamp": 1775653200,
       "nightTime": false,
-      "now": "2026-04-08T12:08:19Z",
-      "nowISO": "2026-04-08T12:08:19.758Z",
+      "now": "2026-04-08T12:12:13Z",
+      "nowISO": "2026-04-08T12:12:13.303Z",
       "pokemonId": 179,
       "pokemon_id": 179,
       "pokemon_level": 8,
@@ -2741,7 +2741,7 @@ export const testScenarios = {
       "streetName": "The Paddocks",
       "streetNumber": "",
       "suburb": "Singleton",
-      "time": "13:18:19",
+      "time": "13:22:13",
       "tth": {
         "days": 0,
         "hours": 0,
@@ -2876,13 +2876,13 @@ export const testScenarios = {
       "cp": 226,
       "dawnTime": false,
       "def": 15,
-      "disappearTime": "13:18:19",
-      "disappear_time": 1775650699,
+      "disappearTime": "13:22:13",
+      "disappear_time": 1775650933,
       "disappear_time_verified": true,
       "display_pokemon_form": null,
       "display_pokemon_id": null,
       "distance": 0,
-      "distime": "13:18:19",
+      "distime": "13:22:13",
       "duskTime": false,
       "emoji": [
         "⭕"
@@ -2967,8 +2967,8 @@ export const testScenarios = {
       "neighbourhood": "",
       "nextHourTimestamp": 1775653200,
       "nightTime": false,
-      "now": "2026-04-08T12:08:19Z",
-      "nowISO": "2026-04-08T12:08:19.764Z",
+      "now": "2026-04-08T12:12:13Z",
+      "nowISO": "2026-04-08T12:12:13.306Z",
       "pokemonId": 113,
       "pokemon_id": 113,
       "pokemon_level": 8,
@@ -3450,7 +3450,7 @@ export const testScenarios = {
       "streetName": "Rowan Close",
       "streetNumber": "",
       "suburb": "Godinton Park",
-      "time": "13:18:19",
+      "time": "13:22:13",
       "tth": {
         "days": 0,
         "hours": 0,
@@ -3563,13 +3563,13 @@ export const testScenarios = {
       "cp": 0,
       "dawnTime": false,
       "def": 0,
-      "disappearTime": "13:18:19",
-      "disappear_time": 1775650699,
+      "disappearTime": "13:22:13",
+      "disappear_time": 1775650933,
       "disappear_time_verified": true,
       "display_pokemon_form": null,
       "display_pokemon_id": null,
       "distance": 0,
-      "distime": "13:18:19",
+      "distime": "13:22:13",
       "duskTime": false,
       "emoji": [
         "☠",
@@ -3685,8 +3685,8 @@ export const testScenarios = {
       "neighbourhood": "",
       "nextHourTimestamp": 1775653200,
       "nightTime": false,
-      "now": "2026-04-08T12:08:19Z",
-      "nowISO": "2026-04-08T12:08:19.821Z",
+      "now": "2026-04-08T12:12:13Z",
+      "nowISO": "2026-04-08T12:12:13.308Z",
       "pokemonId": 543,
       "pokemon_id": 543,
       "pokemon_level": null,
@@ -3728,7 +3728,7 @@ export const testScenarios = {
       "streetName": "Vicarage Lane",
       "streetNumber": "",
       "suburb": "Ospringe",
-      "time": "13:18:19",
+      "time": "13:22:13",
       "tth": {
         "days": 0,
         "hours": 0,
@@ -3761,27 +3761,15 @@ export const testScenarios = {
       "wazeMapUrl": "https://www.waze.com/ul?ll=51.306468,0.872671&navigate=yes&zoom=17",
       "weaknessList": [
         {
-          "typeEmoji": "🔮🔥🐦🗿",
+          "typeEmoji": "🐦🗿🔥🔮",
           "typeEmojiKeys": [
-            "type-psychic",
-            "type-fire",
             "type-flying",
-            "type-rock"
+            "type-rock",
+            "type-fire",
+            "type-psychic"
           ],
-          "typeName": "Psychic, Fire, Flying, Rock",
+          "typeName": "Flying, Rock, Fire, Psychic",
           "types": [
-            {
-              "emoji": "🔮",
-              "emojiKey": "type-psychic",
-              "name": "Psychic",
-              "typeId": 14
-            },
-            {
-              "emoji": "🔥",
-              "emojiKey": "type-fire",
-              "name": "Fire",
-              "typeId": 10
-            },
             {
               "emoji": "🐦",
               "emojiKey": "type-flying",
@@ -3793,6 +3781,18 @@ export const testScenarios = {
               "emojiKey": "type-rock",
               "name": "Rock",
               "typeId": 6
+            },
+            {
+              "emoji": "🔥",
+              "emojiKey": "type-fire",
+              "name": "Fire",
+              "typeId": 10
+            },
+            {
+              "emoji": "🔮",
+              "emojiKey": "type-psychic",
+              "name": "Psychic",
+              "typeId": 14
             }
           ],
           "value": 2
@@ -3828,24 +3828,24 @@ export const testScenarios = {
           "value": 0.5
         },
         {
-          "typeEmoji": "👊🌿",
+          "typeEmoji": "🌿👊",
           "typeEmojiKeys": [
-            "type-fighting",
-            "type-grass"
+            "type-grass",
+            "type-fighting"
           ],
-          "typeName": "Fighting, Grass",
+          "typeName": "Grass, Fighting",
           "types": [
-            {
-              "emoji": "👊",
-              "emojiKey": "type-fighting",
-              "name": "Fighting",
-              "typeId": 2
-            },
             {
               "emoji": "🌿",
               "emojiKey": "type-grass",
               "name": "Grass",
               "typeId": 12
+            },
+            {
+              "emoji": "👊",
+              "emojiKey": "type-fighting",
+              "name": "Fighting",
+              "typeId": 2
             }
           ],
           "value": 0.25
@@ -3917,13 +3917,13 @@ export const testScenarios = {
       "cp": 183,
       "dawnTime": false,
       "def": 11,
-      "disappearTime": "13:18:19",
-      "disappear_time": 1775650699,
+      "disappearTime": "13:22:13",
+      "disappear_time": 1775650933,
       "disappear_time_verified": true,
       "display_pokemon_form": null,
       "display_pokemon_id": null,
       "distance": 0,
-      "distime": "13:18:19",
+      "distime": "13:22:13",
       "duskTime": false,
       "emoji": [
         "🌿",
@@ -4028,8 +4028,8 @@ export const testScenarios = {
       "neighbourhood": "",
       "nextHourTimestamp": 1775653200,
       "nightTime": false,
-      "now": "2026-04-08T12:08:19Z",
-      "nowISO": "2026-04-08T12:08:19.826Z",
+      "now": "2026-04-08T12:12:13Z",
+      "nowISO": "2026-04-08T12:12:13.311Z",
       "pokemonId": 102,
       "pokemon_id": 102,
       "pokemon_level": 6,
@@ -4705,7 +4705,7 @@ export const testScenarios = {
       "streetName": "Whitehall Road",
       "streetNumber": "",
       "suburb": "Wincheap",
-      "time": "13:18:19",
+      "time": "13:22:13",
       "tth": {
         "days": 0,
         "hours": 0,
@@ -4754,22 +4754,28 @@ export const testScenarios = {
           "value": 4
         },
         {
-          "typeEmoji": "👻🌑🐦🔥☠❄",
+          "typeEmoji": "👻☠🌑🐦🔥❄",
           "typeEmojiKeys": [
             "type-ghost",
+            "type-poison",
             "type-dark",
             "type-flying",
             "type-fire",
-            "type-poison",
             "type-ice"
           ],
-          "typeName": "Ghost, Dark, Flying, Fire, Poison, Ice",
+          "typeName": "Ghost, Poison, Dark, Flying, Fire, Ice",
           "types": [
             {
               "emoji": "👻",
               "emojiKey": "type-ghost",
               "name": "Ghost",
               "typeId": 8
+            },
+            {
+              "emoji": "☠",
+              "emojiKey": "type-poison",
+              "name": "Poison",
+              "typeId": 4
             },
             {
               "emoji": "🌑",
@@ -4790,12 +4796,6 @@ export const testScenarios = {
               "typeId": 10
             },
             {
-              "emoji": "☠",
-              "emojiKey": "type-poison",
-              "name": "Poison",
-              "typeId": 4
-            },
-            {
               "emoji": "❄",
               "emojiKey": "type-ice",
               "name": "Ice",
@@ -4805,17 +4805,23 @@ export const testScenarios = {
           "value": 2
         },
         {
-          "typeEmoji": "⛰️💧🌿👊⚡🔮",
+          "typeEmoji": "⚡⛰️💧🌿👊🔮",
           "typeEmojiKeys": [
+            "type-electric",
             "type-ground",
             "type-water",
             "type-grass",
             "type-fighting",
-            "type-electric",
             "type-psychic"
           ],
-          "typeName": "Ground, Water, Grass, Fighting, Electric, Psychic",
+          "typeName": "Electric, Ground, Water, Grass, Fighting, Psychic",
           "types": [
+            {
+              "emoji": "⚡",
+              "emojiKey": "type-electric",
+              "name": "Electric",
+              "typeId": 13
+            },
             {
               "emoji": "⛰️",
               "emojiKey": "type-ground",
@@ -4839,12 +4845,6 @@ export const testScenarios = {
               "emojiKey": "type-fighting",
               "name": "Fighting",
               "typeId": 2
-            },
-            {
-              "emoji": "⚡",
-              "emojiKey": "type-electric",
-              "name": "Electric",
-              "typeId": 13
             },
             {
               "emoji": "🔮",
@@ -4915,13 +4915,13 @@ export const testScenarios = {
       "cp": 80,
       "dawnTime": false,
       "def": 2,
-      "disappearTime": "13:18:19",
-      "disappear_time": 1775650699,
+      "disappearTime": "13:22:13",
+      "disappear_time": 1775650933,
       "disappear_time_verified": true,
       "display_pokemon_form": null,
       "display_pokemon_id": null,
       "distance": 0,
-      "distime": "13:18:19",
+      "distime": "13:22:13",
       "duskTime": false,
       "emoji": [
         "⭕"
@@ -5007,8 +5007,8 @@ export const testScenarios = {
       "neighbourhood": "",
       "nextHourTimestamp": 1775653200,
       "nightTime": false,
-      "now": "2026-04-08T12:08:19Z",
-      "nowISO": "2026-04-08T12:08:19.830Z",
+      "now": "2026-04-08T12:12:13Z",
+      "nowISO": "2026-04-08T12:12:13.313Z",
       "pokemonId": 659,
       "pokemon_id": 659,
       "pokemon_level": 7,
@@ -5486,7 +5486,7 @@ export const testScenarios = {
       "streetName": "St Francis Court",
       "streetNumber": "",
       "suburb": "South Ashford",
-      "time": "13:18:19",
+      "time": "13:22:13",
       "tth": {
         "days": 0,
         "hours": 0,
@@ -5609,13 +5609,13 @@ export const testScenarios = {
       "cp": 718,
       "dawnTime": false,
       "def": 1,
-      "disappearTime": "13:18:19",
-      "disappear_time": 1775650699,
+      "disappearTime": "13:22:13",
+      "disappear_time": 1775650933,
       "disappear_time_verified": true,
       "display_pokemon_form": null,
       "display_pokemon_id": null,
       "distance": 0,
-      "distime": "13:18:19",
+      "distime": "13:22:13",
       "duskTime": false,
       "emoji": [
         "🐦",
@@ -5683,8 +5683,8 @@ export const testScenarios = {
       "neighbourhood": "",
       "nextHourTimestamp": 1775653200,
       "nightTime": false,
-      "now": "2026-04-08T12:08:19Z",
-      "nowISO": "2026-04-08T12:08:19.835Z",
+      "now": "2026-04-08T12:12:13Z",
+      "nowISO": "2026-04-08T12:12:13.318Z",
       "pokemonId": 587,
       "pokemon_id": 587,
       "pokemon_level": 18,
@@ -5889,7 +5889,7 @@ export const testScenarios = {
       "streetName": "Whitehall Road",
       "streetNumber": "",
       "suburb": "Harbledown and Rough Common",
-      "time": "13:18:19",
+      "time": "13:22:13",
       "tth": {
         "days": 0,
         "hours": 0,
@@ -5922,45 +5922,45 @@ export const testScenarios = {
       "wazeMapUrl": "https://www.waze.com/ul?ll=51.274645,1.059287&navigate=yes&zoom=17",
       "weaknessList": [
         {
-          "typeEmoji": "🗿❄",
+          "typeEmoji": "❄🗿",
           "typeEmojiKeys": [
-            "type-rock",
-            "type-ice"
+            "type-ice",
+            "type-rock"
           ],
-          "typeName": "Rock, Ice",
+          "typeName": "Ice, Rock",
           "types": [
-            {
-              "emoji": "🗿",
-              "emojiKey": "type-rock",
-              "name": "Rock",
-              "typeId": 6
-            },
             {
               "emoji": "❄",
               "emojiKey": "type-ice",
               "name": "Ice",
               "typeId": 15
+            },
+            {
+              "emoji": "🗿",
+              "emojiKey": "type-rock",
+              "name": "Rock",
+              "typeId": 6
             }
           ],
           "value": 2
         },
         {
-          "typeEmoji": "👊🐛⛰️🔩🌿🐦",
+          "typeEmoji": "🔩🐛🌿⛰️👊🐦",
           "typeEmojiKeys": [
-            "type-fighting",
-            "type-bug",
-            "type-ground",
             "type-steel",
+            "type-bug",
             "type-grass",
+            "type-ground",
+            "type-fighting",
             "type-flying"
           ],
-          "typeName": "Fighting, Bug, Ground, Steel, Grass, Flying",
+          "typeName": "Steel, Bug, Grass, Ground, Fighting, Flying",
           "types": [
             {
-              "emoji": "👊",
-              "emojiKey": "type-fighting",
-              "name": "Fighting",
-              "typeId": 2
+              "emoji": "🔩",
+              "emojiKey": "type-steel",
+              "name": "Steel",
+              "typeId": 9
             },
             {
               "emoji": "🐛",
@@ -5969,22 +5969,22 @@ export const testScenarios = {
               "typeId": 7
             },
             {
+              "emoji": "🌿",
+              "emojiKey": "type-grass",
+              "name": "Grass",
+              "typeId": 12
+            },
+            {
               "emoji": "⛰️",
               "emojiKey": "type-ground",
               "name": "Ground",
               "typeId": 5
             },
             {
-              "emoji": "🔩",
-              "emojiKey": "type-steel",
-              "name": "Steel",
-              "typeId": 9
-            },
-            {
-              "emoji": "🌿",
-              "emojiKey": "type-grass",
-              "name": "Grass",
-              "typeId": 12
+              "emoji": "👊",
+              "emojiKey": "type-fighting",
+              "name": "Fighting",
+              "typeId": 2
             },
             {
               "emoji": "🐦",
@@ -6060,13 +6060,13 @@ export const testScenarios = {
       "cp": 1041,
       "dawnTime": false,
       "def": 15,
-      "disappearTime": "13:18:19",
-      "disappear_time": 1775650699,
+      "disappearTime": "13:22:13",
+      "disappear_time": 1775650933,
       "disappear_time_verified": true,
       "display_pokemon_form": null,
       "display_pokemon_id": null,
       "distance": 0,
-      "distime": "13:18:19",
+      "distime": "13:22:13",
       "duskTime": false,
       "emoji": [
         "🌿",
@@ -6171,8 +6171,8 @@ export const testScenarios = {
       "neighbourhood": "",
       "nextHourTimestamp": 1775653200,
       "nightTime": false,
-      "now": "2026-04-08T12:08:19Z",
-      "nowISO": "2026-04-08T12:08:19.837Z",
+      "now": "2026-04-08T12:12:13Z",
+      "nowISO": "2026-04-08T12:12:13.320Z",
       "pokemonId": 102,
       "pokemon_id": 102,
       "pokemon_level": 32,
@@ -6378,7 +6378,7 @@ export const testScenarios = {
       "streetName": "Church Hill",
       "streetNumber": "",
       "suburb": "Kingsnorth",
-      "time": "13:18:19",
+      "time": "13:22:13",
       "tth": {
         "days": 0,
         "hours": 0,
@@ -6427,34 +6427,22 @@ export const testScenarios = {
           "value": 4
         },
         {
-          "typeEmoji": "❄👻🌑🐦☠🔥",
+          "typeEmoji": "👻🐦🔥❄🌑☠",
           "typeEmojiKeys": [
-            "type-ice",
             "type-ghost",
-            "type-dark",
             "type-flying",
-            "type-poison",
-            "type-fire"
+            "type-fire",
+            "type-ice",
+            "type-dark",
+            "type-poison"
           ],
-          "typeName": "Ice, Ghost, Dark, Flying, Poison, Fire",
+          "typeName": "Ghost, Flying, Fire, Ice, Dark, Poison",
           "types": [
-            {
-              "emoji": "❄",
-              "emojiKey": "type-ice",
-              "name": "Ice",
-              "typeId": 15
-            },
             {
               "emoji": "👻",
               "emojiKey": "type-ghost",
               "name": "Ghost",
               "typeId": 8
-            },
-            {
-              "emoji": "🌑",
-              "emojiKey": "type-dark",
-              "name": "Dark",
-              "typeId": 17
             },
             {
               "emoji": "🐦",
@@ -6463,44 +6451,44 @@ export const testScenarios = {
               "typeId": 3
             },
             {
-              "emoji": "☠",
-              "emojiKey": "type-poison",
-              "name": "Poison",
-              "typeId": 4
-            },
-            {
               "emoji": "🔥",
               "emojiKey": "type-fire",
               "name": "Fire",
               "typeId": 10
+            },
+            {
+              "emoji": "❄",
+              "emojiKey": "type-ice",
+              "name": "Ice",
+              "typeId": 15
+            },
+            {
+              "emoji": "🌑",
+              "emojiKey": "type-dark",
+              "name": "Dark",
+              "typeId": 17
+            },
+            {
+              "emoji": "☠",
+              "emojiKey": "type-poison",
+              "name": "Poison",
+              "typeId": 4
             }
           ],
           "value": 2
         },
         {
-          "typeEmoji": "💧🔮⛰️🌿⚡👊",
+          "typeEmoji": "⛰️🌿⚡💧👊🔮",
           "typeEmojiKeys": [
-            "type-water",
-            "type-psychic",
             "type-ground",
             "type-grass",
             "type-electric",
-            "type-fighting"
+            "type-water",
+            "type-fighting",
+            "type-psychic"
           ],
-          "typeName": "Water, Psychic, Ground, Grass, Electric, Fighting",
+          "typeName": "Ground, Grass, Electric, Water, Fighting, Psychic",
           "types": [
-            {
-              "emoji": "💧",
-              "emojiKey": "type-water",
-              "name": "Water",
-              "typeId": 11
-            },
-            {
-              "emoji": "🔮",
-              "emojiKey": "type-psychic",
-              "name": "Psychic",
-              "typeId": 14
-            },
             {
               "emoji": "⛰️",
               "emojiKey": "type-ground",
@@ -6520,10 +6508,22 @@ export const testScenarios = {
               "typeId": 13
             },
             {
+              "emoji": "💧",
+              "emojiKey": "type-water",
+              "name": "Water",
+              "typeId": 11
+            },
+            {
               "emoji": "👊",
               "emojiKey": "type-fighting",
               "name": "Fighting",
               "typeId": 2
+            },
+            {
+              "emoji": "🔮",
+              "emojiKey": "type-psychic",
+              "name": "Psychic",
+              "typeId": 14
             }
           ],
           "value": 0.5
@@ -6586,13 +6586,13 @@ export const testScenarios = {
       "cp": 937,
       "dawnTime": false,
       "def": 14,
-      "disappearTime": "13:18:19",
-      "disappear_time": 1775650699,
+      "disappearTime": "13:22:13",
+      "disappear_time": 1775650933,
       "disappear_time_verified": true,
       "display_pokemon_form": null,
       "display_pokemon_id": null,
       "distance": 0,
-      "distime": "13:18:19",
+      "distime": "13:22:13",
       "duskTime": false,
       "emoji": [
         "🐦",
@@ -6679,8 +6679,8 @@ export const testScenarios = {
       "neighbourhood": "",
       "nextHourTimestamp": 1775653200,
       "nightTime": false,
-      "now": "2026-04-08T12:08:19Z",
-      "nowISO": "2026-04-08T12:08:19.839Z",
+      "now": "2026-04-08T12:12:13Z",
+      "nowISO": "2026-04-08T12:12:13.323Z",
       "pokemonId": 177,
       "pokemon_id": 177,
       "pokemon_level": 30,
@@ -7013,7 +7013,7 @@ export const testScenarios = {
       "streetName": "Staplestreet Road",
       "streetNumber": "",
       "suburb": "Hernhill",
-      "time": "13:18:19",
+      "time": "13:22:13",
       "tth": {
         "days": 0,
         "hours": 0,
@@ -7046,15 +7046,15 @@ export const testScenarios = {
       "wazeMapUrl": "https://www.waze.com/ul?ll=51.303825,0.959628&navigate=yes&zoom=17",
       "weaknessList": [
         {
-          "typeEmoji": "❄👻🌑⚡🗿",
+          "typeEmoji": "❄👻🌑🗿⚡",
           "typeEmojiKeys": [
             "type-ice",
             "type-ghost",
             "type-dark",
-            "type-electric",
-            "type-rock"
+            "type-rock",
+            "type-electric"
           ],
-          "typeName": "Ice, Ghost, Dark, Electric, Rock",
+          "typeName": "Ice, Ghost, Dark, Rock, Electric",
           "types": [
             {
               "emoji": "❄",
@@ -7075,16 +7075,16 @@ export const testScenarios = {
               "typeId": 17
             },
             {
-              "emoji": "⚡",
-              "emojiKey": "type-electric",
-              "name": "Electric",
-              "typeId": 13
-            },
-            {
               "emoji": "🗿",
               "emojiKey": "type-rock",
               "name": "Rock",
               "typeId": 6
+            },
+            {
+              "emoji": "⚡",
+              "emojiKey": "type-electric",
+              "name": "Electric",
+              "typeId": 13
             }
           ],
           "value": 2
@@ -7195,13 +7195,13 @@ export const testScenarios = {
       "cp": 197,
       "dawnTime": false,
       "def": 15,
-      "disappearTime": "13:18:19",
-      "disappear_time": 1775650699,
+      "disappearTime": "13:22:13",
+      "disappear_time": 1775650933,
       "disappear_time_verified": true,
       "display_pokemon_form": null,
       "display_pokemon_id": null,
       "distance": 0,
-      "distime": "13:18:19",
+      "distime": "13:22:13",
       "duskTime": false,
       "emoji": [
         "⚡"
@@ -7318,8 +7318,8 @@ export const testScenarios = {
       "neighbourhood": "",
       "nextHourTimestamp": 1775653200,
       "nightTime": false,
-      "now": "2026-04-08T12:08:19Z",
-      "nowISO": "2026-04-08T12:08:19.841Z",
+      "now": "2026-04-08T12:12:13Z",
+      "nowISO": "2026-04-08T12:12:13.325Z",
       "pokemonId": 179,
       "pokemon_id": 179,
       "pokemon_level": 8,
@@ -8289,7 +8289,7 @@ export const testScenarios = {
       "streetName": "The Paddocks",
       "streetNumber": "",
       "suburb": "Singleton",
-      "time": "13:18:19",
+      "time": "13:22:13",
       "tth": {
         "days": 0,
         "hours": 0,
@@ -8424,13 +8424,13 @@ export const testScenarios = {
       "cp": 226,
       "dawnTime": false,
       "def": 15,
-      "disappearTime": "13:18:19",
-      "disappear_time": 1775650699,
+      "disappearTime": "13:22:13",
+      "disappear_time": 1775650933,
       "disappear_time_verified": true,
       "display_pokemon_form": null,
       "display_pokemon_id": null,
       "distance": 0,
-      "distime": "13:18:19",
+      "distime": "13:22:13",
       "duskTime": false,
       "emoji": [
         "⭕"
@@ -8515,8 +8515,8 @@ export const testScenarios = {
       "neighbourhood": "",
       "nextHourTimestamp": 1775653200,
       "nightTime": false,
-      "now": "2026-04-08T12:08:19Z",
-      "nowISO": "2026-04-08T12:08:19.844Z",
+      "now": "2026-04-08T12:12:13Z",
+      "nowISO": "2026-04-08T12:12:13.328Z",
       "pokemonId": 113,
       "pokemon_id": 113,
       "pokemon_level": 8,
@@ -8998,7 +8998,7 @@ export const testScenarios = {
       "streetName": "Rowan Close",
       "streetNumber": "",
       "suburb": "Godinton Park",
-      "time": "13:18:19",
+      "time": "13:22:13",
       "tth": {
         "days": 0,
         "hours": 0,
@@ -9111,13 +9111,13 @@ export const testScenarios = {
       "cp": 0,
       "dawnTime": false,
       "def": 0,
-      "disappearTime": "13:18:19",
-      "disappear_time": 1775650699,
+      "disappearTime": "13:22:13",
+      "disappear_time": 1775650933,
       "disappear_time_verified": true,
       "display_pokemon_form": null,
       "display_pokemon_id": null,
       "distance": 0,
-      "distime": "13:18:19",
+      "distime": "13:22:13",
       "duskTime": false,
       "emoji": [
         "☠",
@@ -9233,8 +9233,8 @@ export const testScenarios = {
       "neighbourhood": "",
       "nextHourTimestamp": 1775653200,
       "nightTime": false,
-      "now": "2026-04-08T12:08:19Z",
-      "nowISO": "2026-04-08T12:08:19.846Z",
+      "now": "2026-04-08T12:12:13Z",
+      "nowISO": "2026-04-08T12:12:13.331Z",
       "pokemonId": 543,
       "pokemon_id": 543,
       "pokemon_level": null,
@@ -9276,7 +9276,7 @@ export const testScenarios = {
       "streetName": "Vicarage Lane",
       "streetNumber": "",
       "suburb": "Ospringe",
-      "time": "13:18:19",
+      "time": "13:22:13",
       "tth": {
         "days": 0,
         "hours": 0,
@@ -9309,26 +9309,26 @@ export const testScenarios = {
       "wazeMapUrl": "https://www.waze.com/ul?ll=51.306468,0.872671&navigate=yes&zoom=17",
       "weaknessList": [
         {
-          "typeEmoji": "🐦🗿🔮🔥",
+          "typeEmoji": "🗿🔥🔮🐦",
           "typeEmojiKeys": [
-            "type-flying",
             "type-rock",
+            "type-fire",
             "type-psychic",
-            "type-fire"
+            "type-flying"
           ],
-          "typeName": "Flying, Rock, Psychic, Fire",
+          "typeName": "Rock, Fire, Psychic, Flying",
           "types": [
-            {
-              "emoji": "🐦",
-              "emojiKey": "type-flying",
-              "name": "Flying",
-              "typeId": 3
-            },
             {
               "emoji": "🗿",
               "emojiKey": "type-rock",
               "name": "Rock",
               "typeId": 6
+            },
+            {
+              "emoji": "🔥",
+              "emojiKey": "type-fire",
+              "name": "Fire",
+              "typeId": 10
             },
             {
               "emoji": "🔮",
@@ -9337,10 +9337,10 @@ export const testScenarios = {
               "typeId": 14
             },
             {
-              "emoji": "🔥",
-              "emojiKey": "type-fire",
-              "name": "Fire",
-              "typeId": 10
+              "emoji": "🐦",
+              "emojiKey": "type-flying",
+              "name": "Flying",
+              "typeId": 3
             }
           ],
           "value": 2
@@ -9465,13 +9465,13 @@ export const testScenarios = {
       "cp": 183,
       "dawnTime": false,
       "def": 11,
-      "disappearTime": "13:18:19",
-      "disappear_time": 1775650699,
+      "disappearTime": "13:22:13",
+      "disappear_time": 1775650933,
       "disappear_time_verified": true,
       "display_pokemon_form": null,
       "display_pokemon_id": null,
       "distance": 0,
-      "distime": "13:18:19",
+      "distime": "13:22:13",
       "duskTime": false,
       "emoji": [
         "🌿",
@@ -9576,8 +9576,8 @@ export const testScenarios = {
       "neighbourhood": "",
       "nextHourTimestamp": 1775653200,
       "nightTime": false,
-      "now": "2026-04-08T12:08:19Z",
-      "nowISO": "2026-04-08T12:08:19.848Z",
+      "now": "2026-04-08T12:12:13Z",
+      "nowISO": "2026-04-08T12:12:13.333Z",
       "pokemonId": 102,
       "pokemon_id": 102,
       "pokemon_level": 6,
@@ -10253,7 +10253,7 @@ export const testScenarios = {
       "streetName": "Whitehall Road",
       "streetNumber": "",
       "suburb": "Wincheap",
-      "time": "13:18:19",
+      "time": "13:22:13",
       "tth": {
         "days": 0,
         "hours": 0,
@@ -10302,28 +10302,40 @@ export const testScenarios = {
           "value": 4
         },
         {
-          "typeEmoji": "🔥❄👻🌑🐦☠",
+          "typeEmoji": "🐦☠❄🔥👻🌑",
           "typeEmojiKeys": [
-            "type-fire",
-            "type-ice",
-            "type-ghost",
-            "type-dark",
             "type-flying",
-            "type-poison"
+            "type-poison",
+            "type-ice",
+            "type-fire",
+            "type-ghost",
+            "type-dark"
           ],
-          "typeName": "Fire, Ice, Ghost, Dark, Flying, Poison",
+          "typeName": "Flying, Poison, Ice, Fire, Ghost, Dark",
           "types": [
             {
-              "emoji": "🔥",
-              "emojiKey": "type-fire",
-              "name": "Fire",
-              "typeId": 10
+              "emoji": "🐦",
+              "emojiKey": "type-flying",
+              "name": "Flying",
+              "typeId": 3
+            },
+            {
+              "emoji": "☠",
+              "emojiKey": "type-poison",
+              "name": "Poison",
+              "typeId": 4
             },
             {
               "emoji": "❄",
               "emojiKey": "type-ice",
               "name": "Ice",
               "typeId": 15
+            },
+            {
+              "emoji": "🔥",
+              "emojiKey": "type-fire",
+              "name": "Fire",
+              "typeId": 10
             },
             {
               "emoji": "👻",
@@ -10336,46 +10348,22 @@ export const testScenarios = {
               "emojiKey": "type-dark",
               "name": "Dark",
               "typeId": 17
-            },
-            {
-              "emoji": "🐦",
-              "emojiKey": "type-flying",
-              "name": "Flying",
-              "typeId": 3
-            },
-            {
-              "emoji": "☠",
-              "emojiKey": "type-poison",
-              "name": "Poison",
-              "typeId": 4
             }
           ],
           "value": 2
         },
         {
-          "typeEmoji": "👊🔮⛰️💧🌿⚡",
+          "typeEmoji": "⛰️💧🌿⚡👊🔮",
           "typeEmojiKeys": [
-            "type-fighting",
-            "type-psychic",
             "type-ground",
             "type-water",
             "type-grass",
-            "type-electric"
+            "type-electric",
+            "type-fighting",
+            "type-psychic"
           ],
-          "typeName": "Fighting, Psychic, Ground, Water, Grass, Electric",
+          "typeName": "Ground, Water, Grass, Electric, Fighting, Psychic",
           "types": [
-            {
-              "emoji": "👊",
-              "emojiKey": "type-fighting",
-              "name": "Fighting",
-              "typeId": 2
-            },
-            {
-              "emoji": "🔮",
-              "emojiKey": "type-psychic",
-              "name": "Psychic",
-              "typeId": 14
-            },
             {
               "emoji": "⛰️",
               "emojiKey": "type-ground",
@@ -10399,6 +10387,18 @@ export const testScenarios = {
               "emojiKey": "type-electric",
               "name": "Electric",
               "typeId": 13
+            },
+            {
+              "emoji": "👊",
+              "emojiKey": "type-fighting",
+              "name": "Fighting",
+              "typeId": 2
+            },
+            {
+              "emoji": "🔮",
+              "emojiKey": "type-psychic",
+              "name": "Psychic",
+              "typeId": 14
             }
           ],
           "value": 0.5
@@ -10463,13 +10463,13 @@ export const testScenarios = {
       "cp": 80,
       "dawnTime": false,
       "def": 2,
-      "disappearTime": "13:18:19",
-      "disappear_time": 1775650699,
+      "disappearTime": "13:22:13",
+      "disappear_time": 1775650933,
       "disappear_time_verified": true,
       "display_pokemon_form": null,
       "display_pokemon_id": null,
       "distance": 0,
-      "distime": "13:18:19",
+      "distime": "13:22:13",
       "duskTime": false,
       "emoji": [
         "⭕"
@@ -10555,8 +10555,8 @@ export const testScenarios = {
       "neighbourhood": "",
       "nextHourTimestamp": 1775653200,
       "nightTime": false,
-      "now": "2026-04-08T12:08:19Z",
-      "nowISO": "2026-04-08T12:08:19.854Z",
+      "now": "2026-04-08T12:12:13Z",
+      "nowISO": "2026-04-08T12:12:13.335Z",
       "pokemonId": 659,
       "pokemon_id": 659,
       "pokemon_level": 7,
@@ -11034,7 +11034,7 @@ export const testScenarios = {
       "streetName": "St Francis Court",
       "streetNumber": "",
       "suburb": "South Ashford",
-      "time": "13:18:19",
+      "time": "13:22:13",
       "tth": {
         "days": 0,
         "hours": 0,
@@ -11119,10 +11119,10 @@ export const testScenarios = {
       "countryCode": "GB",
       "cp": 0,
       "dawnTime": false,
-      "disappearTime": "13:48:19",
-      "distime": "13:48:19",
+      "disappearTime": "13:52:13",
+      "distime": "13:52:13",
       "duskTime": false,
-      "end": 1775652499,
+      "end": 1775652733,
       "evolution": 0,
       "ex_raid_eligible": 0,
       "firstNotification": true,
@@ -11141,8 +11141,8 @@ export const testScenarios = {
       "gym_id": "7582be8a90de4f2584d3fe06a1cd29d6.16",
       "gym_name": "Seaside Museum",
       "gym_url": "https://lh3.googleusercontent.com/vOTG9vc4xVcoU6sGt6U3UwyJ-23_r7xQcBOsV_oJEPBKMVjYhBfgTbJ7ayA8EkVbpD9UBSsb114eS9jrkTtT35aUug",
-      "hatchTime": "13:18:19",
-      "hatchtime": "13:18:19",
+      "hatchTime": "13:22:13",
+      "hatchtime": "13:22:13",
       "id": 0,
       "imgUrl": "https://raw.githubusercontent.com/nileplumb/PkmnShuffleMap/master/UICONS/raid/egg/1.png",
       "is_exclusive": 0,
@@ -11157,8 +11157,8 @@ export const testScenarios = {
       "move_2": 0,
       "neighbourhood": "",
       "nightTime": false,
-      "now": "2026-04-08T12:08:19Z",
-      "nowISO": "2026-04-08T12:08:19.858Z",
+      "now": "2026-04-08T12:12:13Z",
+      "nowISO": "2026-04-08T12:12:13.338Z",
       "partner_id": "",
       "pokemon_id": 0,
       "power_up_end_timestamp": 0,
@@ -11169,7 +11169,7 @@ export const testScenarios = {
       "rsvps": null,
       "spawn": 1775475269,
       "sponsor_id": 0,
-      "start": 1775650699,
+      "start": 1775650933,
       "state": "England",
       "stickerUrl": "https://raw.githubusercontent.com/bbdoc/tgUICONS/main/Shuffle/raid/egg/1.webp",
       "streetName": "William Street",
@@ -11182,7 +11182,7 @@ export const testScenarios = {
       "teamName": "Valor",
       "teamNameEng": "Valor",
       "team_id": 2,
-      "time": "13:48:19",
+      "time": "13:52:13",
       "tth": {
         "days": 0,
         "hours": 0,
@@ -11234,14 +11234,14 @@ export const testScenarios = {
       "countryCode": "GB",
       "cp": 2087,
       "dawnTime": false,
-      "disappearTime": "13:48:19",
-      "distime": "13:48:19",
+      "disappearTime": "13:52:13",
+      "distime": "13:52:13",
       "duskTime": false,
       "emoji": [
         "⚡"
       ],
       "emojiString": "⚡",
-      "end": 1775652499,
+      "end": 1775652733,
       "evolution": 0,
       "evolutions": [
         {
@@ -11342,8 +11342,8 @@ export const testScenarios = {
       "neighbourhood": "",
       "nextHourTimestamp": 1775653200,
       "nightTime": false,
-      "now": "2026-04-08T12:08:19Z",
-      "nowISO": "2026-04-08T12:08:19.859Z",
+      "now": "2026-04-08T12:12:13Z",
+      "nowISO": "2026-04-08T12:12:13.339Z",
       "partner_id": "",
       "pokemonId": 921,
       "pokemon_id": 921,
@@ -11362,7 +11362,7 @@ export const testScenarios = {
       "shinyPossible": false,
       "spawn": 1775472079,
       "sponsor_id": 0,
-      "start": 1775650699,
+      "start": 1775650933,
       "state": "England",
       "stickerUrl": "https://raw.githubusercontent.com/bbdoc/tgUICONS/main/Shuffle/pokemon/921.webp",
       "streetName": "Whitstable Road",
@@ -11375,7 +11375,7 @@ export const testScenarios = {
       "teamName": "Valor",
       "teamNameEng": "Valor",
       "team_id": 2,
-      "time": "13:48:19",
+      "time": "13:52:13",
       "tth": {
         "days": 0,
         "hours": 0,
@@ -11417,14 +11417,20 @@ export const testScenarios = {
           "value": 2
         },
         {
-          "typeEmoji": "🐦🔩⚡",
+          "typeEmoji": "⚡🐦🔩",
           "typeEmojiKeys": [
+            "type-electric",
             "type-flying",
-            "type-steel",
-            "type-electric"
+            "type-steel"
           ],
-          "typeName": "Flying, Steel, Electric",
+          "typeName": "Electric, Flying, Steel",
           "types": [
+            {
+              "emoji": "⚡",
+              "emojiKey": "type-electric",
+              "name": "Electric",
+              "typeId": 13
+            },
             {
               "emoji": "🐦",
               "emojiKey": "type-flying",
@@ -11436,12 +11442,6 @@ export const testScenarios = {
               "emojiKey": "type-steel",
               "name": "Steel",
               "typeId": 9
-            },
-            {
-              "emoji": "⚡",
-              "emojiKey": "type-electric",
-              "name": "Electric",
-              "typeId": 13
             }
           ],
           "value": 0.5
@@ -11466,10 +11466,10 @@ export const testScenarios = {
       "countryCode": "GB",
       "cp": 0,
       "dawnTime": false,
-      "disappearTime": "13:48:19",
-      "distime": "13:48:19",
+      "disappearTime": "13:52:13",
+      "distime": "13:52:13",
       "duskTime": false,
-      "end": 1775652499,
+      "end": 1775652733,
       "evolution": 0,
       "ex_raid_eligible": 0,
       "firstNotification": true,
@@ -11488,8 +11488,8 @@ export const testScenarios = {
       "gym_id": "5c83c3d615e841bebfbcd613a80fac6f.16",
       "gym_name": "Land Calendar",
       "gym_url": "https://lh3.googleusercontent.com/GUoWG5Iud_QpgGuSl_Hqg7R7En3JJT0TwH49gYssgladPngb_800cue6N5xDjEqSpPmV2qzBdeDrfMSnI2EtYYKmeUw",
-      "hatchTime": "13:18:19",
-      "hatchtime": "13:18:19",
+      "hatchTime": "13:22:13",
+      "hatchtime": "13:22:13",
       "id": 0,
       "imgUrl": "https://raw.githubusercontent.com/nileplumb/PkmnShuffleMap/master/UICONS/raid/egg/5.png",
       "is_exclusive": 0,
@@ -11504,8 +11504,8 @@ export const testScenarios = {
       "move_2": 0,
       "neighbourhood": "",
       "nightTime": false,
-      "now": "2026-04-08T12:08:19Z",
-      "nowISO": "2026-04-08T12:08:19.861Z",
+      "now": "2026-04-08T12:12:13Z",
+      "nowISO": "2026-04-08T12:12:13.339Z",
       "partner_id": "",
       "pokemon_id": 0,
       "power_up_end_timestamp": 0,
@@ -11516,7 +11516,7 @@ export const testScenarios = {
       "rsvps": null,
       "spawn": 1775475262,
       "sponsor_id": 0,
-      "start": 1775650699,
+      "start": 1775650933,
       "state": "England",
       "stickerUrl": "https://raw.githubusercontent.com/bbdoc/tgUICONS/main/Shuffle/raid/egg/5.webp",
       "streetName": "Neptune's Arm",
@@ -11529,7 +11529,7 @@ export const testScenarios = {
       "teamName": "Mystic",
       "teamNameEng": "Mystic",
       "team_id": 1,
-      "time": "13:48:19",
+      "time": "13:52:13",
       "tth": {
         "days": 0,
         "hours": 0,
@@ -11581,14 +11581,14 @@ export const testScenarios = {
       "countryCode": "GB",
       "cp": 28624,
       "dawnTime": false,
-      "disappearTime": "13:48:19",
-      "distime": "13:48:19",
+      "disappearTime": "13:52:13",
+      "distime": "13:52:13",
       "duskTime": false,
       "emoji": [
         "🐲"
       ],
       "emojiString": "🐲",
-      "end": 1775652499,
+      "end": 1775652733,
       "evolution": 0,
       "evolutions": null,
       "ex_raid_eligible": 0,
@@ -11652,8 +11652,8 @@ export const testScenarios = {
       "neighbourhood": "",
       "nextHourTimestamp": 1775653200,
       "nightTime": false,
-      "now": "2026-04-08T12:08:19Z",
-      "nowISO": "2026-04-08T12:08:19.927Z",
+      "now": "2026-04-08T12:12:13Z",
+      "nowISO": "2026-04-08T12:12:13.340Z",
       "partner_id": "",
       "pokemonId": 895,
       "pokemon_id": 895,
@@ -11672,7 +11672,7 @@ export const testScenarios = {
       "shinyPossible": false,
       "spawn": 1775471928,
       "sponsor_id": 0,
-      "start": 1775650699,
+      "start": 1775650933,
       "state": "England",
       "stickerUrl": "https://raw.githubusercontent.com/bbdoc/tgUICONS/main/Shuffle/pokemon/895.webp",
       "streetName": "Wye Road",
@@ -11685,1054 +11685,7 @@ export const testScenarios = {
       "teamName": "Mystic",
       "teamNameEng": "Mystic",
       "team_id": 1,
-      "time": "13:48:19",
-      "tth": {
-        "days": 0,
-        "hours": 0,
-        "minutes": 40,
-        "seconds": 0,
-        "firstDateWasLater": false
-      },
-      "tthd": 0,
-      "tthh": 0,
-      "tthm": 40,
-      "tths": 0,
-      "typeEmoji": "🐲",
-      "typeEmojiKeys": [
-        "type-dragon"
-      ],
-      "typeName": "Dragon",
-      "typeNameEng": [
-        "Dragon"
-      ],
-      "types": [
-        16
-      ],
-      "wazeMapUrl": "https://www.waze.com/ul?ll=51.189153,0.892118&navigate=yes&zoom=17",
-      "weaknessList": [
-        {
-          "typeEmoji": "❄🐲🦋",
-          "typeEmojiKeys": [
-            "type-ice",
-            "type-dragon",
-            "type-fairy"
-          ],
-          "typeName": "Ice, Dragon, Fairy",
-          "types": [
-            {
-              "emoji": "❄",
-              "emojiKey": "type-ice",
-              "name": "Ice",
-              "typeId": 15
-            },
-            {
-              "emoji": "🐲",
-              "emojiKey": "type-dragon",
-              "name": "Dragon",
-              "typeId": 16
-            },
-            {
-              "emoji": "🦋",
-              "emojiKey": "type-fairy",
-              "name": "Fairy",
-              "typeId": 18
-            }
-          ],
-          "value": 2
-        },
-        {
-          "typeEmoji": "🔥💧🌿⚡",
-          "typeEmojiKeys": [
-            "type-fire",
-            "type-water",
-            "type-grass",
-            "type-electric"
-          ],
-          "typeName": "Fire, Water, Grass, Electric",
-          "types": [
-            {
-              "emoji": "🔥",
-              "emojiKey": "type-fire",
-              "name": "Fire",
-              "typeId": 10
-            },
-            {
-              "emoji": "💧",
-              "emojiKey": "type-water",
-              "name": "Water",
-              "typeId": 11
-            },
-            {
-              "emoji": "🌿",
-              "emojiKey": "type-grass",
-              "name": "Grass",
-              "typeId": 12
-            },
-            {
-              "emoji": "⚡",
-              "emojiKey": "type-electric",
-              "name": "Electric",
-              "typeId": 13
-            }
-          ],
-          "value": 0.5
-        }
-      ],
-      "weatherChangeTime": "13:00:00",
-      "weatherForecastCurrent": 0,
-      "weatherForecastNext": 0,
-      "zipcode": "TN25 4HH"
-    },
-    "egg6": {
-      "addr": "Iffin Lane",
-      "alignment": 0,
-      "appleMapUrl": "https://maps.apple.com/place?coordinate=51.242711,1.065068",
-      "applemap": "https://maps.apple.com/place?coordinate=51.242711,1.065068",
-      "ar_scan_eligible": 0,
-      "areas": "",
-      "city": "Canterbury",
-      "color": "FFDE00",
-      "costume": 0,
-      "country": "United Kingdom",
-      "countryCode": "GB",
-      "cp": 0,
-      "dawnTime": false,
-      "disappearTime": "13:48:19",
-      "distime": "13:48:19",
-      "duskTime": false,
-      "end": 1775652499,
-      "evolution": 0,
-      "ex_raid_eligible": 0,
-      "firstNotification": true,
-      "flag": "🇬🇧",
-      "form": 0,
-      "formattedAddress": "Iffin Lane, Lower Hardres and Nackington, Canterbury, Kent, England, CT4 5QN, United Kingdom",
-      "gameWeatherId": 0,
-      "gameWeatherName": "",
-      "gameweather": "",
-      "gender": 0,
-      "googleMapUrl": "https://maps.google.com/maps?q=51.242711,1.065068",
-      "gymColor": "FFDE00",
-      "gymId": "2afb8516217a34cc9da56466d9ef28f3.16",
-      "gymName": "The Canterbury Rings ‘Outer Ring’ Trail Marker",
-      "gymUrl": "https://lh3.googleusercontent.com/2rtGwlhFHSuOeTv2RvLsc2VSqsInPUw5RSYGHfG2i9c1eS8ZGEnQia623wjhV1rMbQzh2YFckjP-e-P7lCBQvOJCFq1THczwaUzYJPEKag",
-      "gym_id": "2afb8516217a34cc9da56466d9ef28f3.16",
-      "gym_name": "The Canterbury Rings ‘Outer Ring’ Trail Marker",
-      "gym_url": "https://lh3.googleusercontent.com/2rtGwlhFHSuOeTv2RvLsc2VSqsInPUw5RSYGHfG2i9c1eS8ZGEnQia623wjhV1rMbQzh2YFckjP-e-P7lCBQvOJCFq1THczwaUzYJPEKag",
-      "hatchTime": "13:18:19",
-      "hatchtime": "13:18:19",
-      "id": 0,
-      "imgUrl": "https://raw.githubusercontent.com/nileplumb/PkmnShuffleMap/master/UICONS/raid/egg/6.png",
-      "is_exclusive": 0,
-      "latitude": 51.242711,
-      "level": 6,
-      "levelName": "Mega",
-      "levelNameEng": "Mega",
-      "longitude": 1.065068,
-      "mapurl": "https://maps.google.com/maps?q=51.242711,1.065068",
-      "matched": [],
-      "move_1": 0,
-      "move_2": 0,
-      "neighbourhood": "",
-      "nightTime": false,
-      "now": "2026-04-08T12:08:19Z",
-      "nowISO": "2026-04-08T12:08:19.930Z",
-      "partner_id": "",
-      "pokemon_id": 0,
-      "power_up_end_timestamp": 0,
-      "power_up_level": 0,
-      "power_up_points": 0,
-      "raid_seed": "-7815511330568092945",
-      "reactMapUrl": "https://canterburypokemon.com/id/gyms/2afb8516217a34cc9da56466d9ef28f3.16",
-      "rsvps": null,
-      "spawn": 1775475014,
-      "sponsor_id": 0,
-      "start": 1775650699,
-      "state": "England",
-      "stickerUrl": "https://raw.githubusercontent.com/bbdoc/tgUICONS/main/Shuffle/raid/egg/6.webp",
-      "streetName": "Iffin Lane",
-      "streetNumber": "",
-      "suburb": "Lower Hardres and Nackington",
-      "teamColor": "FFDE00",
-      "teamEmoji": "🟡",
-      "teamEmojiKey": "team-instinct",
-      "teamId": 3,
-      "teamName": "Instinct",
-      "teamNameEng": "Instinct",
-      "team_id": 3,
-      "time": "13:48:19",
-      "tth": {
-        "days": 0,
-        "hours": 0,
-        "minutes": 10,
-        "seconds": 0,
-        "firstDateWasLater": false
-      },
-      "tthd": 0,
-      "tthh": 0,
-      "tthm": 10,
-      "tths": 0,
-      "wazeMapUrl": "https://www.waze.com/ul?ll=51.242711,1.065068&navigate=yes&zoom=17",
-      "zipcode": "CT4 5QN"
-    },
-    "level3": {
-      "addr": "Abbey Fields",
-      "alignment": 0,
-      "appleMapUrl": "https://maps.apple.com/place?coordinate=51.325332,0.908748",
-      "applemap": "https://maps.apple.com/place?coordinate=51.325332,0.908748",
-      "ar_scan_eligible": 1,
-      "areas": "",
-      "baseStats": {
-        "baseAttack": 112,
-        "baseDefense": 152,
-        "baseStamina": 225
-      },
-      "boost": "",
-      "boostWeatherEmojiKey": "",
-      "boostWeatherId": "",
-      "boostWeatherName": "",
-      "boosted": false,
-      "boostingWeatherEmojiKeys": [
-        "weather-rain",
-        "weather-cloudy"
-      ],
-      "boostingWeatherEmojis": "🌧☁",
-      "boostingWeatherIds": [
-        2,
-        4
-      ],
-      "chargeMove": "Hydro Pump",
-      "chargeMoveEmoji": "💧",
-      "chargeMoveId": 107,
-      "chargeMoveName": "Hydro Pump",
-      "chargeMoveNameEng": "Hydro Pump",
-      "chargeMoveTypeEmojiKey": "type-water",
-      "city": "Swale",
-      "color": "CC0000",
-      "costume": 0,
-      "country": "United Kingdom",
-      "countryCode": "GB",
-      "cp": 9847,
-      "dawnTime": false,
-      "disappearTime": "13:48:19",
-      "distime": "13:48:19",
-      "duskTime": false,
-      "emoji": [
-        "💧",
-        "🦋"
-      ],
-      "emojiString": "💧🦋",
-      "end": 1775652499,
-      "evolution": 0,
-      "evolutions": null,
-      "ex_raid_eligible": 0,
-      "firstNotification": true,
-      "flag": "🇬🇧",
-      "form": 1199,
-      "formName": "Normal",
-      "formNameEng": "Normal",
-      "formNormalised": "",
-      "formNormalisedEng": "",
-      "formattedAddress": "Abbey Fields, Graveney with Goodnestone, Swale, Kent, England, ME13 8HX, United Kingdom",
-      "formname": "Normal",
-      "fullName": "Azumarill",
-      "fullNameEng": "Azumarill",
-      "gameWeatherId": 0,
-      "gameWeatherName": "",
-      "gameweather": "",
-      "gender": 2,
-      "genderData": {
-        "emoji": "♀",
-        "name": "female"
-      },
-      "genderEmoji": "♀",
-      "genderEmojiKey": "gender-female",
-      "genderName": "female",
-      "genderNameEng": "female",
-      "generation": 2,
-      "generationName": "Johto",
-      "generationNameEng": "Johto",
-      "generationRoman": "II",
-      "googleMapUrl": "https://maps.google.com/maps?q=51.325332,0.908748",
-      "gymColor": "CC0000",
-      "gymId": "1b9c2ea8d03748fdbc7fa72c6a157725.16",
-      "gymName": "Saxon Shore Way Trail Marker - Gate",
-      "gymUrl": "https://lh3.googleusercontent.com/pSfYVusq5SXk9gD2lq0RI5eV7WMBBor3i9KHXSpRvGuEtIVlD_-3RqUoJ261yS7uKPMY-yAInQ4UDJzMxmKJbnnwUiM",
-      "gym_id": "1b9c2ea8d03748fdbc7fa72c6a157725.16",
-      "gym_name": "Saxon Shore Way Trail Marker - Gate",
-      "gym_url": "https://lh3.googleusercontent.com/pSfYVusq5SXk9gD2lq0RI5eV7WMBBor3i9KHXSpRvGuEtIVlD_-3RqUoJ261yS7uKPMY-yAInQ4UDJzMxmKJbnnwUiM",
-      "hasEvolutions": false,
-      "hasMegaEvolutions": false,
-      "id": 184,
-      "imgUrl": "https://raw.githubusercontent.com/nileplumb/PkmnShuffleMap/master/UICONS/pokemon/184.png",
-      "is_exclusive": 0,
-      "latitude": 51.325332,
-      "level": 3,
-      "levelName": "Level 3",
-      "levelNameEng": "Level 3",
-      "longitude": 0.908748,
-      "mapurl": "https://maps.google.com/maps?q=51.325332,0.908748",
-      "matched": [],
-      "megaEvolutions": null,
-      "megaName": "Azumarill",
-      "move1": "Bubble",
-      "move1emoji": "💧",
-      "move2": "Hydro Pump",
-      "move2emoji": "💧",
-      "move_1": 237,
-      "move_2": 107,
-      "name": "Azumarill",
-      "nameEng": "Azumarill",
-      "neighbourhood": "",
-      "nextHourTimestamp": 1775653200,
-      "nightTime": false,
-      "now": "2026-04-08T12:08:19Z",
-      "nowISO": "2026-04-08T12:08:19.932Z",
-      "partner_id": "",
-      "pokemonId": 184,
-      "pokemon_id": 184,
-      "power_up_end_timestamp": 0,
-      "power_up_level": 0,
-      "power_up_points": 10,
-      "quickMove": "Bubble",
-      "quickMoveEmoji": "💧",
-      "quickMoveId": 237,
-      "quickMoveName": "Bubble",
-      "quickMoveNameEng": "Bubble",
-      "quickMoveTypeEmojiKey": "type-water",
-      "raid_seed": "-538834519515995506",
-      "reactMapUrl": "https://canterburypokemon.com/id/gyms/1b9c2ea8d03748fdbc7fa72c6a157725.16",
-      "rsvps": null,
-      "shinyPossible": false,
-      "spawn": 1775471989,
-      "sponsor_id": 0,
-      "start": 1775650699,
-      "state": "England",
-      "stickerUrl": "https://raw.githubusercontent.com/bbdoc/tgUICONS/main/Shuffle/pokemon/184.webp",
-      "streetName": "Abbey Fields",
-      "streetNumber": "",
-      "suburb": "Graveney with Goodnestone",
-      "teamColor": "CC0000",
-      "teamEmoji": "🔴",
-      "teamEmojiKey": "team-valor",
-      "teamId": 2,
-      "teamName": "Valor",
-      "teamNameEng": "Valor",
-      "team_id": 2,
-      "time": "13:48:19",
-      "tth": {
-        "days": 0,
-        "hours": 0,
-        "minutes": 40,
-        "seconds": 0,
-        "firstDateWasLater": false
-      },
-      "tthd": 0,
-      "tthh": 0,
-      "tthm": 40,
-      "tths": 0,
-      "typeEmoji": "💧🦋",
-      "typeEmojiKeys": [
-        "type-water",
-        "type-fairy"
-      ],
-      "typeName": "Water, Fairy",
-      "typeNameEng": [
-        "Water",
-        "Fairy"
-      ],
-      "types": [
-        11,
-        18
-      ],
-      "wazeMapUrl": "https://www.waze.com/ul?ll=51.325332,0.908748&navigate=yes&zoom=17",
-      "weaknessList": [
-        {
-          "typeEmoji": "🌿☠⚡",
-          "typeEmojiKeys": [
-            "type-grass",
-            "type-poison",
-            "type-electric"
-          ],
-          "typeName": "Grass, Poison, Electric",
-          "types": [
-            {
-              "emoji": "🌿",
-              "emojiKey": "type-grass",
-              "name": "Grass",
-              "typeId": 12
-            },
-            {
-              "emoji": "☠",
-              "emojiKey": "type-poison",
-              "name": "Poison",
-              "typeId": 4
-            },
-            {
-              "emoji": "⚡",
-              "emojiKey": "type-electric",
-              "name": "Electric",
-              "typeId": 13
-            }
-          ],
-          "value": 2
-        },
-        {
-          "typeEmoji": "💧👊🐛🔥❄🌑",
-          "typeEmojiKeys": [
-            "type-water",
-            "type-fighting",
-            "type-bug",
-            "type-fire",
-            "type-ice",
-            "type-dark"
-          ],
-          "typeName": "Water, Fighting, Bug, Fire, Ice, Dark",
-          "types": [
-            {
-              "emoji": "💧",
-              "emojiKey": "type-water",
-              "name": "Water",
-              "typeId": 11
-            },
-            {
-              "emoji": "👊",
-              "emojiKey": "type-fighting",
-              "name": "Fighting",
-              "typeId": 2
-            },
-            {
-              "emoji": "🐛",
-              "emojiKey": "type-bug",
-              "name": "Bug",
-              "typeId": 7
-            },
-            {
-              "emoji": "🔥",
-              "emojiKey": "type-fire",
-              "name": "Fire",
-              "typeId": 10
-            },
-            {
-              "emoji": "❄",
-              "emojiKey": "type-ice",
-              "name": "Ice",
-              "typeId": 15
-            },
-            {
-              "emoji": "🌑",
-              "emojiKey": "type-dark",
-              "name": "Dark",
-              "typeId": 17
-            }
-          ],
-          "value": 0.5
-        },
-        {
-          "typeEmoji": "🐲",
-          "typeEmojiKeys": [
-            "type-dragon"
-          ],
-          "typeName": "Dragon",
-          "types": [
-            {
-              "emoji": "🐲",
-              "emojiKey": "type-dragon",
-              "name": "Dragon",
-              "typeId": 16
-            }
-          ],
-          "value": 0.25
-        }
-      ],
-      "weatherChangeTime": "13:00:00",
-      "weatherForecastCurrent": 0,
-      "weatherForecastNext": 0,
-      "zipcode": "ME13 8HX"
-    }
-  },
-  "egg": {
-    "egg1": {
-      "addr": "William Street",
-      "alignment": 0,
-      "appleMapUrl": "https://maps.apple.com/place?coordinate=51.372359,1.128469",
-      "applemap": "https://maps.apple.com/place?coordinate=51.372359,1.128469",
-      "ar_scan_eligible": 0,
-      "areas": "",
-      "city": "Canterbury",
-      "color": "CC0000",
-      "costume": 0,
-      "country": "United Kingdom",
-      "countryCode": "GB",
-      "cp": 0,
-      "dawnTime": false,
-      "disappearTime": "13:48:19",
-      "distime": "13:48:19",
-      "duskTime": false,
-      "end": 1775652499,
-      "evolution": 0,
-      "ex_raid_eligible": 0,
-      "firstNotification": true,
-      "flag": "🇬🇧",
-      "form": 0,
-      "formattedAddress": "The Seaside Museum, William Street, Mickleburgh Hill, Canterbury, Kent, England, CT6 5EW, United Kingdom",
-      "gameWeatherId": 0,
-      "gameWeatherName": "",
-      "gameweather": "",
-      "gender": 0,
-      "googleMapUrl": "https://maps.google.com/maps?q=51.372359,1.128469",
-      "gymColor": "CC0000",
-      "gymId": "7582be8a90de4f2584d3fe06a1cd29d6.16",
-      "gymName": "Seaside Museum",
-      "gymUrl": "https://lh3.googleusercontent.com/vOTG9vc4xVcoU6sGt6U3UwyJ-23_r7xQcBOsV_oJEPBKMVjYhBfgTbJ7ayA8EkVbpD9UBSsb114eS9jrkTtT35aUug",
-      "gym_id": "7582be8a90de4f2584d3fe06a1cd29d6.16",
-      "gym_name": "Seaside Museum",
-      "gym_url": "https://lh3.googleusercontent.com/vOTG9vc4xVcoU6sGt6U3UwyJ-23_r7xQcBOsV_oJEPBKMVjYhBfgTbJ7ayA8EkVbpD9UBSsb114eS9jrkTtT35aUug",
-      "hatchTime": "13:18:19",
-      "hatchtime": "13:18:19",
-      "id": 0,
-      "imgUrl": "https://raw.githubusercontent.com/nileplumb/PkmnShuffleMap/master/UICONS/raid/egg/1.png",
-      "is_exclusive": 0,
-      "latitude": 51.372359,
-      "level": 1,
-      "levelName": "Level 1",
-      "levelNameEng": "Level 1",
-      "longitude": 1.128469,
-      "mapurl": "https://maps.google.com/maps?q=51.372359,1.128469",
-      "matched": [],
-      "move_1": 0,
-      "move_2": 0,
-      "neighbourhood": "",
-      "nightTime": false,
-      "now": "2026-04-08T12:08:19Z",
-      "nowISO": "2026-04-08T12:08:19.939Z",
-      "partner_id": "",
-      "pokemon_id": 0,
-      "power_up_end_timestamp": 0,
-      "power_up_level": 0,
-      "power_up_points": 30,
-      "raid_seed": "-1889452614385700607",
-      "reactMapUrl": "https://canterburypokemon.com/id/gyms/7582be8a90de4f2584d3fe06a1cd29d6.16",
-      "rsvps": null,
-      "spawn": 1775475269,
-      "sponsor_id": 0,
-      "start": 1775650699,
-      "state": "England",
-      "stickerUrl": "https://raw.githubusercontent.com/bbdoc/tgUICONS/main/Shuffle/raid/egg/1.webp",
-      "streetName": "William Street",
-      "streetNumber": "",
-      "suburb": "Mickleburgh Hill",
-      "teamColor": "CC0000",
-      "teamEmoji": "🔴",
-      "teamEmojiKey": "team-valor",
-      "teamId": 2,
-      "teamName": "Valor",
-      "teamNameEng": "Valor",
-      "team_id": 2,
-      "time": "13:48:19",
-      "tth": {
-        "days": 0,
-        "hours": 0,
-        "minutes": 10,
-        "seconds": 0,
-        "firstDateWasLater": false
-      },
-      "tthd": 0,
-      "tthh": 0,
-      "tthm": 10,
-      "tths": 0,
-      "wazeMapUrl": "https://www.waze.com/ul?ll=51.372359,1.128469&navigate=yes&zoom=17",
-      "zipcode": "CT6 5EW"
-    },
-    "level1": {
-      "addr": "Whitstable Road 23a",
-      "alignment": 0,
-      "appleMapUrl": "https://maps.apple.com/place?coordinate=51.313320,0.899989",
-      "applemap": "https://maps.apple.com/place?coordinate=51.313320,0.899989",
-      "ar_scan_eligible": 0,
-      "areas": "",
-      "baseStats": {
-        "baseAttack": 95,
-        "baseDefense": 45,
-        "baseStamina": 128
-      },
-      "boost": "",
-      "boostWeatherEmojiKey": "",
-      "boostWeatherId": "",
-      "boostWeatherName": "",
-      "boosted": false,
-      "boostingWeatherEmojiKeys": [
-        "weather-rain"
-      ],
-      "boostingWeatherEmojis": "🌧",
-      "boostingWeatherIds": [
-        2
-      ],
-      "chargeMove": "Discharge",
-      "chargeMoveEmoji": "⚡",
-      "chargeMoveId": 35,
-      "chargeMoveName": "Discharge",
-      "chargeMoveNameEng": "Discharge",
-      "chargeMoveTypeEmojiKey": "type-electric",
-      "city": "Swale",
-      "color": "CC0000",
-      "costume": 0,
-      "country": "United Kingdom",
-      "countryCode": "GB",
-      "cp": 2087,
-      "dawnTime": false,
-      "disappearTime": "13:48:19",
-      "distime": "13:48:19",
-      "duskTime": false,
-      "emoji": [
-        "⚡"
-      ],
-      "emojiString": "⚡",
-      "end": 1775652499,
-      "evolution": 0,
-      "evolutions": [
-        {
-          "baseStats": {
-            "baseAttack": 147,
-            "baseDefense": 82,
-            "baseStamina": 155
-          },
-          "form": 3237,
-          "formName": "Normal",
-          "formNormalised": "",
-          "fullName": "Pawmo",
-          "id": 922,
-          "name": "Pawmo",
-          "typeEmojiKeys": [
-            "type-fighting",
-            "type-electric"
-          ],
-          "typeName": "Fighting, Electric"
-        },
-        {
-          "baseStats": {
-            "baseAttack": 232,
-            "baseDefense": 141,
-            "baseStamina": 172
-          },
-          "form": 3238,
-          "formName": "Normal",
-          "formNormalised": "",
-          "fullName": "Pawmot",
-          "id": 923,
-          "name": "Pawmot",
-          "typeEmojiKeys": [
-            "type-fighting",
-            "type-electric"
-          ],
-          "typeName": "Fighting, Electric"
-        }
-      ],
-      "ex_raid_eligible": 0,
-      "firstNotification": true,
-      "flag": "🇬🇧",
-      "form": 3236,
-      "formName": "Normal",
-      "formNameEng": "Normal",
-      "formNormalised": "",
-      "formNormalisedEng": "",
-      "formattedAddress": "Queen Elizabeth II Jubilee Centre, 23a, Whitstable Road, Kingsmead, Faversham, Swale, Kent, England, ME13 8BF, United Kingdom",
-      "formname": "Normal",
-      "fullName": "Pawmi",
-      "fullNameEng": "Pawmi",
-      "gameWeatherId": 0,
-      "gameWeatherName": "",
-      "gameweather": "",
-      "gender": 2,
-      "genderData": {
-        "emoji": "♀",
-        "name": "female"
-      },
-      "genderEmoji": "♀",
-      "genderEmojiKey": "gender-female",
-      "genderName": "female",
-      "genderNameEng": "female",
-      "generation": 9,
-      "generationName": "Paldea",
-      "generationNameEng": "Paldea",
-      "generationRoman": "IX",
-      "googleMapUrl": "https://maps.google.com/maps?q=51.313320,0.899989",
-      "gymColor": "CC0000",
-      "gymId": "5d981bcd9f2147d09fcf90d4779fa3fc.16",
-      "gymName": "QEII Jubilee Centre",
-      "gymUrl": "https://lh3.googleusercontent.com/Kg__1ZzDeyflefKKvjz6URWNVzpYlS6eR98u0czORuzO3PyJVqb_RsRYjLZrL7MgVwBSb67BfEqbhsrk1MjzbAteFQ",
-      "gym_id": "5d981bcd9f2147d09fcf90d4779fa3fc.16",
-      "gym_name": "QEII Jubilee Centre",
-      "gym_url": "https://lh3.googleusercontent.com/Kg__1ZzDeyflefKKvjz6URWNVzpYlS6eR98u0czORuzO3PyJVqb_RsRYjLZrL7MgVwBSb67BfEqbhsrk1MjzbAteFQ",
-      "hasEvolutions": true,
-      "hasMegaEvolutions": false,
-      "id": 921,
-      "imgUrl": "https://raw.githubusercontent.com/nileplumb/PkmnShuffleMap/master/UICONS/pokemon/921.png",
-      "is_exclusive": 0,
-      "latitude": 51.31332,
-      "level": 1,
-      "levelName": "Level 1",
-      "levelNameEng": "Level 1",
-      "longitude": 0.899989,
-      "mapurl": "https://maps.google.com/maps?q=51.313320,0.899989",
-      "matched": [],
-      "megaEvolutions": null,
-      "megaName": "Pawmi",
-      "move1": "Charge Beam",
-      "move1emoji": "⚡",
-      "move2": "Discharge",
-      "move2emoji": "⚡",
-      "move_1": 249,
-      "move_2": 35,
-      "name": "Pawmi",
-      "nameEng": "Pawmi",
-      "neighbourhood": "",
-      "nextHourTimestamp": 1775653200,
-      "nightTime": false,
-      "now": "2026-04-08T12:08:19Z",
-      "nowISO": "2026-04-08T12:08:19.940Z",
-      "partner_id": "",
-      "pokemonId": 921,
-      "pokemon_id": 921,
-      "power_up_end_timestamp": 0,
-      "power_up_level": 0,
-      "power_up_points": 30,
-      "quickMove": "Charge Beam",
-      "quickMoveEmoji": "⚡",
-      "quickMoveId": 249,
-      "quickMoveName": "Charge Beam",
-      "quickMoveNameEng": "Charge Beam",
-      "quickMoveTypeEmojiKey": "type-electric",
-      "raid_seed": "-8090049803415799718",
-      "reactMapUrl": "https://canterburypokemon.com/id/gyms/5d981bcd9f2147d09fcf90d4779fa3fc.16",
-      "rsvps": null,
-      "shinyPossible": false,
-      "spawn": 1775472079,
-      "sponsor_id": 0,
-      "start": 1775650699,
-      "state": "England",
-      "stickerUrl": "https://raw.githubusercontent.com/bbdoc/tgUICONS/main/Shuffle/pokemon/921.webp",
-      "streetName": "Whitstable Road",
-      "streetNumber": "23a",
-      "suburb": "Kingsmead",
-      "teamColor": "CC0000",
-      "teamEmoji": "🔴",
-      "teamEmojiKey": "team-valor",
-      "teamId": 2,
-      "teamName": "Valor",
-      "teamNameEng": "Valor",
-      "team_id": 2,
-      "time": "13:48:19",
-      "tth": {
-        "days": 0,
-        "hours": 0,
-        "minutes": 40,
-        "seconds": 0,
-        "firstDateWasLater": false
-      },
-      "tthd": 0,
-      "tthh": 0,
-      "tthm": 40,
-      "tths": 0,
-      "typeEmoji": "⚡",
-      "typeEmojiKeys": [
-        "type-electric"
-      ],
-      "typeName": "Electric",
-      "typeNameEng": [
-        "Electric"
-      ],
-      "types": [
-        13
-      ],
-      "wazeMapUrl": "https://www.waze.com/ul?ll=51.313320,0.899989&navigate=yes&zoom=17",
-      "weaknessList": [
-        {
-          "typeEmoji": "⛰️",
-          "typeEmojiKeys": [
-            "type-ground"
-          ],
-          "typeName": "Ground",
-          "types": [
-            {
-              "emoji": "⛰️",
-              "emojiKey": "type-ground",
-              "name": "Ground",
-              "typeId": 5
-            }
-          ],
-          "value": 2
-        },
-        {
-          "typeEmoji": "🐦🔩⚡",
-          "typeEmojiKeys": [
-            "type-flying",
-            "type-steel",
-            "type-electric"
-          ],
-          "typeName": "Flying, Steel, Electric",
-          "types": [
-            {
-              "emoji": "🐦",
-              "emojiKey": "type-flying",
-              "name": "Flying",
-              "typeId": 3
-            },
-            {
-              "emoji": "🔩",
-              "emojiKey": "type-steel",
-              "name": "Steel",
-              "typeId": 9
-            },
-            {
-              "emoji": "⚡",
-              "emojiKey": "type-electric",
-              "name": "Electric",
-              "typeId": 13
-            }
-          ],
-          "value": 0.5
-        }
-      ],
-      "weatherChangeTime": "13:00:00",
-      "weatherForecastCurrent": 0,
-      "weatherForecastNext": 0,
-      "zipcode": "ME13 8BF"
-    },
-    "egg5": {
-      "addr": "Neptune's Arm",
-      "alignment": 0,
-      "appleMapUrl": "https://maps.apple.com/place?coordinate=51.373111,1.127138",
-      "applemap": "https://maps.apple.com/place?coordinate=51.373111,1.127138",
-      "ar_scan_eligible": 1,
-      "areas": "",
-      "city": "Canterbury",
-      "color": "3B4CCA",
-      "costume": 0,
-      "country": "United Kingdom",
-      "countryCode": "GB",
-      "cp": 0,
-      "dawnTime": false,
-      "disappearTime": "13:48:19",
-      "distime": "13:48:19",
-      "duskTime": false,
-      "end": 1775652499,
-      "evolution": 0,
-      "ex_raid_eligible": 0,
-      "firstNotification": true,
-      "flag": "🇬🇧",
-      "form": 0,
-      "formattedAddress": "Neptune Car Park, Neptune's Arm, Mickleburgh Hill, Canterbury, Kent, England, CT6 5JG, United Kingdom",
-      "gameWeatherId": 0,
-      "gameWeatherName": "",
-      "gameweather": "",
-      "gender": 0,
-      "googleMapUrl": "https://maps.google.com/maps?q=51.373111,1.127138",
-      "gymColor": "3B4CCA",
-      "gymId": "5c83c3d615e841bebfbcd613a80fac6f.16",
-      "gymName": "Land Calendar",
-      "gymUrl": "https://lh3.googleusercontent.com/GUoWG5Iud_QpgGuSl_Hqg7R7En3JJT0TwH49gYssgladPngb_800cue6N5xDjEqSpPmV2qzBdeDrfMSnI2EtYYKmeUw",
-      "gym_id": "5c83c3d615e841bebfbcd613a80fac6f.16",
-      "gym_name": "Land Calendar",
-      "gym_url": "https://lh3.googleusercontent.com/GUoWG5Iud_QpgGuSl_Hqg7R7En3JJT0TwH49gYssgladPngb_800cue6N5xDjEqSpPmV2qzBdeDrfMSnI2EtYYKmeUw",
-      "hatchTime": "13:18:19",
-      "hatchtime": "13:18:19",
-      "id": 0,
-      "imgUrl": "https://raw.githubusercontent.com/nileplumb/PkmnShuffleMap/master/UICONS/raid/egg/5.png",
-      "is_exclusive": 0,
-      "latitude": 51.373111,
-      "level": 5,
-      "levelName": "Legendary",
-      "levelNameEng": "Legendary",
-      "longitude": 1.127138,
-      "mapurl": "https://maps.google.com/maps?q=51.373111,1.127138",
-      "matched": [],
-      "move_1": 0,
-      "move_2": 0,
-      "neighbourhood": "",
-      "nightTime": false,
-      "now": "2026-04-08T12:08:19Z",
-      "nowISO": "2026-04-08T12:08:19.942Z",
-      "partner_id": "",
-      "pokemon_id": 0,
-      "power_up_end_timestamp": 0,
-      "power_up_level": 0,
-      "power_up_points": 10,
-      "raid_seed": "-7672612232807600451",
-      "reactMapUrl": "https://canterburypokemon.com/id/gyms/5c83c3d615e841bebfbcd613a80fac6f.16",
-      "rsvps": null,
-      "spawn": 1775475262,
-      "sponsor_id": 0,
-      "start": 1775650699,
-      "state": "England",
-      "stickerUrl": "https://raw.githubusercontent.com/bbdoc/tgUICONS/main/Shuffle/raid/egg/5.webp",
-      "streetName": "Neptune's Arm",
-      "streetNumber": "",
-      "suburb": "Mickleburgh Hill",
-      "teamColor": "3B4CCA",
-      "teamEmoji": "🔵",
-      "teamEmojiKey": "team-mystic",
-      "teamId": 1,
-      "teamName": "Mystic",
-      "teamNameEng": "Mystic",
-      "team_id": 1,
-      "time": "13:48:19",
-      "tth": {
-        "days": 0,
-        "hours": 0,
-        "minutes": 10,
-        "seconds": 0,
-        "firstDateWasLater": false
-      },
-      "tthd": 0,
-      "tthh": 0,
-      "tthm": 10,
-      "tths": 0,
-      "wazeMapUrl": "https://www.waze.com/ul?ll=51.373111,1.127138&navigate=yes&zoom=17",
-      "zipcode": "CT6 5JG"
-    },
-    "level5": {
-      "addr": "{Wye Road}",
-      "alignment": 0,
-      "appleMapUrl": "https://maps.apple.com/place?coordinate=51.189153,0.892118",
-      "applemap": "https://maps.apple.com/place?coordinate=51.189153,0.892118",
-      "ar_scan_eligible": 0,
-      "areas": "",
-      "baseStats": {
-        "baseAttack": 202,
-        "baseDefense": 101,
-        "baseStamina": 400
-      },
-      "boost": "",
-      "boostWeatherEmojiKey": "",
-      "boostWeatherId": "",
-      "boostWeatherName": "",
-      "boosted": false,
-      "boostingWeatherEmojiKeys": [
-        "weather-windy"
-      ],
-      "boostingWeatherEmojis": "🪁",
-      "boostingWeatherIds": [
-        5
-      ],
-      "chargeMove": "Dragon Pulse",
-      "chargeMoveEmoji": "🐲",
-      "chargeMoveId": 82,
-      "chargeMoveName": "Dragon Pulse",
-      "chargeMoveNameEng": "Dragon Pulse",
-      "chargeMoveTypeEmojiKey": "type-dragon",
-      "city": "Ashford",
-      "color": "3B4CCA",
-      "costume": 0,
-      "country": "United Kingdom",
-      "countryCode": "GB",
-      "cp": 28624,
-      "dawnTime": false,
-      "disappearTime": "13:48:19",
-      "distime": "13:48:19",
-      "duskTime": false,
-      "emoji": [
-        "🐲"
-      ],
-      "emojiString": "🐲",
-      "end": 1775652499,
-      "evolution": 0,
-      "evolutions": null,
-      "ex_raid_eligible": 0,
-      "firstNotification": true,
-      "flag": "🇬🇧",
-      "form": 3215,
-      "formName": "Normal",
-      "formNameEng": "Normal",
-      "formNormalised": "",
-      "formNormalisedEng": "",
-      "formattedAddress": "The Flying Horse, Wye Road, Boughton Aluph, Boughton Lees, Ashford, Kent, England, TN25 4HH, United Kingdom",
-      "formname": "Normal",
-      "fullName": "Regidrago",
-      "fullNameEng": "Regidrago",
-      "gameWeatherId": 0,
-      "gameWeatherName": "",
-      "gameweather": "",
-      "gender": 3,
-      "genderData": {
-        "emoji": "⚧",
-        "name": "genderless"
-      },
-      "genderEmoji": "⚧",
-      "genderEmojiKey": "gender-none",
-      "genderName": "genderless",
-      "genderNameEng": "genderless",
-      "generation": 8,
-      "generationName": "Galar",
-      "generationNameEng": "Galar",
-      "generationRoman": "VIII",
-      "googleMapUrl": "https://maps.google.com/maps?q=51.189153,0.892118",
-      "gymColor": "3B4CCA",
-      "gymId": "b9504875a7954218900e3e0c74e3c068.16",
-      "gymName": "100th Anniversary Of The First World War",
-      "gymUrl": "https://lh3.googleusercontent.com/G_JAaxOS90g-hVniIQuF9Tr5H1IIsrh_G3PDQI5Tm560YsKCu6u9V5UucRTr6vZnDgkANFp2QYvw_7ZF-2XA-Lgo9A",
-      "gym_id": "b9504875a7954218900e3e0c74e3c068.16",
-      "gym_name": "100th Anniversary Of The First World War",
-      "gym_url": "https://lh3.googleusercontent.com/G_JAaxOS90g-hVniIQuF9Tr5H1IIsrh_G3PDQI5Tm560YsKCu6u9V5UucRTr6vZnDgkANFp2QYvw_7ZF-2XA-Lgo9A",
-      "hasEvolutions": false,
-      "hasMegaEvolutions": false,
-      "id": 895,
-      "imgUrl": "https://raw.githubusercontent.com/nileplumb/PkmnShuffleMap/master/UICONS/pokemon/895.png",
-      "is_exclusive": 0,
-      "latitude": 51.189153,
-      "level": 5,
-      "levelName": "Legendary",
-      "levelNameEng": "Legendary",
-      "longitude": 0.892118,
-      "mapurl": "https://maps.google.com/maps?q=51.189153,0.892118",
-      "matched": [],
-      "megaEvolutions": null,
-      "megaName": "Regidrago",
-      "move1": "Bite",
-      "move1emoji": "🌑",
-      "move2": "Dragon Pulse",
-      "move2emoji": "🐲",
-      "move_1": 202,
-      "move_2": 82,
-      "name": "Regidrago",
-      "nameEng": "Regidrago",
-      "neighbourhood": "",
-      "nextHourTimestamp": 1775653200,
-      "nightTime": false,
-      "now": "2026-04-08T12:08:19Z",
-      "nowISO": "2026-04-08T12:08:19.943Z",
-      "partner_id": "",
-      "pokemonId": 895,
-      "pokemon_id": 895,
-      "power_up_end_timestamp": 0,
-      "power_up_level": 0,
-      "power_up_points": 10,
-      "quickMove": "Bite",
-      "quickMoveEmoji": "🌑",
-      "quickMoveId": 202,
-      "quickMoveName": "Bite",
-      "quickMoveNameEng": "Bite",
-      "quickMoveTypeEmojiKey": "type-dark",
-      "raid_seed": "5845571837887094592",
-      "reactMapUrl": "https://canterburypokemon.com/id/gyms/b9504875a7954218900e3e0c74e3c068.16",
-      "rsvps": null,
-      "shinyPossible": false,
-      "spawn": 1775471928,
-      "sponsor_id": 0,
-      "start": 1775650699,
-      "state": "England",
-      "stickerUrl": "https://raw.githubusercontent.com/bbdoc/tgUICONS/main/Shuffle/pokemon/895.webp",
-      "streetName": "Wye Road",
-      "streetNumber": "",
-      "suburb": "Boughton Aluph",
-      "teamColor": "3B4CCA",
-      "teamEmoji": "🔵",
-      "teamEmojiKey": "team-mystic",
-      "teamId": 1,
-      "teamName": "Mystic",
-      "teamNameEng": "Mystic",
-      "team_id": 1,
-      "time": "13:48:19",
+      "time": "13:52:13",
       "tth": {
         "days": 0,
         "hours": 0,
@@ -12844,10 +11797,10 @@ export const testScenarios = {
       "countryCode": "GB",
       "cp": 0,
       "dawnTime": false,
-      "disappearTime": "13:48:19",
-      "distime": "13:48:19",
+      "disappearTime": "13:52:13",
+      "distime": "13:52:13",
       "duskTime": false,
-      "end": 1775652499,
+      "end": 1775652733,
       "evolution": 0,
       "ex_raid_eligible": 0,
       "firstNotification": true,
@@ -12866,8 +11819,8 @@ export const testScenarios = {
       "gym_id": "2afb8516217a34cc9da56466d9ef28f3.16",
       "gym_name": "The Canterbury Rings ‘Outer Ring’ Trail Marker",
       "gym_url": "https://lh3.googleusercontent.com/2rtGwlhFHSuOeTv2RvLsc2VSqsInPUw5RSYGHfG2i9c1eS8ZGEnQia623wjhV1rMbQzh2YFckjP-e-P7lCBQvOJCFq1THczwaUzYJPEKag",
-      "hatchTime": "13:18:19",
-      "hatchtime": "13:18:19",
+      "hatchTime": "13:22:13",
+      "hatchtime": "13:22:13",
       "id": 0,
       "imgUrl": "https://raw.githubusercontent.com/nileplumb/PkmnShuffleMap/master/UICONS/raid/egg/6.png",
       "is_exclusive": 0,
@@ -12882,8 +11835,8 @@ export const testScenarios = {
       "move_2": 0,
       "neighbourhood": "",
       "nightTime": false,
-      "now": "2026-04-08T12:08:19Z",
-      "nowISO": "2026-04-08T12:08:19.944Z",
+      "now": "2026-04-08T12:12:13Z",
+      "nowISO": "2026-04-08T12:12:13.341Z",
       "partner_id": "",
       "pokemon_id": 0,
       "power_up_end_timestamp": 0,
@@ -12894,7 +11847,7 @@ export const testScenarios = {
       "rsvps": null,
       "spawn": 1775475014,
       "sponsor_id": 0,
-      "start": 1775650699,
+      "start": 1775650933,
       "state": "England",
       "stickerUrl": "https://raw.githubusercontent.com/bbdoc/tgUICONS/main/Shuffle/raid/egg/6.webp",
       "streetName": "Iffin Lane",
@@ -12907,7 +11860,7 @@ export const testScenarios = {
       "teamName": "Instinct",
       "teamNameEng": "Instinct",
       "team_id": 3,
-      "time": "13:48:19",
+      "time": "13:52:13",
       "tth": {
         "days": 0,
         "hours": 0,
@@ -12961,15 +11914,15 @@ export const testScenarios = {
       "countryCode": "GB",
       "cp": 9847,
       "dawnTime": false,
-      "disappearTime": "13:48:19",
-      "distime": "13:48:19",
+      "disappearTime": "13:52:13",
+      "distime": "13:52:13",
       "duskTime": false,
       "emoji": [
         "💧",
         "🦋"
       ],
       "emojiString": "💧🦋",
-      "end": 1775652499,
+      "end": 1775652733,
       "evolution": 0,
       "evolutions": null,
       "ex_raid_eligible": 0,
@@ -13033,8 +11986,8 @@ export const testScenarios = {
       "neighbourhood": "",
       "nextHourTimestamp": 1775653200,
       "nightTime": false,
-      "now": "2026-04-08T12:08:19Z",
-      "nowISO": "2026-04-08T12:08:19.945Z",
+      "now": "2026-04-08T12:12:13Z",
+      "nowISO": "2026-04-08T12:12:13.344Z",
       "partner_id": "",
       "pokemonId": 184,
       "pokemon_id": 184,
@@ -13053,7 +12006,7 @@ export const testScenarios = {
       "shinyPossible": false,
       "spawn": 1775471989,
       "sponsor_id": 0,
-      "start": 1775650699,
+      "start": 1775650933,
       "state": "England",
       "stickerUrl": "https://raw.githubusercontent.com/bbdoc/tgUICONS/main/Shuffle/pokemon/184.webp",
       "streetName": "Abbey Fields",
@@ -13066,7 +12019,7 @@ export const testScenarios = {
       "teamName": "Valor",
       "teamNameEng": "Valor",
       "team_id": 2,
-      "time": "13:48:19",
+      "time": "13:52:13",
       "tth": {
         "days": 0,
         "hours": 0,
@@ -13095,14 +12048,20 @@ export const testScenarios = {
       "wazeMapUrl": "https://www.waze.com/ul?ll=51.325332,0.908748&navigate=yes&zoom=17",
       "weaknessList": [
         {
-          "typeEmoji": "☠🌿⚡",
+          "typeEmoji": "⚡☠🌿",
           "typeEmojiKeys": [
+            "type-electric",
             "type-poison",
-            "type-grass",
-            "type-electric"
+            "type-grass"
           ],
-          "typeName": "Poison, Grass, Electric",
+          "typeName": "Electric, Poison, Grass",
           "types": [
+            {
+              "emoji": "⚡",
+              "emojiKey": "type-electric",
+              "name": "Electric",
+              "typeId": 13
+            },
             {
               "emoji": "☠",
               "emojiKey": "type-poison",
@@ -13114,39 +12073,27 @@ export const testScenarios = {
               "emojiKey": "type-grass",
               "name": "Grass",
               "typeId": 12
-            },
-            {
-              "emoji": "⚡",
-              "emojiKey": "type-electric",
-              "name": "Electric",
-              "typeId": 13
             }
           ],
           "value": 2
         },
         {
-          "typeEmoji": "🐛🌑🔥💧❄👊",
+          "typeEmoji": "❄🔥💧👊🐛🌑",
           "typeEmojiKeys": [
-            "type-bug",
-            "type-dark",
+            "type-ice",
             "type-fire",
             "type-water",
-            "type-ice",
-            "type-fighting"
+            "type-fighting",
+            "type-bug",
+            "type-dark"
           ],
-          "typeName": "Bug, Dark, Fire, Water, Ice, Fighting",
+          "typeName": "Ice, Fire, Water, Fighting, Bug, Dark",
           "types": [
             {
-              "emoji": "🐛",
-              "emojiKey": "type-bug",
-              "name": "Bug",
-              "typeId": 7
-            },
-            {
-              "emoji": "🌑",
-              "emojiKey": "type-dark",
-              "name": "Dark",
-              "typeId": 17
+              "emoji": "❄",
+              "emojiKey": "type-ice",
+              "name": "Ice",
+              "typeId": 15
             },
             {
               "emoji": "🔥",
@@ -13161,16 +12108,22 @@ export const testScenarios = {
               "typeId": 11
             },
             {
-              "emoji": "❄",
-              "emojiKey": "type-ice",
-              "name": "Ice",
-              "typeId": 15
-            },
-            {
               "emoji": "👊",
               "emojiKey": "type-fighting",
               "name": "Fighting",
               "typeId": 2
+            },
+            {
+              "emoji": "🐛",
+              "emojiKey": "type-bug",
+              "name": "Bug",
+              "typeId": 7
+            },
+            {
+              "emoji": "🌑",
+              "emojiKey": "type-dark",
+              "name": "Dark",
+              "typeId": 17
             }
           ],
           "value": 0.5
@@ -13198,8 +12151,1796 @@ export const testScenarios = {
       "zipcode": "ME13 8HX"
     }
   },
-  "invasion": {},
-  "lure": {},
+  "egg": {
+    "egg1": {
+      "addr": "William Street",
+      "alignment": 0,
+      "appleMapUrl": "https://maps.apple.com/place?coordinate=51.372359,1.128469",
+      "applemap": "https://maps.apple.com/place?coordinate=51.372359,1.128469",
+      "ar_scan_eligible": 0,
+      "areas": "",
+      "city": "Canterbury",
+      "color": "CC0000",
+      "costume": 0,
+      "country": "United Kingdom",
+      "countryCode": "GB",
+      "cp": 0,
+      "dawnTime": false,
+      "disappearTime": "13:52:13",
+      "distime": "13:52:13",
+      "duskTime": false,
+      "end": 1775652733,
+      "evolution": 0,
+      "ex_raid_eligible": 0,
+      "firstNotification": true,
+      "flag": "🇬🇧",
+      "form": 0,
+      "formattedAddress": "The Seaside Museum, William Street, Mickleburgh Hill, Canterbury, Kent, England, CT6 5EW, United Kingdom",
+      "gameWeatherId": 0,
+      "gameWeatherName": "",
+      "gameweather": "",
+      "gender": 0,
+      "googleMapUrl": "https://maps.google.com/maps?q=51.372359,1.128469",
+      "gymColor": "CC0000",
+      "gymId": "7582be8a90de4f2584d3fe06a1cd29d6.16",
+      "gymName": "Seaside Museum",
+      "gymUrl": "https://lh3.googleusercontent.com/vOTG9vc4xVcoU6sGt6U3UwyJ-23_r7xQcBOsV_oJEPBKMVjYhBfgTbJ7ayA8EkVbpD9UBSsb114eS9jrkTtT35aUug",
+      "gym_id": "7582be8a90de4f2584d3fe06a1cd29d6.16",
+      "gym_name": "Seaside Museum",
+      "gym_url": "https://lh3.googleusercontent.com/vOTG9vc4xVcoU6sGt6U3UwyJ-23_r7xQcBOsV_oJEPBKMVjYhBfgTbJ7ayA8EkVbpD9UBSsb114eS9jrkTtT35aUug",
+      "hatchTime": "13:22:13",
+      "hatchtime": "13:22:13",
+      "id": 0,
+      "imgUrl": "https://raw.githubusercontent.com/nileplumb/PkmnShuffleMap/master/UICONS/raid/egg/1.png",
+      "is_exclusive": 0,
+      "latitude": 51.372359,
+      "level": 1,
+      "levelName": "Level 1",
+      "levelNameEng": "Level 1",
+      "longitude": 1.128469,
+      "mapurl": "https://maps.google.com/maps?q=51.372359,1.128469",
+      "matched": [],
+      "move_1": 0,
+      "move_2": 0,
+      "neighbourhood": "",
+      "nightTime": false,
+      "now": "2026-04-08T12:12:13Z",
+      "nowISO": "2026-04-08T12:12:13.347Z",
+      "partner_id": "",
+      "pokemon_id": 0,
+      "power_up_end_timestamp": 0,
+      "power_up_level": 0,
+      "power_up_points": 30,
+      "raid_seed": "-1889452614385700607",
+      "reactMapUrl": "https://canterburypokemon.com/id/gyms/7582be8a90de4f2584d3fe06a1cd29d6.16",
+      "rsvps": null,
+      "spawn": 1775475269,
+      "sponsor_id": 0,
+      "start": 1775650933,
+      "state": "England",
+      "stickerUrl": "https://raw.githubusercontent.com/bbdoc/tgUICONS/main/Shuffle/raid/egg/1.webp",
+      "streetName": "William Street",
+      "streetNumber": "",
+      "suburb": "Mickleburgh Hill",
+      "teamColor": "CC0000",
+      "teamEmoji": "🔴",
+      "teamEmojiKey": "team-valor",
+      "teamId": 2,
+      "teamName": "Valor",
+      "teamNameEng": "Valor",
+      "team_id": 2,
+      "time": "13:52:13",
+      "tth": {
+        "days": 0,
+        "hours": 0,
+        "minutes": 10,
+        "seconds": 0,
+        "firstDateWasLater": false
+      },
+      "tthd": 0,
+      "tthh": 0,
+      "tthm": 10,
+      "tths": 0,
+      "wazeMapUrl": "https://www.waze.com/ul?ll=51.372359,1.128469&navigate=yes&zoom=17",
+      "zipcode": "CT6 5EW"
+    },
+    "level1": {
+      "addr": "Whitstable Road 23a",
+      "alignment": 0,
+      "appleMapUrl": "https://maps.apple.com/place?coordinate=51.313320,0.899989",
+      "applemap": "https://maps.apple.com/place?coordinate=51.313320,0.899989",
+      "ar_scan_eligible": 0,
+      "areas": "",
+      "baseStats": {
+        "baseAttack": 95,
+        "baseDefense": 45,
+        "baseStamina": 128
+      },
+      "boost": "",
+      "boostWeatherEmojiKey": "",
+      "boostWeatherId": "",
+      "boostWeatherName": "",
+      "boosted": false,
+      "boostingWeatherEmojiKeys": [
+        "weather-rain"
+      ],
+      "boostingWeatherEmojis": "🌧",
+      "boostingWeatherIds": [
+        2
+      ],
+      "chargeMove": "Discharge",
+      "chargeMoveEmoji": "⚡",
+      "chargeMoveId": 35,
+      "chargeMoveName": "Discharge",
+      "chargeMoveNameEng": "Discharge",
+      "chargeMoveTypeEmojiKey": "type-electric",
+      "city": "Swale",
+      "color": "CC0000",
+      "costume": 0,
+      "country": "United Kingdom",
+      "countryCode": "GB",
+      "cp": 2087,
+      "dawnTime": false,
+      "disappearTime": "13:52:13",
+      "distime": "13:52:13",
+      "duskTime": false,
+      "emoji": [
+        "⚡"
+      ],
+      "emojiString": "⚡",
+      "end": 1775652733,
+      "evolution": 0,
+      "evolutions": [
+        {
+          "baseStats": {
+            "baseAttack": 147,
+            "baseDefense": 82,
+            "baseStamina": 155
+          },
+          "form": 3237,
+          "formName": "Normal",
+          "formNormalised": "",
+          "fullName": "Pawmo",
+          "id": 922,
+          "name": "Pawmo",
+          "typeEmojiKeys": [
+            "type-fighting",
+            "type-electric"
+          ],
+          "typeName": "Fighting, Electric"
+        },
+        {
+          "baseStats": {
+            "baseAttack": 232,
+            "baseDefense": 141,
+            "baseStamina": 172
+          },
+          "form": 3238,
+          "formName": "Normal",
+          "formNormalised": "",
+          "fullName": "Pawmot",
+          "id": 923,
+          "name": "Pawmot",
+          "typeEmojiKeys": [
+            "type-fighting",
+            "type-electric"
+          ],
+          "typeName": "Fighting, Electric"
+        }
+      ],
+      "ex_raid_eligible": 0,
+      "firstNotification": true,
+      "flag": "🇬🇧",
+      "form": 3236,
+      "formName": "Normal",
+      "formNameEng": "Normal",
+      "formNormalised": "",
+      "formNormalisedEng": "",
+      "formattedAddress": "Queen Elizabeth II Jubilee Centre, 23a, Whitstable Road, Kingsmead, Faversham, Swale, Kent, England, ME13 8BF, United Kingdom",
+      "formname": "Normal",
+      "fullName": "Pawmi",
+      "fullNameEng": "Pawmi",
+      "gameWeatherId": 0,
+      "gameWeatherName": "",
+      "gameweather": "",
+      "gender": 2,
+      "genderData": {
+        "emoji": "♀",
+        "name": "female"
+      },
+      "genderEmoji": "♀",
+      "genderEmojiKey": "gender-female",
+      "genderName": "female",
+      "genderNameEng": "female",
+      "generation": 9,
+      "generationName": "Paldea",
+      "generationNameEng": "Paldea",
+      "generationRoman": "IX",
+      "googleMapUrl": "https://maps.google.com/maps?q=51.313320,0.899989",
+      "gymColor": "CC0000",
+      "gymId": "5d981bcd9f2147d09fcf90d4779fa3fc.16",
+      "gymName": "QEII Jubilee Centre",
+      "gymUrl": "https://lh3.googleusercontent.com/Kg__1ZzDeyflefKKvjz6URWNVzpYlS6eR98u0czORuzO3PyJVqb_RsRYjLZrL7MgVwBSb67BfEqbhsrk1MjzbAteFQ",
+      "gym_id": "5d981bcd9f2147d09fcf90d4779fa3fc.16",
+      "gym_name": "QEII Jubilee Centre",
+      "gym_url": "https://lh3.googleusercontent.com/Kg__1ZzDeyflefKKvjz6URWNVzpYlS6eR98u0czORuzO3PyJVqb_RsRYjLZrL7MgVwBSb67BfEqbhsrk1MjzbAteFQ",
+      "hasEvolutions": true,
+      "hasMegaEvolutions": false,
+      "id": 921,
+      "imgUrl": "https://raw.githubusercontent.com/nileplumb/PkmnShuffleMap/master/UICONS/pokemon/921.png",
+      "is_exclusive": 0,
+      "latitude": 51.31332,
+      "level": 1,
+      "levelName": "Level 1",
+      "levelNameEng": "Level 1",
+      "longitude": 0.899989,
+      "mapurl": "https://maps.google.com/maps?q=51.313320,0.899989",
+      "matched": [],
+      "megaEvolutions": null,
+      "megaName": "Pawmi",
+      "move1": "Charge Beam",
+      "move1emoji": "⚡",
+      "move2": "Discharge",
+      "move2emoji": "⚡",
+      "move_1": 249,
+      "move_2": 35,
+      "name": "Pawmi",
+      "nameEng": "Pawmi",
+      "neighbourhood": "",
+      "nextHourTimestamp": 1775653200,
+      "nightTime": false,
+      "now": "2026-04-08T12:12:13Z",
+      "nowISO": "2026-04-08T12:12:13.348Z",
+      "partner_id": "",
+      "pokemonId": 921,
+      "pokemon_id": 921,
+      "power_up_end_timestamp": 0,
+      "power_up_level": 0,
+      "power_up_points": 30,
+      "quickMove": "Charge Beam",
+      "quickMoveEmoji": "⚡",
+      "quickMoveId": 249,
+      "quickMoveName": "Charge Beam",
+      "quickMoveNameEng": "Charge Beam",
+      "quickMoveTypeEmojiKey": "type-electric",
+      "raid_seed": "-8090049803415799718",
+      "reactMapUrl": "https://canterburypokemon.com/id/gyms/5d981bcd9f2147d09fcf90d4779fa3fc.16",
+      "rsvps": null,
+      "shinyPossible": false,
+      "spawn": 1775472079,
+      "sponsor_id": 0,
+      "start": 1775650933,
+      "state": "England",
+      "stickerUrl": "https://raw.githubusercontent.com/bbdoc/tgUICONS/main/Shuffle/pokemon/921.webp",
+      "streetName": "Whitstable Road",
+      "streetNumber": "23a",
+      "suburb": "Kingsmead",
+      "teamColor": "CC0000",
+      "teamEmoji": "🔴",
+      "teamEmojiKey": "team-valor",
+      "teamId": 2,
+      "teamName": "Valor",
+      "teamNameEng": "Valor",
+      "team_id": 2,
+      "time": "13:52:13",
+      "tth": {
+        "days": 0,
+        "hours": 0,
+        "minutes": 40,
+        "seconds": 0,
+        "firstDateWasLater": false
+      },
+      "tthd": 0,
+      "tthh": 0,
+      "tthm": 40,
+      "tths": 0,
+      "typeEmoji": "⚡",
+      "typeEmojiKeys": [
+        "type-electric"
+      ],
+      "typeName": "Electric",
+      "typeNameEng": [
+        "Electric"
+      ],
+      "types": [
+        13
+      ],
+      "wazeMapUrl": "https://www.waze.com/ul?ll=51.313320,0.899989&navigate=yes&zoom=17",
+      "weaknessList": [
+        {
+          "typeEmoji": "⛰️",
+          "typeEmojiKeys": [
+            "type-ground"
+          ],
+          "typeName": "Ground",
+          "types": [
+            {
+              "emoji": "⛰️",
+              "emojiKey": "type-ground",
+              "name": "Ground",
+              "typeId": 5
+            }
+          ],
+          "value": 2
+        },
+        {
+          "typeEmoji": "🐦🔩⚡",
+          "typeEmojiKeys": [
+            "type-flying",
+            "type-steel",
+            "type-electric"
+          ],
+          "typeName": "Flying, Steel, Electric",
+          "types": [
+            {
+              "emoji": "🐦",
+              "emojiKey": "type-flying",
+              "name": "Flying",
+              "typeId": 3
+            },
+            {
+              "emoji": "🔩",
+              "emojiKey": "type-steel",
+              "name": "Steel",
+              "typeId": 9
+            },
+            {
+              "emoji": "⚡",
+              "emojiKey": "type-electric",
+              "name": "Electric",
+              "typeId": 13
+            }
+          ],
+          "value": 0.5
+        }
+      ],
+      "weatherChangeTime": "13:00:00",
+      "weatherForecastCurrent": 0,
+      "weatherForecastNext": 0,
+      "zipcode": "ME13 8BF"
+    },
+    "egg5": {
+      "addr": "Neptune's Arm",
+      "alignment": 0,
+      "appleMapUrl": "https://maps.apple.com/place?coordinate=51.373111,1.127138",
+      "applemap": "https://maps.apple.com/place?coordinate=51.373111,1.127138",
+      "ar_scan_eligible": 1,
+      "areas": "",
+      "city": "Canterbury",
+      "color": "3B4CCA",
+      "costume": 0,
+      "country": "United Kingdom",
+      "countryCode": "GB",
+      "cp": 0,
+      "dawnTime": false,
+      "disappearTime": "13:52:13",
+      "distime": "13:52:13",
+      "duskTime": false,
+      "end": 1775652733,
+      "evolution": 0,
+      "ex_raid_eligible": 0,
+      "firstNotification": true,
+      "flag": "🇬🇧",
+      "form": 0,
+      "formattedAddress": "Neptune Car Park, Neptune's Arm, Mickleburgh Hill, Canterbury, Kent, England, CT6 5JG, United Kingdom",
+      "gameWeatherId": 0,
+      "gameWeatherName": "",
+      "gameweather": "",
+      "gender": 0,
+      "googleMapUrl": "https://maps.google.com/maps?q=51.373111,1.127138",
+      "gymColor": "3B4CCA",
+      "gymId": "5c83c3d615e841bebfbcd613a80fac6f.16",
+      "gymName": "Land Calendar",
+      "gymUrl": "https://lh3.googleusercontent.com/GUoWG5Iud_QpgGuSl_Hqg7R7En3JJT0TwH49gYssgladPngb_800cue6N5xDjEqSpPmV2qzBdeDrfMSnI2EtYYKmeUw",
+      "gym_id": "5c83c3d615e841bebfbcd613a80fac6f.16",
+      "gym_name": "Land Calendar",
+      "gym_url": "https://lh3.googleusercontent.com/GUoWG5Iud_QpgGuSl_Hqg7R7En3JJT0TwH49gYssgladPngb_800cue6N5xDjEqSpPmV2qzBdeDrfMSnI2EtYYKmeUw",
+      "hatchTime": "13:22:13",
+      "hatchtime": "13:22:13",
+      "id": 0,
+      "imgUrl": "https://raw.githubusercontent.com/nileplumb/PkmnShuffleMap/master/UICONS/raid/egg/5.png",
+      "is_exclusive": 0,
+      "latitude": 51.373111,
+      "level": 5,
+      "levelName": "Legendary",
+      "levelNameEng": "Legendary",
+      "longitude": 1.127138,
+      "mapurl": "https://maps.google.com/maps?q=51.373111,1.127138",
+      "matched": [],
+      "move_1": 0,
+      "move_2": 0,
+      "neighbourhood": "",
+      "nightTime": false,
+      "now": "2026-04-08T12:12:13Z",
+      "nowISO": "2026-04-08T12:12:13.349Z",
+      "partner_id": "",
+      "pokemon_id": 0,
+      "power_up_end_timestamp": 0,
+      "power_up_level": 0,
+      "power_up_points": 10,
+      "raid_seed": "-7672612232807600451",
+      "reactMapUrl": "https://canterburypokemon.com/id/gyms/5c83c3d615e841bebfbcd613a80fac6f.16",
+      "rsvps": null,
+      "spawn": 1775475262,
+      "sponsor_id": 0,
+      "start": 1775650933,
+      "state": "England",
+      "stickerUrl": "https://raw.githubusercontent.com/bbdoc/tgUICONS/main/Shuffle/raid/egg/5.webp",
+      "streetName": "Neptune's Arm",
+      "streetNumber": "",
+      "suburb": "Mickleburgh Hill",
+      "teamColor": "3B4CCA",
+      "teamEmoji": "🔵",
+      "teamEmojiKey": "team-mystic",
+      "teamId": 1,
+      "teamName": "Mystic",
+      "teamNameEng": "Mystic",
+      "team_id": 1,
+      "time": "13:52:13",
+      "tth": {
+        "days": 0,
+        "hours": 0,
+        "minutes": 10,
+        "seconds": 0,
+        "firstDateWasLater": false
+      },
+      "tthd": 0,
+      "tthh": 0,
+      "tthm": 10,
+      "tths": 0,
+      "wazeMapUrl": "https://www.waze.com/ul?ll=51.373111,1.127138&navigate=yes&zoom=17",
+      "zipcode": "CT6 5JG"
+    },
+    "level5": {
+      "addr": "{Wye Road}",
+      "alignment": 0,
+      "appleMapUrl": "https://maps.apple.com/place?coordinate=51.189153,0.892118",
+      "applemap": "https://maps.apple.com/place?coordinate=51.189153,0.892118",
+      "ar_scan_eligible": 0,
+      "areas": "",
+      "baseStats": {
+        "baseAttack": 202,
+        "baseDefense": 101,
+        "baseStamina": 400
+      },
+      "boost": "",
+      "boostWeatherEmojiKey": "",
+      "boostWeatherId": "",
+      "boostWeatherName": "",
+      "boosted": false,
+      "boostingWeatherEmojiKeys": [
+        "weather-windy"
+      ],
+      "boostingWeatherEmojis": "🪁",
+      "boostingWeatherIds": [
+        5
+      ],
+      "chargeMove": "Dragon Pulse",
+      "chargeMoveEmoji": "🐲",
+      "chargeMoveId": 82,
+      "chargeMoveName": "Dragon Pulse",
+      "chargeMoveNameEng": "Dragon Pulse",
+      "chargeMoveTypeEmojiKey": "type-dragon",
+      "city": "Ashford",
+      "color": "3B4CCA",
+      "costume": 0,
+      "country": "United Kingdom",
+      "countryCode": "GB",
+      "cp": 28624,
+      "dawnTime": false,
+      "disappearTime": "13:52:13",
+      "distime": "13:52:13",
+      "duskTime": false,
+      "emoji": [
+        "🐲"
+      ],
+      "emojiString": "🐲",
+      "end": 1775652733,
+      "evolution": 0,
+      "evolutions": null,
+      "ex_raid_eligible": 0,
+      "firstNotification": true,
+      "flag": "🇬🇧",
+      "form": 3215,
+      "formName": "Normal",
+      "formNameEng": "Normal",
+      "formNormalised": "",
+      "formNormalisedEng": "",
+      "formattedAddress": "The Flying Horse, Wye Road, Boughton Aluph, Boughton Lees, Ashford, Kent, England, TN25 4HH, United Kingdom",
+      "formname": "Normal",
+      "fullName": "Regidrago",
+      "fullNameEng": "Regidrago",
+      "gameWeatherId": 0,
+      "gameWeatherName": "",
+      "gameweather": "",
+      "gender": 3,
+      "genderData": {
+        "emoji": "⚧",
+        "name": "genderless"
+      },
+      "genderEmoji": "⚧",
+      "genderEmojiKey": "gender-none",
+      "genderName": "genderless",
+      "genderNameEng": "genderless",
+      "generation": 8,
+      "generationName": "Galar",
+      "generationNameEng": "Galar",
+      "generationRoman": "VIII",
+      "googleMapUrl": "https://maps.google.com/maps?q=51.189153,0.892118",
+      "gymColor": "3B4CCA",
+      "gymId": "b9504875a7954218900e3e0c74e3c068.16",
+      "gymName": "100th Anniversary Of The First World War",
+      "gymUrl": "https://lh3.googleusercontent.com/G_JAaxOS90g-hVniIQuF9Tr5H1IIsrh_G3PDQI5Tm560YsKCu6u9V5UucRTr6vZnDgkANFp2QYvw_7ZF-2XA-Lgo9A",
+      "gym_id": "b9504875a7954218900e3e0c74e3c068.16",
+      "gym_name": "100th Anniversary Of The First World War",
+      "gym_url": "https://lh3.googleusercontent.com/G_JAaxOS90g-hVniIQuF9Tr5H1IIsrh_G3PDQI5Tm560YsKCu6u9V5UucRTr6vZnDgkANFp2QYvw_7ZF-2XA-Lgo9A",
+      "hasEvolutions": false,
+      "hasMegaEvolutions": false,
+      "id": 895,
+      "imgUrl": "https://raw.githubusercontent.com/nileplumb/PkmnShuffleMap/master/UICONS/pokemon/895.png",
+      "is_exclusive": 0,
+      "latitude": 51.189153,
+      "level": 5,
+      "levelName": "Legendary",
+      "levelNameEng": "Legendary",
+      "longitude": 0.892118,
+      "mapurl": "https://maps.google.com/maps?q=51.189153,0.892118",
+      "matched": [],
+      "megaEvolutions": null,
+      "megaName": "Regidrago",
+      "move1": "Bite",
+      "move1emoji": "🌑",
+      "move2": "Dragon Pulse",
+      "move2emoji": "🐲",
+      "move_1": 202,
+      "move_2": 82,
+      "name": "Regidrago",
+      "nameEng": "Regidrago",
+      "neighbourhood": "",
+      "nextHourTimestamp": 1775653200,
+      "nightTime": false,
+      "now": "2026-04-08T12:12:13Z",
+      "nowISO": "2026-04-08T12:12:13.350Z",
+      "partner_id": "",
+      "pokemonId": 895,
+      "pokemon_id": 895,
+      "power_up_end_timestamp": 0,
+      "power_up_level": 0,
+      "power_up_points": 10,
+      "quickMove": "Bite",
+      "quickMoveEmoji": "🌑",
+      "quickMoveId": 202,
+      "quickMoveName": "Bite",
+      "quickMoveNameEng": "Bite",
+      "quickMoveTypeEmojiKey": "type-dark",
+      "raid_seed": "5845571837887094592",
+      "reactMapUrl": "https://canterburypokemon.com/id/gyms/b9504875a7954218900e3e0c74e3c068.16",
+      "rsvps": null,
+      "shinyPossible": false,
+      "spawn": 1775471928,
+      "sponsor_id": 0,
+      "start": 1775650933,
+      "state": "England",
+      "stickerUrl": "https://raw.githubusercontent.com/bbdoc/tgUICONS/main/Shuffle/pokemon/895.webp",
+      "streetName": "Wye Road",
+      "streetNumber": "",
+      "suburb": "Boughton Aluph",
+      "teamColor": "3B4CCA",
+      "teamEmoji": "🔵",
+      "teamEmojiKey": "team-mystic",
+      "teamId": 1,
+      "teamName": "Mystic",
+      "teamNameEng": "Mystic",
+      "team_id": 1,
+      "time": "13:52:13",
+      "tth": {
+        "days": 0,
+        "hours": 0,
+        "minutes": 40,
+        "seconds": 0,
+        "firstDateWasLater": false
+      },
+      "tthd": 0,
+      "tthh": 0,
+      "tthm": 40,
+      "tths": 0,
+      "typeEmoji": "🐲",
+      "typeEmojiKeys": [
+        "type-dragon"
+      ],
+      "typeName": "Dragon",
+      "typeNameEng": [
+        "Dragon"
+      ],
+      "types": [
+        16
+      ],
+      "wazeMapUrl": "https://www.waze.com/ul?ll=51.189153,0.892118&navigate=yes&zoom=17",
+      "weaknessList": [
+        {
+          "typeEmoji": "❄🐲🦋",
+          "typeEmojiKeys": [
+            "type-ice",
+            "type-dragon",
+            "type-fairy"
+          ],
+          "typeName": "Ice, Dragon, Fairy",
+          "types": [
+            {
+              "emoji": "❄",
+              "emojiKey": "type-ice",
+              "name": "Ice",
+              "typeId": 15
+            },
+            {
+              "emoji": "🐲",
+              "emojiKey": "type-dragon",
+              "name": "Dragon",
+              "typeId": 16
+            },
+            {
+              "emoji": "🦋",
+              "emojiKey": "type-fairy",
+              "name": "Fairy",
+              "typeId": 18
+            }
+          ],
+          "value": 2
+        },
+        {
+          "typeEmoji": "🔥💧🌿⚡",
+          "typeEmojiKeys": [
+            "type-fire",
+            "type-water",
+            "type-grass",
+            "type-electric"
+          ],
+          "typeName": "Fire, Water, Grass, Electric",
+          "types": [
+            {
+              "emoji": "🔥",
+              "emojiKey": "type-fire",
+              "name": "Fire",
+              "typeId": 10
+            },
+            {
+              "emoji": "💧",
+              "emojiKey": "type-water",
+              "name": "Water",
+              "typeId": 11
+            },
+            {
+              "emoji": "🌿",
+              "emojiKey": "type-grass",
+              "name": "Grass",
+              "typeId": 12
+            },
+            {
+              "emoji": "⚡",
+              "emojiKey": "type-electric",
+              "name": "Electric",
+              "typeId": 13
+            }
+          ],
+          "value": 0.5
+        }
+      ],
+      "weatherChangeTime": "13:00:00",
+      "weatherForecastCurrent": 0,
+      "weatherForecastNext": 0,
+      "zipcode": "TN25 4HH"
+    },
+    "egg6": {
+      "addr": "Iffin Lane",
+      "alignment": 0,
+      "appleMapUrl": "https://maps.apple.com/place?coordinate=51.242711,1.065068",
+      "applemap": "https://maps.apple.com/place?coordinate=51.242711,1.065068",
+      "ar_scan_eligible": 0,
+      "areas": "",
+      "city": "Canterbury",
+      "color": "FFDE00",
+      "costume": 0,
+      "country": "United Kingdom",
+      "countryCode": "GB",
+      "cp": 0,
+      "dawnTime": false,
+      "disappearTime": "13:52:13",
+      "distime": "13:52:13",
+      "duskTime": false,
+      "end": 1775652733,
+      "evolution": 0,
+      "ex_raid_eligible": 0,
+      "firstNotification": true,
+      "flag": "🇬🇧",
+      "form": 0,
+      "formattedAddress": "Iffin Lane, Lower Hardres and Nackington, Canterbury, Kent, England, CT4 5QN, United Kingdom",
+      "gameWeatherId": 0,
+      "gameWeatherName": "",
+      "gameweather": "",
+      "gender": 0,
+      "googleMapUrl": "https://maps.google.com/maps?q=51.242711,1.065068",
+      "gymColor": "FFDE00",
+      "gymId": "2afb8516217a34cc9da56466d9ef28f3.16",
+      "gymName": "The Canterbury Rings ‘Outer Ring’ Trail Marker",
+      "gymUrl": "https://lh3.googleusercontent.com/2rtGwlhFHSuOeTv2RvLsc2VSqsInPUw5RSYGHfG2i9c1eS8ZGEnQia623wjhV1rMbQzh2YFckjP-e-P7lCBQvOJCFq1THczwaUzYJPEKag",
+      "gym_id": "2afb8516217a34cc9da56466d9ef28f3.16",
+      "gym_name": "The Canterbury Rings ‘Outer Ring’ Trail Marker",
+      "gym_url": "https://lh3.googleusercontent.com/2rtGwlhFHSuOeTv2RvLsc2VSqsInPUw5RSYGHfG2i9c1eS8ZGEnQia623wjhV1rMbQzh2YFckjP-e-P7lCBQvOJCFq1THczwaUzYJPEKag",
+      "hatchTime": "13:22:13",
+      "hatchtime": "13:22:13",
+      "id": 0,
+      "imgUrl": "https://raw.githubusercontent.com/nileplumb/PkmnShuffleMap/master/UICONS/raid/egg/6.png",
+      "is_exclusive": 0,
+      "latitude": 51.242711,
+      "level": 6,
+      "levelName": "Mega",
+      "levelNameEng": "Mega",
+      "longitude": 1.065068,
+      "mapurl": "https://maps.google.com/maps?q=51.242711,1.065068",
+      "matched": [],
+      "move_1": 0,
+      "move_2": 0,
+      "neighbourhood": "",
+      "nightTime": false,
+      "now": "2026-04-08T12:12:13Z",
+      "nowISO": "2026-04-08T12:12:13.350Z",
+      "partner_id": "",
+      "pokemon_id": 0,
+      "power_up_end_timestamp": 0,
+      "power_up_level": 0,
+      "power_up_points": 0,
+      "raid_seed": "-7815511330568092945",
+      "reactMapUrl": "https://canterburypokemon.com/id/gyms/2afb8516217a34cc9da56466d9ef28f3.16",
+      "rsvps": null,
+      "spawn": 1775475014,
+      "sponsor_id": 0,
+      "start": 1775650933,
+      "state": "England",
+      "stickerUrl": "https://raw.githubusercontent.com/bbdoc/tgUICONS/main/Shuffle/raid/egg/6.webp",
+      "streetName": "Iffin Lane",
+      "streetNumber": "",
+      "suburb": "Lower Hardres and Nackington",
+      "teamColor": "FFDE00",
+      "teamEmoji": "🟡",
+      "teamEmojiKey": "team-instinct",
+      "teamId": 3,
+      "teamName": "Instinct",
+      "teamNameEng": "Instinct",
+      "team_id": 3,
+      "time": "13:52:13",
+      "tth": {
+        "days": 0,
+        "hours": 0,
+        "minutes": 10,
+        "seconds": 0,
+        "firstDateWasLater": false
+      },
+      "tthd": 0,
+      "tthh": 0,
+      "tthm": 10,
+      "tths": 0,
+      "wazeMapUrl": "https://www.waze.com/ul?ll=51.242711,1.065068&navigate=yes&zoom=17",
+      "zipcode": "CT4 5QN"
+    },
+    "level3": {
+      "addr": "Abbey Fields",
+      "alignment": 0,
+      "appleMapUrl": "https://maps.apple.com/place?coordinate=51.325332,0.908748",
+      "applemap": "https://maps.apple.com/place?coordinate=51.325332,0.908748",
+      "ar_scan_eligible": 1,
+      "areas": "",
+      "baseStats": {
+        "baseAttack": 112,
+        "baseDefense": 152,
+        "baseStamina": 225
+      },
+      "boost": "",
+      "boostWeatherEmojiKey": "",
+      "boostWeatherId": "",
+      "boostWeatherName": "",
+      "boosted": false,
+      "boostingWeatherEmojiKeys": [
+        "weather-rain",
+        "weather-cloudy"
+      ],
+      "boostingWeatherEmojis": "🌧☁",
+      "boostingWeatherIds": [
+        2,
+        4
+      ],
+      "chargeMove": "Hydro Pump",
+      "chargeMoveEmoji": "💧",
+      "chargeMoveId": 107,
+      "chargeMoveName": "Hydro Pump",
+      "chargeMoveNameEng": "Hydro Pump",
+      "chargeMoveTypeEmojiKey": "type-water",
+      "city": "Swale",
+      "color": "CC0000",
+      "costume": 0,
+      "country": "United Kingdom",
+      "countryCode": "GB",
+      "cp": 9847,
+      "dawnTime": false,
+      "disappearTime": "13:52:13",
+      "distime": "13:52:13",
+      "duskTime": false,
+      "emoji": [
+        "💧",
+        "🦋"
+      ],
+      "emojiString": "💧🦋",
+      "end": 1775652733,
+      "evolution": 0,
+      "evolutions": null,
+      "ex_raid_eligible": 0,
+      "firstNotification": true,
+      "flag": "🇬🇧",
+      "form": 1199,
+      "formName": "Normal",
+      "formNameEng": "Normal",
+      "formNormalised": "",
+      "formNormalisedEng": "",
+      "formattedAddress": "Abbey Fields, Graveney with Goodnestone, Swale, Kent, England, ME13 8HX, United Kingdom",
+      "formname": "Normal",
+      "fullName": "Azumarill",
+      "fullNameEng": "Azumarill",
+      "gameWeatherId": 0,
+      "gameWeatherName": "",
+      "gameweather": "",
+      "gender": 2,
+      "genderData": {
+        "emoji": "♀",
+        "name": "female"
+      },
+      "genderEmoji": "♀",
+      "genderEmojiKey": "gender-female",
+      "genderName": "female",
+      "genderNameEng": "female",
+      "generation": 2,
+      "generationName": "Johto",
+      "generationNameEng": "Johto",
+      "generationRoman": "II",
+      "googleMapUrl": "https://maps.google.com/maps?q=51.325332,0.908748",
+      "gymColor": "CC0000",
+      "gymId": "1b9c2ea8d03748fdbc7fa72c6a157725.16",
+      "gymName": "Saxon Shore Way Trail Marker - Gate",
+      "gymUrl": "https://lh3.googleusercontent.com/pSfYVusq5SXk9gD2lq0RI5eV7WMBBor3i9KHXSpRvGuEtIVlD_-3RqUoJ261yS7uKPMY-yAInQ4UDJzMxmKJbnnwUiM",
+      "gym_id": "1b9c2ea8d03748fdbc7fa72c6a157725.16",
+      "gym_name": "Saxon Shore Way Trail Marker - Gate",
+      "gym_url": "https://lh3.googleusercontent.com/pSfYVusq5SXk9gD2lq0RI5eV7WMBBor3i9KHXSpRvGuEtIVlD_-3RqUoJ261yS7uKPMY-yAInQ4UDJzMxmKJbnnwUiM",
+      "hasEvolutions": false,
+      "hasMegaEvolutions": false,
+      "id": 184,
+      "imgUrl": "https://raw.githubusercontent.com/nileplumb/PkmnShuffleMap/master/UICONS/pokemon/184.png",
+      "is_exclusive": 0,
+      "latitude": 51.325332,
+      "level": 3,
+      "levelName": "Level 3",
+      "levelNameEng": "Level 3",
+      "longitude": 0.908748,
+      "mapurl": "https://maps.google.com/maps?q=51.325332,0.908748",
+      "matched": [],
+      "megaEvolutions": null,
+      "megaName": "Azumarill",
+      "move1": "Bubble",
+      "move1emoji": "💧",
+      "move2": "Hydro Pump",
+      "move2emoji": "💧",
+      "move_1": 237,
+      "move_2": 107,
+      "name": "Azumarill",
+      "nameEng": "Azumarill",
+      "neighbourhood": "",
+      "nextHourTimestamp": 1775653200,
+      "nightTime": false,
+      "now": "2026-04-08T12:12:13Z",
+      "nowISO": "2026-04-08T12:12:13.351Z",
+      "partner_id": "",
+      "pokemonId": 184,
+      "pokemon_id": 184,
+      "power_up_end_timestamp": 0,
+      "power_up_level": 0,
+      "power_up_points": 10,
+      "quickMove": "Bubble",
+      "quickMoveEmoji": "💧",
+      "quickMoveId": 237,
+      "quickMoveName": "Bubble",
+      "quickMoveNameEng": "Bubble",
+      "quickMoveTypeEmojiKey": "type-water",
+      "raid_seed": "-538834519515995506",
+      "reactMapUrl": "https://canterburypokemon.com/id/gyms/1b9c2ea8d03748fdbc7fa72c6a157725.16",
+      "rsvps": null,
+      "shinyPossible": false,
+      "spawn": 1775471989,
+      "sponsor_id": 0,
+      "start": 1775650933,
+      "state": "England",
+      "stickerUrl": "https://raw.githubusercontent.com/bbdoc/tgUICONS/main/Shuffle/pokemon/184.webp",
+      "streetName": "Abbey Fields",
+      "streetNumber": "",
+      "suburb": "Graveney with Goodnestone",
+      "teamColor": "CC0000",
+      "teamEmoji": "🔴",
+      "teamEmojiKey": "team-valor",
+      "teamId": 2,
+      "teamName": "Valor",
+      "teamNameEng": "Valor",
+      "team_id": 2,
+      "time": "13:52:13",
+      "tth": {
+        "days": 0,
+        "hours": 0,
+        "minutes": 40,
+        "seconds": 0,
+        "firstDateWasLater": false
+      },
+      "tthd": 0,
+      "tthh": 0,
+      "tthm": 40,
+      "tths": 0,
+      "typeEmoji": "💧🦋",
+      "typeEmojiKeys": [
+        "type-water",
+        "type-fairy"
+      ],
+      "typeName": "Water, Fairy",
+      "typeNameEng": [
+        "Water",
+        "Fairy"
+      ],
+      "types": [
+        11,
+        18
+      ],
+      "wazeMapUrl": "https://www.waze.com/ul?ll=51.325332,0.908748&navigate=yes&zoom=17",
+      "weaknessList": [
+        {
+          "typeEmoji": "🌿⚡☠",
+          "typeEmojiKeys": [
+            "type-grass",
+            "type-electric",
+            "type-poison"
+          ],
+          "typeName": "Grass, Electric, Poison",
+          "types": [
+            {
+              "emoji": "🌿",
+              "emojiKey": "type-grass",
+              "name": "Grass",
+              "typeId": 12
+            },
+            {
+              "emoji": "⚡",
+              "emojiKey": "type-electric",
+              "name": "Electric",
+              "typeId": 13
+            },
+            {
+              "emoji": "☠",
+              "emojiKey": "type-poison",
+              "name": "Poison",
+              "typeId": 4
+            }
+          ],
+          "value": 2
+        },
+        {
+          "typeEmoji": "👊🐛🔥💧❄🌑",
+          "typeEmojiKeys": [
+            "type-fighting",
+            "type-bug",
+            "type-fire",
+            "type-water",
+            "type-ice",
+            "type-dark"
+          ],
+          "typeName": "Fighting, Bug, Fire, Water, Ice, Dark",
+          "types": [
+            {
+              "emoji": "👊",
+              "emojiKey": "type-fighting",
+              "name": "Fighting",
+              "typeId": 2
+            },
+            {
+              "emoji": "🐛",
+              "emojiKey": "type-bug",
+              "name": "Bug",
+              "typeId": 7
+            },
+            {
+              "emoji": "🔥",
+              "emojiKey": "type-fire",
+              "name": "Fire",
+              "typeId": 10
+            },
+            {
+              "emoji": "💧",
+              "emojiKey": "type-water",
+              "name": "Water",
+              "typeId": 11
+            },
+            {
+              "emoji": "❄",
+              "emojiKey": "type-ice",
+              "name": "Ice",
+              "typeId": 15
+            },
+            {
+              "emoji": "🌑",
+              "emojiKey": "type-dark",
+              "name": "Dark",
+              "typeId": 17
+            }
+          ],
+          "value": 0.5
+        },
+        {
+          "typeEmoji": "🐲",
+          "typeEmojiKeys": [
+            "type-dragon"
+          ],
+          "typeName": "Dragon",
+          "types": [
+            {
+              "emoji": "🐲",
+              "emojiKey": "type-dragon",
+              "name": "Dragon",
+              "typeId": 16
+            }
+          ],
+          "value": 0.25
+        }
+      ],
+      "weatherChangeTime": "13:00:00",
+      "weatherForecastCurrent": 0,
+      "weatherForecastNext": 0,
+      "zipcode": "ME13 8HX"
+    }
+  },
+  "invasion": {
+    "invasion": {
+      "addr": "Reculver Lane",
+      "appleMapUrl": "https://maps.apple.com/place?coordinate=51.378723,1.196883",
+      "applemap": "https://maps.apple.com/place?coordinate=51.378723,1.196883",
+      "areas": "",
+      "character": 20,
+      "city": "Herne Bay",
+      "confirmed": false,
+      "country": "United Kingdom",
+      "countryCode": "GB",
+      "dawnTime": false,
+      "disappearTime": "12:59:36",
+      "displayTypeId": 1,
+      "display_type": 1,
+      "distime": "12:59:36",
+      "duskTime": false,
+      "enabled": true,
+      "expiration": 1775476776,
+      "flag": "🇬🇧",
+      "formattedAddress": "Reculver Visitor Centre, Reculver Lane, Blue Dolphin Park, Reculver, Hillborough, Herne Bay, Kent, England, CT6 6SS, United Kingdom",
+      "gameWeatherId": 0,
+      "gameWeatherName": "",
+      "gameweather": "",
+      "gender": 2,
+      "genderData": {
+        "emoji": "♀",
+        "name": "female"
+      },
+      "genderEmoji": "♀",
+      "genderEmojiKey": "gender-female",
+      "genderName": "female",
+      "genderNameEng": "female",
+      "googleMapUrl": "https://maps.google.com/maps?q=51.378723,1.196883",
+      "gruntGender": 2,
+      "gruntName": "Grunt",
+      "gruntRewardIDs": [
+        {
+          "form": 1532,
+          "pokemon_id": 333
+        },
+        {
+          "form": 962,
+          "pokemon_id": 16
+        },
+        {
+          "form": 1400,
+          "pokemon_id": 276
+        }
+      ],
+      "gruntRewards": "85%: Swablu, Pidgey, Taillow\\n15%: Zubat, Gligar, Scyther",
+      "gruntRewardsList": {
+        "first": {
+          "chance": 85,
+          "monsters": [
+            {
+              "formId": 1532,
+              "formName": "Normal",
+              "fullName": "Swablu",
+              "id": 333,
+              "name": "Swablu"
+            },
+            {
+              "formId": 962,
+              "formName": "Normal",
+              "fullName": "Pidgey",
+              "id": 16,
+              "name": "Pidgey"
+            },
+            {
+              "formId": 1400,
+              "formName": "Normal",
+              "fullName": "Taillow",
+              "id": 276,
+              "name": "Taillow"
+            }
+          ]
+        },
+        "second": {
+          "chance": 15,
+          "monsters": [
+            {
+              "formId": 157,
+              "formName": "Normal",
+              "fullName": "Zubat",
+              "id": 41,
+              "name": "Zubat"
+            },
+            {
+              "formId": 803,
+              "formName": "Normal",
+              "fullName": "Gligar",
+              "id": 207,
+              "name": "Gligar"
+            },
+            {
+              "formId": 247,
+              "formName": "Normal",
+              "fullName": "Scyther",
+              "id": 123,
+              "name": "Scyther"
+            }
+          ]
+        }
+      },
+      "gruntType": "Flying",
+      "gruntTypeColor": "A890F0",
+      "gruntTypeEmoji": "🐦",
+      "gruntTypeEmojiKey": "type-flying",
+      "gruntTypeID": 3,
+      "gruntTypeId": 20,
+      "gruntTypeName": "Flying",
+      "grunt_type": 20,
+      "id": "4469227166437465786",
+      "imgUrl": "https://raw.githubusercontent.com/nileplumb/PkmnShuffleMap/master/UICONS/invasion/20.png",
+      "incidentExpiration": 1775476776,
+      "incident_expire_timestamp": 1775476776,
+      "latitude": 51.378723,
+      "lineup": null,
+      "longitude": 1.196883,
+      "mapurl": "https://maps.google.com/maps?q=51.378723,1.196883",
+      "matched": [],
+      "name": "Oyster Bay Trail, Reculver Towers",
+      "neighbourhood": "",
+      "nightTime": false,
+      "now": "2026-04-08T12:12:13Z",
+      "nowISO": "2026-04-08T12:12:13.353Z",
+      "pokestopName": "Oyster Bay Trail, Reculver Towers",
+      "pokestopUrl": "https://raw.githubusercontent.com/jfberry/PoracleNG/images/fallback/pokestop.png",
+      "pokestop_id": "5076221385b435ce9aea676f62568cfb.16",
+      "pokestop_name": "Oyster Bay Trail, Reculver Towers",
+      "pokestop_url": "https://raw.githubusercontent.com/jfberry/PoracleNG/images/fallback/pokestop.png",
+      "reactMapUrl": "https://canterburypokemon.com/id/pokestops/5076221385b435ce9aea676f62568cfb.16",
+      "start": 1775474976,
+      "state": "England",
+      "stickerUrl": "https://raw.githubusercontent.com/bbdoc/tgUICONS/main/Shuffle/invasion/20.webp",
+      "streetName": "Reculver Lane",
+      "streetNumber": "",
+      "style": 1,
+      "suburb": "",
+      "time": "12:59:36",
+      "tth": {
+        "days": 0,
+        "hours": 0,
+        "minutes": 0,
+        "seconds": 0,
+        "firstDateWasLater": true
+      },
+      "tthd": 0,
+      "tthh": 0,
+      "tthm": 0,
+      "tths": 0,
+      "updated": 1775475473,
+      "url": "https://lh3.googleusercontent.com/LTFTqjSJOXp_lMBP1Hbrk1FkjhJ1lQY6-dtiYQApgKipV2jxPK5WT4-WYOqs1B3u-VavJAi2sYs_e5fNa9Ys6JpCNgt734AZQhc0mKI",
+      "wazeMapUrl": "https://www.waze.com/ul?ll=51.378723,1.196883&navigate=yes&zoom=17",
+      "zipcode": "CT6 6SS"
+    },
+    "giovanni": {
+      "addr": "",
+      "appleMapUrl": "https://maps.apple.com/place?coordinate=51.279894,1.078755",
+      "applemap": "https://maps.apple.com/place?coordinate=51.279894,1.078755",
+      "areas": "",
+      "city": "Canterbury",
+      "country": "United Kingdom",
+      "countryCode": "GB",
+      "dawnTime": false,
+      "disappearTime": "13:22:13",
+      "displayTypeId": 0,
+      "distime": "13:22:13",
+      "duskTime": false,
+      "expiration": 1775650933,
+      "flag": "🇬🇧",
+      "formattedAddress": "The King's Mile, Canterbury, Kent, England, CT1 2JE, United Kingdom",
+      "gameWeatherId": 0,
+      "gameWeatherName": "",
+      "gameweather": "",
+      "gender": 0,
+      "genderEmojiKey": "",
+      "genderName": "",
+      "genderNameEng": "",
+      "googleMapUrl": "https://maps.google.com/maps?q=51.279894,1.078755",
+      "gruntGender": 0,
+      "gruntName": "Giovanni",
+      "gruntRewardIDs": [
+        {
+          "form": 65,
+          "pokemon_id": 53
+        }
+      ],
+      "gruntRewards": "85%: Persian\\n15%: Machamp, Kangaskhan, Rhyperior",
+      "gruntRewardsList": {
+        "first": {
+          "chance": 85,
+          "monsters": [
+            {
+              "formId": 65,
+              "formName": "Normal",
+              "fullName": "Persian",
+              "id": 53,
+              "name": "Persian"
+            }
+          ]
+        },
+        "second": {
+          "chance": 15,
+          "monsters": [
+            {
+              "formId": 815,
+              "formName": "Normal",
+              "fullName": "Machamp",
+              "id": 68,
+              "name": "Machamp"
+            },
+            {
+              "formId": 839,
+              "formName": "Normal",
+              "fullName": "Kangaskhan",
+              "id": 115,
+              "name": "Kangaskhan"
+            },
+            {
+              "formId": 852,
+              "formName": "Normal",
+              "fullName": "Rhyperior",
+              "id": 464,
+              "name": "Rhyperior"
+            }
+          ]
+        }
+      },
+      "gruntType": "Character_giovanni",
+      "gruntTypeID": 0,
+      "gruntTypeId": 44,
+      "gruntTypeName": "Character_giovanni",
+      "imgUrl": "https://raw.githubusercontent.com/nileplumb/PkmnShuffleMap/master/UICONS/invasion/44.png",
+      "incidentExpiration": 1775650933,
+      "incident_expiration": 1643580000,
+      "incident_expire_timestamp": 1775650933,
+      "incident_grunt_type": 44,
+      "incident_start": 1643522400,
+      "last_modified": 1643508636,
+      "latitude": 51.279894,
+      "longitude": 1.078755,
+      "mapurl": "https://maps.google.com/maps?q=51.279894,1.078755",
+      "matched": [],
+      "name": "Patisserie Valerie",
+      "neighbourhood": "",
+      "nightTime": false,
+      "now": "2026-04-08T12:12:13Z",
+      "nowISO": "2026-04-08T12:12:13.354Z",
+      "pokestopUrl": "https://raw.githubusercontent.com/jfberry/PoracleNG/images/fallback/pokestop.png",
+      "pokestop_id": "4a5d8d346e584faaa41bc1a8abe8055a.16",
+      "pokestop_url": "https://raw.githubusercontent.com/jfberry/PoracleNG/images/fallback/pokestop.png",
+      "reactMapUrl": "https://canterburypokemon.com/id/pokestops/4a5d8d346e584faaa41bc1a8abe8055a.16",
+      "state": "England",
+      "stickerUrl": "https://raw.githubusercontent.com/bbdoc/tgUICONS/main/Shuffle/invasion/44.webp",
+      "streetName": "",
+      "streetNumber": "",
+      "suburb": "The King's Mile",
+      "time": "13:22:13",
+      "tth": {
+        "days": 0,
+        "hours": 0,
+        "minutes": 10,
+        "seconds": 0,
+        "firstDateWasLater": false
+      },
+      "tthd": 0,
+      "tthh": 0,
+      "tthm": 10,
+      "tths": 0,
+      "updated": 1643529456,
+      "url": "http://lh3.googleusercontent.com/SEhpe0J4i_odlJxtpph2REtdoMTKYxWPhhZryDJdFBCuPUdBY0uw0yeYKK9Obbk79ziVdJkYzBA1hjqbQ7kqeO4W3eFt",
+      "wazeMapUrl": "https://www.waze.com/ul?ll=51.279894,1.078755&navigate=yes&zoom=17",
+      "zipcode": "CT1 2JE"
+    },
+    "kecleon": {
+      "addr": "Schönsteinstraße 63",
+      "appleMapUrl": "https://maps.apple.com/place?coordinate=50.953489,6.916805",
+      "applemap": "https://maps.apple.com/place?coordinate=50.953489,6.916805",
+      "areas": "",
+      "character": 0,
+      "city": "Köln",
+      "country": "Deutschland",
+      "countryCode": "DE",
+      "dawnTime": false,
+      "disappearTime": "19:45:44",
+      "displayTypeId": 8,
+      "display_type": 8,
+      "distime": "19:45:44",
+      "duskTime": false,
+      "enabled": true,
+      "expiration": 1674758744,
+      "flag": "🇩🇪",
+      "formattedAddress": "Sankt Franzikus-Hospital, 63, Schönsteinstraße, Ehrenfeld, Köln, Nordrhein-Westfalen, 50825, Deutschland",
+      "gameWeatherId": 0,
+      "gameWeatherName": "",
+      "gameweather": "",
+      "gender": 0,
+      "genderEmojiKey": "",
+      "genderName": "",
+      "genderNameEng": "",
+      "googleMapUrl": "https://maps.google.com/maps?q=50.953489,6.916805",
+      "gruntGender": 0,
+      "gruntName": "Kecleon",
+      "gruntType": "Kecleon",
+      "gruntTypeColor": "B3CA78",
+      "gruntTypeEmoji": "🦎",
+      "gruntTypeEmojiKey": "incident-kecleon",
+      "gruntTypeID": 0,
+      "gruntTypeId": 0,
+      "gruntTypeName": "Kecleon",
+      "grunt_type": 0,
+      "id": "7579096660076729259",
+      "imgUrl": "https://raw.githubusercontent.com/nileplumb/PkmnShuffleMap/master/UICONS/pokestop/0_i8.png",
+      "incidentExpiration": 1674758744,
+      "incident_expire_timestamp": 1674758744,
+      "latitude": 50.953489,
+      "longitude": 6.916805,
+      "mapurl": "https://maps.google.com/maps?q=50.953489,6.916805",
+      "matched": [],
+      "name": "Marienkapelle",
+      "neighbourhood": "",
+      "nightTime": false,
+      "now": "2026-04-08T12:12:13Z",
+      "nowISO": "2026-04-08T12:12:13.355Z",
+      "pokestopName": "Marienkapelle",
+      "pokestopUrl": "https://raw.githubusercontent.com/jfberry/PoracleNG/images/fallback/pokestop.png",
+      "pokestop_id": "644161293921391b8a68391071d27252.16",
+      "pokestop_name": "Marienkapelle",
+      "pokestop_url": "https://raw.githubusercontent.com/jfberry/PoracleNG/images/fallback/pokestop.png",
+      "reactMapUrl": "https://canterburypokemon.com/id/pokestops/644161293921391b8a68391071d27252.16",
+      "start": 1674755144,
+      "state": "Nordrhein-Westfalen",
+      "stickerUrl": "https://raw.githubusercontent.com/bbdoc/tgUICONS/main/Shuffle/pokestop/0_i8.webp",
+      "streetName": "Schönsteinstraße",
+      "streetNumber": "63",
+      "style": 0,
+      "suburb": "Ehrenfeld",
+      "time": "19:45:44",
+      "tth": {
+        "days": 0,
+        "hours": 0,
+        "minutes": 0,
+        "seconds": 0,
+        "firstDateWasLater": true
+      },
+      "tthd": 0,
+      "tthh": 0,
+      "tthm": 0,
+      "tths": 0,
+      "updated": 1674755151,
+      "url": "http://lh3.googleusercontent.com/PkVozyduG3t4sUEA4M9DVxLbeK0d3Xc-QiM47EGfhzudc_WUdtJFHT9AZGohOF6pB4ZBPavvrj3khyR9OA3FjKbLTxZgJfE1u_c1E5nm",
+      "wazeMapUrl": "https://www.waze.com/ul?ll=50.953489,6.916805&navigate=yes&zoom=17",
+      "zipcode": "50825"
+    },
+    "goldstop": {
+      "addr": "Bachemer Straße 125",
+      "appleMapUrl": "https://maps.apple.com/place?coordinate=50.927246,6.913019",
+      "applemap": "https://maps.apple.com/place?coordinate=50.927246,6.913019",
+      "areas": "",
+      "character": 0,
+      "city": "Köln",
+      "country": "Deutschland",
+      "countryCode": "DE",
+      "dawnTime": false,
+      "disappearTime": "15:58:52",
+      "displayTypeId": 7,
+      "display_type": 7,
+      "distime": "15:58:52",
+      "duskTime": false,
+      "enabled": true,
+      "expiration": 1675436332,
+      "flag": "🇩🇪",
+      "formattedAddress": "125, Bachemer Straße, Lindenthal, Köln, Nordrhein-Westfalen, 50931, Deutschland",
+      "gameWeatherId": 0,
+      "gameWeatherName": "",
+      "gameweather": "",
+      "gender": 0,
+      "genderEmojiKey": "",
+      "genderName": "",
+      "genderNameEng": "",
+      "googleMapUrl": "https://maps.google.com/maps?q=50.927246,6.913019",
+      "gruntGender": 0,
+      "gruntName": "Gold-Stop",
+      "gruntType": "Gold-Stop",
+      "gruntTypeColor": "F9E418",
+      "gruntTypeEmoji": "🪙",
+      "gruntTypeEmojiKey": "incident-goldstop",
+      "gruntTypeID": 0,
+      "gruntTypeId": 0,
+      "gruntTypeName": "Gold-Stop",
+      "grunt_type": 0,
+      "id": "7493930956149321458",
+      "imgUrl": "https://raw.githubusercontent.com/nileplumb/PkmnShuffleMap/master/UICONS/pokestop/0_i7.png",
+      "incidentExpiration": 1675436332,
+      "incident_expire_timestamp": 1675436332,
+      "latitude": 50.927246,
+      "longitude": 6.913019,
+      "mapurl": "https://maps.google.com/maps?q=50.927246,6.913019",
+      "matched": [],
+      "name": "Rot-weißes Haus",
+      "neighbourhood": "",
+      "nightTime": false,
+      "now": "2026-04-08T12:12:13Z",
+      "nowISO": "2026-04-08T12:12:13.356Z",
+      "pokestopName": "Rot-weißes Haus",
+      "pokestopUrl": "https://raw.githubusercontent.com/jfberry/PoracleNG/images/fallback/pokestop.png",
+      "pokestop_id": "88e96ce662d9491abd457c26a094896a.16",
+      "pokestop_name": "Rot-weißes Haus",
+      "pokestop_url": "https://raw.githubusercontent.com/jfberry/PoracleNG/images/fallback/pokestop.png",
+      "reactMapUrl": "https://canterburypokemon.com/id/pokestops/88e96ce662d9491abd457c26a094896a.16",
+      "start": 1675432732,
+      "state": "Nordrhein-Westfalen",
+      "stickerUrl": "https://raw.githubusercontent.com/bbdoc/tgUICONS/main/Shuffle/pokestop/0_i7.webp",
+      "streetName": "Bachemer Straße",
+      "streetNumber": "125",
+      "style": 0,
+      "suburb": "Lindenthal",
+      "time": "15:58:52",
+      "tth": {
+        "days": 0,
+        "hours": 0,
+        "minutes": 0,
+        "seconds": 0,
+        "firstDateWasLater": true
+      },
+      "tthd": 0,
+      "tthh": 0,
+      "tthm": 0,
+      "tths": 0,
+      "updated": 1675433239,
+      "url": "",
+      "wazeMapUrl": "https://www.waze.com/ul?ll=50.927246,6.913019&navigate=yes&zoom=17",
+      "zipcode": "50931"
+    },
+    "pokemoncontest": {
+      "addr": "Bachemer Straße 125",
+      "appleMapUrl": "https://maps.apple.com/place?coordinate=50.927246,6.913019",
+      "applemap": "https://maps.apple.com/place?coordinate=50.927246,6.913019",
+      "areas": "",
+      "character": 0,
+      "city": "Köln",
+      "country": "Deutschland",
+      "countryCode": "DE",
+      "dawnTime": false,
+      "disappearTime": "15:58:52",
+      "displayTypeId": 9,
+      "display_type": 9,
+      "distime": "15:58:52",
+      "duskTime": false,
+      "enabled": true,
+      "expiration": 1675436332,
+      "flag": "🇩🇪",
+      "formattedAddress": "125, Bachemer Straße, Lindenthal, Köln, Nordrhein-Westfalen, 50931, Deutschland",
+      "gameWeatherId": 0,
+      "gameWeatherName": "",
+      "gameweather": "",
+      "gender": 0,
+      "genderEmojiKey": "",
+      "genderName": "",
+      "genderNameEng": "",
+      "googleMapUrl": "https://maps.google.com/maps?q=50.927246,6.913019",
+      "gruntGender": 0,
+      "gruntName": "Showcase",
+      "gruntType": "Showcase",
+      "gruntTypeColor": "03AEB6",
+      "gruntTypeEmoji": "🏆",
+      "gruntTypeEmojiKey": "incident-showcase",
+      "gruntTypeID": 0,
+      "gruntTypeId": 0,
+      "gruntTypeName": "Showcase",
+      "grunt_type": 0,
+      "id": "7493930956149321458",
+      "imgUrl": "https://raw.githubusercontent.com/nileplumb/PkmnShuffleMap/master/UICONS/pokestop/0_i9.png",
+      "incidentExpiration": 1675436332,
+      "incident_expire_timestamp": 1675436332,
+      "latitude": 50.927246,
+      "longitude": 6.913019,
+      "mapurl": "https://maps.google.com/maps?q=50.927246,6.913019",
+      "matched": [],
+      "name": "Rot-weißes Haus",
+      "neighbourhood": "",
+      "nightTime": false,
+      "now": "2026-04-08T12:12:13Z",
+      "nowISO": "2026-04-08T12:12:13.356Z",
+      "pokestopName": "Rot-weißes Haus",
+      "pokestopUrl": "https://raw.githubusercontent.com/jfberry/PoracleNG/images/fallback/pokestop.png",
+      "pokestop_id": "88e96ce662d9491abd457c26a094896a.16",
+      "pokestop_name": "Rot-weißes Haus",
+      "pokestop_url": "https://raw.githubusercontent.com/jfberry/PoracleNG/images/fallback/pokestop.png",
+      "reactMapUrl": "https://canterburypokemon.com/id/pokestops/88e96ce662d9491abd457c26a094896a.16",
+      "start": 1675432732,
+      "state": "Nordrhein-Westfalen",
+      "stickerUrl": "https://raw.githubusercontent.com/bbdoc/tgUICONS/main/Shuffle/pokestop/0_i9.webp",
+      "streetName": "Bachemer Straße",
+      "streetNumber": "125",
+      "style": 0,
+      "suburb": "Lindenthal",
+      "time": "15:58:52",
+      "tth": {
+        "days": 0,
+        "hours": 0,
+        "minutes": 0,
+        "seconds": 0,
+        "firstDateWasLater": true
+      },
+      "tthd": 0,
+      "tthh": 0,
+      "tthm": 0,
+      "tths": 0,
+      "updated": 1675433239,
+      "url": "",
+      "wazeMapUrl": "https://www.waze.com/ul?ll=50.927246,6.913019&navigate=yes&zoom=17",
+      "zipcode": "50931"
+    },
+    "showcase": {
+      "addr": "Ulitzkastraße 7",
+      "appleMapUrl": "https://maps.apple.com/place?coordinate=50.951794,6.994553",
+      "applemap": "https://maps.apple.com/place?coordinate=50.951794,6.994553",
+      "areas": "",
+      "character": 0,
+      "city": "Köln",
+      "country": "Deutschland",
+      "countryCode": "DE",
+      "dawnTime": false,
+      "disappearTime": "20:00:00",
+      "displayTypeId": 9,
+      "display_type": 9,
+      "distime": "20:00:00",
+      "duskTime": false,
+      "enabled": true,
+      "expiration": 1689184800,
+      "flag": "🇩🇪",
+      "formattedAddress": "St.Urban, 7, Ulitzkastraße, Stegerwaldsiedlung, Mülheim, Köln, Nordrhein-Westfalen, 51063, Deutschland",
+      "gameWeatherId": 0,
+      "gameWeatherName": "",
+      "gameweather": "",
+      "gender": 0,
+      "genderEmojiKey": "",
+      "genderName": "",
+      "genderNameEng": "",
+      "googleMapUrl": "https://maps.google.com/maps?q=50.951794,6.994553",
+      "gruntGender": 0,
+      "gruntName": "Showcase",
+      "gruntType": "Showcase",
+      "gruntTypeColor": "03AEB6",
+      "gruntTypeEmoji": "🏆",
+      "gruntTypeEmojiKey": "incident-showcase",
+      "gruntTypeID": 0,
+      "gruntTypeId": 0,
+      "gruntTypeName": "Showcase",
+      "grunt_type": 0,
+      "id": "6287513096386229372",
+      "imgUrl": "https://raw.githubusercontent.com/nileplumb/PkmnShuffleMap/master/UICONS/pokestop/0_i9.png",
+      "incidentExpiration": 1689184800,
+      "incident_expire_timestamp": 1689184800,
+      "latitude": 50.951794,
+      "longitude": 6.994553,
+      "mapurl": "https://maps.google.com/maps?q=50.951794,6.994553",
+      "matched": [],
+      "name": "Playground Buchforst 2.0",
+      "neighbourhood": "Stegerwaldsiedlung",
+      "nightTime": false,
+      "now": "2026-04-08T12:12:13Z",
+      "nowISO": "2026-04-08T12:12:13.357Z",
+      "pokestopName": "Playground Buchforst 2.0",
+      "pokestopUrl": "https://raw.githubusercontent.com/jfberry/PoracleNG/images/fallback/pokestop.png",
+      "pokestop_id": "0c1c942502d34767a030c25ecc3a93be.16",
+      "pokestop_name": "Playground Buchforst 2.0",
+      "pokestop_url": "https://raw.githubusercontent.com/jfberry/PoracleNG/images/fallback/pokestop.png",
+      "reactMapUrl": "https://canterburypokemon.com/id/pokestops/0c1c942502d34767a030c25ecc3a93be.16",
+      "start": 1688886000,
+      "state": "Nordrhein-Westfalen",
+      "stickerUrl": "https://raw.githubusercontent.com/bbdoc/tgUICONS/main/Shuffle/pokestop/0_i9.webp",
+      "streetName": "Ulitzkastraße",
+      "streetNumber": "7",
+      "style": 0,
+      "suburb": "Mülheim",
+      "time": "20:00:00",
+      "tth": {
+        "days": 0,
+        "hours": 0,
+        "minutes": 0,
+        "seconds": 0,
+        "firstDateWasLater": true
+      },
+      "tthd": 0,
+      "tthh": 0,
+      "tthm": 0,
+      "tths": 0,
+      "updated": 1689008020,
+      "url": "http://lh3.googleusercontent.com/w6gTZvocAujGU1iDccte_76VFYrRVqfhPxJKDB2yDftlc7HOxwYXKxU1_-Y27TKKEGenQjWxduaFHGHOub_KSHEW1fY",
+      "wazeMapUrl": "https://www.waze.com/ul?ll=50.951794,6.994553&navigate=yes&zoom=17",
+      "zipcode": "51063"
+    }
+  },
+  "lure": {
+    "lure": {
+      "addr": "Badger Edge",
+      "appleMapUrl": "https://maps.apple.com/place?coordinate=51.336909,0.762183",
+      "applemap": "https://maps.apple.com/place?coordinate=51.336909,0.762183",
+      "ar_scan_eligible": 0,
+      "areas": "",
+      "city": "Swale",
+      "country": "United Kingdom",
+      "countryCode": "GB",
+      "dawnTime": false,
+      "disappearTime": "13:06:50",
+      "displayTypeId": 0,
+      "distime": "13:06:50",
+      "duskTime": false,
+      "enabled": true,
+      "flag": "🇬🇧",
+      "formattedAddress": "Badger Edge, Bapchild, Swale, Kent, England, ME10 4FZ, United Kingdom",
+      "googleMapUrl": "https://maps.google.com/maps?q=51.336909,0.762183",
+      "gruntTypeId": 0,
+      "imgUrl": "https://raw.githubusercontent.com/nileplumb/PkmnShuffleMap/master/UICONS/pokestop/502.png",
+      "last_modified": 1775475410,
+      "latitude": 51.336909,
+      "longitude": 0.762183,
+      "lureColor": "2973DD",
+      "lureEmojiKey": "lure-glacial",
+      "lureType": "Glacial Lure",
+      "lureTypeColor": "2973DD",
+      "lureTypeEmoji": "❄",
+      "lureTypeId": 502,
+      "lureTypeName": "Glacial Lure",
+      "lureTypeNameEng": "Glacial Lure",
+      "lure_expiration": 1775477210,
+      "lure_id": 502,
+      "mapurl": "https://maps.google.com/maps?q=51.336909,0.762183",
+      "matched": [],
+      "name": "Orchard Square Play Area",
+      "neighbourhood": "",
+      "nightTime": false,
+      "now": "2026-04-08T12:12:13Z",
+      "nowISO": "2026-04-08T12:12:13.360Z",
+      "pokestopName": "Orchard Square Play Area",
+      "pokestopUrl": "https://raw.githubusercontent.com/jfberry/PoracleNG/images/fallback/pokestop.png",
+      "pokestop_id": "a09798321d63304f9fdeb2726558085b.16",
+      "pokestop_name": "Orchard Square Play Area",
+      "pokestop_url": "https://raw.githubusercontent.com/jfberry/PoracleNG/images/fallback/pokestop.png",
+      "power_up_end_timestamp": 0,
+      "power_up_level": 0,
+      "power_up_points": 20,
+      "reactMapUrl": "https://canterburypokemon.com/id/pokestops/a09798321d63304f9fdeb2726558085b.16",
+      "showcase_expiry": null,
+      "showcase_focus": null,
+      "showcase_pokemon_form_id": null,
+      "showcase_pokemon_id": null,
+      "showcase_pokemon_type_id": null,
+      "showcase_ranking_standard": null,
+      "showcase_rankings": null,
+      "state": "England",
+      "stickerUrl": "https://raw.githubusercontent.com/bbdoc/tgUICONS/main/Shuffle/pokestop/502.webp",
+      "streetName": "Badger Edge",
+      "streetNumber": "",
+      "suburb": "Bapchild",
+      "time": "13:06:50",
+      "tth": {
+        "days": 0,
+        "hours": 0,
+        "minutes": 0,
+        "seconds": 0,
+        "firstDateWasLater": true
+      },
+      "tthd": 0,
+      "tthh": 0,
+      "tthm": 0,
+      "tths": 0,
+      "updated": 1775475569,
+      "url": "https://lh3.googleusercontent.com/jMscnlsbyv4pxePUG1o7RY289hCEhXcdvPRiDxixLWvO_ioo5bfhSzAlhPiPHR2-pZmarnkpAbeBkZ3-mGehJXNLWIQyiqaVVs1AST8c",
+      "wazeMapUrl": "https://www.waze.com/ul?ll=51.336909,0.762183&navigate=yes&zoom=17",
+      "zipcode": "ME10 4FZ"
+    },
+    "goldlure": {
+      "addr": "Cherry Drive 59",
+      "appleMapUrl": "https://maps.apple.com/place?coordinate=51.284727,1.060694",
+      "applemap": "https://maps.apple.com/place?coordinate=51.284727,1.060694",
+      "areas": "",
+      "city": "Canterbury",
+      "country": "United Kingdom",
+      "countryCode": "GB",
+      "dawnTime": false,
+      "disappearTime": "15:05:12",
+      "displayTypeId": 0,
+      "distime": "15:05:12",
+      "duskTime": false,
+      "flag": "🇬🇧",
+      "formattedAddress": "59, Cherry Drive, St. Dunstan's, Harbledown, Canterbury, Kent, England, CT2 8HE, United Kingdom",
+      "googleMapUrl": "https://maps.google.com/maps?q=51.284727,1.060694",
+      "gruntTypeId": 0,
+      "imgUrl": "https://raw.githubusercontent.com/nileplumb/PkmnShuffleMap/master/UICONS/pokestop/506.png",
+      "last_modified": 1643553312,
+      "latitude": 51.284727,
+      "longitude": 1.060694,
+      "lureColor": "F9E418",
+      "lureEmojiKey": "lure-sparkly",
+      "lureType": "Sparkly Lure",
+      "lureTypeColor": "F9E418",
+      "lureTypeEmoji": "🌟",
+      "lureTypeId": 506,
+      "lureTypeName": "Sparkly Lure",
+      "lureTypeNameEng": "Sparkly Lure",
+      "lure_expiration": 1643555112,
+      "lure_id": 506,
+      "mapurl": "https://maps.google.com/maps?q=51.284727,1.060694",
+      "matched": [],
+      "name": "Memorial Sculpture & Verse",
+      "neighbourhood": "",
+      "nightTime": false,
+      "now": "2026-04-08T12:12:13Z",
+      "nowISO": "2026-04-08T12:12:13.361Z",
+      "pokestopName": "Memorial Sculpture & Verse",
+      "pokestopUrl": "https://raw.githubusercontent.com/jfberry/PoracleNG/images/fallback/pokestop.png",
+      "pokestop_id": "0d4b26adbf24446ba893f0aa3f8de337.16",
+      "pokestop_name": "Memorial Sculpture & Verse",
+      "pokestop_url": "https://raw.githubusercontent.com/jfberry/PoracleNG/images/fallback/pokestop.png",
+      "reactMapUrl": "https://canterburypokemon.com/id/pokestops/0d4b26adbf24446ba893f0aa3f8de337.16",
+      "state": "England",
+      "stickerUrl": "https://raw.githubusercontent.com/bbdoc/tgUICONS/main/Shuffle/pokestop/506.webp",
+      "streetName": "Cherry Drive",
+      "streetNumber": "59",
+      "suburb": "St. Dunstan's",
+      "time": "15:05:12",
+      "tth": {
+        "days": 0,
+        "hours": 0,
+        "minutes": 0,
+        "seconds": 0,
+        "firstDateWasLater": true
+      },
+      "tthd": 0,
+      "tthh": 0,
+      "tthm": 0,
+      "tths": 0,
+      "updated": 1643554276,
+      "url": "http://lh3.googleusercontent.com/Ce-yPhm1FwGNbFzaM0ToMESZ57EWx1g8dKXXgEE4o-mmdP0XdsHk2nSEXOBk88H5PIXBHud-b7m6PUUJ3N8Pe_XB98NY",
+      "wazeMapUrl": "https://www.waze.com/ul?ll=51.284727,1.060694&navigate=yes&zoom=17",
+      "zipcode": "CT2 8HE"
+    }
+  },
   "quest": {
     "quest-item": {
       "addr": "Vanowen Street 11843",
@@ -13245,8 +13986,8 @@ export const testScenarios = {
       "monsterNamesEng": "",
       "name": "Department of Water and Power Facilities Plant",
       "neighbourhood": "Hewitt",
-      "now": "2026-04-08T12:08:20Z",
-      "nowISO": "2026-04-08T12:08:20.188Z",
+      "now": "2026-04-08T12:12:13Z",
+      "nowISO": "2026-04-08T12:12:13.363Z",
       "pokestopName": "Department of Water and Power Facilities Plant",
       "pokestop_id": "fd736d3db37d490982dfdafc73080644.16",
       "pokestop_name": "Department of Water and Power Facilities Plant",
@@ -13276,14 +14017,14 @@ export const testScenarios = {
       "tth": {
         "days": 0,
         "hours": 18,
-        "minutes": 51,
-        "seconds": 40,
+        "minutes": 47,
+        "seconds": 46,
         "firstDateWasLater": false
       },
       "tthd": 0,
       "tthh": 18,
-      "tthm": 51,
-      "tths": 40,
+      "tthm": 47,
+      "tths": 46,
       "type": 13,
       "updated": 1774471518,
       "wazeMapUrl": "https://www.waze.com/ul?ll=34.194092,-118.390491&navigate=yes&zoom=17",
@@ -13325,8 +14066,8 @@ export const testScenarios = {
       "monsterNamesEng": "",
       "name": "Street Art",
       "neighbourhood": "",
-      "now": "2026-04-08T12:08:20Z",
-      "nowISO": "2026-04-08T12:08:20.191Z",
+      "now": "2026-04-08T12:12:13Z",
+      "nowISO": "2026-04-08T12:12:13.364Z",
       "pokestopName": "Street Art",
       "pokestop_id": "4273655acfdc4b5380f3d217232367ff.16",
       "pokestop_name": "Street Art",
@@ -13355,14 +14096,14 @@ export const testScenarios = {
       "tth": {
         "days": 0,
         "hours": 18,
-        "minutes": 51,
-        "seconds": 39,
+        "minutes": 47,
+        "seconds": 46,
         "firstDateWasLater": false
       },
       "tthd": 0,
       "tthh": 18,
-      "tthm": 51,
-      "tths": 39,
+      "tthm": 47,
+      "tths": 46,
       "type": 4,
       "updated": 1774471518,
       "wazeMapUrl": "https://www.waze.com/ul?ll=33.774889,-118.192531&navigate=yes&zoom=17",
@@ -13439,8 +14180,8 @@ export const testScenarios = {
       ],
       "name": "Lido Estates Community Playground",
       "neighbourhood": "",
-      "now": "2026-04-08T12:08:20Z",
-      "nowISO": "2026-04-08T12:08:20.193Z",
+      "now": "2026-04-08T12:12:13Z",
+      "nowISO": "2026-04-08T12:12:13.365Z",
       "pokestopName": "Lido Estates Community Playground",
       "pokestop_id": "5097de24a7963096a02b4c74e8cf15d3.16",
       "pokestop_name": "Lido Estates Community Playground",
@@ -13471,14 +14212,14 @@ export const testScenarios = {
       "tth": {
         "days": 0,
         "hours": 18,
-        "minutes": 51,
-        "seconds": 39,
+        "minutes": 47,
+        "seconds": 46,
         "firstDateWasLater": false
       },
       "tthd": 0,
       "tthh": 18,
-      "tthm": 51,
-      "tths": 39,
+      "tthm": 47,
+      "tths": 46,
       "type": 8,
       "updated": 1774471518,
       "wazeMapUrl": "https://www.waze.com/ul?ll=34.708228,-118.084413&navigate=yes&zoom=17",
@@ -13537,8 +14278,8 @@ export const testScenarios = {
       "monsterNamesEng": "",
       "name": "Historic Main Street",
       "neighbourhood": "",
-      "now": "2026-04-08T12:08:20Z",
-      "nowISO": "2026-04-08T12:08:20.195Z",
+      "now": "2026-04-08T12:12:13Z",
+      "nowISO": "2026-04-08T12:12:13.366Z",
       "pokestopName": "Historic Main Street",
       "pokestop_id": "165f3490ca074a81991da14fbe476bf6.16",
       "pokestop_name": "Historic Main Street",
@@ -13568,14 +14309,14 @@ export const testScenarios = {
       "tth": {
         "days": 0,
         "hours": 18,
-        "minutes": 51,
-        "seconds": 39,
+        "minutes": 47,
+        "seconds": 46,
         "firstDateWasLater": false
       },
       "tthd": 0,
       "tthh": 18,
-      "tthm": 51,
-      "tths": 39,
+      "tthm": 47,
+      "tths": 46,
       "type": 4,
       "updated": 1774471518,
       "wazeMapUrl": "https://www.waze.com/ul?ll=33.774315,-117.940854&navigate=yes&zoom=17",
@@ -13591,7 +14332,7 @@ export const testScenarios = {
       "areas": "",
       "city": "Ashford",
       "color": "FFDE00",
-      "conqueredTime": "13:08:20",
+      "conqueredTime": "13:12:13",
       "country": "United Kingdom",
       "countryCode": "GB",
       "dawnTime": false,
@@ -13644,8 +14385,8 @@ export const testScenarios = {
       "name": "Singleton Village Hall",
       "neighbourhood": "",
       "nightTime": false,
-      "now": "2026-04-08T12:08:20Z",
-      "nowISO": "2026-04-08T12:08:20.203Z",
+      "now": "2026-04-08T12:12:13Z",
+      "nowISO": "2026-04-08T12:12:13.368Z",
       "oldSlotsAvailable": -1,
       "oldTeamEmojiKey": "team-uncontested",
       "oldTeamId": 0,
