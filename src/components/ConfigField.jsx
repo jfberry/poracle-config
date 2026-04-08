@@ -23,6 +23,19 @@ function StringField({ value, onChange, placeholder }) {
   );
 }
 
+// Map kind → display icon
+const KIND_ICONS = {
+  'discord:channel': '#',
+  'discord:user': '@',
+  'discord:role': '@',
+  'discord:guild': '🏠',
+  'telegram:user': '@',
+  'telegram:channel': '#',
+  'telegram:group': '👥',
+  'telegram:chat': '💬',
+  'webhook': '🔗',
+};
+
 // String field with ID resolution (for fields with resolve hint)
 function ResolvableStringField({ value, onChange, resolve, resolveIds, placeholder }) {
   const [resolved, setResolved] = useState(null);
@@ -33,25 +46,38 @@ function ResolvableStringField({ value, onChange, resolve, resolveIds, placehold
       return;
     }
     let cancelled = false;
-    const [platform, type] = resolve.split(':');
     let request;
-    if (platform === 'discord') {
-      if (type === 'user|role') request = { discord: { users: [value], roles: [value] } };
-      else if (type === 'target') request = { discord: { users: [value], channels: [value] } };
-      else request = { discord: { [type + 's']: [value] } };
-    } else if (platform === 'telegram') {
-      request = { telegram: { chats: [value] } };
+
+    if (resolve === 'destination') {
+      // Unknown-type ID — let the processor try everything
+      request = { destinations: [value] };
+    } else {
+      const [platform, type] = resolve.split(':');
+      if (platform === 'discord') {
+        if (type === 'user|role') request = { discord: { users: [value], roles: [value] } };
+        else if (type === 'target') request = { discord: { users: [value], channels: [value] } };
+        else request = { discord: { [type + 's']: [value] } };
+      } else if (platform === 'telegram') {
+        request = { telegram: { chats: [value] } };
+      }
     }
     if (!request) return;
+
     resolveIds(request).then((result) => {
       if (cancelled) return;
       let found = null;
-      const platformResult = result[platform];
-      if (platformResult) {
-        for (const typeMap of Object.values(platformResult)) {
-          if (typeMap[value]) {
-            found = typeMap[value];
-            break;
+
+      if (resolve === 'destination') {
+        found = result.destinations?.[value] || null;
+      } else {
+        const [platform] = resolve.split(':');
+        const platformResult = result[platform];
+        if (platformResult) {
+          for (const typeMap of Object.values(platformResult)) {
+            if (typeMap[value]) {
+              found = typeMap[value];
+              break;
+            }
           }
         }
       }
@@ -59,6 +85,8 @@ function ResolvableStringField({ value, onChange, resolve, resolveIds, placehold
     });
     return () => { cancelled = true; };
   }, [value, resolve, resolveIds]);
+
+  const icon = resolved?.kind ? KIND_ICONS[resolved.kind] : null;
 
   return (
     <div>
@@ -69,10 +97,37 @@ function ResolvableStringField({ value, onChange, resolve, resolveIds, placehold
         placeholder={placeholder}
       />
       {resolved && (
-        <p className="text-[10px] text-teal-400 mt-0.5">
-          → {resolved.name || resolved.globalName || value}
-          {resolved.guild && <span className="text-gray-500 ml-1">({resolved.guild})</span>}
-        </p>
+        <div className="mt-0.5 flex items-start gap-1.5">
+          {resolved.stale && (
+            <span
+              className="text-[11px] text-amber-400"
+              title="This destination is registered but no longer exists on the platform — alerts will not be delivered"
+            >
+              ⚠️
+            </span>
+          )}
+          <div className="flex-1">
+            <p className="text-[10px] text-teal-400">
+              {icon && <span className="text-gray-400 mr-0.5">{icon}</span>}
+              {resolved.name || resolved.globalName || value}
+              {resolved.guild && <span className="text-gray-500 ml-1">({resolved.guild})</span>}
+              {resolved.kind && (
+                <span className="text-gray-600 ml-1">[{resolved.kind}]</span>
+              )}
+              {resolved.enabled === false && (
+                <span className="text-amber-500 ml-1">(disabled)</span>
+              )}
+            </p>
+            {resolved.notes && (
+              <p className="text-[10px] text-gray-500 italic">{resolved.notes}</p>
+            )}
+            {resolved.stale && (
+              <p className="text-[10px] text-amber-400">
+                Registered but unreachable on the platform
+              </p>
+            )}
+          </div>
+        </div>
       )}
     </div>
   );

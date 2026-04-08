@@ -131,7 +131,8 @@ export function useConfig(apiClient) {
 
     // Check cache and filter out already-resolved IDs
     const uncached = { discord: {}, telegram: {} };
-    const fromCache = { discord: {}, telegram: {} };
+    const uncachedDestinations = [];
+    const fromCache = { discord: {}, telegram: {}, destinations: {} };
     let needsFetch = false;
 
     if (request.discord) {
@@ -170,6 +171,21 @@ export function useConfig(apiClient) {
       if (Object.keys(uncached.telegram).length === 0) delete uncached.telegram;
     }
 
+    if (Array.isArray(request.destinations)) {
+      for (const id of request.destinations) {
+        const cacheKey = `destination:${id}`;
+        if (resolveCache.current.has(cacheKey)) {
+          fromCache.destinations[id] = resolveCache.current.get(cacheKey);
+        } else {
+          uncachedDestinations.push(id);
+          needsFetch = true;
+        }
+      }
+      if (uncachedDestinations.length > 0) {
+        uncached.destinations = uncachedDestinations;
+      }
+    }
+
     // Fetch uncached
     let fetched = {};
     if (needsFetch) {
@@ -190,13 +206,18 @@ export function useConfig(apiClient) {
             }
           }
         }
+        if (fetched.destinations) {
+          for (const [id, data] of Object.entries(fetched.destinations)) {
+            resolveCache.current.set(`destination:${id}`, data);
+          }
+        }
       } catch {
         // Resolution failure is not critical
       }
     }
 
     // Merge cached + fetched
-    const result = { discord: {}, telegram: {} };
+    const result = { discord: {}, telegram: {}, destinations: {} };
     for (const platform of ['discord', 'telegram']) {
       for (const type of Object.keys(fromCache[platform] || {})) {
         result[platform][type] = { ...fromCache[platform][type] };
@@ -205,6 +226,7 @@ export function useConfig(apiClient) {
         result[platform][type] = { ...result[platform][type], ...fetched[platform][type] };
       }
     }
+    result.destinations = { ...fromCache.destinations, ...(fetched.destinations || {}) };
     return result;
   }, [apiClient]);
 
