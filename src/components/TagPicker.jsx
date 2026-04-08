@@ -111,12 +111,25 @@ export default function TagPicker({ type, onInsertTag, apiFields, apiBlockScopes
     return getBlockScope(key);
   }, [blockContext, apiScopeLookup]);
 
-  // Find iterable fields in current type for "insert block" section
+  // Find iterable fields in current type for "insert block" section.
+  // Prefer the API's blockScopes.iterableFields list, falling back to a
+  // heuristic on field type/name when offline.
   const iterableFields = useMemo(() => {
+    if (apiBlockScopes && Array.isArray(apiBlockScopes)) {
+      const names = new Set();
+      for (const entry of apiBlockScopes) {
+        if (entry.helper === 'each' || entry.helper === 'forEach') {
+          for (const name of entry.iterableFields || []) names.add(name);
+        }
+      }
+      if (names.size > 0) {
+        return [...names].map((name) => ({ name }));
+      }
+    }
     return allFields.filter((f) =>
       f.type === 'array' || iterableFieldNames.includes(f.name)
     );
-  }, [allFields]);
+  }, [allFields, apiBlockScopes]);
 
   const doInsert = (text) => {
     const inserted = onInsertTag?.(text);
@@ -189,7 +202,8 @@ export default function TagPicker({ type, onInsertTag, apiFields, apiBlockScopes
                   key={`block-${f.name}`}
                   onMouseDown={noFocusSteal}
                   onClick={() => {
-                    const scope = getBlockScope(f.name);
+                    // Prefer API-supplied scope, fall back to static
+                    const scope = (apiScopeLookup && apiScopeLookup[f.name]) || getBlockScope(f.name);
                     doInsert(generateEachSnippet(f.name, scope));
                   }}
                   title={`Insert {{#each ${f.name}}}...{{/each}} block`}

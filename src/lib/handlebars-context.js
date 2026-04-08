@@ -62,7 +62,7 @@ export function detectBlockContext(text, cursorPos) {
  */
 export function generateEachSnippet(fieldName, scopeFields) {
   if (!scopeFields || scopeFields.length === 0) {
-    return `{{#each ${fieldName}}}\n{{this}}\n{{/each}}`;
+    return `{{#each ${fieldName}}}{{this}}{{#unless isLast}}, {{/unless}}{{/each}}`;
   }
 
   // Pick a few key fields to include in the template
@@ -71,7 +71,7 @@ export function generateEachSnippet(fieldName, scopeFields) {
     .slice(0, 4);
 
   if (keyFields.length === 0) {
-    return `{{#each ${fieldName}}}\n{{this}}\n{{/each}}`;
+    return `{{#each ${fieldName}}}{{this}}{{#unless isLast}}, {{/unless}}{{/each}}`;
   }
 
   const body = keyFields.map((f) => `{{${f.name}}}`).join(' ');
