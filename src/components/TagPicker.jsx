@@ -262,6 +262,13 @@ export default function TagPicker({ type, onInsertTag, apiFields, apiBlockScopes
           </div>
         ))}
 
+        {/* Divider between fields and snippets */}
+        <div className="border-t border-gray-700 pt-2 mt-1">
+          <div className="text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-2">
+            Snippets &amp; Helpers
+          </div>
+        </div>
+
         {/* Snippets section — API-driven when connected, static fallback */}
         {(() => {
           const snippetList = apiSnippets && apiSnippets.length > 0 ? apiSnippets : helpers.map((h) => ({
