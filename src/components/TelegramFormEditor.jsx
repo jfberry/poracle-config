@@ -6,13 +6,22 @@ import { inputClass, labelClass } from '../lib/styles';
 // The link text is either empty, a zero-width space, a hair space, or a regular space
 const PREVIEW_IMAGE_RE = /\[[\s\u200B\u200A]*\]\(([^)]+)\)/;
 
+// Normalise content — Poracle allows content to be a string or an array
+// of strings (joined together when rendering). Always work with a string.
+function normaliseContent(content) {
+  if (Array.isArray(content)) return content.join('');
+  if (typeof content !== 'string') return content ? String(content) : '';
+  return content;
+}
+
 function extractPreviewImage(content) {
-  if (!content) return { url: '', cleanContent: content || '' };
-  const match = content.match(PREVIEW_IMAGE_RE);
-  if (!match) return { url: '', cleanContent: content };
+  const str = normaliseContent(content);
+  if (!str) return { url: '', cleanContent: '' };
+  const match = str.match(PREVIEW_IMAGE_RE);
+  if (!match) return { url: '', cleanContent: str };
   return {
     url: match[1],
-    cleanContent: content.replace(match[0], '').replace(/^\n+/, ''),
+    cleanContent: str.replace(match[0], '').replace(/^\n+/, ''),
   };
 }
 
