@@ -8,7 +8,8 @@ import { useMemo } from 'react';
 
 function parseTelegramMarkdown(text) {
   if (!text) return null;
-  if (typeof text !== 'string') text = String(text);
+  if (Array.isArray(text)) text = text.join('');
+  else if (typeof text !== 'string') text = String(text);
   // Convert Telegram Markdown to HTML for display
   // Bold: **text** or *text* (Telegram v1 uses *text*)
   // Italic: __text__ (Telegram v1) or _text_
@@ -30,8 +31,10 @@ function parseTelegramMarkdown(text) {
     .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
     // Bold: *text* (single asterisk, Telegram v1)
     .replace(/\*(.+?)\*/g, '<strong>$1</strong>')
-    // Italic: __text__
+    // Italic: __text__ (double underscore)
     .replace(/__(.+?)__/g, '<em>$1</em>')
+    // Italic: _text_ (single underscore, Telegram v1)
+    .replace(/_(.+?)_/g, '<em>$1</em>')
     // Strikethrough
     .replace(/~~(.+?)~~/g, '<del>$1</del>')
     // Links: [text](url)
@@ -85,7 +88,7 @@ function PhotoMessage({ url }) {
 
 function TextMessage({ content, parseMode, webpagePreview }) {
   if (!content) return null;
-  const textContent = typeof content === 'string' ? content : String(content);
+  const textContent = typeof content === 'string' ? content : Array.isArray(content) ? content.join('') : String(content);
 
   const html = useMemo(() => {
     if (parseMode?.toLowerCase() === 'html') {
