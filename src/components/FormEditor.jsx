@@ -1,4 +1,4 @@
-import { useCallback, useRef } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import FormatToolbar from './FormatToolbar';
 import { inputClass, labelClass } from '../lib/styles';
 
@@ -13,7 +13,28 @@ function Section({ title, children }) {
 
 export default function FormEditor({ template, onChange }) {
   const formRef = useRef(null);
-  const embed = template?.embed || {};
+  const [activeEmbedIndex, setActiveEmbedIndex] = useState(0);
+
+  // Detect embeds mode (array) vs embed mode (single object)
+  const isEmbedsMode = Array.isArray(template?.embeds);
+  const embedsList = isEmbedsMode ? template.embeds : [];
+  const embed = isEmbedsMode
+    ? (embedsList[activeEmbedIndex] || {})
+    : (template?.embed || {});
+
+  // Write back the correct key when updating
+  const writeEmbed = useCallback(
+    (newEmbed) => {
+      if (isEmbedsMode) {
+        const newEmbeds = [...embedsList];
+        newEmbeds[activeEmbedIndex] = newEmbed;
+        onChange({ ...template, embeds: newEmbeds });
+      } else {
+        onChange({ ...template, embed: newEmbed });
+      }
+    },
+    [template, isEmbedsMode, embedsList, activeEmbedIndex, onChange]
+  );
 
   // Update a top-level template field (content, username, avatar_url, etc.)
   const updateRoot = useCallback(
@@ -37,9 +58,9 @@ export default function FormEditor({ template, onChange }) {
       } else {
         newEmbed[key] = value;
       }
-      onChange({ ...template, embed: newEmbed });
+      writeEmbed(newEmbed);
     },
-    [template, embed, onChange]
+    [embed, writeEmbed]
   );
 
   const updateNested = useCallback(
@@ -51,16 +72,15 @@ export default function FormEditor({ template, onChange }) {
       } else {
         updated[key] = value;
       }
-      // Remove parent if empty
       const newEmbed = { ...embed };
       if (Object.keys(updated).length === 0) {
         delete newEmbed[parent];
       } else {
         newEmbed[parent] = updated;
       }
-      onChange({ ...template, embed: newEmbed });
+      writeEmbed(newEmbed);
     },
-    [template, embed, onChange]
+    [embed, writeEmbed]
   );
 
   const fields = embed.fields || [];
@@ -69,9 +89,9 @@ export default function FormEditor({ template, onChange }) {
     (index, field) => {
       const newFields = [...fields];
       newFields[index] = field;
-      onChange({ ...template, embed: { ...embed, fields: newFields } });
+      writeEmbed({ ...embed, fields: newFields });
     },
-    [template, embed, fields, onChange]
+    [embed, fields, writeEmbed]
   );
 
   const removeField = useCallback(
@@ -83,15 +103,44 @@ export default function FormEditor({ template, onChange }) {
       } else {
         newEmbed.fields = newFields;
       }
-      onChange({ ...template, embed: newEmbed });
+      writeEmbed(newEmbed);
     },
-    [template, embed, fields, onChange]
+    [embed, fields, writeEmbed]
   );
 
   const addField = useCallback(() => {
     const newFields = [...fields, { name: '', value: '', inline: false }];
-    onChange({ ...template, embed: { ...embed, fields: newFields } });
-  }, [template, embed, fields, onChange]);
+    writeEmbed({ ...embed, fields: newFields });
+  }, [embed, fields, writeEmbed]);
+
+  const addEmbed = useCallback(() => {
+    const newEmbeds = [...embedsList, {}];
+    onChange({ ...template, embeds: newEmbeds });
+    setActiveEmbedIndex(newEmbeds.length - 1);
+  }, [template, embedsList, onChange]);
+
+  const removeEmbed = useCallback((index) => {
+    const newEmbeds = embedsList.filter((_, i) => i !== index);
+    if (newEmbeds.length === 0) {
+      // Convert back to single embed mode
+      const { embeds, ...rest } = template;
+      onChange({ ...rest, embed: {} });
+    } else {
+      onChange({ ...template, embeds: newEmbeds });
+      setActiveEmbedIndex(Math.min(activeEmbedIndex, newEmbeds.length - 1));
+    }
+  }, [template, embedsList, activeEmbedIndex, onChange]);
+
+  const convertToEmbeds = useCallback(() => {
+    const { embed: singleEmbed, ...rest } = template;
+    onChange({ ...rest, embeds: [singleEmbed || {}] });
+    setActiveEmbedIndex(0);
+  }, [template, onChange]);
+
+  const convertToEmbed = useCallback(() => {
+    const { embeds: multiEmbeds, ...rest } = template;
+    onChange({ ...rest, embed: multiEmbeds?.[0] || {} });
+  }, [template, onChange]);
 
   return (
     <div ref={formRef} className="p-3 space-y-3">
@@ -128,6 +177,31 @@ export default function FormEditor({ template, onChange }) {
           />
         </div>
       </Section>
+
+      {/* Embed mode selector */}
+      {isEmbedsMode ? (
+        <div className="flex items-center gap-2 text-xs border border-gray-700 rounded p-2">
+          <span className="text-gray-400">Embeds:</span>
+          {embedsList.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setActiveEmbedIndex(i)}
+              className={`px-2 py-0.5 rounded ${i === activeEmbedIndex ? 'bg-blue-600 text-white' : 'bg-gray-800 text-gray-400 hover:text-gray-200'}`}
+            >
+              #{i + 1}
+            </button>
+          ))}
+          <button onClick={addEmbed} className="text-blue-400 hover:text-blue-300 px-1">+</button>
+          {embedsList.length > 1 && (
+            <button onClick={() => removeEmbed(activeEmbedIndex)} className="text-red-400 hover:text-red-300 px-1 text-[10px]">Remove</button>
+          )}
+          <button onClick={convertToEmbed} className="text-gray-500 hover:text-gray-300 ml-auto text-[10px]" title="Convert to single embed">→ embed</button>
+        </div>
+      ) : (
+        <div className="flex items-center justify-end text-[10px]">
+          <button onClick={convertToEmbeds} className="text-gray-500 hover:text-gray-300" title="Convert to embeds array (webhook mode)">→ embeds[]</button>
+        </div>
+      )}
 
       {/* Color */}
       <div>
