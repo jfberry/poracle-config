@@ -10,6 +10,7 @@ import SendTestButton from './components/SendTestButton';
 import ConfigEditor from './components/ConfigEditor';
 import StatusBar from './components/StatusBar';
 import ResizeHandle from './components/ResizeHandle';
+import ErrorBoundary from './components/ErrorBoundary';
 import { useDts } from './hooks/useDts';
 import { useConfig } from './hooks/useConfig';
 import { useHandlebars } from './hooks/useHandlebars';
@@ -364,6 +365,7 @@ export default function App() {
         onConfigSave={api.connected ? handleConfigSave : null}
       />
       {activeTab === 'templates' ? (
+        <ErrorBoundary>
         <div className="flex flex-1 min-h-0">
           {/* Left panel — Template Editor */}
           <div
@@ -439,6 +441,7 @@ export default function App() {
             )}
           </div>
         </div>
+        </ErrorBoundary>
       ) : (
         <div className="flex-1 min-h-0">
           <ConfigEditor config={config} />
