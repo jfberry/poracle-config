@@ -325,7 +325,7 @@ function SensitiveField({ value, onChange }) {
 }
 
 // Array of maps — each element is a group of key→value pairs (e.g. exclusive role groups)
-function MapArrayField({ value, onChange }) {
+function MapArrayField({ value, onChange, resolveHint, resolveIds }) {
   const items = Array.isArray(value) ? value : [];
 
   const updateGroup = (index, newMap) => {
@@ -356,7 +356,7 @@ function MapArrayField({ value, onChange }) {
               Remove
             </button>
           </div>
-          <MapField value={group} onChange={(newMap) => updateGroup(i, newMap)} />
+          <MapField value={group} onChange={(newMap) => updateGroup(i, newMap)} resolveHint={resolveHint} resolveIds={resolveIds} />
         </div>
       ))}
       <button
@@ -370,49 +370,91 @@ function MapArrayField({ value, onChange }) {
   );
 }
 
-function MapField({ value, onChange }) {
-  const entries = Object.entries(value || {});
+function MapField({ value, onChange, resolveHint, resolveIds }) {
+  // Maintain entries as a stable array to avoid focus issues when editing keys.
+  // The index is the stable identity, not the key string.
+  const [pairs, setPairs] = useState(() =>
+    Object.entries(value || {}).map(([k, v]) => ({ k, v }))
+  );
+  const [resolved, setResolved] = useState({});
 
-  const updateKey = (oldKey, newKey) => {
-    const updated = {};
-    for (const [k, v] of entries) {
-      updated[k === oldKey ? newKey : k] = v;
+  // Sync from parent when value changes externally
+  useEffect(() => {
+    const incoming = Object.entries(value || {}).map(([k, v]) => ({ k, v }));
+    // Only reset if structurally different (avoid losing cursor during typing)
+    if (JSON.stringify(incoming) !== JSON.stringify(pairs)) {
+      setPairs(incoming);
     }
-    onChange(updated);
+  }, [value]);
+
+  // Resolve role IDs if hint provided
+  useEffect(() => {
+    if (!resolveHint || !resolveIds || pairs.length === 0) return;
+    const ids = pairs.map((p) => p.v).filter(Boolean);
+    if (ids.length === 0) return;
+    const request = buildResolveRequest(resolveHint, ids);
+    if (request) {
+      resolveIds(request).then((result) => {
+        setResolved(extractResolvedMap(resolveHint, result));
+      });
+    }
+  }, [pairs.map((p) => p.v).join(','), resolveHint, resolveIds]);
+
+  const flush = (newPairs) => {
+    setPairs(newPairs);
+    const obj = {};
+    for (const { k, v } of newPairs) {
+      if (k !== '') obj[k] = v;
+    }
+    onChange(obj);
   };
 
-  const updateValue = (key, newValue) => {
-    onChange({ ...value, [key]: newValue });
+  const updateKey = (index, newKey) => {
+    const updated = [...pairs];
+    updated[index] = { ...updated[index], k: newKey };
+    flush(updated);
+  };
+
+  const updateValue = (index, newValue) => {
+    const updated = [...pairs];
+    updated[index] = { ...updated[index], v: newValue };
+    flush(updated);
   };
 
   const addEntry = () => {
-    onChange({ ...value, '': '' });
+    flush([...pairs, { k: '', v: '' }]);
   };
 
-  const removeEntry = (key) => {
-    const updated = { ...value };
-    delete updated[key];
-    onChange(updated);
+  const removeEntry = (index) => {
+    flush(pairs.filter((_, i) => i !== index));
   };
 
   return (
     <div className="space-y-1.5">
-      {entries.map(([k, v], i) => (
-        <div key={`${k}-${i}`} className="flex gap-1.5 items-center">
+      {pairs.map((pair, i) => (
+        <div key={i} className="flex gap-1.5 items-center">
           <input
             className={inputClass + ' flex-1'}
-            value={k}
-            onChange={(e) => updateKey(k, e.target.value)}
-            placeholder="Key"
+            value={pair.k}
+            onChange={(e) => updateKey(i, e.target.value)}
+            placeholder="Name"
           />
-          <input
-            className={inputClass + ' flex-1'}
-            value={v ?? ''}
-            onChange={(e) => updateValue(k, e.target.value)}
-            placeholder="Value"
-          />
+          <div className="flex-1">
+            <input
+              className={inputClass}
+              value={pair.v ?? ''}
+              onChange={(e) => updateValue(i, e.target.value)}
+              placeholder="Value"
+            />
+            {resolved[pair.v] && (
+              <span className="text-[10px] text-teal-400 block mt-0.5">
+                → {resolved[pair.v].name || resolved[pair.v].globalName}
+                {resolved[pair.v].guild && <span className="text-gray-500 ml-1">({resolved[pair.v].guild})</span>}
+              </span>
+            )}
+          </div>
           <button
-            onClick={() => removeEntry(k)}
+            onClick={() => removeEntry(i)}
             className="text-red-400 hover:text-red-300 text-xs px-1"
             type="button"
           >
@@ -501,9 +543,9 @@ export default function ConfigField({ field, value, onChange, isDirty, defaultVa
         ) : type === 'float' ? (
           <NumberField value={value} onChange={onChange} isFloat={true} placeholder={placeholder} />
         ) : type === 'map[]' ? (
-          <MapArrayField value={value} onChange={onChange} />
+          <MapArrayField value={value} onChange={onChange} resolveHint={resolve} resolveIds={resolveIds} />
         ) : type === 'map' ? (
-          <MapField value={value} onChange={onChange} />
+          <MapField value={value} onChange={onChange} resolveHint={resolve} resolveIds={resolveIds} />
         ) : type === 'color[]' ? (
           <ColorArrayField value={value} onChange={onChange} minLength={field.minLength} maxLength={field.maxLength} />
         ) : type === 'int[]' ? (
