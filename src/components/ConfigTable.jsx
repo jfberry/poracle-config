@@ -2,13 +2,27 @@ import { useState } from 'react';
 import ConfigField from './ConfigField';
 import ConfigTagInput from './ConfigTagInput';
 
+// Case-insensitive lookup: find the actual key in the object that matches the schema name
+function findKey(obj, schemaName) {
+  if (!obj || typeof obj !== 'object') return schemaName;
+  if (schemaName in obj) return schemaName;
+  const lower = schemaName.toLowerCase();
+  for (const key of Object.keys(obj)) {
+    if (key.toLowerCase() === lower) return key;
+  }
+  return schemaName;
+}
+
 export default function ConfigTable({ table, value, onChange, resolveIds, geofenceAreas, overriddenFields, sectionName, tableName }) {
   const [expandedIndex, setExpandedIndex] = useState(null);
   const entries = Array.isArray(value) ? value : [];
 
-  const updateEntry = (index, field, fieldValue) => {
+  const updateEntry = (index, schemaField, fieldValue) => {
     const updated = [...entries];
-    updated[index] = { ...updated[index], [field]: fieldValue };
+    const entry = updated[index];
+    // Use the actual key from the entry (handles Go-cased keys like Guild vs guild)
+    const actualKey = findKey(entry, schemaField);
+    updated[index] = { ...entry, [actualKey]: fieldValue };
     onChange(updated);
   };
 
@@ -30,12 +44,12 @@ export default function ConfigTable({ table, value, onChange, resolveIds, geofen
     setExpandedIndex(entries.length);
   };
 
-  // Determine a display label for each entry
+  // Determine a display label for each entry (case-insensitive field lookup)
   const entryLabel = (entry) => {
-    // Use the first string field as label
     for (const field of table.fields) {
-      if (field.type === 'string' && entry[field.name]) {
-        return entry[field.name];
+      const key = findKey(entry, field.name);
+      if (field.type === 'string' && entry[key]) {
+        return entry[key];
       }
     }
     return '(unnamed)';
@@ -66,7 +80,8 @@ export default function ConfigTable({ table, value, onChange, resolveIds, geofen
           {expandedIndex === index && (
             <div className="px-3 pb-3 border-t border-gray-700 space-y-2 pt-2">
               {table.fields.map((field) => {
-                const fieldValue = entry[field.name];
+                const actualKey = findKey(entry, field.name);
+                const fieldValue = entry[actualKey];
                 if (field.type === 'string[]') {
                   return (
                     <div key={field.name}>
