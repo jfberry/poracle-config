@@ -1,4 +1,4 @@
-import { useState, useEffect, useId } from 'react';
+import { useState, useEffect, useId, useRef } from 'react';
 import { inputClass } from '../lib/styles';
 import { buildResolveRequest, extractResolvedMap } from '../lib/resolve-utils';
 
@@ -372,19 +372,18 @@ function MapArrayField({ value, onChange, resolveHint, resolveIds }) {
 
 function MapField({ value, onChange, resolveHint, resolveIds }) {
   // Maintain entries as a stable array to avoid focus issues when editing keys.
-  // The index is the stable identity, not the key string.
   const [pairs, setPairs] = useState(() =>
     Object.entries(value || {}).map(([k, v]) => ({ k, v }))
   );
   const [resolved, setResolved] = useState({});
+  // Track whether we're actively editing — don't sync from parent while true
+  const editingRef = useRef(false);
 
-  // Sync from parent when value changes externally
+  // Sync from parent when value changes externally (e.g. switching templates)
   useEffect(() => {
+    if (editingRef.current) return;
     const incoming = Object.entries(value || {}).map(([k, v]) => ({ k, v }));
-    // Only reset if structurally different (avoid losing cursor during typing)
-    if (JSON.stringify(incoming) !== JSON.stringify(pairs)) {
-      setPairs(incoming);
-    }
+    setPairs(incoming);
   }, [value]);
 
   // Resolve role IDs if hint provided
@@ -400,8 +399,7 @@ function MapField({ value, onChange, resolveHint, resolveIds }) {
     }
   }, [pairs.map((p) => p.v).join(','), resolveHint, resolveIds]);
 
-  const flush = (newPairs) => {
-    setPairs(newPairs);
+  const flushToParent = (newPairs) => {
     const obj = {};
     for (const { k, v } of newPairs) {
       if (k !== '') obj[k] = v;
@@ -409,24 +407,32 @@ function MapField({ value, onChange, resolveHint, resolveIds }) {
     onChange(obj);
   };
 
+  const update = (newPairs) => {
+    editingRef.current = true;
+    setPairs(newPairs);
+    flushToParent(newPairs);
+    // Allow sync from parent again after a short delay
+    setTimeout(() => { editingRef.current = false; }, 500);
+  };
+
   const updateKey = (index, newKey) => {
     const updated = [...pairs];
     updated[index] = { ...updated[index], k: newKey };
-    flush(updated);
+    update(updated);
   };
 
   const updateValue = (index, newValue) => {
     const updated = [...pairs];
     updated[index] = { ...updated[index], v: newValue };
-    flush(updated);
+    update(updated);
   };
 
   const addEntry = () => {
-    flush([...pairs, { k: '', v: '' }]);
+    update([...pairs, { k: '', v: '' }]);
   };
 
   const removeEntry = (index) => {
-    flush(pairs.filter((_, i) => i !== index));
+    update(pairs.filter((_, i) => i !== index));
   };
 
   return (
