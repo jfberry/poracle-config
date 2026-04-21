@@ -32,7 +32,7 @@ export default function TemplateSelector({ templates, currentTemplate, onSelect 
   const sublabel = (t) => {
     const parts = [];
     if (t.platform) parts.push(t.platform);
-    if (t.language) parts.push(t.language);
+    parts.push(t.language || 'any lang');
     if (t.description) parts.push(t.description);
     return parts.join(' / ');
   };
@@ -151,11 +151,9 @@ export default function TemplateSelector({ templates, currentTemplate, onSelect 
                       <span className={`text-xs shrink-0 ${t.platform === 'telegram' ? 'text-blue-400' : 'text-gray-400'}`}>
                         {t.platform}
                       </span>
-                      {t.language && (
-                        <span className="text-gray-500 text-xs shrink-0">
-                          {t.language}
-                        </span>
-                      )}
+                      <span className="text-gray-500 text-xs shrink-0">
+                        {t.language || '(any lang)'}
+                      </span>
                       {t.name && (
                         <span className="text-gray-300 text-xs truncate">
                           {t.name}

@@ -4,8 +4,8 @@ import { getTestScenario, getTestScenarioNames } from '../data/test-data';
 
 function normalizeEntries(entries) {
   return entries
-    .filter((e) => e.template || e.templateFile)
-    .map((e) => ({ ...e, id: String(e.id ?? '1'), platform: e.platform || 'discord', language: e.language || 'en' }));
+    .filter((e) => e.template || e.templateFile || e.templateFileContent)
+    .map((e) => ({ ...e, id: String(e.id ?? '1'), platform: e.platform || 'discord', language: e.language ?? '' }));
 }
 
 export function useDts() {
@@ -79,7 +79,7 @@ export function useDts() {
       ...new Set(
         templates
           .filter((t) => t.type === filters.type && t.platform === filters.platform)
-          .map((t) => t.language || 'en')
+          .map((t) => t.language ?? '')
       ),
     ],
     [templates, filters.type, filters.platform]
@@ -125,7 +125,7 @@ export function useDts() {
           );
           if (matches.length > 0) {
             merged.id = String(matches[0].id);
-            merged.language = matches[0].language || 'en';
+            merged.language = matches[0].language ?? '';
           }
         }
 
@@ -160,7 +160,7 @@ export function useDts() {
     setFilters({
       type: template.type,
       platform: template.platform || 'discord',
-      language: template.language || 'en',
+      language: template.language ?? '',
       id: String(template.id),
     });
     resetScenarioForType(template.type);
