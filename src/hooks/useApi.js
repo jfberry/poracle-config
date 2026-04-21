@@ -32,7 +32,7 @@ export function useApi() {
   }, []);
 
   return useMemo(
-    () => ({ connected, url, error, client: clientRef.current, connect, disconnect }),
-    [connected, url, error, connect, disconnect]
+    () => ({ connected, url, error, setError, client: clientRef.current, connect, disconnect }),
+    [connected, url, error, setError, connect, disconnect]
   );
 }
