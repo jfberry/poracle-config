@@ -8,6 +8,8 @@ export default function TopBar({
   showMiddle, onToggleMiddle, sendTestButton,
   // Config props
   configDirtyCount, configRestartRequired, onConfigSave, configHasErrors,
+  // Autocreate props
+  autocreateDirty, onAutocreateSave,
 }) {
   return (
     <div className="flex items-center justify-between px-4 py-2 bg-gray-900 border-b border-gray-700 text-sm">
@@ -33,6 +35,17 @@ export default function TopBar({
             }`}
           >
             Config
+          </button>
+          <button
+            onClick={() => onTabChange('autocreate')}
+            className={`px-3 py-0.5 rounded text-sm font-medium transition-colors ${
+              activeTab === 'autocreate'
+                ? 'bg-blue-600 text-white'
+                : 'bg-gray-800 text-gray-400 hover:text-gray-200'
+            }`}
+          >
+            Autocreate
+            {autocreateDirty && <span className="ml-1 text-[9px] text-blue-300">{'\u25CF'}</span>}
           </button>
         </div>
 
@@ -92,6 +105,18 @@ export default function TopBar({
               : configRestartRequired
                 ? `Save (restart required)`
                 : `Save ${configDirtyCount} change${configDirtyCount !== 1 ? 's' : ''}`}
+          </button>
+        )}
+        {activeTab === 'autocreate' && onAutocreateSave && (
+          <button onClick={onAutocreateSave}
+            className={`px-3 py-0.5 rounded text-sm border border-gray-600 hover:bg-gray-700 ${
+              autocreateDirty
+                ? 'bg-gray-800 text-teal-300'
+                : 'bg-gray-800 text-gray-500 cursor-not-allowed'
+            }`}
+            disabled={!autocreateDirty}
+          >
+            {autocreateDirty ? 'Save Autocreate' : 'No changes'}
           </button>
         )}
       </div>

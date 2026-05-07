@@ -8,6 +8,7 @@ import DiscordPreview from './components/DiscordPreview';
 import TelegramPreview from './components/TelegramPreview';
 import SendTestButton from './components/SendTestButton';
 import ConfigEditor from './components/ConfigEditor';
+import AutocreateEditor from './components/AutocreateEditor';
 import StatusBar from './components/StatusBar';
 import ResizeHandle from './components/ResizeHandle';
 import ErrorBoundary from './components/ErrorBoundary';
@@ -15,6 +16,7 @@ import { useDts } from './hooks/useDts';
 import { useConfig } from './hooks/useConfig';
 import { useHandlebars } from './hooks/useHandlebars';
 import { useApi } from './hooks/useApi';
+import { useAutocreate } from './hooks/useAutocreate';
 import { useInsertAtCursor } from './hooks/useInsertAtCursor';
 import { tabClass } from './lib/styles';
 
@@ -66,6 +68,7 @@ export default function App() {
   const [offlineMode, setOfflineMode] = useState(false);
   const [activeTab, setActiveTab] = useState('templates');
   const config = useConfig(api.connected ? api.client : null);
+  const autocreate = useAutocreate(api.connected ? api.client : null);
 
   // Panel widths in pixels (persisted)
   const [leftWidth, setLeftWidth] = useState(() => {
@@ -128,6 +131,13 @@ export default function App() {
       config.load();
     }
   }, [api.connected, activeTab]);
+
+  // Load autocreate templates when connected and switching to autocreate tab
+  useEffect(() => {
+    if (api.connected && activeTab === 'autocreate' && !autocreate.loaded) {
+      autocreate.load();
+    }
+  }, [api.connected, activeTab, autocreate.loaded]);
 
   const activeTestData = customTestData || dts.currentTestData;
 
@@ -240,6 +250,15 @@ export default function App() {
       alert('Failed to save config: ' + err.message);
     }
   }, [config]);
+
+  const handleAutocreateSave = useCallback(async () => {
+    try {
+      const result = await autocreate.save();
+      alert(`Saved ${result.saved || 0} autocreate template(s).`);
+    } catch (err) {
+      alert('Failed to save: ' + err.message);
+    }
+  }, [autocreate]);
 
   // Import a single template entry from a local file
   const handleImport = () => {
@@ -364,6 +383,8 @@ export default function App() {
         configRestartRequired={config.restartRequired.required}
         configHasErrors={config.hasValidationErrors}
         onConfigSave={api.connected ? handleConfigSave : null}
+        autocreateDirty={autocreate.isDirty}
+        onAutocreateSave={api.connected ? handleAutocreateSave : null}
       />
       {activeTab === 'templates' ? (
         <ErrorBoundary>
@@ -443,6 +464,10 @@ export default function App() {
           </div>
         </div>
         </ErrorBoundary>
+      ) : activeTab === 'autocreate' ? (
+        <div className="flex-1 min-h-0">
+          <AutocreateEditor autocreate={autocreate} />
+        </div>
       ) : (
         <div className="flex-1 min-h-0">
           <ConfigEditor config={config} />

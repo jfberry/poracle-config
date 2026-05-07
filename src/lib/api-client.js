@@ -120,6 +120,34 @@ export class PoracleApiClient {
     });
   }
 
+  async getAutocreateTemplates() {
+    return this.fetch('/api/autocreate/templates');
+  }
+
+  async saveAutocreateTemplates(templates) {
+    return this.fetch('/api/autocreate/templates', {
+      method: 'POST',
+      body: JSON.stringify({ templates }),
+    });
+  }
+
+  async deleteAutocreateTemplate(name) {
+    return this.fetch(`/api/autocreate/templates/${encodeURIComponent(name)}`, {
+      method: 'DELETE',
+    });
+  }
+
+  async validateAutocreateTemplates(templates) {
+    return this.fetch('/api/autocreate/templates/validate', {
+      method: 'POST',
+      body: JSON.stringify({ templates }),
+    });
+  }
+
+  async getAutocreateSchema() {
+    return this.fetch('/api/autocreate/templates/schema');
+  }
+
   async health() {
     // Try direct connection (PoracleNG provides CORS headers).
     try {
