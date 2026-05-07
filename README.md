@@ -1,32 +1,67 @@
-Embed Visualizer
-================
+# Poracle Config
 
-![demo gif](http://i.imgur.com/2wAb2d3.gif)
+A web-based configuration tool for [PoracleNG](https://github.com/jfberry/PoracleNG) community admins. Edit DTS templates, server configuration, and autocreate channel templates — all from your browser with a live preview.
 
-### Code snippet generators
+## Features
 
-The general structure for them looks like this:
+### DTS Template Editor
+- Form-based and raw JSON editing for Discord and Telegram message templates
+- Live preview rendering with Handlebars, including emoji and partial support
+- Context-aware tag picker with block scopes
+- Send test messages to Discord for verification
+- Import/export templates as JSON files
 
-```js
-export default {
-  // for displaying on the <select> dropdown
-  name: 'Cool Discord Lib (Cool Programming Language)',
+### Config Editor
+- Schema-driven configuration management pulled from your PoracleNG instance
+- All field types: strings, numbers, booleans, selects, arrays, maps, colors
+- ID resolution for Discord roles, channels, and Telegram chats
+- Dirty tracking, validation, and overridden field indicators
+- Migration support (config.toml to overrides.json)
 
-  // for highlight.js
-  // see https://highlightjs.readthedocs.io/en/latest/css-classes-reference.html#language-names-and-aliases
-  language: 'coolprogramminglanguage',
+### Autocreate Editor
+- Visual editor for `channelTemplate.json` — the file controlling `!autocreate`
+- Tree sidebar showing template structure (categories, channels, threads)
+- Expandable role cards with tri-state permission grid (allow/deny/inherit)
+- Commands, threads, and thread picker editing
+- Client-side validation with server-side verification on save
 
-  // actual generator
-  // data is just a javascript object that looks like this:
-  // { "content": "message content...", "embed": { ... } }
-  generateFrom(data) {
-    ...
-  },
-};
+## Usage
+
+### GitHub Pages (no install)
+
+The tool is hosted at **https://jfberry.github.io/poracle-config/**
+
+Open it in your browser and enter your PoracleNG API URL and secret to connect. Your PoracleNG instance must have CORS enabled (included in recent builds).
+
+### Local Install
+
+Requirements: Node.js 18+
+
+```bash
+git clone https://github.com/jfberry/poracle-config.git
+cd poracle-config
+npm install
+npm run dev
 ```
 
-Currently, we don't really take in account "webhook mode" since most libraries don't
-really support that directly. If in the future most of them end up supporting it,
-we can start passing that down to the `generateFrom` function, so that it can emit something else.
+This starts a dev server (default http://localhost:3000/poracle-config/). The dev server includes a Vite proxy at `/poracle-api/*` that forwards to your PoracleNG instance, useful if your PoracleNG build doesn't have CORS headers.
 
-[embed docs]: https://discordapp.com/developers/docs/resources/channel#embed-object
+To configure the proxy target, edit `vite.config.js` and set the proxy target URL.
+
+### Production Build
+
+```bash
+npm run build
+```
+
+Output goes to `dist/`. Serve it with any static file server. The app is a single-page application with no server-side requirements — all API calls go directly from the browser to your PoracleNG instance.
+
+## Connecting to PoracleNG
+
+Enter your PoracleNG API URL (e.g. `http://localhost:4200`) and the API secret configured in your PoracleNG settings. The tool verifies the connection and secret before showing the editor.
+
+If running PoracleNG on a different machine, ensure the API port is accessible and CORS is enabled in your PoracleNG configuration.
+
+## License
+
+MIT
