@@ -62,6 +62,10 @@ Enter your PoracleNG API URL (e.g. `http://localhost:4200`) and the API secret c
 
 If running PoracleNG on a different machine, ensure the API port is accessible and CORS is enabled in your PoracleNG configuration.
 
+## Credits
+
+Originally forked from [leovoel/embed-visualizer](https://github.com/leovoel/embed-visualizer), a Discord embed previewer. The project has since been rewritten as a full configuration tool for PoracleNG.
+
 ## License
 
 MIT
