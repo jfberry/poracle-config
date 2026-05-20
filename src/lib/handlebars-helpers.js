@@ -22,6 +22,10 @@ export function registerAllHelpers(hbs) {
     return conditional(String(a) === String(b), this, options);
   });
 
+  hbs.registerHelper('is', function (a, b, options) {
+    return conditional(String(a) === String(b), this, options);
+  });
+
   hbs.registerHelper('ne', function (a, b, options) {
     return conditional(String(a) !== String(b), this, options);
   });

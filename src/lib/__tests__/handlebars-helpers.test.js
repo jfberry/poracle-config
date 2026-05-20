@@ -8,7 +8,7 @@ function render(tpl, data = {}) {
 
 // ─── Comparison helpers ───
 
-describe('eq', () => {
+describe('eq / is', () => {
   it('block mode: true', () => {
     expect(render('{{#eq a "1"}}yes{{else}}no{{/eq}}', { a: 1 })).toBe('yes');
   });
@@ -17,6 +17,9 @@ describe('eq', () => {
   });
   it('inline/subexpression mode', () => {
     expect(render('{{#if (eq a "1")}}yes{{else}}no{{/if}}', { a: 1 })).toBe('yes');
+  });
+  it('is is alias for eq', () => {
+    expect(render('{{#is a "1"}}yes{{else}}no{{/is}}', { a: 1 })).toBe('yes');
   });
 });
 
