@@ -254,12 +254,23 @@ function serializeDispatch(button, activeTab, staged) {
       }
       return out;
     }
-    case 'link':
-      return { ...stripped, response_template_id: staged.link.response_template_id || '' };
-    case 'inline':
-      return { ...stripped, response_template_inline: staged.inline.response_template_inline ?? {} };
-    case 'text':
-      return { ...stripped, response_text: staged.text.response_text || '' };
+    case 'link': {
+      const v = staged.link.response_template_id;
+      return v ? { ...stripped, response_template_id: v } : stripped;
+    }
+    case 'inline': {
+      const v = staged.inline.response_template_inline;
+      // Object: always include (an empty object is a valid editing state).
+      // String: only include if non-empty.
+      if (typeof v === 'string') {
+        return v ? { ...stripped, response_template_inline: v } : stripped;
+      }
+      return { ...stripped, response_template_inline: v ?? {} };
+    }
+    case 'text': {
+      const v = staged.text.response_text;
+      return v ? { ...stripped, response_text: v } : stripped;
+    }
     default:
       return stripped;
   }
