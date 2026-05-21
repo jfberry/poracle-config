@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Embed from './embed';
 import { parse, parseAllowLinks, jumboify } from './markdown';
+import { discordBtnBase, discordBtnClass } from '../lib/styles';
 
 const shortTime = new Intl.DateTimeFormat(undefined, { hour: 'numeric', minute: 'numeric' });
 
@@ -110,6 +111,28 @@ function DiscordViewWrapper({ darkTheme, children }) {
   );
 }
 
+function DiscordActionRows({ buttons }) {
+  if (!Array.isArray(buttons) || buttons.length === 0) return null;
+  const rows = [];
+  for (let i = 0; i < buttons.length; i += 5) rows.push(buttons.slice(i, i + 5));
+  return (
+    <div className="mt-2 space-y-1.5">
+      {rows.map((row, ri) => (
+        <div key={ri} className="flex flex-wrap gap-1.5">
+          {row.map((b) => (
+            <span
+              key={b.id}
+              className={`${discordBtnBase} ${discordBtnClass[b.style] || discordBtnClass.secondary}`}
+            >
+              {b.label}
+            </span>
+          ))}
+        </div>
+      ))}
+    </div>
+  );
+}
+
 export default function DiscordView({
   username = 'Poracle',
   avatar_url = 'https://cdn.discordapp.com/embed/avatars/0.png',
@@ -152,6 +175,7 @@ export default function DiscordView({
                 embeds &&
                 embeds.map((e, i) => <Embed key={i} {...e} />)
               )}
+              <DiscordActionRows buttons={data.__buttons} />
             </div>
           </div>
         </div>
