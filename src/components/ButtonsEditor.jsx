@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useRef } from 'react';
 import ButtonCard from './ButtonCard';
 import { validateButtons } from '../lib/button-validation';
 
@@ -35,6 +35,19 @@ export default function ButtonsEditor({
 }) {
   const list = Array.isArray(buttons) ? buttons : [];
   const [expanded, setExpanded] = useState(list.length > 0);
+
+  // Stable per-card keys so React doesn't alias local state across cards
+  // when the user reorders or deletes. Re-seeded if the parent passes a
+  // structurally different list (e.g. via load/import).
+  const cardKeysRef = useRef([]);
+  const keysSig = list.map((b, i) => `${b.id ?? ''}#${i}`).join('|');
+  const cardKeysSigRef = useRef('');
+  if (cardKeysSigRef.current !== keysSig && cardKeysRef.current.length !== list.length) {
+    cardKeysRef.current = list.map(() => Math.random().toString(36).slice(2));
+    cardKeysSigRef.current = keysSig;
+  }
+  const cardKeys = cardKeysRef.current;
+
   const { perButton, listErrors } = useMemo(() => validateButtons(list), [list]);
   const totalIssues = perButton.reduce((acc, errs) => acc + errs.length, 0) + listErrors.length;
 
@@ -45,6 +58,8 @@ export default function ButtonsEditor({
   };
   const deleteAt = (idx) => {
     const updated = list.filter((_, i) => i !== idx);
+    cardKeysRef.current = cardKeysRef.current.filter((_, i) => i !== idx);
+    cardKeysSigRef.current = '';
     onChange(updated);
   };
   const move = (idx, delta) => {
@@ -52,11 +67,17 @@ export default function ButtonsEditor({
     if (target < 0 || target >= list.length) return;
     const updated = [...list];
     [updated[idx], updated[target]] = [updated[target], updated[idx]];
+    const updatedKeys = [...cardKeysRef.current];
+    [updatedKeys[idx], updatedKeys[target]] = [updatedKeys[target], updatedKeys[idx]];
+    cardKeysRef.current = updatedKeys;
+    cardKeysSigRef.current = '';
     onChange(updated);
   };
   const add = () => {
     if (list.length >= MAX_BUTTONS) return;
     const id = uniqueId(list, NEW_BUTTON_TEMPLATE.id);
+    cardKeysRef.current = [...cardKeysRef.current, Math.random().toString(36).slice(2)];
+    cardKeysSigRef.current = '';
     onChange([...list, { ...NEW_BUTTON_TEMPLATE, id }]);
   };
 
@@ -109,7 +130,7 @@ export default function ButtonsEditor({
           ) : (
             list.map((b, i) => (
               <ButtonCard
-                key={i}
+                key={cardKeys[i] ?? i}
                 button={b}
                 onChange={(next) => updateAt(i, next)}
                 onDelete={() => deleteAt(i)}
