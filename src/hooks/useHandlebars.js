@@ -1,5 +1,6 @@
 import { useState, useMemo, useCallback } from 'react';
 import { createEngine, renderDtsTemplate, renderTemplate, registerPartials, setEmojiMap, setActivePlatform } from '../lib/handlebars-engine';
+import { renderButtons as renderButtonsImpl } from '../lib/render-buttons';
 
 export function useHandlebars() {
   const engine = useMemo(() => createEngine(), []);
@@ -33,6 +34,17 @@ export function useHandlebars() {
     [engine]
   );
 
+  const renderButtons = useCallback(
+    (buttons, data, platform) => {
+      try {
+        return renderButtonsImpl(engine, buttons, data, platform);
+      } catch {
+        return [];
+      }
+    },
+    [engine]
+  );
+
   const setPartials = useCallback(
     (partials) => {
       registerPartials(engine, partials);
@@ -45,5 +57,5 @@ export function useHandlebars() {
     setEmojiVersion((v) => v + 1);
   }, []);
 
-  return { render, renderError, setPartials, setEmojis };
+  return { render, renderButtons, renderError, setPartials, setEmojis };
 }
