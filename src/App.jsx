@@ -18,6 +18,7 @@ import { useHandlebars } from './hooks/useHandlebars';
 import { useApi } from './hooks/useApi';
 import { useAutocreate } from './hooks/useAutocreate';
 import { useInsertAtCursor } from './hooks/useInsertAtCursor';
+import { useActions } from './hooks/useActions';
 import { tabClass } from './lib/styles';
 
 // DTS template type -> testdata webhook type (used for GET /api/dts/testdata).
@@ -53,6 +54,7 @@ function getEnrichType(dtsType) {
 
 export default function App() {
   const dts = useDts();
+  const actions = useActions();
   const { render, renderError, setPartials, setEmojis } = useHandlebars();
   const api = useApi();
   const { containerRef: editorContainerRef, insertAtCursor, blockContext } = useInsertAtCursor();
@@ -102,6 +104,7 @@ export default function App() {
       setApiFields(null);
       setApiBlockScopes(null);
       setApiTestScenarios(null);
+      actions.reset();
       return;
     }
     let cancelled = false;
@@ -180,6 +183,11 @@ export default function App() {
         }
       } catch (err) {
         console.error('Failed to load templates:', err);
+      }
+      try {
+        await actions.load(client);
+      } catch (err) {
+        console.error('Failed to load action registry:', err);
       }
       try {
         const result = await client.getPartials();
@@ -395,13 +403,21 @@ export default function App() {
             className="min-w-0 shrink-0"
             style={{ width: `${leftWidth}px` }}
           >
-            <TemplateEditor
-              template={dts.currentTemplate?.template}
-              templateFileContent={dts.currentTemplate?.templateFileContent ?? null}
-              onChange={dts.updateTemplate}
-              onFileContentChange={dts.updateTemplateFileContent}
-              platform={dts.filters.platform}
-            />
+              <TemplateEditor
+                template={dts.currentTemplate?.template}
+                templateFileContent={dts.currentTemplate?.templateFileContent}
+                onChange={dts.updateTemplate}
+                onFileContentChange={dts.updateTemplateFileContent}
+                platform={dts.filters.platform}
+                entry={dts.currentTemplate}
+                onButtonsChange={dts.updateButtons}
+                actions={actions.actions}
+                actionsError={actions.error}
+                templates={dts.templates}
+                fields={apiFields}
+                onJumpToTemplate={dts.selectTemplate}
+                snapshotsEnabled={config.values?.snapshots?.enabled !== false}
+              />
           </div>
           <ResizeHandle onResize={resizeLeft} />
           {/* Middle panel — Tags / Test Data (collapsible) */}
