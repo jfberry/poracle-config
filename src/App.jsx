@@ -55,12 +55,13 @@ function getEnrichType(dtsType) {
 export default function App() {
   const dts = useDts();
   const actions = useActions();
-  const { render, renderButtons, renderError, setPartials, setEmojis } = useHandlebars();
+  const { render, renderButtons, renderButtonResponse, renderError, setPartials, setEmojis } = useHandlebars();
   const api = useApi();
   const { containerRef: editorContainerRef, insertAtCursor, blockContext } = useInsertAtCursor();
   const [middleTab, setMiddleTab] = useState('tags');
   const [showMiddle, setShowMiddle] = useState(true);
   const [customTestData, setCustomTestData] = useState(null);
+  const [activeButtonId, setActiveButtonId] = useState(null);
   const [apiFields, setApiFields] = useState(null);
   const [apiBlockScopes, setApiBlockScopes] = useState(null);
   const [apiSnippets, setApiSnippets] = useState(null);
@@ -142,6 +143,11 @@ export default function App() {
     }
   }, [api.connected, activeTab, autocreate.loaded]);
 
+  // Reset active button when the selected template changes
+  useEffect(() => {
+    setActiveButtonId(null);
+  }, [dts.currentTemplate]);
+
   const activeTestData = customTestData || dts.currentTestData;
 
   const renderedData = useMemo(() => {
@@ -170,6 +176,17 @@ export default function App() {
     if (rendered.length > 0) body = { ...body, __buttons: rendered };
     return body;
   }, [dts.currentTemplate, activeTestData, render, renderButtons, dts.filters.platform]);
+
+  const buttonResponse = useMemo(() => {
+    if (!activeButtonId || !dts.currentTemplate?.buttons) return null;
+    const btn = dts.currentTemplate.buttons.find((b) => b.id === activeButtonId);
+    if (!btn) return null;
+    return renderButtonResponse(btn, dts.templates, activeTestData, dts.filters.platform);
+  }, [activeButtonId, dts.currentTemplate, dts.templates, activeTestData, dts.filters.platform, renderButtonResponse]);
+
+  const handleButtonClick = useCallback((id) => {
+    setActiveButtonId((current) => (current === id ? null : id));
+  }, []);
 
   const handleScenarioChange = useCallback((scenario) => {
     dts.setTestScenario(scenario);
@@ -486,7 +503,13 @@ export default function App() {
             {dts.filters.platform === 'telegram' ? (
               <TelegramPreview data={renderedData} />
             ) : (
-              <DiscordPreview data={renderedData} error={renderError} />
+              <DiscordPreview
+                    data={renderedData}
+                    error={renderError}
+                    activeButtonId={activeButtonId}
+                    buttonResponse={buttonResponse}
+                    onButtonClick={handleButtonClick}
+                  />
             )}
           </div>
         </div>

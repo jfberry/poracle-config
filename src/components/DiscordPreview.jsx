@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import DiscordView from './discordview';
 
-export default function DiscordPreview({ data, error }) {
+export default function DiscordPreview({ data, error, activeButtonId, buttonResponse, onButtonClick }) {
   const [darkTheme, setDarkTheme] = useState(true);
   const [compactMode, setCompactMode] = useState(false);
 
@@ -19,7 +19,15 @@ export default function DiscordPreview({ data, error }) {
         </div>
       </div>
       <div className="flex-1 overflow-hidden">
-        <DiscordView data={data || {}} error={error} darkTheme={darkTheme} compactMode={compactMode} />
+        <DiscordView
+          data={data || {}}
+          error={error}
+          darkTheme={darkTheme}
+          compactMode={compactMode}
+          activeButtonId={activeButtonId}
+          buttonResponse={buttonResponse}
+          onButtonClick={onButtonClick}
+        />
       </div>
     </div>
   );
