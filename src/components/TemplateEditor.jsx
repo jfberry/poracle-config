@@ -34,8 +34,14 @@ export default function TemplateEditor({
   onJumpToTemplate,
   snapshotsEnabled = true,
   canEdit = true,
+  buttonsSupported = true,
 }) {
   const readOnly = entry?.readonly === true;
+  // Hide the buttons section entirely when the connected processor doesn't
+  // support buttons (caps.buttons === false). Existing entries on this server
+  // won't have a buttons field anyway, and authoring new ones here would
+  // silently vanish on save.
+  const hasExistingButtons = Array.isArray(entry?.buttons) && entry.buttons.length > 0;
   return (
     <div className="flex flex-col h-full">
       {(entry?.sourceFormat || readOnly) && (
@@ -64,20 +70,23 @@ export default function TemplateEditor({
           readOnly={readOnly}
         />
       </div>
-      <ButtonsEditor
-        buttons={entry?.buttons}
-        onChange={onButtonsChange}
-        actions={actions || []}
-        actionsError={actionsError}
-        actionsReason={actionsReason}
-        templates={templates || []}
-        platform={platform}
-        fields={fields || []}
-        onJumpTo={onJumpToTemplate}
-        readOnly={readOnly}
-        snapshotsEnabled={snapshotsEnabled}
-        canEdit={canEdit}
-      />
+      {(buttonsSupported || hasExistingButtons) && (
+        <ButtonsEditor
+          buttons={entry?.buttons}
+          onChange={onButtonsChange}
+          actions={actions || []}
+          actionsError={actionsError}
+          actionsReason={actionsReason}
+          templates={templates || []}
+          platform={platform}
+          fields={fields || []}
+          onJumpTo={onJumpToTemplate}
+          readOnly={readOnly || !buttonsSupported}
+          snapshotsEnabled={snapshotsEnabled}
+          canEdit={canEdit && buttonsSupported}
+          unsupportedNotice={!buttonsSupported}
+        />
+      )}
     </div>
   );
 }

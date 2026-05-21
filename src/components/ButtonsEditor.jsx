@@ -34,6 +34,7 @@ export default function ButtonsEditor({
   readOnly = false,
   snapshotsEnabled = true,
   canEdit = true,
+  unsupportedNotice = false,
 }) {
   const list = Array.isArray(buttons) ? buttons : [];
   const [expanded, setExpanded] = useState(list.length > 0);
@@ -113,7 +114,13 @@ export default function ButtonsEditor({
 
       {expanded && (
         <div className="px-3 py-2 space-y-2">
-          {!snapshotsEnabled && list.length > 0 && (
+          {unsupportedNotice && (
+            <div className="border border-orange-700/60 bg-orange-900/20 rounded p-2 text-xs text-orange-200">
+              This PoracleNG version doesn't support buttons. Existing button definitions are shown read-only;
+              new buttons would be silently dropped on save. Upgrade the processor to enable button authoring.
+            </div>
+          )}
+          {!unsupportedNotice && !snapshotsEnabled && list.length > 0 && (
             <div className="border border-yellow-700/60 bg-yellow-900/20 rounded p-2 text-xs text-yellow-200">
               Buttons are configured but disabled — set <code>[snapshots] enabled = true</code> to activate them.
             </div>

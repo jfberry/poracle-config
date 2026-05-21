@@ -205,10 +205,15 @@ export default function App() {
       } catch (err) {
         console.error('Failed to load templates:', err);
       }
-      try {
-        await actions.load(client);
-      } catch (err) {
-        console.error('Failed to load action registry:', err);
+      // Only probe the action registry when the processor reports buttons support.
+      // Older binaries 404 on /api/dts/actions; the capabilities check at /health
+      // already told us whether the endpoint exists.
+      if (api.capabilities?.buttons) {
+        try {
+          await actions.load(client);
+        } catch (err) {
+          console.error('Failed to load action registry:', err);
+        }
       }
       try {
         const result = await client.getPartials();
@@ -450,6 +455,7 @@ export default function App() {
                 onJumpToTemplate={dts.selectTemplate}
                 snapshotsEnabled={config.values?.snapshots?.enabled !== false}
                 canEdit={dts.templates.includes(dts.currentTemplate)}
+                buttonsSupported={offlineMode || api.capabilities?.buttons === true}
               />
           </div>
           <ResizeHandle onResize={resizeLeft} />
