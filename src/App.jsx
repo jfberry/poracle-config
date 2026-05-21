@@ -432,6 +432,7 @@ export default function App() {
               <TemplateEditor
                 template={dts.currentTemplate?.template}
                 templateFileContent={dts.currentTemplate?.templateFileContent}
+                templateFile={dts.currentTemplate?.templateFile}
                 onChange={dts.updateTemplate}
                 onFileContentChange={dts.updateTemplateFileContent}
                 platform={dts.filters.platform}

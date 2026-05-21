@@ -20,6 +20,7 @@ function FormatBadge({ format }) {
 export default function TemplateEditor({
   template,
   templateFileContent,
+  templateFile,
   onChange,
   onFileContentChange,
   platform,
@@ -56,6 +57,7 @@ export default function TemplateEditor({
         <TemplateBodyEditor
           template={template}
           templateFileContent={templateFileContent}
+          templateFile={templateFile}
           onChange={onChange}
           onFileContentChange={onFileContentChange}
           platform={platform}

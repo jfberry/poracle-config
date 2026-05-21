@@ -193,23 +193,23 @@ export default function ButtonDispatchEditor({
         <div className="space-y-1">
           <label className={labelClass}>Inline response template</label>
           <div className="h-72 border border-gray-700 rounded overflow-hidden">
-            {typeof staged.inline.response_template_inline === 'string' ? (
-              <TemplateBodyEditor
-                templateFileContent={staged.inline.response_template_inline}
-                platform={platform}
-                readOnly={readOnly}
-                onFileContentChange={(text) =>
-                  writeActive({ response_template_inline: text })
-                }
-              />
-            ) : (
-              <TemplateBodyEditor
-                template={staged.inline.response_template_inline || {}}
-                platform={platform}
-                readOnly={readOnly}
-                onChange={(next) => writeActive({ response_template_inline: next })}
-              />
-            )}
+            <TemplateBodyEditor
+              template={
+                typeof staged.inline.response_template_inline === 'object' &&
+                staged.inline.response_template_inline !== null
+                  ? staged.inline.response_template_inline
+                  : null
+              }
+              templateFileContent={
+                typeof staged.inline.response_template_inline === 'string'
+                  ? staged.inline.response_template_inline
+                  : null
+              }
+              platform={platform}
+              readOnly={readOnly}
+              onChange={(next) => writeActive({ response_template_inline: next })}
+              onFileContentChange={(text) => writeActive({ response_template_inline: text })}
+            />
           </div>
         </div>
       )}
