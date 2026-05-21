@@ -55,7 +55,7 @@ function getEnrichType(dtsType) {
 export default function App() {
   const dts = useDts();
   const actions = useActions();
-  const { render, renderError, setPartials, setEmojis } = useHandlebars();
+  const { render, renderButtons, renderError, setPartials, setEmojis } = useHandlebars();
   const api = useApi();
   const { containerRef: editorContainerRef, insertAtCursor, blockContext } = useInsertAtCursor();
   const [middleTab, setMiddleTab] = useState('tags');
@@ -147,25 +147,29 @@ export default function App() {
   const renderedData = useMemo(() => {
     if (!activeTestData || Object.keys(activeTestData).length === 0) return {};
 
-    // templateFile entries — render raw Handlebars text then parse as JSON
+    let body;
     if (dts.currentTemplate?.templateFileContent != null) {
       try {
-        return render(null, activeTestData, dts.filters.platform, dts.currentTemplate.templateFileContent) || {};
+        body = render(null, activeTestData, dts.filters.platform, dts.currentTemplate.templateFileContent) || {};
       } catch (err) {
         console.error('Render error (templateFile):', err);
-        return {};
+        body = {};
       }
+    } else if (dts.currentTemplate?.template) {
+      try {
+        body = render(dts.currentTemplate.template, activeTestData, dts.filters.platform) || {};
+      } catch (err) {
+        console.error('Render error:', err);
+        body = {};
+      }
+    } else {
+      body = {};
     }
 
-    // Inline template entries
-    if (!dts.currentTemplate?.template) return {};
-    try {
-      return render(dts.currentTemplate.template, activeTestData, dts.filters.platform) || {};
-    } catch (err) {
-      console.error('Render error:', err);
-      return {};
-    }
-  }, [dts.currentTemplate, activeTestData, render, dts.filters.platform]);
+    const rendered = renderButtons(dts.currentTemplate?.buttons, activeTestData, dts.filters.platform);
+    if (rendered.length > 0) body = { ...body, __buttons: rendered };
+    return body;
+  }, [dts.currentTemplate, activeTestData, render, renderButtons, dts.filters.platform]);
 
   const handleScenarioChange = useCallback((scenario) => {
     dts.setTestScenario(scenario);
