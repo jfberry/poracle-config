@@ -426,6 +426,7 @@ export default function App() {
                 fields={apiFields}
                 onJumpToTemplate={dts.selectTemplate}
                 snapshotsEnabled={config.values?.snapshots?.enabled !== false}
+                canEdit={dts.templates.includes(dts.currentTemplate)}
               />
           </div>
           <ResizeHandle onResize={resizeLeft} />

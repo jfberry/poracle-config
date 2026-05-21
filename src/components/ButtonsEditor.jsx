@@ -32,6 +32,7 @@ export default function ButtonsEditor({
   onJumpTo,
   readOnly = false,
   snapshotsEnabled = true,
+  canEdit = true,
 }) {
   const list = Array.isArray(buttons) ? buttons : [];
   const [expanded, setExpanded] = useState(list.length > 0);
@@ -97,7 +98,7 @@ export default function ButtonsEditor({
             {totalIssues} issue{totalIssues === 1 ? '' : 's'}
           </span>
         )}
-        {!readOnly && (
+        {!readOnly && canEdit && (
           <button
             type="button"
             onClick={(e) => { e.stopPropagation(); add(); }}
@@ -126,7 +127,9 @@ export default function ButtonsEditor({
           )}
 
           {list.length === 0 ? (
-            <div className="text-xs text-gray-500 italic">No buttons yet.</div>
+            <div className="text-xs text-gray-500 italic">
+              {canEdit ? 'No buttons yet.' : 'No buttons. Save the template to PoracleNG first to enable button editing.'}
+            </div>
           ) : (
             list.map((b, i) => (
               <ButtonCard
@@ -142,7 +145,7 @@ export default function ButtonsEditor({
                 platform={platform}
                 fields={fields}
                 onJumpTo={onJumpTo}
-                readOnly={readOnly}
+                readOnly={readOnly || !canEdit}
               />
             ))
           )}

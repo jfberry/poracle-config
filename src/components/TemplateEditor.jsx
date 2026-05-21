@@ -31,6 +31,7 @@ export default function TemplateEditor({
   fields,
   onJumpToTemplate,
   snapshotsEnabled = true,
+  canEdit = true,
 }) {
   const readOnly = entry?.readonly === true;
   return (
@@ -71,6 +72,7 @@ export default function TemplateEditor({
         onJumpTo={onJumpToTemplate}
         readOnly={readOnly}
         snapshotsEnabled={snapshotsEnabled}
+        canEdit={canEdit}
       />
     </div>
   );
