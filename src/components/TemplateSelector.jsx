@@ -154,6 +154,18 @@ export default function TemplateSelector({ templates, currentTemplate, onSelect 
                       <span className="text-gray-500 text-xs shrink-0">
                         {t.language || '(any lang)'}
                       </span>
+                      {t.sourceFormat && (
+                        <span
+                          className={`text-[9px] font-mono uppercase border rounded px-1 shrink-0 ${
+                            t.sourceFormat === 'toml'
+                              ? 'border-purple-700 text-purple-300'
+                              : 'border-gray-700 text-gray-500'
+                          }`}
+                          title={t.sourceFile || ''}
+                        >
+                          {t.sourceFormat}
+                        </span>
+                      )}
                       {t.name && (
                         <span className="text-gray-300 text-xs truncate">
                           {t.name}
