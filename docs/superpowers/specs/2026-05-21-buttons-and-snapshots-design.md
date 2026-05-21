@@ -70,7 +70,7 @@ Position: below the existing Form/Raw template body, above the bottom of the edi
 
 Header row (always visible):
 - Title: "Buttons (N)" with collapse chevron
-- Add button (disabled when `readonly` or when 5 buttons already exist — Discord's per-row limit; we cap at 5 for v1)
+- Add button (disabled when `readonly` or when 25 buttons already exist — Discord's hard cap of 5 rows × 5 buttons)
 - `sourceFormat` badge (in editor header, not this section)
 - "Buttons disabled" yellow banner when `snapshots.enabled === false` in current config values
 
@@ -96,7 +96,7 @@ Grouped into three sub-sections:
 3. **Inline template** — embeds the full `TemplateBodyEditor` (same Form/Raw toggle as the main template editor, with all embed-fields UI). Storage mirrors the main template: object when last edited in Form mode, string when last edited in Raw mode. The nested `TemplateBodyEditor` does NOT show its own buttons section — buttons are entry-level and nesting them inside an inline response template is out of scope. Sent to the processor as-is; per the brief the `template?: any` shape (object OR string) is accepted, and `response_template_inline` should follow the same tolerance. Confirm with the processor team and add a string-serialization step at the save boundary if it turns out the processor only accepts strings here.
 4. **Plain text** — single-line Handlebars textarea. Stored as `response_text`.
 
-Switching tabs clears the other three dispatch fields (so the entry only ever carries one). Show a confirmation if the previous tab had content.
+Switching tabs preserves the other three dispatch fields in the editor's working state — operators can switch back without losing work after a misclick. Only the active tab's field is sent on save; the inactive fields are stripped from the saved payload by `ButtonDispatchEditor` at the serialize boundary so the wire format still carries exactly one dispatch field per button. This means an inactive tab's content is held in component state for the lifetime of the editing session but does not persist across reloads.
 
 **Visibility & targeting**
 - `applies_to` (multi-checkbox: dm / channel / webhook / any) — default per action type (`["dm"]` for mute/unsubscribe, `["any"]` otherwise)
@@ -125,7 +125,7 @@ After the embed(s), render an action row when `data.__buttons` is non-empty:
 </div>
 ```
 
-Style classes use the new tokens in `styles.js`. The row wraps at 5 buttons (Discord's component-row limit; we cap input at 5 anyway).
+Style classes use the new tokens in `styles.js`. The action row wraps every 5 buttons (Discord's per-row component limit), forming up to 5 rows for the 25-button cap.
 
 `show_if` evaluation happens in the render pipeline:
 - The expression is wrapped as `{{#if (show_if_expr)}}1{{/if}}` and rendered against the context.
@@ -187,7 +187,9 @@ These were decided during brainstorming and recorded here for traceability:
 - Cross-linking via `response_template_id`: **first-class**, with picker + "Jump to" navigation. Hardcoded to type `buttonResponse` for v1; if other types become valid response targets later, the picker's type filter becomes a prop.
 - Snapshot inspector panel: **deferred**, not in this spec.
 - Inline `response_template_inline`: **full editor**, reusing `TemplateBodyEditor` (Form/Raw toggle, embed fields). Storage shape (object vs string) mirrors the main template — assumes the processor accepts either, as it does for the entry's main `template` field. Confirm with the processor team.
-- Button cap: **5 per entry** for v1 (matches Discord's single-row component limit; multi-row support deferred).
+- Button cap: **25 per entry** (Discord's hard limit of 5 rows × 5 buttons). The preview wraps every 5 buttons into a new action row.
+- Dispatch tab switching: **non-destructive in-session**. Inactive tabs' fields stay in the editor's component state so misclicks don't lose work; only the active tab's field is included in the saved entry.
+- Rendered-preview field name for buttons: **`__buttons`** on the rendered output (double-underscore signals "editor-internal preview data, not a Discord wire field").
 
 ## Processor dependencies (resolved)
 
