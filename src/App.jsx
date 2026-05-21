@@ -374,6 +374,10 @@ export default function App() {
       if (dts.currentTemplate.name) entry.name = dts.currentTemplate.name;
       if (dts.currentTemplate.description) entry.description = dts.currentTemplate.description;
       if (dts.currentTemplate.default) entry.default = true;
+      if (dts.currentTemplate.hidden) entry.hidden = true;
+      if (Array.isArray(dts.currentTemplate.buttons) && dts.currentTemplate.buttons.length > 0) {
+        entry.buttons = dts.currentTemplate.buttons;
+      }
 
       const result = await api.client.saveTemplates([entry]);
       let msg = `Saved to PoracleNG (${result.saved || 0} template${result.saved !== 1 ? 's' : ''})`;
