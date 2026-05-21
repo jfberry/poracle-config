@@ -27,6 +27,7 @@ export default function TemplateEditor({
   onButtonsChange,
   actions,
   actionsError,
+  actionsReason,
   templates,
   fields,
   onJumpToTemplate,
@@ -66,6 +67,7 @@ export default function TemplateEditor({
         onChange={onButtonsChange}
         actions={actions || []}
         actionsError={actionsError}
+        actionsReason={actionsReason}
         templates={templates || []}
         platform={platform}
         fields={fields || []}

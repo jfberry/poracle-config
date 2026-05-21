@@ -26,6 +26,7 @@ export default function ButtonsEditor({
   onChange,
   actions,
   actionsError,
+  actionsReason,
   templates,
   platform,
   fields,
@@ -141,6 +142,7 @@ export default function ButtonsEditor({
                 onMoveDown={i < list.length - 1 ? () => move(i, 1) : null}
                 actions={actions}
                 actionsError={actionsError}
+                actionsReason={actionsReason}
                 templates={templates}
                 platform={platform}
                 fields={fields}

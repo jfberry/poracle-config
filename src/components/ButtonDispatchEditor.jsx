@@ -41,6 +41,7 @@ export default function ButtonDispatchEditor({
   onChange,
   actions,
   actionsError,
+  actionsReason,
   templates,
   platform,
   onJumpTo,
@@ -126,7 +127,10 @@ export default function ButtonDispatchEditor({
           </select>
           {actions.length === 0 && (
             <div className="text-[10px] text-gray-500">
-              Action registry unavailable{actionsError ? ` (${actionsError})` : ''} — enable snapshots to load action metadata.
+              Action registry unavailable
+              {actionsReason === 'snapshots-disabled' && ' — enable [snapshots] in config to load action metadata.'}
+              {actionsReason === 'older-poracleng' && ' — this PoracleNG version does not expose /api/dts/actions; consider upgrading.'}
+              {actionsReason === 'network' && actionsError ? ` (${actionsError})` : ''}
             </div>
           )}
 

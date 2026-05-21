@@ -422,6 +422,7 @@ export default function App() {
                 onButtonsChange={dts.updateButtons}
                 actions={actions.actions}
                 actionsError={actions.error}
+                actionsReason={actions.reason}
                 templates={dts.templates}
                 fields={apiFields}
                 onJumpToTemplate={dts.selectTemplate}

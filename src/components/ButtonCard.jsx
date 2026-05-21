@@ -34,6 +34,7 @@ export default function ButtonCard({
   onMoveDown,
   actions,
   actionsError,
+  actionsReason,
   templates,
   platform,
   fields,
@@ -138,6 +139,7 @@ export default function ButtonCard({
             onChange={onChange}
             actions={actions}
             actionsError={actionsError}
+            actionsReason={actionsReason}
             templates={templates}
             platform={platform}
             onJumpTo={onJumpTo}
