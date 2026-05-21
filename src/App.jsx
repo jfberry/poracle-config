@@ -359,7 +359,12 @@ export default function App() {
       if (dts.currentTemplate.default) entry.default = true;
 
       const result = await api.client.saveTemplates([entry]);
-      alert(`Saved to PoracleNG (${result.saved || 0} template${result.saved !== 1 ? 's' : ''})`);
+      let msg = `Saved to PoracleNG (${result.saved || 0} template${result.saved !== 1 ? 's' : ''})`;
+      if (dts.currentTemplate.sourceFormat === 'toml') {
+        msg += '\n\nTOML notice: comments and key order may be lost in the round-trip. ' +
+               'The previous version was backed up to config/backups/.';
+      }
+      alert(msg);
     } catch (err) {
       alert('Failed to save: ' + err.message);
     }
