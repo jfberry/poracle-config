@@ -189,9 +189,16 @@ These were decided during brainstorming and recorded here for traceability:
 - Inline `response_template_inline`: **full editor**, reusing `TemplateBodyEditor` (Form/Raw toggle, embed fields). Storage shape (object vs string) mirrors the main template — assumes the processor accepts either, as it does for the entry's main `template` field. Confirm with the processor team.
 - Button cap: **5 per entry** for v1 (matches Discord's single-row component limit; multi-row support deferred).
 
-## Processor dependencies
+## Processor dependencies (resolved)
 
-This spec assumes the PoracleNG processor exposes (or will expose) the following before the editor work ships:
+Both processor-side prerequisites for this spec are merged on `buttons-and-snapshots`:
 
-1. **`[snapshots]` section in `/api/config/schema`** — currently missing per the user's brief (§5). The editor renders config sections dynamically from this endpoint; without it, operators have no way to enable snapshots (and therefore no way to enable buttons) from the editor. Text to send to the processor team is in the "Push-back: snapshots schema" section below.
-2. **`response_template_inline` shape tolerance** — the brief types this as `string | string[]`. The editor proposes storing an object when the operator uses the Form mode of the inline editor (matching how the main `template` field is permitted to be object OR string per the brief). If the processor rejects objects here, either (a) it should be loosened to match the main-template tolerance, or (b) the editor adds a JSON-serialization step at the save boundary. Preference is (a) for consistency.
+1. **`[snapshots]` section in `/api/config/schema`** — added with the four fields:
+   - `enabled` (boolean, default `false`) — master switch; its description carries the "buttons silently disabled when not enabled" caveat.
+   - `path` (string, default `"config/.cache/snapshots"`) — `advanced: true`, `dependsOn: enabled`.
+   - `max_age_days` (int, default `7`) — `advanced: true`, `dependsOn: enabled`.
+   - `sweep_interval_mins` (int, default `60`) — `advanced: true`, `dependsOn: enabled`.
+
+   Picked up automatically via the `Config.Snapshots` field's `toml:"snapshots"` tag through the existing reflection-based config pipeline. No section-level description field exists in `ConfigSection` (no prior section uses one), so the title alone identifies the section in the sidebar; the master switch's description covers the disabled-buttons warning. The editor's existing "show advanced" toggle and `dependsOn` rendering handle the three advanced fields without changes.
+
+2. **`response_template_inline` accepts objects** — `inlineTemplateString` in `processor/internal/dts/button_response.go` now accepts `map[string]any` (and mixed-type `[]any`), JSON-marshalled with HTML escaping off so Handlebars `<` / `>` / `&` survive intact. Wire type stays `any` (matches the main `template` field), so the editor's TypeScript type for `response_template_inline` becomes `string | string[] | object`. The Form-mode storage approach in `ButtonDispatchEditor` is unchanged from the spec and needs no serialization shim.
