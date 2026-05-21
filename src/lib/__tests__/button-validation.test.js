@@ -68,7 +68,12 @@ describe('validateButton — enum fields', () => {
   });
   it('rejects unknown visible_to', () => {
     expect(errs({ id: 'x', label: 'L', action: 'redeliver', visible_to: 'nobody' })).toContain(
-      'visible_to must be one of target, admin, registered, anyone'
+      'visible_to must be one of anyone, registered, admin'
+    );
+  });
+  it('rejects legacy visible_to=target (processor removed it)', () => {
+    expect(errs({ id: 'x', label: 'L', action: 'redeliver', visible_to: 'target' })).toContain(
+      'visible_to must be one of anyone, registered, admin'
     );
   });
   it('rejects unknown applies_to entry', () => {

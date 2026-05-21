@@ -6,7 +6,11 @@ import { discordBtnClass, discordBtnBase, inputClass, labelClass } from '../lib/
 
 const STYLES = ['primary', 'secondary', 'success', 'danger'];
 const APPLIES_TO = ['dm', 'channel', 'webhook', 'any'];
-const VISIBLE_TO = ['target', 'admin', 'registered', 'anyone'];
+const VISIBLE_TO = [
+  { value: 'anyone',     description: 'Anyone with view permission on the message can click.' },
+  { value: 'registered', description: 'Clicker must be a registered Poracle user.' },
+  { value: 'admin',      description: 'Listed in [discord] admins. On DM destinations the button is hidden for non-admin recipients.' },
+];
 
 function dispatchSummary(b) {
   if (b.action) return `→ ${b.action}${b.scope ? ` (${b.scope})` : ''}`;
@@ -185,11 +189,14 @@ export default function ButtonCard({
               <select
                 className={inputClass}
                 disabled={readOnly}
-                value={button.visible_to || 'target'}
+                value={button.visible_to || 'anyone'}
                 onChange={(e) => updateField('visible_to', e.target.value)}
               >
-                {VISIBLE_TO.map((v) => <option key={v} value={v}>{v}</option>)}
+                {VISIBLE_TO.map((v) => <option key={v.value} value={v.value}>{v.value}</option>)}
               </select>
+              <div className="text-[10px] text-gray-500 mt-1">
+                {VISIBLE_TO.find((v) => v.value === (button.visible_to || 'anyone'))?.description}
+              </div>
             </div>
           </div>
 

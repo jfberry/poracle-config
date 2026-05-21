@@ -1,5 +1,5 @@
 const STYLES = ['primary', 'secondary', 'success', 'danger'];
-const VISIBLE_TO = ['target', 'admin', 'registered', 'anyone'];
+const VISIBLE_TO = ['anyone', 'registered', 'admin'];
 const APPLIES_TO = ['dm', 'channel', 'webhook', 'any'];
 const DISPATCH_FIELDS = ['action', 'response_template_id', 'response_template_inline', 'response_text'];
 
