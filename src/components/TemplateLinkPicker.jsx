@@ -88,9 +88,9 @@ export default function TemplateLinkPicker({
                 No {type} templates yet.
               </div>
             )}
-            {candidates.map((t) => (
+            {candidates.map((t, i) => (
               <button
-                key={`${t.id}-${t.platform}-${t.language}`}
+                key={`${t.id}-${t.platform}-${t.language}-${i}`}
                 type="button"
                 onClick={() => { onChange(String(t.id)); setOpen(false); setSearch(''); }}
                 className="w-full text-left px-2 py-1 text-xs hover:bg-gray-800 flex items-baseline gap-2"
