@@ -106,9 +106,12 @@ function FormRawToggle({
   platform,
   readOnly,
 }) {
-  // Effective "current object" for Form mode: prefer the live template prop;
-  // fall back to the parsed file-content if template is missing.
-  const effectiveTemplate = template ?? parsedFileContent;
+  // Effective "current object" for Form mode: prefer the live template prop only when
+  // it's actually an object. For TOML-sourced entries `template` is the raw string body
+  // (same content as templateFileContent) — in that case fall back to parsedFileContent
+  // so FormEditor receives the parsed object, not the string.
+  const effectiveTemplate =
+    template && typeof template === 'object' ? template : parsedFileContent;
 
   const [mode, setMode] = useState('form');
   // rawText holds the editable string. For pure-object case, derive from template
