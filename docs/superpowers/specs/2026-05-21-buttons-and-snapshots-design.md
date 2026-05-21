@@ -19,23 +19,24 @@ PoracleNG branch `buttons-and-snapshots` added three interrelated capabilities �
 
 ### Integration
 
-- Buttons are a property of a DTSEntry. The editor surfaces them in a new collapsible "Buttons" section inside `TemplateEditor.jsx`, below the existing template body editor. Buttons are not part of the JSON template body, so the section renders identically across all three body modes: Form, Raw JSON, and templateFile (raw Handlebars). The current `isTemplateFile` early-return in `TemplateEditor` becomes a conditional inside a shared wrapper so the buttons section is always rendered last.
+- Buttons are a property of a DTSEntry. The editor surfaces them in a new collapsible "Buttons" section inside `TemplateEditor.jsx`, below the existing template body editor. Buttons are not part of the JSON template body, so the section renders identically across all three body modes: Form, Raw JSON, and templateFile (raw Handlebars).
+- The current `TemplateEditor.jsx` body-editing logic (Form/Raw/templateFile toggle) is extracted into a reusable `TemplateBodyEditor` component. `TemplateEditor` becomes a thin shell composing `TemplateBodyEditor` + `ButtonsEditor` + the format badge. This extraction enables the **inline-template button dispatch mode** to reuse the exact same body editor (with Form/Raw toggle and full embed-fields support).
 - Action registry is fetched once on connect via a new `useActions` hook (mirrors `useDts` loading at connect time in `App.jsx`).
 - Live preview is wired by extending the existing render pipeline to attach a rendered `buttons` array to `renderedData`. `DiscordView` gains an action-row renderer that consumes it.
-- `[snapshots]` config schema is hardcoded in a new `src/lib/extra-schema.js`, merged into the schema returned by `useConfig` until the server exposes it. Marked with a `// TODO: remove once /api/config/schema exposes [snapshots]` comment.
+- `[snapshots]` config schema is exposed by the PoracleNG server via the existing `/api/config/schema` endpoint. The editor renders it through the normal `useConfig` flow with no special-case code. This is a **blocker on the processor side** — see the "Processor dependencies" section below. The editor work in this spec assumes the schema is in place.
 
 ### New Files
 
 | File | Purpose |
 |------|---------|
 | `src/hooks/useActions.js` | Fetches `/api/dts/actions` once at connect; exposes `{ actions, loading, error }`. Treats 503 as "no registry" (returns empty list; editor falls back to the four hardcoded action names with no scope/param hints). |
+| `src/components/TemplateBodyEditor.jsx` | Extracted from current `TemplateEditor.jsx`: the Form/Raw toggle plus templateFile handling. Accepts `{ template, templateFileContent, onChange, onFileContentChange, platform }` and renders the right body editor. Used by `TemplateEditor` for the main entry body AND by `ButtonDispatchEditor` for inline-template button responses. |
 | `src/components/ButtonsEditor.jsx` | Top-level collapsible "Buttons" section. Header shows count, add button, disabled banner. Body is the list of `ButtonCard`s. |
 | `src/components/ButtonCard.jsx` | One button — collapsed row (label + style badge + reorder/delete) + expanded form. |
-| `src/components/ButtonDispatchEditor.jsx` | The mutually-exclusive dispatch chooser (Action / Template Link / Inline Template / Plain Text) and the per-mode sub-form. |
+| `src/components/ButtonDispatchEditor.jsx` | The mutually-exclusive dispatch chooser (Action / Template Link / Inline Template / Plain Text) and the per-mode sub-form. The Inline Template mode embeds `TemplateBodyEditor` for full Form/Raw/embed-fields support. |
 | `src/components/HandlebarsExpressionInput.jsx` | Small text input that wires `useInsertAtCursor` + a compact field-picker popover. Used for `show_if`. Reusable for future Handlebars-aware short inputs. |
 | `src/components/TemplateLinkPicker.jsx` | Dropdown filtered to `type === "buttonResponse"` entries, with a "Jump to" button that calls `dts.selectTemplate`. |
 | `src/lib/button-validation.js` | Client-side validation matching the brief's rules. Returns `{ errors: string[] }` per button. |
-| `src/lib/extra-schema.js` | Hardcoded `[snapshots]` section, merged into config schema. Single source of truth for the four field definitions. |
 | `src/lib/__tests__/button-validation.test.js` | Unit tests for the validator. |
 
 ### Modified Files
@@ -43,10 +44,9 @@ PoracleNG branch `buttons-and-snapshots` added three interrelated capabilities �
 | File | Change |
 |------|--------|
 | `src/lib/api-client.js` | Add `getActions()` returning `/api/dts/actions` body. |
-| `src/hooks/useConfig.js` | After fetching schema, merge in `extra-schema.js` sections (idempotent — skip if server already returns `[snapshots]`). |
 | `src/hooks/useDts.js` | Already preserves unknown fields via spread, so `buttons`/`sourceFormat`/`sourceFile` survive automatically. Add a typed JSDoc comment and a helper `updateButtons(updater)` for the buttons editor to call. |
 | `src/hooks/useHandlebars.js` | Extend render to produce a parallel `__buttons` array attached to the rendered output. For each button: render `label` through Handlebars against the same context, evaluate `show_if` (drop the button when false), pass `style` and `id` through unchanged. Other fields (`action`, `scope`, `params`, response_*, `applies_to`, `visible_to`) are NOT rendered — they're processor-side metadata and don't affect the visual preview. Underscored name (`__buttons`) avoids colliding with any future webhook field. |
-| `src/components/TemplateEditor.jsx` | Render `<ButtonsEditor>` below the existing editor body, passing the current entry's `buttons`, `readonly`, `sourceFormat`, and the actions list. Also render a sourceFormat badge in the header. |
+| `src/components/TemplateEditor.jsx` | Becomes a thin shell: `TemplateBodyEditor` + format badge + `ButtonsEditor`. Passes `buttons`, `readonly`, `sourceFormat`, and the actions list down. |
 | `src/components/TemplateSelector.jsx` | Show a small TOML/JSON badge per entry row. |
 | `src/components/DiscordPreview.jsx` + `src/components/discordview.jsx` | Render an action-row after the embed(s) when `data.__buttons` is non-empty. |
 | `src/App.jsx` | Call `useActions` at connect; pass `actions` down to `TemplateEditor`. Show one-shot toast on save when any saved entry has `sourceFormat === "toml"`. |
@@ -93,7 +93,7 @@ Grouped into three sub-sections:
    - `scope` dropdown (options come from `action.scopes`; required when `action.required_scope`; for `unsubscribe`, locked to `tracking`)
    - `params` editor: one input per documented param in `action.params`, plus a "+ Add custom param" row for anything not in the registry. Stored as `Record<string, unknown>`.
 2. **Template link** — `TemplateLinkPicker` (dropdown of in-memory entries where `type === "buttonResponse"`). Shows a "Jump to" button that calls `dts.selectTemplate`. Shows "Create new buttonResponse template" link when no candidates exist (opens a new entry of that type — same flow as TemplateSelector's "new").
-3. **Inline template** — multi-line Handlebars textarea with `useInsertAtCursor` for field insertion. Stored as a string (the brief allows string OR string[]; we always store string for v1).
+3. **Inline template** — embeds the full `TemplateBodyEditor` (same Form/Raw toggle as the main template editor, with all embed-fields UI). Storage mirrors the main template: object when last edited in Form mode, string when last edited in Raw mode. The nested `TemplateBodyEditor` does NOT show its own buttons section — buttons are entry-level and nesting them inside an inline response template is out of scope. Sent to the processor as-is; per the brief the `template?: any` shape (object OR string) is accepted, and `response_template_inline` should follow the same tolerance. Confirm with the processor team and add a string-serialization step at the save boundary if it turns out the processor only accepts strings here.
 4. **Plain text** — single-line Handlebars textarea. Stored as `response_text`.
 
 Switching tabs clears the other three dispatch fields (so the entry only ever carries one). Show a confirmation if the previous tab had content.
@@ -136,31 +136,9 @@ Labels go through the same Handlebars context as the template body, so field ref
 
 ### Snapshots config section
 
-Hardcoded in `extra-schema.js`:
+The four `[snapshots]` fields (`enabled`, `path`, `max_age_days`, `sweep_interval_mins`) are exposed by the processor via the existing `/api/config/schema` endpoint. The editor renders them through the normal `useConfig` flow with no special-case code. This is a **processor dependency** — see "Processor dependencies" below.
 
-```js
-export const extraSchemaSections = [
-  {
-    name: 'snapshots',
-    title: 'Snapshots (button support)',
-    description: 'Snapshot store backing interactive buttons. Buttons are silently disabled when not enabled here.',
-    fields: [
-      { name: 'enabled', type: 'boolean', default: false,
-        description: 'Master switch. When false, buttons configured on DTS entries are not sent.' },
-      { name: 'path', type: 'string', default: 'config/.cache/snapshots',
-        description: 'Storage path. Relative paths resolve against BaseDir.' },
-      { name: 'max_age_days', type: 'number', default: 7,
-        description: 'Safety-sweep grace period beyond per-snapshot TTL.' },
-      { name: 'sweep_interval_mins', type: 'number', default: 60,
-        description: 'Background sweep cadence (minutes).' },
-    ],
-  },
-];
-```
-
-`useConfig` merges this in only if the server schema does NOT already contain a section named `snapshots`. When the server starts returning it, the hardcoded fallback becomes inert; we can delete this file then.
-
-The "Buttons disabled" banner in `ButtonsEditor` reads `snapshots.enabled` from the live config values (not the schema). Works the same way whether the schema came from server or fallback.
+The "Buttons disabled" banner in `ButtonsEditor` reads `snapshots.enabled` from the live config values via `useConfig`. The banner works as soon as the field is present in the loaded config values; the schema render is what gives operators a way to set it from the editor.
 
 ### TOML save warning
 
@@ -208,5 +186,12 @@ These were decided during brainstorming and recorded here for traceability:
 - Read-only entries: **show buttons read-only** (no edit UI, but visible).
 - Cross-linking via `response_template_id`: **first-class**, with picker + "Jump to" navigation. Hardcoded to type `buttonResponse` for v1; if other types become valid response targets later, the picker's type filter becomes a prop.
 - Snapshot inspector panel: **deferred**, not in this spec.
-- Inline `response_template_inline` array form: **string-only** for v1 (brief allows string or string[]; we always store string and let the processor accept either).
+- Inline `response_template_inline`: **full editor**, reusing `TemplateBodyEditor` (Form/Raw toggle, embed fields). Storage shape (object vs string) mirrors the main template — assumes the processor accepts either, as it does for the entry's main `template` field. Confirm with the processor team.
 - Button cap: **5 per entry** for v1 (matches Discord's single-row component limit; multi-row support deferred).
+
+## Processor dependencies
+
+This spec assumes the PoracleNG processor exposes (or will expose) the following before the editor work ships:
+
+1. **`[snapshots]` section in `/api/config/schema`** — currently missing per the user's brief (§5). The editor renders config sections dynamically from this endpoint; without it, operators have no way to enable snapshots (and therefore no way to enable buttons) from the editor. Text to send to the processor team is in the "Push-back: snapshots schema" section below.
+2. **`response_template_inline` shape tolerance** — the brief types this as `string | string[]`. The editor proposes storing an object when the operator uses the Form mode of the inline editor (matching how the main `template` field is permitted to be object OR string per the brief). If the processor rejects objects here, either (a) it should be loosened to match the main-template tolerance, or (b) the editor adds a JSON-serialization step at the save boundary. Preference is (a) for consistency.
