@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import TemplateBodyEditor from './TemplateBodyEditor';
 import TemplateLinkPicker from './TemplateLinkPicker';
 import { inputClass, labelClass, tabClass } from '../lib/styles';
@@ -54,6 +54,32 @@ export default function ButtonDispatchEditor({
     inline: { response_template_inline: button.response_template_inline ?? {} },
     text:   { response_text: button.response_text ?? '' },
   });
+
+  // When the parent button reference changes (e.g. via identity edit),
+  // re-seed the inactive tabs' staged values from the new prop. Don't
+  // touch the active tab — it's the source of truth for in-flight edits.
+  useEffect(() => {
+    setStaged((prev) => {
+      const next = { ...prev };
+      if (activeTab !== 'action') {
+        next.action = {
+          action: button.action ?? 'redeliver',
+          scope: button.scope,
+          params: button.params || {},
+        };
+      }
+      if (activeTab !== 'link') {
+        next.link = { response_template_id: button.response_template_id ?? '' };
+      }
+      if (activeTab !== 'inline') {
+        next.inline = { response_template_inline: button.response_template_inline ?? {} };
+      }
+      if (activeTab !== 'text') {
+        next.text = { response_text: button.response_text ?? '' };
+      }
+      return next;
+    });
+  }, [button, activeTab]);
 
   const writeActive = (nextStagedTab) => {
     const updatedStaged = { ...staged, [activeTab]: nextStagedTab };
