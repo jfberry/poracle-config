@@ -26,7 +26,20 @@ jobs:
           cache: npm
 
       - run: npm ci
-      - run: npm run build
+
+      - name: Build stable (master) into dist/
+        run: npm run build
+
+      - name: Build preview branch into dist/next/
+        run: |
+          git fetch origin feature/dts-derived-types --depth=1
+          git worktree add ../preview origin/feature/dts-derived-types
+          cd ../preview
+          npm ci
+          BASE_PATH=/poracle-config/next/ npm run build
+          cd -
+          rm -rf dist/next
+          cp -r ../preview/dist dist/next
 
       - uses: actions/upload-pages-artifact@v3
         with:
