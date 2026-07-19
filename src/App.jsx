@@ -107,6 +107,12 @@ export default function App() {
     }
   }, [api.connected, activeTab, autocreate.loaded]);
 
+  // Clear enriched/custom test data when the template type changes, so the preview
+  // and Enrich reflect the newly selected type rather than the previous type's data.
+  useEffect(() => {
+    setCustomTestData(null);
+  }, [dts.filters.type]);
+
   const activeTestData = customTestData || dts.currentTestData;
 
   const renderedData = useMemo(() => {

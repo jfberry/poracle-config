@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import RawEditor from './RawEditor';
 
 export default function TestDataPanel({
@@ -14,7 +14,23 @@ export default function TestDataPanel({
 }) {
   const [mode, setMode] = useState('enriched'); // 'enriched' | 'webhook'
   const [rawWebhook, setRawWebhook] = useState(null);
+  const [selectedTest, setSelectedTest] = useState('');
   const [enriching, setEnriching] = useState(false);
+
+  // When the API scenarios change (e.g. the template type was switched), default
+  // the selection to the first scenario and load its webhook. Without this the
+  // previously selected scenario's webhook lingers and Enrich sends the wrong
+  // type's data — most visibly when the new type has a single scenario the user
+  // doesn't manually re-select.
+  useEffect(() => {
+    if (apiScenarios && apiScenarios.length > 0) {
+      setSelectedTest(apiScenarios[0].test);
+      setRawWebhook(apiScenarios[0].webhook);
+    } else {
+      setSelectedTest('');
+      setRawWebhook(null);
+    }
+  }, [apiScenarios]);
 
   const jsonStr = typeof testData === 'string' ? testData : JSON.stringify(testData, null, 2);
 
@@ -44,8 +60,8 @@ export default function TestDataPanel({
   };
 
   const handleApiScenarioSelect = (scenarioName) => {
-    if (!apiScenarios) return;
-    const scenario = apiScenarios.find((s) => s.test === scenarioName);
+    setSelectedTest(scenarioName);
+    const scenario = apiScenarios?.find((s) => s.test === scenarioName);
     if (scenario) {
       setRawWebhook(scenario.webhook);
       setMode('webhook');
@@ -63,11 +79,10 @@ export default function TestDataPanel({
           <div>
             <label className="text-[10px] text-gray-500 uppercase block mb-0.5">API Test Scenarios</label>
             <select
+              value={selectedTest || (apiScenarios[0] && apiScenarios[0].test) || ''}
               onChange={(e) => handleApiScenarioSelect(e.target.value)}
-              defaultValue=""
               className="w-full bg-gray-800 text-gray-200 text-xs rounded px-2 py-1 border border-gray-600 mb-1"
             >
-              <option value="" disabled>Select scenario...</option>
               {apiScenarios.map((s) => (
                 <option key={s.test} value={s.test}>{s.test}</option>
               ))}
