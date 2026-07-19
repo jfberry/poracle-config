@@ -119,7 +119,7 @@ export default function App() {
         setApiSnippets(null);
       });
     const webhookType = dtsToWebhookType[dts.filters.type] || dts.filters.type;
-    api.client.getTestdata(webhookType)
+    api.client.getTestdata({ type: webhookType })
       .then((result) => { if (!cancelled) setApiTestScenarios(result.testdata || null); })
       .catch(() => { if (!cancelled) setApiTestScenarios(null); });
     return () => { cancelled = true; };

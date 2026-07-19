@@ -4,6 +4,9 @@ export class PoracleApiClient {
     this.secret = secret;
     // When using the Vite proxy, requests go through /poracle-api/ on the same origin
     this.useProxy = false;
+    // Populated by loadDtsTypes() on connect. null / false = old poracle (fallback).
+    this.dtsTypes = null;
+    this.supportsDerivedTypes = false;
   }
 
   get effectiveBase() {
@@ -55,9 +58,24 @@ export class PoracleApiClient {
     return this.fetch(`/api/dts/fields/${type}`);
   }
 
-  async getTestdata(type) {
-    const params = type ? `?type=${encodeURIComponent(type)}` : '';
-    return this.fetch(`/api/dts/testdata${params}`);
+  async getTestdata({ type, dtsType } = {}) {
+    const params = new URLSearchParams();
+    if (dtsType) params.set('dtsType', dtsType);
+    else if (type) params.set('type', type);
+    const query = params.toString();
+    return this.fetch(`/api/dts/testdata${query ? '?' + query : ''}`);
+  }
+
+  async loadDtsTypes() {
+    try {
+      const res = await this.getTestdata();
+      this.dtsTypes = res.types ?? null;
+      this.supportsDerivedTypes = !!res.types;
+    } catch {
+      this.dtsTypes = null;
+      this.supportsDerivedTypes = false;
+    }
+    return this.supportsDerivedTypes;
   }
 
   async getPartials() {
