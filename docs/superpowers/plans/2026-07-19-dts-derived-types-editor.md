@@ -506,7 +506,12 @@ async function main() {
     console.error('This poracle build does not expose a `types` map (needs develop / >= 5.2.0).');
     process.exit(1);
   }
-  const dtsTypes = Object.keys(root.types).filter((t) => !SKIP_TYPES.has(t));
+  // The `types` map is keyed by alias (e.g. monster_changed, fort_update) as well as
+  // by canonical DTS type. Keep only canonical keys (key === templateType) so each
+  // type is captured once, under the editor-facing name.
+  const dtsTypes = Object.keys(root.types).filter(
+    (t) => root.types[t].templateType === t && !SKIP_TYPES.has(t)
+  );
 
   const result = {};
   for (const dtsType of dtsTypes) {
@@ -581,8 +586,8 @@ Note: the auto-generated banner intentionally omits a timestamp so regeneration 
 
 - [ ] **Step 2: Regenerate the fixtures against develop poracle**
 
-Run: `PORACLE_URL=http://localhost:4201 PORACLE_SECRET=flibble node scripts/capture-test-data.mjs`
-Expected: prints `✓` lines per scenario including `monster`, `monsterChanged`, `incident`, `questSummary`, `weatherchange`, `raid`, `egg`, `invasion`, `lure`, `quest`, `gym`, `maxbattle`, `fort-update`, `showcase`; writes `src/data/test-data.js`.
+Run against a poracle that exposes `types` (the derived-types build): `PORACLE_URL=http://localhost:4200 PORACLE_SECRET=hello node scripts/capture-test-data.mjs`
+Expected: prints `✓` lines per scenario including `monster`, `monsterChanged`, `incident`, `questSummary`, `weatherchange`, `raid`, `egg`, `invasion`, `lure`, `quest`, `gym`, `maxbattle`, `fort-update`; writes `src/data/test-data.js`. (`showcase` currently `✗`es — its `/api/dts/enrich` returns 500 server-side; the script skips it gracefully and it's simply absent from the fixtures until the poracle bug is fixed.)
 
 - [ ] **Step 3: Verify the regenerated module loads and includes derived types**
 
