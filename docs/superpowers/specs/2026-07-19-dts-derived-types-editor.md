@@ -113,11 +113,11 @@ Stays a transport layer; gains connection-capability state exactly as it already
 ## §5 — `/next/` GitHub Pages preview channel
 
 - Parameterize Vite `base` via `BASE_PATH` (default `/poracle-config/`).
-- Extend `.github/workflows/deploy.yml` so a single deploy job assembles the Pages artifact:
-  1. Build `master` → `dist/`.
-  2. Check out the preview branch (`feature/dts-derived-types`; the exact branch is a documented knob), build with `BASE_PATH=/poracle-config/next/`, copy output into `dist/next/`.
-  3. Upload the combined `dist/` as the Pages artifact.
-- Result: `…/poracle-config/` (stable) + `…/poracle-config/next/` (new editor) on one site.
+- Restructure `.github/workflows/deploy.yml` into **three independent jobs** so a broken preview branch can never block the production deploy:
+  1. `build-stable` — checkout the triggering ref (`master`), `npm run build`, upload `stable-dist` artifact.
+  2. `build-preview` — checkout `PREVIEW_BRANCH` (`feature/dts-derived-types`; a documented knob), `BASE_PATH=/poracle-config/next/ npm run build`, upload `preview-dist` artifact. Marked `continue-on-error: true`.
+  3. `deploy` — `needs: [build-stable, build-preview]` but `if: !cancelled() && needs.build-stable.result == 'success'`, so it runs whenever the stable build succeeded regardless of the preview result. Downloads `stable-dist` → `dist/`, `preview-dist` → `dist/next/` (skip-tolerant `continue-on-error`), then `upload-pages-artifact` + `deploy-pages`.
+- Result: `…/poracle-config/` (stable) + `…/poracle-config/next/` (new editor) on one site; a preview-branch failure degrades to "no `/next/` this run" without failing the stable deploy.
 - **Both builds use only committed fixtures** (`npm ci && npm run build`) — CI never contacts a poracle.
 - The preview channel is a maintainer testing convenience, **not** the compatibility mechanism (that is runtime feature-detection).
 

@@ -632,29 +632,15 @@ Run: `BASE_PATH=/poracle-config/next/ npm run build`
 Then: `grep -o '/poracle-config/next/[^"]*' dist/index.html | head -1`
 Expected: asset URLs are prefixed with `/poracle-config/next/` (confirming the base took effect). Restore the normal build afterwards with `npm run build`.
 
-- [ ] **Step 3: Update the deploy workflow**
+- [ ] **Step 3: Restructure the deploy workflow into independent jobs**
 
-In `.github/workflows/deploy.yml`, replace the single `- run: npm run build` line in the `build` job with the following steps (assemble root + `/next/` into `dist/` before the upload):
+Replace the single `build` + `deploy` jobs in `.github/workflows/deploy.yml` with three jobs so a preview-branch failure can never block the production deploy (per the reviewer's Important finding — user chose full job separation over `continue-on-error` on a shared job):
 
-```yaml
-      - name: Build stable (master) into dist/
-        run: npm run build
+- `build-stable`: checkout the triggering ref, `npm run build`, `actions/upload-artifact` as `stable-dist` (path `dist`).
+- `build-preview`: `continue-on-error: true`; `actions/checkout` with `ref: ${{ env.PREVIEW_BRANCH }}`, `BASE_PATH=/poracle-config/next/ npm run build`, `actions/upload-artifact` as `preview-dist` (path `dist`).
+- `deploy`: `needs: [build-stable, build-preview]`, `if: ${{ !cancelled() && needs.build-stable.result == 'success' }}`; `download-artifact stable-dist → dist`, `download-artifact preview-dist → dist/next` (`continue-on-error: true`), then `upload-pages-artifact` (path `dist`) + `deploy-pages@v4`.
 
-      - name: Build preview branch into dist/next/
-        run: |
-          git fetch origin feature/dts-derived-types --depth=1
-          git worktree add ../preview origin/feature/dts-derived-types
-          cd ../preview
-          npm ci
-          BASE_PATH=/poracle-config/next/ npm run build
-          cd -
-          rm -rf dist/next
-          cp -r ../preview/dist dist/next
-```
-
-Leave the existing `upload-pages-artifact` step (path: `dist`) unchanged — it now uploads both root and `next/`.
-
-Note: the preview branch name (`feature/dts-derived-types`) is the documented knob; update it when this work merges or the next preview branch is chosen.
+Add a workflow-level `env: PREVIEW_BRANCH: feature/dts-derived-types` (the documented knob). Both builds are plain `npm ci && npm run build` — no poracle contact. The committed `.github/workflows/deploy.yml` is the source of truth for exact YAML.
 
 - [ ] **Step 4: Validate the workflow YAML**
 
