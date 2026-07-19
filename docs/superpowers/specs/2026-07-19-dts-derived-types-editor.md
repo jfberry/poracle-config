@@ -43,9 +43,10 @@ The single home for resolution policy and all fallback logic. Pure functions ove
 |--------|-----------|
 | `DTS_TO_WEBHOOK` | Fallback map, moved verbatim from `App.jsx`. Used **only** when `!client.supportsDerivedTypes`. |
 | `DTS_TO_ENRICH` | Fallback enrich remap (`monsterNoIv→pokemon`, `egg→raid`, `fort-update→fort_update`, `maxbattle→max_battle`), moved from `App.jsx`. Fallback-only. |
-| `splitScenarios(entries, dtsType)` | The old client-side split: `invasion` vs `lure` (grunt/lure payload shape), `raid` vs `egg` (`pokemon_id == 0`). Fallback-only. |
 | `resolveWebhookType(client, dtsType)` | `client.dtsTypes?.[dtsType]?.webhookType` ?? `DTS_TO_WEBHOOK[dtsType]` ?? `dtsType`. |
-| `fetchScenarios(client, dtsType)` → `Promise<entries[]>` | New: `client.getTestdata({ dtsType })` → `res.testdata ?? []` (server already filtered + tagged). Old: `client.getTestdata({ type: resolveWebhookType(client, dtsType) })` → `splitScenarios(res.testdata ?? [], dtsType)`. Network error ⇒ `[]`. |
+| `fetchScenarios(client, dtsType)` → `Promise<entries[]>` | New: `client.getTestdata({ dtsType })` → `res.testdata ?? []` (server already filtered + tagged). Old: `client.getTestdata({ type: resolveWebhookType(client, dtsType) })` → `res.testdata ?? []` — a plain passthrough with **no client-side split**, matching today's runtime exactly. Network error ⇒ `[]`. |
+
+**Note on splitting:** today's *runtime* never split the shared pokestop bucket (invasion vs lure) — it showed every entry of the mapped webhook type (App.jsx:121-124). Only the build-time capture script split. On new poracle, `?dtsType=` does the split server-side; on old poracle the fallback reproduces today's unsplit behaviour. So no client-side split helper is needed anywhere.
 | `resolveEnrichType(client, dtsType)` | New: `dtsType` unchanged (server accepts DTS names). Old: `DTS_TO_ENRICH[dtsType] ?? dtsType`. |
 
 ### Changed: `src/lib/api-client.js`
@@ -92,7 +93,7 @@ Stays a transport layer; gains connection-capability state exactly as it already
 ### Old poracle (fallback)
 
 1. Connect → testdata response has no `types` → `supportsDerivedTypes = false`.
-2. `fetchScenarios('monster')` → `resolveWebhookType` → `pokemon` → `?type=pokemon` + `splitScenarios` → **exactly today's behaviour**.
+2. `fetchScenarios('monster')` → `resolveWebhookType` → `pokemon` → `?type=pokemon` → all entries (no client split) → **exactly today's behaviour**.
 3. Derived types don't appear (old poracle has no such templates); if forced, they resolve empty — no worse than today.
 
 ## §3 — Types, selector, derived-extras preview
@@ -124,12 +125,12 @@ Stays a transport layer; gains connection-capability state exactly as it already
 
 Once develop→main is promoted, one commit removes all legacy:
 
-- [ ] `src/lib/dts-types.js`: delete `DTS_TO_WEBHOOK`, `DTS_TO_ENRICH`, `splitScenarios`, and every `!client.supportsDerivedTypes` branch. `fetchScenarios` / `resolveWebhookType` / `resolveEnrichType` collapse to the `?dtsType=` / `types` path.
+- [ ] `src/lib/dts-types.js`: delete `DTS_TO_WEBHOOK`, `DTS_TO_ENRICH`, and every `!client.supportsDerivedTypes` branch. `fetchScenarios` / `resolveWebhookType` / `resolveEnrichType` collapse to the `?dtsType=` / `types` path.
 - [ ] `api-client.js`: `loadDtsTypes()` / `supportsDerivedTypes` may stay (harmless) or be simplified.
 - [ ] Delete the fallback-path unit tests in `dts-types.test.js`.
 - [ ] Optionally retire or repoint the `/next/` channel at the next feature branch.
 
 ## §7 — Testing
 
-- **Unit** (`src/lib/__tests__/dts-types.test.js`, vitest): `resolveWebhookType`, `resolveEnrichType`, and `fetchScenarios` against a mocked client for both `supportsDerivedTypes = true` and `false`; `splitScenarios` (invasion vs lure, raid vs egg).
+- **Unit** (`src/lib/__tests__/dts-types.test.js`, vitest): `resolveWebhookType`, `resolveEnrichType`, and `fetchScenarios` against a mocked client for both `supportsDerivedTypes = true` and `false`. Plus `api-client` `getTestdata` query-building and `loadDtsTypes` capability detection.
 - **Live/manual** (via the `verify` skill during implementation): `PORACLE_URL=http://localhost:4201 npm run dev` → confirm `monsterChanged` scenarios load, enrich, and preview; mock a `types`-less testdata response to confirm the fallback path reproduces current behaviour.
