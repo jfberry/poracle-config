@@ -14,43 +14,78 @@ concurrency:
   group: pages
   cancel-in-progress: true
 
+env:
+  # Branch built into the /next/ preview channel. Update or remove when the
+  # preview work is promoted. See docs/superpowers/specs/2026-07-19-dts-derived-types-editor.md §5.
+  PREVIEW_BRANCH: feature/dts-derived-types
+
 jobs:
-  build:
+  # Stable site from the triggering ref (master). Independent of the preview
+  # build so a broken preview branch can never block the production deploy.
+  build-stable:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
       - uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
-
       - run: npm ci
-
-      - name: Build stable (master) into dist/
+      - name: Build stable site
         run: npm run build
-
-      - name: Build preview branch into dist/next/
-        run: |
-          git fetch origin feature/dts-derived-types --depth=1
-          git worktree add ../preview origin/feature/dts-derived-types
-          cd ../preview
-          npm ci
-          BASE_PATH=/poracle-config/next/ npm run build
-          cd -
-          rm -rf dist/next
-          cp -r ../preview/dist dist/next
-
-      - uses: actions/upload-pages-artifact@v3
+      - name: Upload stable build
+        uses: actions/upload-artifact@v4
         with:
+          name: stable-dist
           path: dist
 
+  # Preview site (/poracle-config/next/) from PREVIEW_BRANCH. continue-on-error
+  # keeps a preview failure from failing the run; the deploy job tolerates a
+  # missing preview artifact, so the stable site still ships.
+  build-preview:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.PREVIEW_BRANCH }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - name: Build preview site into /next/
+        run: BASE_PATH=/poracle-config/next/ npm run build
+      - name: Upload preview build
+        uses: actions/upload-artifact@v4
+        with:
+          name: preview-dist
+          path: dist
+
+  # Assemble dist/ (stable) + dist/next/ (preview, if available) and deploy.
+  # Runs whenever the stable build succeeded, regardless of the preview result.
   deploy:
-    needs: build
+    needs: [build-stable, build-preview]
+    if: ${{ !cancelled() && needs.build-stable.result == 'success' }}
     runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      - name: Download stable build into dist/
+        uses: actions/download-artifact@v4
+        with:
+          name: stable-dist
+          path: dist
+      - name: Download preview build into dist/next/ (skipped if preview failed)
+        uses: actions/download-artifact@v4
+        continue-on-error: true
+        with:
+          name: preview-dist
+          path: dist/next
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
       - id: deployment
         uses: actions/deploy-pages@v4
