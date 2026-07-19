@@ -23,11 +23,11 @@ export const testScenarios = {
       "county": "Kent",
       "cp": 0,
       "dawnTime": false,
-      "disappearTime": "11:58:44",
-      "distime": "11:58:44",
+      "disappearTime": "13:10:38",
+      "distime": "13:10:38",
       "duskTime": false,
-      "end": 1784458724,
-      "endTimestamp": 1784458724,
+      "end": 1784463038,
+      "endTimestamp": 1784463038,
       "evolution": 0,
       "ex_raid_eligible": 0,
       "firstNotification": true,
@@ -47,9 +47,9 @@ export const testScenarios = {
       "gym_id": "7582be8a90de4f2584d3fe06a1cd29d6.16",
       "gym_name": "Seaside Museum",
       "gym_url": "https://lh3.googleusercontent.com/vOTG9vc4xVcoU6sGt6U3UwyJ-23_r7xQcBOsV_oJEPBKMVjYhBfgTbJ7ayA8EkVbpD9UBSsb114eS9jrkTtT35aUug",
-      "hatchTime": "11:28:44",
-      "hatchTimestamp": 1784456924,
-      "hatchtime": "11:28:44",
+      "hatchTime": "12:40:38",
+      "hatchTimestamp": 1784461238,
+      "hatchtime": "12:40:38",
       "id": 0,
       "imgUrl": "https://raw.githubusercontent.com/nileplumb/PkmnShuffleMap/master/UICONS/raid/egg/1.png",
       "is_exclusive": 0,
@@ -64,8 +64,8 @@ export const testScenarios = {
       "move_2": 0,
       "neighbourhood": "",
       "nightTime": false,
-      "now": "2026-07-19T10:18:44Z",
-      "nowISO": "2026-07-19T10:18:44.679Z",
+      "now": "2026-07-19T11:30:38Z",
+      "nowISO": "2026-07-19T11:30:38.803Z",
       "partner_id": "",
       "pokemon_id": 0,
       "power_up_end_timestamp": 0,
@@ -76,7 +76,7 @@ export const testScenarios = {
       "rsvps": null,
       "spawn": 1775475269,
       "sponsor_id": 0,
-      "start": 1784456924,
+      "start": 1784461238,
       "state": "England",
       "staticMap": "https://tiles.canterburypokemon.com/staticmap/pregenerated/_WDhqGN_IeIqHQk4uTd3UlAbinJt8zRHPAUYfd73Gow=.png",
       "staticmap": "https://tiles.canterburypokemon.com/staticmap/pregenerated/_WDhqGN_IeIqHQk4uTd3UlAbinJt8zRHPAUYfd73Gow=.png",
@@ -91,7 +91,7 @@ export const testScenarios = {
       "teamName": "Valor",
       "teamNameEng": "Valor",
       "team_id": 2,
-      "time": "11:28:44",
+      "time": "12:40:38",
       "tth": {
         "days": 0,
         "hours": 0,
@@ -122,11 +122,11 @@ export const testScenarios = {
       "county": "Kent",
       "cp": 0,
       "dawnTime": false,
-      "disappearTime": "11:58:44",
-      "distime": "11:58:44",
+      "disappearTime": "13:10:38",
+      "distime": "13:10:38",
       "duskTime": false,
-      "end": 1784458724,
-      "endTimestamp": 1784458724,
+      "end": 1784463038,
+      "endTimestamp": 1784463038,
       "evolution": 0,
       "ex_raid_eligible": 0,
       "firstNotification": true,
@@ -146,9 +146,9 @@ export const testScenarios = {
       "gym_id": "5c83c3d615e841bebfbcd613a80fac6f.16",
       "gym_name": "Land Calendar",
       "gym_url": "https://lh3.googleusercontent.com/GUoWG5Iud_QpgGuSl_Hqg7R7En3JJT0TwH49gYssgladPngb_800cue6N5xDjEqSpPmV2qzBdeDrfMSnI2EtYYKmeUw",
-      "hatchTime": "11:28:44",
-      "hatchTimestamp": 1784456924,
-      "hatchtime": "11:28:44",
+      "hatchTime": "12:40:38",
+      "hatchTimestamp": 1784461238,
+      "hatchtime": "12:40:38",
       "id": 0,
       "imgUrl": "https://raw.githubusercontent.com/nileplumb/PkmnShuffleMap/master/UICONS/raid/egg/5.png",
       "is_exclusive": 0,
@@ -163,8 +163,8 @@ export const testScenarios = {
       "move_2": 0,
       "neighbourhood": "",
       "nightTime": false,
-      "now": "2026-07-19T10:18:44Z",
-      "nowISO": "2026-07-19T10:18:44.736Z",
+      "now": "2026-07-19T11:30:38Z",
+      "nowISO": "2026-07-19T11:30:38.911Z",
       "partner_id": "",
       "pokemon_id": 0,
       "power_up_end_timestamp": 0,
@@ -175,7 +175,7 @@ export const testScenarios = {
       "rsvps": null,
       "spawn": 1775475262,
       "sponsor_id": 0,
-      "start": 1784456924,
+      "start": 1784461238,
       "state": "England",
       "staticMap": "https://tiles.canterburypokemon.com/staticmap/pregenerated/GOigcoh86ie8ipSlxsZeEez6YWUPUA_fDRZjmy36DHA=.png",
       "staticmap": "https://tiles.canterburypokemon.com/staticmap/pregenerated/GOigcoh86ie8ipSlxsZeEez6YWUPUA_fDRZjmy36DHA=.png",
@@ -190,7 +190,7 @@ export const testScenarios = {
       "teamName": "Mystic",
       "teamNameEng": "Mystic",
       "team_id": 1,
-      "time": "11:28:44",
+      "time": "12:40:38",
       "tth": {
         "days": 0,
         "hours": 0,
@@ -221,11 +221,11 @@ export const testScenarios = {
       "county": "Kent",
       "cp": 0,
       "dawnTime": false,
-      "disappearTime": "11:58:44",
-      "distime": "11:58:44",
+      "disappearTime": "13:10:38",
+      "distime": "13:10:38",
       "duskTime": false,
-      "end": 1784458724,
-      "endTimestamp": 1784458724,
+      "end": 1784463038,
+      "endTimestamp": 1784463038,
       "evolution": 0,
       "ex_raid_eligible": 0,
       "firstNotification": true,
@@ -245,9 +245,9 @@ export const testScenarios = {
       "gym_id": "2afb8516217a34cc9da56466d9ef28f3.16",
       "gym_name": "The Canterbury Rings ‘Outer Ring’ Trail Marker",
       "gym_url": "https://lh3.googleusercontent.com/2rtGwlhFHSuOeTv2RvLsc2VSqsInPUw5RSYGHfG2i9c1eS8ZGEnQia623wjhV1rMbQzh2YFckjP-e-P7lCBQvOJCFq1THczwaUzYJPEKag",
-      "hatchTime": "11:28:44",
-      "hatchTimestamp": 1784456924,
-      "hatchtime": "11:28:44",
+      "hatchTime": "12:40:38",
+      "hatchTimestamp": 1784461238,
+      "hatchtime": "12:40:38",
       "id": 0,
       "imgUrl": "https://raw.githubusercontent.com/nileplumb/PkmnShuffleMap/master/UICONS/raid/egg/6.png",
       "is_exclusive": 0,
@@ -262,8 +262,8 @@ export const testScenarios = {
       "move_2": 0,
       "neighbourhood": "",
       "nightTime": false,
-      "now": "2026-07-19T10:18:44Z",
-      "nowISO": "2026-07-19T10:18:44.787Z",
+      "now": "2026-07-19T11:30:38Z",
+      "nowISO": "2026-07-19T11:30:38.970Z",
       "partner_id": "",
       "pokemon_id": 0,
       "power_up_end_timestamp": 0,
@@ -274,7 +274,7 @@ export const testScenarios = {
       "rsvps": null,
       "spawn": 1775475014,
       "sponsor_id": 0,
-      "start": 1784456924,
+      "start": 1784461238,
       "state": "England",
       "staticMap": "https://tiles.canterburypokemon.com/staticmap/pregenerated/TklXAaBQrzUxmjGL9xrfrTgBBaIA0I78AEymhR8_9wI=.png",
       "staticmap": "https://tiles.canterburypokemon.com/staticmap/pregenerated/TklXAaBQrzUxmjGL9xrfrTgBBaIA0I78AEymhR8_9wI=.png",
@@ -289,7 +289,7 @@ export const testScenarios = {
       "teamName": "Instinct",
       "teamNameEng": "Instinct",
       "team_id": 3,
-      "time": "11:28:44",
+      "time": "12:40:38",
       "tth": {
         "days": 0,
         "hours": 0,
@@ -364,8 +364,8 @@ export const testScenarios = {
       "newLongitude": 1.013956,
       "newName": "Journey Through Trees And Time",
       "nightTime": false,
-      "now": "2026-07-19T10:18:44Z",
-      "nowISO": "2026-07-19T10:18:44.851Z",
+      "now": "2026-07-19T11:30:39Z",
+      "nowISO": "2026-07-19T11:30:39.065Z",
       "old": {
         "description": "An ancient trip through time and space",
         "id": "f7430347f5c34facb838be376f16adea.16",
@@ -453,8 +453,8 @@ export const testScenarios = {
       "newLongitude": 6.943889,
       "newName": "Journey Through Trees And Time",
       "nightTime": false,
-      "now": "2026-07-19T10:18:44Z",
-      "nowISO": "2026-07-19T10:18:44.903Z",
+      "now": "2026-07-19T11:30:39Z",
+      "nowISO": "2026-07-19T11:30:39.132Z",
       "old": {
         "description": "An ancient trip through time and space",
         "id": "a3118750bc2d3d0690f213ed74ba030f.16",
@@ -541,8 +541,8 @@ export const testScenarios = {
       "newLongitude": 6.943889,
       "newName": "Journey Through Trees And Time",
       "nightTime": false,
-      "now": "2026-07-19T10:18:44Z",
-      "nowISO": "2026-07-19T10:18:44.951Z",
+      "now": "2026-07-19T11:30:39Z",
+      "nowISO": "2026-07-19T11:30:39.208Z",
       "old": {
         "description": "An ancient trip through time and space",
         "id": "f7430347f5c34facb838be376f16adea.16",
@@ -630,8 +630,8 @@ export const testScenarios = {
       "newLongitude": 6.943889,
       "newName": "Journey Through Trees And Time",
       "nightTime": false,
-      "now": "2026-07-19T10:18:45Z",
-      "nowISO": "2026-07-19T10:18:45.004Z",
+      "now": "2026-07-19T11:30:39Z",
+      "nowISO": "2026-07-19T11:30:39.257Z",
       "old": {
         "description": "An ancient trip through time and space",
         "id": "f7430347f5c34facb838be376f16adea.16",
@@ -721,8 +721,8 @@ export const testScenarios = {
       "newLongitude": 6.943889,
       "newName": "Journey Through Trees And Time",
       "nightTime": false,
-      "now": "2026-07-19T10:18:45Z",
-      "nowISO": "2026-07-19T10:18:45.055Z",
+      "now": "2026-07-19T11:30:39Z",
+      "nowISO": "2026-07-19T11:30:39.309Z",
       "old": {
         "description": "An ancient trip through time and space",
         "id": "f7430347f5c34facb838be376f16adea.16",
@@ -806,8 +806,8 @@ export const testScenarios = {
       "newLongitude": 6.933164,
       "newName": "",
       "nightTime": false,
-      "now": "2026-07-19T10:18:45Z",
-      "nowISO": "2026-07-19T10:18:45.104Z",
+      "now": "2026-07-19T11:30:39Z",
+      "nowISO": "2026-07-19T11:30:39.375Z",
       "oldDescription": "",
       "oldImageUrl": "",
       "oldImgUrl": "",
@@ -869,8 +869,8 @@ export const testScenarios = {
       "newLongitude": 0,
       "newName": "",
       "nightTime": false,
-      "now": "2026-07-19T10:18:45Z",
-      "nowISO": "2026-07-19T10:18:45.155Z",
+      "now": "2026-07-19T11:30:39Z",
+      "nowISO": "2026-07-19T11:30:39.429Z",
       "old": {
         "description": null,
         "id": "f7430347f5c34facb838be376f16adea.16",
@@ -910,7 +910,7 @@ export const testScenarios = {
       "areas": "",
       "city": "Ashford",
       "color": "FFDE00",
-      "conqueredTime": "11:18:45",
+      "conqueredTime": "12:30:39",
       "country": "United Kingdom",
       "countryCode": "GB",
       "county": "Kent",
@@ -964,8 +964,8 @@ export const testScenarios = {
       "name": "Singleton Village Hall",
       "neighbourhood": "",
       "nightTime": false,
-      "now": "2026-07-19T10:18:45Z",
-      "nowISO": "2026-07-19T10:18:45.210Z",
+      "now": "2026-07-19T11:30:39Z",
+      "nowISO": "2026-07-19T11:30:39.548Z",
       "oldSlotsAvailable": -1,
       "oldTeamId": 0,
       "oldTrainerCount": 7,
@@ -1072,8 +1072,8 @@ export const testScenarios = {
       "name": "Marienkapelle",
       "neighbourhood": "",
       "nightTime": false,
-      "now": "2026-07-19T10:18:45Z",
-      "nowISO": "2026-07-19T10:18:45.260Z",
+      "now": "2026-07-19T11:30:39Z",
+      "nowISO": "2026-07-19T11:30:39.599Z",
       "pokestopId": "644161293921391b8a68391071d27252.16",
       "pokestopName": "Marienkapelle",
       "pokestopUrl": "http://lh3.googleusercontent.com/PkVozyduG3t4sUEA4M9DVxLbeK0d3Xc-QiM47EGfhzudc_WUdtJFHT9AZGohOF6pB4ZBPavvrj3khyR9OA3FjKbLTxZgJfE1u_c1E5nm",
@@ -1175,8 +1175,8 @@ export const testScenarios = {
       "name": "Rot-weißes Haus",
       "neighbourhood": "",
       "nightTime": false,
-      "now": "2026-07-19T10:18:45Z",
-      "nowISO": "2026-07-19T10:18:45.306Z",
+      "now": "2026-07-19T11:30:39Z",
+      "nowISO": "2026-07-19T11:30:39.646Z",
       "pokestopId": "88e96ce662d9491abd457c26a094896a.16",
       "pokestopName": "Rot-weißes Haus",
       "pokestopUrl": "https://raw.githubusercontent.com/jfberry/PoracleNG/images/fallback/pokestop.png",
@@ -1278,8 +1278,8 @@ export const testScenarios = {
       "name": "Rot-weißes Haus",
       "neighbourhood": "",
       "nightTime": false,
-      "now": "2026-07-19T10:18:45Z",
-      "nowISO": "2026-07-19T10:18:45.352Z",
+      "now": "2026-07-19T11:30:39Z",
+      "nowISO": "2026-07-19T11:30:39.689Z",
       "pokestopId": "88e96ce662d9491abd457c26a094896a.16",
       "pokestopName": "Rot-weißes Haus",
       "pokestopUrl": "https://raw.githubusercontent.com/jfberry/PoracleNG/images/fallback/pokestop.png",
@@ -1452,8 +1452,8 @@ export const testScenarios = {
       "name": "Oyster Bay Trail, Reculver Towers",
       "neighbourhood": "",
       "nightTime": false,
-      "now": "2026-07-19T10:18:45Z",
-      "nowISO": "2026-07-19T10:18:45.404Z",
+      "now": "2026-07-19T11:30:39Z",
+      "nowISO": "2026-07-19T11:30:39.786Z",
       "pokestopId": "5076221385b435ce9aea676f62568cfb.16",
       "pokestopName": "Oyster Bay Trail, Reculver Towers",
       "pokestopUrl": "https://lh3.googleusercontent.com/LTFTqjSJOXp_lMBP1Hbrk1FkjhJ1lQY6-dtiYQApgKipV2jxPK5WT4-WYOqs1B3u-VavJAi2sYs_e5fNa9Ys6JpCNgt734AZQhc0mKI",
@@ -1503,12 +1503,12 @@ export const testScenarios = {
       "countryCode": "GB",
       "county": "Kent",
       "dawnTime": false,
-      "disappearTime": "11:28:45",
+      "disappearTime": "12:40:39",
       "displayTypeId": 0,
-      "distime": "11:28:45",
+      "distime": "12:40:39",
       "duskTime": false,
-      "expiration": 1784456925,
-      "expirationTimestamp": 1784456925,
+      "expiration": 1784461239,
+      "expirationTimestamp": 1784461239,
       "flag": "🇬🇧",
       "formattedAddress": "Canterbury, CT1 2JE, England",
       "gameWeatherId": 0,
@@ -1555,9 +1555,9 @@ export const testScenarios = {
       "gruntTypeId": 44,
       "gruntTypeName": "Giovanni",
       "imgUrl": "https://raw.githubusercontent.com/nileplumb/PkmnShuffleMap/master/UICONS/invasion/44.png",
-      "incidentExpiration": 1784456925,
+      "incidentExpiration": 1784461239,
       "incident_expiration": 1643580000,
-      "incident_expire_timestamp": 1784456925,
+      "incident_expire_timestamp": 1784461239,
       "incident_grunt_type": 44,
       "incident_start": 1643522400,
       "last_modified": 1643508636,
@@ -1568,8 +1568,8 @@ export const testScenarios = {
       "name": "Patisserie Valerie",
       "neighbourhood": "",
       "nightTime": false,
-      "now": "2026-07-19T10:18:45Z",
-      "nowISO": "2026-07-19T10:18:45.474Z",
+      "now": "2026-07-19T11:30:39Z",
+      "nowISO": "2026-07-19T11:30:39.950Z",
       "pokestopId": "4a5d8d346e584faaa41bc1a8abe8055a.16",
       "pokestopUrl": "http://lh3.googleusercontent.com/SEhpe0J4i_odlJxtpph2REtdoMTKYxWPhhZryDJdFBCuPUdBY0uw0yeYKK9Obbk79ziVdJkYzBA1hjqbQ7kqeO4W3eFt",
       "pokestop_id": "4a5d8d346e584faaa41bc1a8abe8055a.16",
@@ -1588,7 +1588,7 @@ export const testScenarios = {
       "streetName": "",
       "streetNumber": "",
       "suburb": "The King's Mile",
-      "time": "11:28:45",
+      "time": "12:40:39",
       "tth": {
         "days": 0,
         "hours": 0,
@@ -1664,8 +1664,8 @@ export const testScenarios = {
       "name": "Playground Buchforst 2.0",
       "neighbourhood": "Stegerwaldsiedlung",
       "nightTime": false,
-      "now": "2026-07-19T10:18:45Z",
-      "nowISO": "2026-07-19T10:18:45.521Z",
+      "now": "2026-07-19T11:30:40Z",
+      "nowISO": "2026-07-19T11:30:40.002Z",
       "pokestopId": "0c1c942502d34767a030c25ecc3a93be.16",
       "pokestopName": "Playground Buchforst 2.0",
       "pokestopUrl": "http://lh3.googleusercontent.com/w6gTZvocAujGU1iDccte_76VFYrRVqfhPxJKDB2yDftlc7HOxwYXKxU1_-Y27TKKEGenQjWxduaFHGHOub_KSHEW1fY",
@@ -1747,8 +1747,8 @@ export const testScenarios = {
       "name": "Orchard Square Play Area",
       "neighbourhood": "",
       "nightTime": false,
-      "now": "2026-07-19T10:18:45Z",
-      "nowISO": "2026-07-19T10:18:45.571Z",
+      "now": "2026-07-19T11:30:40Z",
+      "nowISO": "2026-07-19T11:30:40.132Z",
       "pokestopId": "a09798321d63304f9fdeb2726558085b.16",
       "pokestopName": "Orchard Square Play Area",
       "pokestopUrl": "https://lh3.googleusercontent.com/jMscnlsbyv4pxePUG1o7RY289hCEhXcdvPRiDxixLWvO_ioo5bfhSzAlhPiPHR2-pZmarnkpAbeBkZ3-mGehJXNLWIQyiqaVVs1AST8c",
@@ -1828,8 +1828,8 @@ export const testScenarios = {
       "name": "Memorial Sculpture & Verse",
       "neighbourhood": "",
       "nightTime": false,
-      "now": "2026-07-19T10:18:45Z",
-      "nowISO": "2026-07-19T10:18:45.625Z",
+      "now": "2026-07-19T11:30:40Z",
+      "nowISO": "2026-07-19T11:30:40.256Z",
       "pokestopId": "0d4b26adbf24446ba893f0aa3f8de337.16",
       "pokestopName": "Memorial Sculpture & Verse",
       "pokestopUrl": "http://lh3.googleusercontent.com/Ce-yPhm1FwGNbFzaM0ToMESZ57EWx1g8dKXXgEE4o-mmdP0XdsHk2nSEXOBk88H5PIXBHud-b7m6PUUJ3N8Pe_XB98NY",
@@ -1973,10 +1973,10 @@ export const testScenarios = {
       "name": "Trapinch",
       "nameEng": "Trapinch",
       "neighbourhood": "",
-      "nextHourTimestamp": 1784458800,
+      "nextHourTimestamp": 1784462400,
       "nightTime": false,
-      "now": "2026-07-19T10:18:45Z",
-      "nowISO": "2026-07-19T10:18:45.677Z",
+      "now": "2026-07-19T11:30:40Z",
+      "nowISO": "2026-07-19T11:30:40.452Z",
       "pokemonId": 328,
       "quickMove": "Struggle Bug",
       "quickMoveEmoji": "🐛",
@@ -2212,10 +2212,10 @@ export const testScenarios = {
       "name": "Cryogonal",
       "nameEng": "Cryogonal",
       "neighbourhood": "",
-      "nextHourTimestamp": 1784458800,
+      "nextHourTimestamp": 1784462400,
       "nightTime": false,
-      "now": "2026-07-19T10:18:45Z",
-      "nowISO": "2026-07-19T10:18:45.734Z",
+      "now": "2026-07-19T11:30:40Z",
+      "nowISO": "2026-07-19T11:30:40.661Z",
       "pokemonId": 615,
       "quickMove": "Ice Shard",
       "quickMoveEmoji": "❄",
@@ -2382,14 +2382,14 @@ export const testScenarios = {
       "cp": 718,
       "dawnTime": false,
       "def": 1,
-      "despawnTimestamp": 1784456925,
-      "disappearTime": "11:28:45",
-      "disappear_time": 1784456925,
+      "despawnTimestamp": 1784461240,
+      "disappearTime": "12:40:40",
+      "disappear_time": 1784461240,
       "disappear_time_verified": true,
       "display_pokemon_form": null,
       "display_pokemon_id": null,
       "distance": 0,
-      "distime": "11:28:45",
+      "distime": "12:40:40",
       "duskTime": false,
       "emoji": [
         "🐦",
@@ -2461,10 +2461,10 @@ export const testScenarios = {
       "name": "Emolga",
       "nameEng": "Emolga",
       "neighbourhood": "",
-      "nextHourTimestamp": 1784458800,
+      "nextHourTimestamp": 1784462400,
       "nightTime": false,
-      "now": "2026-07-19T10:18:45Z",
-      "nowISO": "2026-07-19T10:18:45.821Z",
+      "now": "2026-07-19T11:30:40Z",
+      "nowISO": "2026-07-19T11:30:40.883Z",
       "pokemonId": 587,
       "pokemon_id": 587,
       "pokemon_level": 18,
@@ -2674,7 +2674,7 @@ export const testScenarios = {
       "streetName": "Whitehall Road",
       "streetNumber": "",
       "suburb": "Harbledown and Rough Common",
-      "time": "11:28:45",
+      "time": "12:40:40",
       "tth": {
         "days": 0,
         "hours": 0,
@@ -2707,7 +2707,7 @@ export const testScenarios = {
       "userTrackDistance": 0,
       "verified": true,
       "wazeMapUrl": "https://www.waze.com/ul?ll=51.274645,1.059287&navigate=yes&zoom=17",
-      "weaknessEmoji": "2x🗿❄ 0.5x⛰️🐛🌿🐦🔩👊 ",
+      "weaknessEmoji": "2x🗿❄ 0.5x⛰️🔩🐦👊🐛🌿 ",
       "weaknessList": [
         {
           "typeEmoji": "🗿❄",
@@ -2733,22 +2733,40 @@ export const testScenarios = {
           "value": 2
         },
         {
-          "typeEmoji": "⛰️🐛🌿🐦🔩👊",
+          "typeEmoji": "⛰️🔩🐦👊🐛🌿",
           "typeEmojiKeys": [
             "type-ground",
-            "type-bug",
-            "type-grass",
-            "type-flying",
             "type-steel",
-            "type-fighting"
+            "type-flying",
+            "type-fighting",
+            "type-bug",
+            "type-grass"
           ],
-          "typeName": "Ground, Bug, Grass, Flying, Steel, Fighting",
+          "typeName": "Ground, Steel, Flying, Fighting, Bug, Grass",
           "types": [
             {
               "emoji": "⛰️",
               "emojiKey": "type-ground",
               "name": "Ground",
               "typeId": 5
+            },
+            {
+              "emoji": "🔩",
+              "emojiKey": "type-steel",
+              "name": "Steel",
+              "typeId": 9
+            },
+            {
+              "emoji": "🐦",
+              "emojiKey": "type-flying",
+              "name": "Flying",
+              "typeId": 3
+            },
+            {
+              "emoji": "👊",
+              "emojiKey": "type-fighting",
+              "name": "Fighting",
+              "typeId": 2
             },
             {
               "emoji": "🐛",
@@ -2761,31 +2779,13 @@ export const testScenarios = {
               "emojiKey": "type-grass",
               "name": "Grass",
               "typeId": 12
-            },
-            {
-              "emoji": "🐦",
-              "emojiKey": "type-flying",
-              "name": "Flying",
-              "typeId": 3
-            },
-            {
-              "emoji": "🔩",
-              "emojiKey": "type-steel",
-              "name": "Steel",
-              "typeId": 9
-            },
-            {
-              "emoji": "👊",
-              "emojiKey": "type-fighting",
-              "name": "Fighting",
-              "typeId": 2
             }
           ],
           "value": 0.5
         }
       ],
       "weather": 0,
-      "weatherChangeTS": 1784455200,
+      "weatherChangeTS": 1784458800,
       "weatherForecastCurrent": 0,
       "weatherForecastNext": 0,
       "weight": "5.31",
@@ -2844,14 +2844,14 @@ export const testScenarios = {
       "cp": 718,
       "dawnTime": false,
       "def": 1,
-      "despawnTimestamp": 1784456925,
-      "disappearTime": "11:28:45",
-      "disappear_time": 1784456925,
+      "despawnTimestamp": 1784461240,
+      "disappearTime": "12:40:40",
+      "disappear_time": 1784461240,
       "disappear_time_verified": true,
       "display_pokemon_form": null,
       "display_pokemon_id": null,
       "distance": 0,
-      "distime": "11:28:45",
+      "distime": "12:40:40",
       "duskTime": false,
       "emoji": [
         "⚡"
@@ -3015,10 +3015,10 @@ export const testScenarios = {
       "name": "Pikachu",
       "nameEng": "Pikachu",
       "neighbourhood": "",
-      "nextHourTimestamp": 1784458800,
+      "nextHourTimestamp": 1784462400,
       "nightTime": false,
-      "now": "2026-07-19T10:18:45Z",
-      "nowISO": "2026-07-19T10:18:45.905Z",
+      "now": "2026-07-19T11:30:40Z",
+      "nowISO": "2026-07-19T11:30:40.980Z",
       "pokemonId": 25,
       "pokemon_id": 25,
       "pokemon_level": 18,
@@ -3240,7 +3240,7 @@ export const testScenarios = {
       "streetName": "Whitehall Road",
       "streetNumber": "",
       "suburb": "Harbledown and Rough Common",
-      "time": "11:28:45",
+      "time": "12:40:40",
       "tth": {
         "days": 0,
         "hours": 0,
@@ -3320,7 +3320,7 @@ export const testScenarios = {
         }
       ],
       "weather": 0,
-      "weatherChangeTS": 1784455200,
+      "weatherChangeTS": 1784458800,
       "weatherForecastCurrent": 0,
       "weatherForecastNext": 0,
       "weight": "5.31",
@@ -3386,14 +3386,14 @@ export const testScenarios = {
       "cp": 1041,
       "dawnTime": false,
       "def": 15,
-      "despawnTimestamp": 1784456925,
-      "disappearTime": "11:28:45",
-      "disappear_time": 1784456925,
+      "despawnTimestamp": 1784461240,
+      "disappearTime": "12:40:40",
+      "disappear_time": 1784461240,
       "disappear_time_verified": true,
       "display_pokemon_form": null,
       "display_pokemon_id": null,
       "distance": 0,
-      "distime": "11:28:45",
+      "distime": "12:40:40",
       "duskTime": false,
       "emoji": [
         "🌿",
@@ -3504,10 +3504,10 @@ export const testScenarios = {
       "name": "Exeggcute",
       "nameEng": "Exeggcute",
       "neighbourhood": "",
-      "nextHourTimestamp": 1784458800,
+      "nextHourTimestamp": 1784462400,
       "nightTime": false,
-      "now": "2026-07-19T10:18:45Z",
-      "nowISO": "2026-07-19T10:18:45.986Z",
+      "now": "2026-07-19T11:30:41Z",
+      "nowISO": "2026-07-19T11:30:41.109Z",
       "pokemonId": 102,
       "pokemon_id": 102,
       "pokemon_level": 32,
@@ -3718,7 +3718,7 @@ export const testScenarios = {
       "streetName": "Church Hill",
       "streetNumber": "",
       "suburb": "Park Farm",
-      "time": "11:28:45",
+      "time": "12:40:40",
       "tth": {
         "days": 0,
         "hours": 0,
@@ -3751,7 +3751,7 @@ export const testScenarios = {
       "userTrackDistance": 0,
       "verified": true,
       "wazeMapUrl": "https://www.waze.com/ul?ll=51.117493,0.865784&navigate=yes&zoom=17",
-      "weaknessEmoji": "4x🐛 2x🐦🔥❄🌑☠👻 0.5x👊🔮🌿⛰️💧⚡ ",
+      "weaknessEmoji": "4x🐛 2x🔥❄☠👻🌑🐦 0.5x🌿⚡🔮⛰️💧👊 ",
       "weaknessList": [
         {
           "typeEmoji": "🐛",
@@ -3770,23 +3770,17 @@ export const testScenarios = {
           "value": 4
         },
         {
-          "typeEmoji": "🐦🔥❄🌑☠👻",
+          "typeEmoji": "🔥❄☠👻🌑🐦",
           "typeEmojiKeys": [
-            "type-flying",
             "type-fire",
             "type-ice",
-            "type-dark",
             "type-poison",
-            "type-ghost"
+            "type-ghost",
+            "type-dark",
+            "type-flying"
           ],
-          "typeName": "Flying, Fire, Ice, Dark, Poison, Ghost",
+          "typeName": "Fire, Ice, Poison, Ghost, Dark, Flying",
           "types": [
-            {
-              "emoji": "🐦",
-              "emojiKey": "type-flying",
-              "name": "Flying",
-              "typeId": 3
-            },
             {
               "emoji": "🔥",
               "emojiKey": "type-fire",
@@ -3800,12 +3794,6 @@ export const testScenarios = {
               "typeId": 15
             },
             {
-              "emoji": "🌑",
-              "emojiKey": "type-dark",
-              "name": "Dark",
-              "typeId": 17
-            },
-            {
               "emoji": "☠",
               "emojiKey": "type-poison",
               "name": "Poison",
@@ -3816,39 +3804,51 @@ export const testScenarios = {
               "emojiKey": "type-ghost",
               "name": "Ghost",
               "typeId": 8
+            },
+            {
+              "emoji": "🌑",
+              "emojiKey": "type-dark",
+              "name": "Dark",
+              "typeId": 17
+            },
+            {
+              "emoji": "🐦",
+              "emojiKey": "type-flying",
+              "name": "Flying",
+              "typeId": 3
             }
           ],
           "value": 2
         },
         {
-          "typeEmoji": "👊🔮🌿⛰️💧⚡",
+          "typeEmoji": "🌿⚡🔮⛰️💧👊",
           "typeEmojiKeys": [
-            "type-fighting",
-            "type-psychic",
             "type-grass",
+            "type-electric",
+            "type-psychic",
             "type-ground",
             "type-water",
-            "type-electric"
+            "type-fighting"
           ],
-          "typeName": "Fighting, Psychic, Grass, Ground, Water, Electric",
+          "typeName": "Grass, Electric, Psychic, Ground, Water, Fighting",
           "types": [
             {
-              "emoji": "👊",
-              "emojiKey": "type-fighting",
-              "name": "Fighting",
-              "typeId": 2
+              "emoji": "🌿",
+              "emojiKey": "type-grass",
+              "name": "Grass",
+              "typeId": 12
+            },
+            {
+              "emoji": "⚡",
+              "emojiKey": "type-electric",
+              "name": "Electric",
+              "typeId": 13
             },
             {
               "emoji": "🔮",
               "emojiKey": "type-psychic",
               "name": "Psychic",
               "typeId": 14
-            },
-            {
-              "emoji": "🌿",
-              "emojiKey": "type-grass",
-              "name": "Grass",
-              "typeId": 12
             },
             {
               "emoji": "⛰️",
@@ -3863,17 +3863,17 @@ export const testScenarios = {
               "typeId": 11
             },
             {
-              "emoji": "⚡",
-              "emojiKey": "type-electric",
-              "name": "Electric",
-              "typeId": 13
+              "emoji": "👊",
+              "emojiKey": "type-fighting",
+              "name": "Fighting",
+              "typeId": 2
             }
           ],
           "value": 0.5
         }
       ],
       "weather": 1,
-      "weatherChangeTS": 1784455200,
+      "weatherChangeTS": 1784458800,
       "weatherForecastCurrent": 0,
       "weatherForecastNext": 0,
       "weight": "3.96",
@@ -3932,14 +3932,14 @@ export const testScenarios = {
       "cp": 937,
       "dawnTime": false,
       "def": 14,
-      "despawnTimestamp": 1784456925,
-      "disappearTime": "11:28:45",
-      "disappear_time": 1784456925,
+      "despawnTimestamp": 1784461241,
+      "disappearTime": "12:40:41",
+      "disappear_time": 1784461241,
       "disappear_time_verified": true,
       "display_pokemon_form": null,
       "display_pokemon_id": null,
       "distance": 0,
-      "distime": "11:28:45",
+      "distime": "12:40:41",
       "duskTime": false,
       "emoji": [
         "🐦",
@@ -4031,10 +4031,10 @@ export const testScenarios = {
       "name": "Natu",
       "nameEng": "Natu",
       "neighbourhood": "",
-      "nextHourTimestamp": 1784458800,
+      "nextHourTimestamp": 1784462400,
       "nightTime": false,
-      "now": "2026-07-19T10:18:46Z",
-      "nowISO": "2026-07-19T10:18:46.064Z",
+      "now": "2026-07-19T11:30:41Z",
+      "nowISO": "2026-07-19T11:30:41.218Z",
       "pokemonId": 177,
       "pokemon_id": 177,
       "pokemon_level": 30,
@@ -4372,7 +4372,7 @@ export const testScenarios = {
       "streetName": "Staplestreet Road",
       "streetNumber": "",
       "suburb": "Hernhill",
-      "time": "11:28:45",
+      "time": "12:40:41",
       "tth": {
         "days": 0,
         "hours": 0,
@@ -4405,24 +4405,30 @@ export const testScenarios = {
       "userTrackDistance": 0,
       "verified": true,
       "wazeMapUrl": "https://www.waze.com/ul?ll=51.303825,0.959628&navigate=yes&zoom=17",
-      "weaknessEmoji": "2x❄👻🌑🗿⚡ 0.5x🌿🔮 0.25x⛰️👊 ",
+      "weaknessEmoji": "2x🌑⚡👻🗿❄ 0.5x🌿🔮 0.25x⛰️👊 ",
       "weaknessList": [
         {
-          "typeEmoji": "❄👻🌑🗿⚡",
+          "typeEmoji": "🌑⚡👻🗿❄",
           "typeEmojiKeys": [
-            "type-ice",
-            "type-ghost",
             "type-dark",
+            "type-electric",
+            "type-ghost",
             "type-rock",
-            "type-electric"
+            "type-ice"
           ],
-          "typeName": "Ice, Ghost, Dark, Rock, Electric",
+          "typeName": "Dark, Electric, Ghost, Rock, Ice",
           "types": [
             {
-              "emoji": "❄",
-              "emojiKey": "type-ice",
-              "name": "Ice",
-              "typeId": 15
+              "emoji": "🌑",
+              "emojiKey": "type-dark",
+              "name": "Dark",
+              "typeId": 17
+            },
+            {
+              "emoji": "⚡",
+              "emojiKey": "type-electric",
+              "name": "Electric",
+              "typeId": 13
             },
             {
               "emoji": "👻",
@@ -4431,22 +4437,16 @@ export const testScenarios = {
               "typeId": 8
             },
             {
-              "emoji": "🌑",
-              "emojiKey": "type-dark",
-              "name": "Dark",
-              "typeId": 17
-            },
-            {
               "emoji": "🗿",
               "emojiKey": "type-rock",
               "name": "Rock",
               "typeId": 6
             },
             {
-              "emoji": "⚡",
-              "emojiKey": "type-electric",
-              "name": "Electric",
-              "typeId": 13
+              "emoji": "❄",
+              "emojiKey": "type-ice",
+              "name": "Ice",
+              "typeId": 15
             }
           ],
           "value": 2
@@ -4499,7 +4499,7 @@ export const testScenarios = {
         }
       ],
       "weather": 0,
-      "weatherChangeTS": 1784455200,
+      "weatherChangeTS": 1784458800,
       "weatherForecastCurrent": 0,
       "weatherForecastNext": 0,
       "weight": "1.97",
@@ -4560,14 +4560,14 @@ export const testScenarios = {
       "cp": 197,
       "dawnTime": false,
       "def": 15,
-      "despawnTimestamp": 1784456926,
-      "disappearTime": "11:28:46",
-      "disappear_time": 1784456926,
+      "despawnTimestamp": 1784461241,
+      "disappearTime": "12:40:41",
+      "disappear_time": 1784461241,
       "disappear_time_verified": true,
       "display_pokemon_form": null,
       "display_pokemon_id": null,
       "distance": 0,
-      "distime": "11:28:46",
+      "distime": "12:40:41",
       "duskTime": false,
       "emoji": [
         "⚡"
@@ -4690,10 +4690,10 @@ export const testScenarios = {
       "name": "Mareep",
       "nameEng": "Mareep",
       "neighbourhood": "",
-      "nextHourTimestamp": 1784458800,
+      "nextHourTimestamp": 1784462400,
       "nightTime": false,
-      "now": "2026-07-19T10:18:46Z",
-      "nowISO": "2026-07-19T10:18:46.144Z",
+      "now": "2026-07-19T11:30:41Z",
+      "nowISO": "2026-07-19T11:30:41.384Z",
       "pokemonId": 179,
       "pokemon_id": 179,
       "pokemon_level": 8,
@@ -5684,7 +5684,7 @@ export const testScenarios = {
       "streetName": "The Street",
       "streetNumber": "",
       "suburb": "Singleton",
-      "time": "11:28:46",
+      "time": "12:40:41",
       "tth": {
         "days": 0,
         "hours": 0,
@@ -5714,7 +5714,7 @@ export const testScenarios = {
       "userTrackDistance": 0,
       "verified": true,
       "wazeMapUrl": "https://www.waze.com/ul?ll=51.143932,0.834385&navigate=yes&zoom=17",
-      "weaknessEmoji": "2x⛰️ 0.5x🔩⚡🐦 ",
+      "weaknessEmoji": "2x⛰️ 0.5x⚡🐦🔩 ",
       "weaknessList": [
         {
           "typeEmoji": "⛰️",
@@ -5733,20 +5733,14 @@ export const testScenarios = {
           "value": 2
         },
         {
-          "typeEmoji": "🔩⚡🐦",
+          "typeEmoji": "⚡🐦🔩",
           "typeEmojiKeys": [
-            "type-steel",
             "type-electric",
-            "type-flying"
+            "type-flying",
+            "type-steel"
           ],
-          "typeName": "Steel, Electric, Flying",
+          "typeName": "Electric, Flying, Steel",
           "types": [
-            {
-              "emoji": "🔩",
-              "emojiKey": "type-steel",
-              "name": "Steel",
-              "typeId": 9
-            },
             {
               "emoji": "⚡",
               "emojiKey": "type-electric",
@@ -5758,13 +5752,19 @@ export const testScenarios = {
               "emojiKey": "type-flying",
               "name": "Flying",
               "typeId": 3
+            },
+            {
+              "emoji": "🔩",
+              "emojiKey": "type-steel",
+              "name": "Steel",
+              "typeId": 9
             }
           ],
           "value": 0.5
         }
       ],
       "weather": 0,
-      "weatherChangeTS": 1784455200,
+      "weatherChangeTS": 1784458800,
       "weatherForecastCurrent": 0,
       "weatherForecastNext": 0,
       "weight": "6.69",
@@ -5825,14 +5825,14 @@ export const testScenarios = {
       "cp": 226,
       "dawnTime": false,
       "def": 15,
-      "despawnTimestamp": 1784456926,
-      "disappearTime": "11:28:46",
-      "disappear_time": 1784456926,
+      "despawnTimestamp": 1784461241,
+      "disappearTime": "12:40:41",
+      "disappear_time": 1784461241,
       "disappear_time_verified": true,
       "display_pokemon_form": null,
       "display_pokemon_id": null,
       "distance": 0,
-      "distime": "11:28:46",
+      "distime": "12:40:41",
       "duskTime": false,
       "emoji": [
         "⭕"
@@ -5922,10 +5922,10 @@ export const testScenarios = {
       "name": "Chansey",
       "nameEng": "Chansey",
       "neighbourhood": "",
-      "nextHourTimestamp": 1784458800,
+      "nextHourTimestamp": 1784462400,
       "nightTime": false,
-      "now": "2026-07-19T10:18:46Z",
-      "nowISO": "2026-07-19T10:18:46.224Z",
+      "now": "2026-07-19T11:30:41Z",
+      "nowISO": "2026-07-19T11:30:41.530Z",
       "pokemonId": 113,
       "pokemon_id": 113,
       "pokemon_level": 8,
@@ -6422,7 +6422,7 @@ export const testScenarios = {
       "streetName": "Maple Close",
       "streetNumber": "",
       "suburb": "Godinton Park",
-      "time": "11:28:46",
+      "time": "12:40:41",
       "tth": {
         "days": 0,
         "hours": 0,
@@ -6488,7 +6488,7 @@ export const testScenarios = {
         }
       ],
       "weather": 0,
-      "weatherChangeTS": 1784455200,
+      "weatherChangeTS": 1784458800,
       "weatherForecastCurrent": 0,
       "weatherForecastNext": 0,
       "weight": "42.57",
@@ -6541,14 +6541,14 @@ export const testScenarios = {
       "cp": 0,
       "dawnTime": false,
       "def": 0,
-      "despawnTimestamp": 1784456926,
-      "disappearTime": "11:28:46",
-      "disappear_time": 1784456926,
+      "despawnTimestamp": 1784461241,
+      "disappearTime": "12:40:41",
+      "disappear_time": 1784461241,
       "disappear_time_verified": true,
       "display_pokemon_form": null,
       "display_pokemon_id": null,
       "distance": 0,
-      "distime": "11:28:46",
+      "distime": "12:40:41",
       "duskTime": false,
       "emoji": [
         "☠",
@@ -6670,10 +6670,10 @@ export const testScenarios = {
       "name": "Venipede",
       "nameEng": "Venipede",
       "neighbourhood": "",
-      "nextHourTimestamp": 1784458800,
+      "nextHourTimestamp": 1784462400,
       "nightTime": false,
-      "now": "2026-07-19T10:18:46Z",
-      "nowISO": "2026-07-19T10:18:46.303Z",
+      "now": "2026-07-19T11:30:41Z",
+      "nowISO": "2026-07-19T11:30:41.736Z",
       "pokemonId": 543,
       "pokemon_id": 543,
       "pokemon_level": null,
@@ -6720,7 +6720,7 @@ export const testScenarios = {
       "streetName": "Vicarage Lane",
       "streetNumber": "",
       "suburb": "Ospringe",
-      "time": "11:28:46",
+      "time": "12:40:41",
       "tth": {
         "days": 0,
         "hours": 0,
@@ -6753,18 +6753,24 @@ export const testScenarios = {
       "userTrackDistance": 0,
       "verified": true,
       "wazeMapUrl": "https://www.waze.com/ul?ll=51.306468,0.872671&navigate=yes&zoom=17",
-      "weaknessEmoji": "2x🔮🐦🗿🔥 0.5x☠🐛🦋 0.25x🌿👊 ",
+      "weaknessEmoji": "2x🗿🔮🐦🔥 0.5x☠🦋🐛 0.25x👊🌿 ",
       "weaknessList": [
         {
-          "typeEmoji": "🔮🐦🗿🔥",
+          "typeEmoji": "🗿🔮🐦🔥",
           "typeEmojiKeys": [
+            "type-rock",
             "type-psychic",
             "type-flying",
-            "type-rock",
             "type-fire"
           ],
-          "typeName": "Psychic, Flying, Rock, Fire",
+          "typeName": "Rock, Psychic, Flying, Fire",
           "types": [
+            {
+              "emoji": "🗿",
+              "emojiKey": "type-rock",
+              "name": "Rock",
+              "typeId": 6
+            },
             {
               "emoji": "🔮",
               "emojiKey": "type-psychic",
@@ -6778,12 +6784,6 @@ export const testScenarios = {
               "typeId": 3
             },
             {
-              "emoji": "🗿",
-              "emojiKey": "type-rock",
-              "name": "Rock",
-              "typeId": 6
-            },
-            {
               "emoji": "🔥",
               "emojiKey": "type-fire",
               "name": "Fire",
@@ -6793,13 +6793,13 @@ export const testScenarios = {
           "value": 2
         },
         {
-          "typeEmoji": "☠🐛🦋",
+          "typeEmoji": "☠🦋🐛",
           "typeEmojiKeys": [
             "type-poison",
-            "type-bug",
-            "type-fairy"
+            "type-fairy",
+            "type-bug"
           ],
-          "typeName": "Poison, Bug, Fairy",
+          "typeName": "Poison, Fairy, Bug",
           "types": [
             {
               "emoji": "☠",
@@ -6808,46 +6808,46 @@ export const testScenarios = {
               "typeId": 4
             },
             {
-              "emoji": "🐛",
-              "emojiKey": "type-bug",
-              "name": "Bug",
-              "typeId": 7
-            },
-            {
               "emoji": "🦋",
               "emojiKey": "type-fairy",
               "name": "Fairy",
               "typeId": 18
+            },
+            {
+              "emoji": "🐛",
+              "emojiKey": "type-bug",
+              "name": "Bug",
+              "typeId": 7
             }
           ],
           "value": 0.5
         },
         {
-          "typeEmoji": "🌿👊",
+          "typeEmoji": "👊🌿",
           "typeEmojiKeys": [
-            "type-grass",
-            "type-fighting"
+            "type-fighting",
+            "type-grass"
           ],
-          "typeName": "Grass, Fighting",
+          "typeName": "Fighting, Grass",
           "types": [
-            {
-              "emoji": "🌿",
-              "emojiKey": "type-grass",
-              "name": "Grass",
-              "typeId": 12
-            },
             {
               "emoji": "👊",
               "emojiKey": "type-fighting",
               "name": "Fighting",
               "typeId": 2
+            },
+            {
+              "emoji": "🌿",
+              "emojiKey": "type-grass",
+              "name": "Grass",
+              "typeId": 12
             }
           ],
           "value": 0.25
         }
       ],
       "weather": 0,
-      "weatherChangeTS": 1784455200,
+      "weatherChangeTS": 1784458800,
       "weatherForecastCurrent": 0,
       "weatherForecastNext": 0,
       "weight": null,
@@ -6915,14 +6915,14 @@ export const testScenarios = {
       "cp": 183,
       "dawnTime": false,
       "def": 11,
-      "despawnTimestamp": 1784456926,
-      "disappearTime": "11:28:46",
-      "disappear_time": 1784456926,
+      "despawnTimestamp": 1784461241,
+      "disappearTime": "12:40:41",
+      "disappear_time": 1784461241,
       "disappear_time_verified": true,
       "display_pokemon_form": null,
       "display_pokemon_id": null,
       "distance": 0,
-      "distime": "11:28:46",
+      "distime": "12:40:41",
       "duskTime": false,
       "emoji": [
         "🌿",
@@ -7033,10 +7033,10 @@ export const testScenarios = {
       "name": "Exeggcute",
       "nameEng": "Exeggcute",
       "neighbourhood": "",
-      "nextHourTimestamp": 1784458800,
+      "nextHourTimestamp": 1784462400,
       "nightTime": false,
-      "now": "2026-07-19T10:18:46Z",
-      "nowISO": "2026-07-19T10:18:46.392Z",
+      "now": "2026-07-19T11:30:42Z",
+      "nowISO": "2026-07-19T11:30:42.027Z",
       "pokemonId": 102,
       "pokemon_id": 102,
       "pokemon_level": 6,
@@ -7717,7 +7717,7 @@ export const testScenarios = {
       "streetName": "Whitehall Road",
       "streetNumber": "",
       "suburb": "Wincheap",
-      "time": "11:28:46",
+      "time": "12:40:41",
       "tth": {
         "days": 0,
         "hours": 0,
@@ -7750,7 +7750,7 @@ export const testScenarios = {
       "userTrackDistance": 0,
       "verified": true,
       "wazeMapUrl": "https://www.waze.com/ul?ll=51.274310,1.060110&navigate=yes&zoom=17",
-      "weaknessEmoji": "4x🐛 2x🔥❄🌑🐦👻☠ 0.5x⛰️🌿⚡💧👊🔮 ",
+      "weaknessEmoji": "4x🐛 2x👻🌑🔥❄🐦☠ 0.5x🌿⚡💧👊🔮⛰️ ",
       "weaknessList": [
         {
           "typeEmoji": "🐛",
@@ -7769,17 +7769,29 @@ export const testScenarios = {
           "value": 4
         },
         {
-          "typeEmoji": "🔥❄🌑🐦👻☠",
+          "typeEmoji": "👻🌑🔥❄🐦☠",
           "typeEmojiKeys": [
+            "type-ghost",
+            "type-dark",
             "type-fire",
             "type-ice",
-            "type-dark",
             "type-flying",
-            "type-ghost",
             "type-poison"
           ],
-          "typeName": "Fire, Ice, Dark, Flying, Ghost, Poison",
+          "typeName": "Ghost, Dark, Fire, Ice, Flying, Poison",
           "types": [
+            {
+              "emoji": "👻",
+              "emojiKey": "type-ghost",
+              "name": "Ghost",
+              "typeId": 8
+            },
+            {
+              "emoji": "🌑",
+              "emojiKey": "type-dark",
+              "name": "Dark",
+              "typeId": 17
+            },
             {
               "emoji": "🔥",
               "emojiKey": "type-fire",
@@ -7793,22 +7805,10 @@ export const testScenarios = {
               "typeId": 15
             },
             {
-              "emoji": "🌑",
-              "emojiKey": "type-dark",
-              "name": "Dark",
-              "typeId": 17
-            },
-            {
               "emoji": "🐦",
               "emojiKey": "type-flying",
               "name": "Flying",
               "typeId": 3
-            },
-            {
-              "emoji": "👻",
-              "emojiKey": "type-ghost",
-              "name": "Ghost",
-              "typeId": 8
             },
             {
               "emoji": "☠",
@@ -7820,23 +7820,17 @@ export const testScenarios = {
           "value": 2
         },
         {
-          "typeEmoji": "⛰️🌿⚡💧👊🔮",
+          "typeEmoji": "🌿⚡💧👊🔮⛰️",
           "typeEmojiKeys": [
-            "type-ground",
             "type-grass",
             "type-electric",
             "type-water",
             "type-fighting",
-            "type-psychic"
+            "type-psychic",
+            "type-ground"
           ],
-          "typeName": "Ground, Grass, Electric, Water, Fighting, Psychic",
+          "typeName": "Grass, Electric, Water, Fighting, Psychic, Ground",
           "types": [
-            {
-              "emoji": "⛰️",
-              "emojiKey": "type-ground",
-              "name": "Ground",
-              "typeId": 5
-            },
             {
               "emoji": "🌿",
               "emojiKey": "type-grass",
@@ -7866,13 +7860,19 @@ export const testScenarios = {
               "emojiKey": "type-psychic",
               "name": "Psychic",
               "typeId": 14
+            },
+            {
+              "emoji": "⛰️",
+              "emojiKey": "type-ground",
+              "name": "Ground",
+              "typeId": 5
             }
           ],
           "value": 0.5
         }
       ],
       "weather": 1,
-      "weatherChangeTS": 1784455200,
+      "weatherChangeTS": 1784458800,
       "weatherForecastCurrent": 0,
       "weatherForecastNext": 0,
       "weight": "3.37",
@@ -7933,14 +7933,14 @@ export const testScenarios = {
       "cp": 80,
       "dawnTime": false,
       "def": 2,
-      "despawnTimestamp": 1784456926,
-      "disappearTime": "11:28:46",
-      "disappear_time": 1784456926,
+      "despawnTimestamp": 1784461242,
+      "disappearTime": "12:40:42",
+      "disappear_time": 1784461242,
       "disappear_time_verified": true,
       "display_pokemon_form": null,
       "display_pokemon_id": null,
       "distance": 0,
-      "distime": "11:28:46",
+      "distime": "12:40:42",
       "duskTime": false,
       "emoji": [
         "⭕"
@@ -8031,10 +8031,10 @@ export const testScenarios = {
       "name": "Bunnelby",
       "nameEng": "Bunnelby",
       "neighbourhood": "",
-      "nextHourTimestamp": 1784458800,
+      "nextHourTimestamp": 1784462400,
       "nightTime": false,
-      "now": "2026-07-19T10:18:46Z",
-      "nowISO": "2026-07-19T10:18:46.474Z",
+      "now": "2026-07-19T11:30:42Z",
+      "nowISO": "2026-07-19T11:30:42.168Z",
       "pokemonId": 659,
       "pokemon_id": 659,
       "pokemon_level": 7,
@@ -8517,7 +8517,7 @@ export const testScenarios = {
       "streetName": "St Francis Court",
       "streetNumber": "",
       "suburb": "South Ashford",
-      "time": "11:28:46",
+      "time": "12:40:42",
       "tth": {
         "days": 0,
         "hours": 0,
@@ -8583,7 +8583,7 @@ export const testScenarios = {
         }
       ],
       "weather": 0,
-      "weatherChangeTS": 1784455200,
+      "weatherChangeTS": 1784458800,
       "weatherForecastCurrent": 0,
       "weatherForecastNext": 0,
       "weight": "5.20",
@@ -8641,14 +8641,14 @@ export const testScenarios = {
       "cp": 654,
       "dawnTime": false,
       "def": 14,
-      "despawnTimestamp": 1784456926,
-      "disappearTime": "11:28:46",
-      "disappear_time": 1784456926,
+      "despawnTimestamp": 1784461242,
+      "disappearTime": "12:40:42",
+      "disappear_time": 1784461242,
       "disappear_time_verified": true,
       "display_pokemon_form": null,
       "display_pokemon_id": null,
       "distance": 0,
-      "distime": "11:28:46",
+      "distime": "12:40:42",
       "duskTime": false,
       "emoji": [
         "⭕"
@@ -8714,10 +8714,10 @@ export const testScenarios = {
       "name": "Ditto",
       "nameEng": "Ditto",
       "neighbourhood": "",
-      "nextHourTimestamp": 1784458800,
+      "nextHourTimestamp": 1784462400,
       "nightTime": false,
-      "now": "2026-07-19T10:18:46Z",
-      "nowISO": "2026-07-19T10:18:46.567Z",
+      "now": "2026-07-19T11:30:42Z",
+      "nowISO": "2026-07-19T11:30:42.256Z",
       "original": {
         "atk": 0,
         "cp": 0,
@@ -8780,7 +8780,7 @@ export const testScenarios = {
       "streetName": "Whitehall Road",
       "streetNumber": "",
       "suburb": "Harbledown and Rough Common",
-      "time": "11:28:46",
+      "time": "12:40:42",
       "tth": {
         "days": 0,
         "hours": 0,
@@ -8846,7 +8846,7 @@ export const testScenarios = {
         }
       ],
       "weather": 0,
-      "weatherChangeTS": 1784455200,
+      "weatherChangeTS": 1784458800,
       "weatherForecastCurrent": 0,
       "weatherForecastNext": 0,
       "weight": "4.00",
@@ -8908,14 +8908,14 @@ export const testScenarios = {
       "cp": 718,
       "dawnTime": false,
       "def": 1,
-      "despawnTimestamp": 1784456926,
-      "disappearTime": "11:28:46",
-      "disappear_time": 1784456926,
+      "despawnTimestamp": 1784461242,
+      "disappearTime": "12:40:42",
+      "disappear_time": 1784461242,
       "disappear_time_verified": true,
       "display_pokemon_form": null,
       "display_pokemon_id": null,
       "distance": 0,
-      "distime": "11:28:46",
+      "distime": "12:40:42",
       "duskTime": false,
       "emoji": [
         "🐦",
@@ -8984,10 +8984,10 @@ export const testScenarios = {
       "name": "Emolga",
       "nameEng": "Emolga",
       "neighbourhood": "",
-      "nextHourTimestamp": 1784458800,
+      "nextHourTimestamp": 1784462400,
       "nightTime": false,
-      "now": "2026-07-19T10:18:46Z",
-      "nowISO": "2026-07-19T10:18:46.662Z",
+      "now": "2026-07-19T11:30:42Z",
+      "nowISO": "2026-07-19T11:30:42.345Z",
       "pokemonId": 587,
       "pokemon_id": 587,
       "pokemon_level": 18,
@@ -9195,7 +9195,7 @@ export const testScenarios = {
       "streetName": "Whitehall Road",
       "streetNumber": "",
       "suburb": "Harbledown and Rough Common",
-      "time": "11:28:46",
+      "time": "12:40:42",
       "tth": {
         "days": 0,
         "hours": 0,
@@ -9228,66 +9228,48 @@ export const testScenarios = {
       "userTrackDistance": 0,
       "verified": true,
       "wazeMapUrl": "https://www.waze.com/ul?ll=51.274645,1.059287&navigate=yes&zoom=17",
-      "weaknessEmoji": "2x❄🗿 0.5x🐦👊🌿🔩🐛⛰️ ",
+      "weaknessEmoji": "2x🗿❄ 0.5x👊🐛🔩🌿⛰️🐦 ",
       "weaknessList": [
         {
-          "typeEmoji": "❄🗿",
+          "typeEmoji": "🗿❄",
           "typeEmojiKeys": [
-            "type-ice",
-            "type-rock"
+            "type-rock",
+            "type-ice"
           ],
-          "typeName": "Ice, Rock",
+          "typeName": "Rock, Ice",
           "types": [
-            {
-              "emoji": "❄",
-              "emojiKey": "type-ice",
-              "name": "Ice",
-              "typeId": 15
-            },
             {
               "emoji": "🗿",
               "emojiKey": "type-rock",
               "name": "Rock",
               "typeId": 6
+            },
+            {
+              "emoji": "❄",
+              "emojiKey": "type-ice",
+              "name": "Ice",
+              "typeId": 15
             }
           ],
           "value": 2
         },
         {
-          "typeEmoji": "🐦👊🌿🔩🐛⛰️",
+          "typeEmoji": "👊🐛🔩🌿⛰️🐦",
           "typeEmojiKeys": [
-            "type-flying",
             "type-fighting",
-            "type-grass",
-            "type-steel",
             "type-bug",
-            "type-ground"
+            "type-steel",
+            "type-grass",
+            "type-ground",
+            "type-flying"
           ],
-          "typeName": "Flying, Fighting, Grass, Steel, Bug, Ground",
+          "typeName": "Fighting, Bug, Steel, Grass, Ground, Flying",
           "types": [
-            {
-              "emoji": "🐦",
-              "emojiKey": "type-flying",
-              "name": "Flying",
-              "typeId": 3
-            },
             {
               "emoji": "👊",
               "emojiKey": "type-fighting",
               "name": "Fighting",
               "typeId": 2
-            },
-            {
-              "emoji": "🌿",
-              "emojiKey": "type-grass",
-              "name": "Grass",
-              "typeId": 12
-            },
-            {
-              "emoji": "🔩",
-              "emojiKey": "type-steel",
-              "name": "Steel",
-              "typeId": 9
             },
             {
               "emoji": "🐛",
@@ -9296,17 +9278,35 @@ export const testScenarios = {
               "typeId": 7
             },
             {
+              "emoji": "🔩",
+              "emojiKey": "type-steel",
+              "name": "Steel",
+              "typeId": 9
+            },
+            {
+              "emoji": "🌿",
+              "emojiKey": "type-grass",
+              "name": "Grass",
+              "typeId": 12
+            },
+            {
               "emoji": "⛰️",
               "emojiKey": "type-ground",
               "name": "Ground",
               "typeId": 5
+            },
+            {
+              "emoji": "🐦",
+              "emojiKey": "type-flying",
+              "name": "Flying",
+              "typeId": 3
             }
           ],
           "value": 0.5
         }
       ],
       "weather": 0,
-      "weatherChangeTS": 1784455200,
+      "weatherChangeTS": 1784458800,
       "weatherForecastCurrent": 0,
       "weatherForecastNext": 0,
       "weight": "5.31",
@@ -9364,14 +9364,14 @@ export const testScenarios = {
       "cp": 718,
       "dawnTime": false,
       "def": 1,
-      "despawnTimestamp": 1784456926,
-      "disappearTime": "11:28:46",
-      "disappear_time": 1784456926,
+      "despawnTimestamp": 1784461242,
+      "disappearTime": "12:40:42",
+      "disappear_time": 1784461242,
       "disappear_time_verified": true,
       "display_pokemon_form": null,
       "display_pokemon_id": null,
       "distance": 0,
-      "distime": "11:28:46",
+      "distime": "12:40:42",
       "duskTime": false,
       "emoji": [
         "⚡"
@@ -9532,10 +9532,10 @@ export const testScenarios = {
       "name": "Pikachu",
       "nameEng": "Pikachu",
       "neighbourhood": "",
-      "nextHourTimestamp": 1784458800,
+      "nextHourTimestamp": 1784462400,
       "nightTime": false,
-      "now": "2026-07-19T10:18:46Z",
-      "nowISO": "2026-07-19T10:18:46.763Z",
+      "now": "2026-07-19T11:30:42Z",
+      "nowISO": "2026-07-19T11:30:42.427Z",
       "pokemonId": 25,
       "pokemon_id": 25,
       "pokemon_level": 18,
@@ -9755,7 +9755,7 @@ export const testScenarios = {
       "streetName": "Whitehall Road",
       "streetNumber": "",
       "suburb": "Harbledown and Rough Common",
-      "time": "11:28:46",
+      "time": "12:40:42",
       "tth": {
         "days": 0,
         "hours": 0,
@@ -9785,7 +9785,7 @@ export const testScenarios = {
       "userTrackDistance": 0,
       "verified": true,
       "wazeMapUrl": "https://www.waze.com/ul?ll=51.274645,1.059287&navigate=yes&zoom=17",
-      "weaknessEmoji": "2x⛰️ 0.5x🔩⚡🐦 ",
+      "weaknessEmoji": "2x⛰️ 0.5x🐦🔩⚡ ",
       "weaknessList": [
         {
           "typeEmoji": "⛰️",
@@ -9804,14 +9804,20 @@ export const testScenarios = {
           "value": 2
         },
         {
-          "typeEmoji": "🔩⚡🐦",
+          "typeEmoji": "🐦🔩⚡",
           "typeEmojiKeys": [
+            "type-flying",
             "type-steel",
-            "type-electric",
-            "type-flying"
+            "type-electric"
           ],
-          "typeName": "Steel, Electric, Flying",
+          "typeName": "Flying, Steel, Electric",
           "types": [
+            {
+              "emoji": "🐦",
+              "emojiKey": "type-flying",
+              "name": "Flying",
+              "typeId": 3
+            },
             {
               "emoji": "🔩",
               "emojiKey": "type-steel",
@@ -9823,19 +9829,13 @@ export const testScenarios = {
               "emojiKey": "type-electric",
               "name": "Electric",
               "typeId": 13
-            },
-            {
-              "emoji": "🐦",
-              "emojiKey": "type-flying",
-              "name": "Flying",
-              "typeId": 3
             }
           ],
           "value": 0.5
         }
       ],
       "weather": 0,
-      "weatherChangeTS": 1784455200,
+      "weatherChangeTS": 1784458800,
       "weatherForecastCurrent": 0,
       "weatherForecastNext": 0,
       "weight": "5.31",
@@ -9900,14 +9900,14 @@ export const testScenarios = {
       "cp": 1041,
       "dawnTime": false,
       "def": 15,
-      "despawnTimestamp": 1784456926,
-      "disappearTime": "11:28:46",
-      "disappear_time": 1784456926,
+      "despawnTimestamp": 1784461242,
+      "disappearTime": "12:40:42",
+      "disappear_time": 1784461242,
       "disappear_time_verified": true,
       "display_pokemon_form": null,
       "display_pokemon_id": null,
       "distance": 0,
-      "distime": "11:28:46",
+      "distime": "12:40:42",
       "duskTime": false,
       "emoji": [
         "🌿",
@@ -10015,10 +10015,10 @@ export const testScenarios = {
       "name": "Exeggcute",
       "nameEng": "Exeggcute",
       "neighbourhood": "",
-      "nextHourTimestamp": 1784458800,
+      "nextHourTimestamp": 1784462400,
       "nightTime": false,
-      "now": "2026-07-19T10:18:46Z",
-      "nowISO": "2026-07-19T10:18:46.854Z",
+      "now": "2026-07-19T11:30:42Z",
+      "nowISO": "2026-07-19T11:30:42.500Z",
       "pokemonId": 102,
       "pokemon_id": 102,
       "pokemon_level": 32,
@@ -10227,7 +10227,7 @@ export const testScenarios = {
       "streetName": "Church Hill",
       "streetNumber": "",
       "suburb": "Park Farm",
-      "time": "11:28:46",
+      "time": "12:40:42",
       "tth": {
         "days": 0,
         "hours": 0,
@@ -10260,7 +10260,7 @@ export const testScenarios = {
       "userTrackDistance": 0,
       "verified": true,
       "wazeMapUrl": "https://www.waze.com/ul?ll=51.117493,0.865784&navigate=yes&zoom=17",
-      "weaknessEmoji": "4x🐛 2x🌑🐦☠❄🔥👻 0.5x👊⛰️💧⚡🔮🌿 ",
+      "weaknessEmoji": "4x🐛 2x👻🌑🐦☠❄🔥 0.5x💧🌿⚡👊⛰️🔮 ",
       "weaknessList": [
         {
           "typeEmoji": "🐛",
@@ -10279,17 +10279,23 @@ export const testScenarios = {
           "value": 4
         },
         {
-          "typeEmoji": "🌑🐦☠❄🔥👻",
+          "typeEmoji": "👻🌑🐦☠❄🔥",
           "typeEmojiKeys": [
+            "type-ghost",
             "type-dark",
             "type-flying",
             "type-poison",
             "type-ice",
-            "type-fire",
-            "type-ghost"
+            "type-fire"
           ],
-          "typeName": "Dark, Flying, Poison, Ice, Fire, Ghost",
+          "typeName": "Ghost, Dark, Flying, Poison, Ice, Fire",
           "types": [
+            {
+              "emoji": "👻",
+              "emojiKey": "type-ghost",
+              "name": "Ghost",
+              "typeId": 8
+            },
             {
               "emoji": "🌑",
               "emojiKey": "type-dark",
@@ -10319,28 +10325,40 @@ export const testScenarios = {
               "emojiKey": "type-fire",
               "name": "Fire",
               "typeId": 10
-            },
-            {
-              "emoji": "👻",
-              "emojiKey": "type-ghost",
-              "name": "Ghost",
-              "typeId": 8
             }
           ],
           "value": 2
         },
         {
-          "typeEmoji": "👊⛰️💧⚡🔮🌿",
+          "typeEmoji": "💧🌿⚡👊⛰️🔮",
           "typeEmojiKeys": [
+            "type-water",
+            "type-grass",
+            "type-electric",
             "type-fighting",
             "type-ground",
-            "type-water",
-            "type-electric",
-            "type-psychic",
-            "type-grass"
+            "type-psychic"
           ],
-          "typeName": "Fighting, Ground, Water, Electric, Psychic, Grass",
+          "typeName": "Water, Grass, Electric, Fighting, Ground, Psychic",
           "types": [
+            {
+              "emoji": "💧",
+              "emojiKey": "type-water",
+              "name": "Water",
+              "typeId": 11
+            },
+            {
+              "emoji": "🌿",
+              "emojiKey": "type-grass",
+              "name": "Grass",
+              "typeId": 12
+            },
+            {
+              "emoji": "⚡",
+              "emojiKey": "type-electric",
+              "name": "Electric",
+              "typeId": 13
+            },
             {
               "emoji": "👊",
               "emojiKey": "type-fighting",
@@ -10354,35 +10372,17 @@ export const testScenarios = {
               "typeId": 5
             },
             {
-              "emoji": "💧",
-              "emojiKey": "type-water",
-              "name": "Water",
-              "typeId": 11
-            },
-            {
-              "emoji": "⚡",
-              "emojiKey": "type-electric",
-              "name": "Electric",
-              "typeId": 13
-            },
-            {
               "emoji": "🔮",
               "emojiKey": "type-psychic",
               "name": "Psychic",
               "typeId": 14
-            },
-            {
-              "emoji": "🌿",
-              "emojiKey": "type-grass",
-              "name": "Grass",
-              "typeId": 12
             }
           ],
           "value": 0.5
         }
       ],
       "weather": 1,
-      "weatherChangeTS": 1784455200,
+      "weatherChangeTS": 1784458800,
       "weatherForecastCurrent": 0,
       "weatherForecastNext": 0,
       "weight": "3.96",
@@ -10440,14 +10440,14 @@ export const testScenarios = {
       "cp": 937,
       "dawnTime": false,
       "def": 14,
-      "despawnTimestamp": 1784456926,
-      "disappearTime": "11:28:46",
-      "disappear_time": 1784456926,
+      "despawnTimestamp": 1784461242,
+      "disappearTime": "12:40:42",
+      "disappear_time": 1784461242,
       "disappear_time_verified": true,
       "display_pokemon_form": null,
       "display_pokemon_id": null,
       "distance": 0,
-      "distime": "11:28:46",
+      "distime": "12:40:42",
       "duskTime": false,
       "emoji": [
         "🐦",
@@ -10536,10 +10536,10 @@ export const testScenarios = {
       "name": "Natu",
       "nameEng": "Natu",
       "neighbourhood": "",
-      "nextHourTimestamp": 1784458800,
+      "nextHourTimestamp": 1784462400,
       "nightTime": false,
-      "now": "2026-07-19T10:18:46Z",
-      "nowISO": "2026-07-19T10:18:46.940Z",
+      "now": "2026-07-19T11:30:42Z",
+      "nowISO": "2026-07-19T11:30:42.573Z",
       "pokemonId": 177,
       "pokemon_id": 177,
       "pokemon_level": 30,
@@ -10875,7 +10875,7 @@ export const testScenarios = {
       "streetName": "Staplestreet Road",
       "streetNumber": "",
       "suburb": "Hernhill",
-      "time": "11:28:46",
+      "time": "12:40:42",
       "tth": {
         "days": 0,
         "hours": 0,
@@ -10908,19 +10908,31 @@ export const testScenarios = {
       "userTrackDistance": 0,
       "verified": true,
       "wazeMapUrl": "https://www.waze.com/ul?ll=51.303825,0.959628&navigate=yes&zoom=17",
-      "weaknessEmoji": "2x🗿⚡❄🌑👻 0.5x🌿🔮 0.25x👊⛰️ ",
+      "weaknessEmoji": "2x❄👻🗿⚡🌑 0.5x🌿🔮 0.25x👊⛰️ ",
       "weaknessList": [
         {
-          "typeEmoji": "🗿⚡❄🌑👻",
+          "typeEmoji": "❄👻🗿⚡🌑",
           "typeEmojiKeys": [
+            "type-ice",
+            "type-ghost",
             "type-rock",
             "type-electric",
-            "type-ice",
-            "type-dark",
-            "type-ghost"
+            "type-dark"
           ],
-          "typeName": "Rock, Electric, Ice, Dark, Ghost",
+          "typeName": "Ice, Ghost, Rock, Electric, Dark",
           "types": [
+            {
+              "emoji": "❄",
+              "emojiKey": "type-ice",
+              "name": "Ice",
+              "typeId": 15
+            },
+            {
+              "emoji": "👻",
+              "emojiKey": "type-ghost",
+              "name": "Ghost",
+              "typeId": 8
+            },
             {
               "emoji": "🗿",
               "emojiKey": "type-rock",
@@ -10934,22 +10946,10 @@ export const testScenarios = {
               "typeId": 13
             },
             {
-              "emoji": "❄",
-              "emojiKey": "type-ice",
-              "name": "Ice",
-              "typeId": 15
-            },
-            {
               "emoji": "🌑",
               "emojiKey": "type-dark",
               "name": "Dark",
               "typeId": 17
-            },
-            {
-              "emoji": "👻",
-              "emojiKey": "type-ghost",
-              "name": "Ghost",
-              "typeId": 8
             }
           ],
           "value": 2
@@ -11002,7 +11002,7 @@ export const testScenarios = {
         }
       ],
       "weather": 0,
-      "weatherChangeTS": 1784455200,
+      "weatherChangeTS": 1784458800,
       "weatherForecastCurrent": 0,
       "weatherForecastNext": 0,
       "weight": "1.97",
@@ -11062,14 +11062,14 @@ export const testScenarios = {
       "cp": 197,
       "dawnTime": false,
       "def": 15,
-      "despawnTimestamp": 1784456926,
-      "disappearTime": "11:28:46",
-      "disappear_time": 1784456926,
+      "despawnTimestamp": 1784461242,
+      "disappearTime": "12:40:42",
+      "disappear_time": 1784461242,
       "disappear_time_verified": true,
       "display_pokemon_form": null,
       "display_pokemon_id": null,
       "distance": 0,
-      "distime": "11:28:46",
+      "distime": "12:40:42",
       "duskTime": false,
       "emoji": [
         "⚡"
@@ -11189,10 +11189,10 @@ export const testScenarios = {
       "name": "Mareep",
       "nameEng": "Mareep",
       "neighbourhood": "",
-      "nextHourTimestamp": 1784458800,
+      "nextHourTimestamp": 1784462400,
       "nightTime": false,
-      "now": "2026-07-19T10:18:47Z",
-      "nowISO": "2026-07-19T10:18:47.018Z",
+      "now": "2026-07-19T11:30:42Z",
+      "nowISO": "2026-07-19T11:30:42.653Z",
       "pokemonId": 179,
       "pokemon_id": 179,
       "pokemon_level": 8,
@@ -11347,19 +11347,19 @@ export const testScenarios = {
         ],
         "2500": [
           {
-            "rank": 8,
-            "cp": 2492,
-            "caps": [
-              50
-            ]
-          },
-          {
             "rank": 20,
             "cp": 2481,
             "caps": [
               50
             ],
             "evolution": 1
+          },
+          {
+            "rank": 8,
+            "cp": 2492,
+            "caps": [
+              50
+            ]
           }
         ]
       },
@@ -12181,7 +12181,7 @@ export const testScenarios = {
       "streetName": "The Street",
       "streetNumber": "",
       "suburb": "Singleton",
-      "time": "11:28:46",
+      "time": "12:40:42",
       "tth": {
         "days": 0,
         "hours": 0,
@@ -12211,7 +12211,7 @@ export const testScenarios = {
       "userTrackDistance": 0,
       "verified": true,
       "wazeMapUrl": "https://www.waze.com/ul?ll=51.143932,0.834385&navigate=yes&zoom=17",
-      "weaknessEmoji": "2x⛰️ 0.5x🐦🔩⚡ ",
+      "weaknessEmoji": "2x⛰️ 0.5x⚡🐦🔩 ",
       "weaknessList": [
         {
           "typeEmoji": "⛰️",
@@ -12230,14 +12230,20 @@ export const testScenarios = {
           "value": 2
         },
         {
-          "typeEmoji": "🐦🔩⚡",
+          "typeEmoji": "⚡🐦🔩",
           "typeEmojiKeys": [
+            "type-electric",
             "type-flying",
-            "type-steel",
-            "type-electric"
+            "type-steel"
           ],
-          "typeName": "Flying, Steel, Electric",
+          "typeName": "Electric, Flying, Steel",
           "types": [
+            {
+              "emoji": "⚡",
+              "emojiKey": "type-electric",
+              "name": "Electric",
+              "typeId": 13
+            },
             {
               "emoji": "🐦",
               "emojiKey": "type-flying",
@@ -12249,19 +12255,13 @@ export const testScenarios = {
               "emojiKey": "type-steel",
               "name": "Steel",
               "typeId": 9
-            },
-            {
-              "emoji": "⚡",
-              "emojiKey": "type-electric",
-              "name": "Electric",
-              "typeId": 13
             }
           ],
           "value": 0.5
         }
       ],
       "weather": 0,
-      "weatherChangeTS": 1784455200,
+      "weatherChangeTS": 1784458800,
       "weatherForecastCurrent": 0,
       "weatherForecastNext": 0,
       "weight": "6.69",
@@ -12321,14 +12321,14 @@ export const testScenarios = {
       "cp": 226,
       "dawnTime": false,
       "def": 15,
-      "despawnTimestamp": 1784456927,
-      "disappearTime": "11:28:47",
-      "disappear_time": 1784456927,
+      "despawnTimestamp": 1784461242,
+      "disappearTime": "12:40:42",
+      "disappear_time": 1784461242,
       "disappear_time_verified": true,
       "display_pokemon_form": null,
       "display_pokemon_id": null,
       "distance": 0,
-      "distime": "11:28:47",
+      "distime": "12:40:42",
       "duskTime": false,
       "emoji": [
         "⭕"
@@ -12415,10 +12415,10 @@ export const testScenarios = {
       "name": "Chansey",
       "nameEng": "Chansey",
       "neighbourhood": "",
-      "nextHourTimestamp": 1784458800,
+      "nextHourTimestamp": 1784462400,
       "nightTime": false,
-      "now": "2026-07-19T10:18:47Z",
-      "nowISO": "2026-07-19T10:18:47.099Z",
+      "now": "2026-07-19T11:30:42Z",
+      "nowISO": "2026-07-19T11:30:42.731Z",
       "pokemonId": 113,
       "pokemon_id": 113,
       "pokemon_level": 8,
@@ -12913,7 +12913,7 @@ export const testScenarios = {
       "streetName": "Maple Close",
       "streetNumber": "",
       "suburb": "Godinton Park",
-      "time": "11:28:47",
+      "time": "12:40:42",
       "tth": {
         "days": 0,
         "hours": 0,
@@ -12979,7 +12979,7 @@ export const testScenarios = {
         }
       ],
       "weather": 0,
-      "weatherChangeTS": 1784455200,
+      "weatherChangeTS": 1784458800,
       "weatherForecastCurrent": 0,
       "weatherForecastNext": 0,
       "weight": "42.57",
@@ -13031,14 +13031,14 @@ export const testScenarios = {
       "cp": 0,
       "dawnTime": false,
       "def": 0,
-      "despawnTimestamp": 1784456927,
-      "disappearTime": "11:28:47",
-      "disappear_time": 1784456927,
+      "despawnTimestamp": 1784461242,
+      "disappearTime": "12:40:42",
+      "disappear_time": 1784461242,
       "disappear_time_verified": true,
       "display_pokemon_form": null,
       "display_pokemon_id": null,
       "distance": 0,
-      "distime": "11:28:47",
+      "distime": "12:40:42",
       "duskTime": false,
       "emoji": [
         "☠",
@@ -13160,10 +13160,10 @@ export const testScenarios = {
       "name": "Venipede",
       "nameEng": "Venipede",
       "neighbourhood": "",
-      "nextHourTimestamp": 1784458800,
+      "nextHourTimestamp": 1784462400,
       "nightTime": false,
-      "now": "2026-07-19T10:18:47Z",
-      "nowISO": "2026-07-19T10:18:47.177Z",
+      "now": "2026-07-19T11:30:42Z",
+      "nowISO": "2026-07-19T11:30:42.803Z",
       "pokemonId": 543,
       "pokemon_id": 543,
       "pokemon_level": null,
@@ -13208,7 +13208,7 @@ export const testScenarios = {
       "streetName": "Vicarage Lane",
       "streetNumber": "",
       "suburb": "Ospringe",
-      "time": "11:28:47",
+      "time": "12:40:42",
       "tth": {
         "days": 0,
         "hours": 0,
@@ -13241,30 +13241,18 @@ export const testScenarios = {
       "userTrackDistance": 0,
       "verified": true,
       "wazeMapUrl": "https://www.waze.com/ul?ll=51.306468,0.872671&navigate=yes&zoom=17",
-      "weaknessEmoji": "2x🗿🔮🐦🔥 0.5x☠🐛🦋 0.25x👊🌿 ",
+      "weaknessEmoji": "2x🐦🗿🔥🔮 0.5x☠🐛🦋 0.25x👊🌿 ",
       "weaknessList": [
         {
-          "typeEmoji": "🗿🔮🐦🔥",
+          "typeEmoji": "🐦🗿🔥🔮",
           "typeEmojiKeys": [
-            "type-rock",
-            "type-psychic",
             "type-flying",
-            "type-fire"
+            "type-rock",
+            "type-fire",
+            "type-psychic"
           ],
-          "typeName": "Rock, Psychic, Flying, Fire",
+          "typeName": "Flying, Rock, Fire, Psychic",
           "types": [
-            {
-              "emoji": "🗿",
-              "emojiKey": "type-rock",
-              "name": "Rock",
-              "typeId": 6
-            },
-            {
-              "emoji": "🔮",
-              "emojiKey": "type-psychic",
-              "name": "Psychic",
-              "typeId": 14
-            },
             {
               "emoji": "🐦",
               "emojiKey": "type-flying",
@@ -13272,10 +13260,22 @@ export const testScenarios = {
               "typeId": 3
             },
             {
+              "emoji": "🗿",
+              "emojiKey": "type-rock",
+              "name": "Rock",
+              "typeId": 6
+            },
+            {
               "emoji": "🔥",
               "emojiKey": "type-fire",
               "name": "Fire",
               "typeId": 10
+            },
+            {
+              "emoji": "🔮",
+              "emojiKey": "type-psychic",
+              "name": "Psychic",
+              "typeId": 14
             }
           ],
           "value": 2
@@ -13335,7 +13335,7 @@ export const testScenarios = {
         }
       ],
       "weather": 0,
-      "weatherChangeTS": 1784455200,
+      "weatherChangeTS": 1784458800,
       "weatherForecastCurrent": 0,
       "weatherForecastNext": 0,
       "weight": null,
@@ -13402,14 +13402,14 @@ export const testScenarios = {
       "cp": 183,
       "dawnTime": false,
       "def": 11,
-      "despawnTimestamp": 1784456927,
-      "disappearTime": "11:28:47",
-      "disappear_time": 1784456927,
+      "despawnTimestamp": 1784461242,
+      "disappearTime": "12:40:42",
+      "disappear_time": 1784461242,
       "disappear_time_verified": true,
       "display_pokemon_form": null,
       "display_pokemon_id": null,
       "distance": 0,
-      "distime": "11:28:47",
+      "distime": "12:40:42",
       "duskTime": false,
       "emoji": [
         "🌿",
@@ -13517,10 +13517,10 @@ export const testScenarios = {
       "name": "Exeggcute",
       "nameEng": "Exeggcute",
       "neighbourhood": "",
-      "nextHourTimestamp": 1784458800,
+      "nextHourTimestamp": 1784462400,
       "nightTime": false,
-      "now": "2026-07-19T10:18:47Z",
-      "nowISO": "2026-07-19T10:18:47.262Z",
+      "now": "2026-07-19T11:30:42Z",
+      "nowISO": "2026-07-19T11:30:42.886Z",
       "pokemonId": 102,
       "pokemon_id": 102,
       "pokemon_level": 6,
@@ -14199,7 +14199,7 @@ export const testScenarios = {
       "streetName": "Whitehall Road",
       "streetNumber": "",
       "suburb": "Wincheap",
-      "time": "11:28:47",
+      "time": "12:40:42",
       "tth": {
         "days": 0,
         "hours": 0,
@@ -14232,7 +14232,7 @@ export const testScenarios = {
       "userTrackDistance": 0,
       "verified": true,
       "wazeMapUrl": "https://www.waze.com/ul?ll=51.274310,1.060110&navigate=yes&zoom=17",
-      "weaknessEmoji": "4x🐛 2x👻🐦☠❄🌑🔥 0.5x⛰️👊🔮💧🌿⚡ ",
+      "weaknessEmoji": "4x🐛 2x🐦🔥👻🌑☠❄ 0.5x🌿⚡👊🔮⛰️💧 ",
       "weaknessList": [
         {
           "typeEmoji": "🐛",
@@ -14251,17 +14251,29 @@ export const testScenarios = {
           "value": 4
         },
         {
-          "typeEmoji": "👻🐦☠❄🌑🔥",
+          "typeEmoji": "🐦🔥👻🌑☠❄",
           "typeEmojiKeys": [
-            "type-ghost",
             "type-flying",
-            "type-poison",
-            "type-ice",
+            "type-fire",
+            "type-ghost",
             "type-dark",
-            "type-fire"
+            "type-poison",
+            "type-ice"
           ],
-          "typeName": "Ghost, Flying, Poison, Ice, Dark, Fire",
+          "typeName": "Flying, Fire, Ghost, Dark, Poison, Ice",
           "types": [
+            {
+              "emoji": "🐦",
+              "emojiKey": "type-flying",
+              "name": "Flying",
+              "typeId": 3
+            },
+            {
+              "emoji": "🔥",
+              "emojiKey": "type-fire",
+              "name": "Fire",
+              "typeId": 10
+            },
             {
               "emoji": "👻",
               "emojiKey": "type-ghost",
@@ -14269,10 +14281,10 @@ export const testScenarios = {
               "typeId": 8
             },
             {
-              "emoji": "🐦",
-              "emojiKey": "type-flying",
-              "name": "Flying",
-              "typeId": 3
+              "emoji": "🌑",
+              "emojiKey": "type-dark",
+              "name": "Dark",
+              "typeId": 17
             },
             {
               "emoji": "☠",
@@ -14285,39 +14297,33 @@ export const testScenarios = {
               "emojiKey": "type-ice",
               "name": "Ice",
               "typeId": 15
-            },
-            {
-              "emoji": "🌑",
-              "emojiKey": "type-dark",
-              "name": "Dark",
-              "typeId": 17
-            },
-            {
-              "emoji": "🔥",
-              "emojiKey": "type-fire",
-              "name": "Fire",
-              "typeId": 10
             }
           ],
           "value": 2
         },
         {
-          "typeEmoji": "⛰️👊🔮💧🌿⚡",
+          "typeEmoji": "🌿⚡👊🔮⛰️💧",
           "typeEmojiKeys": [
-            "type-ground",
+            "type-grass",
+            "type-electric",
             "type-fighting",
             "type-psychic",
-            "type-water",
-            "type-grass",
-            "type-electric"
+            "type-ground",
+            "type-water"
           ],
-          "typeName": "Ground, Fighting, Psychic, Water, Grass, Electric",
+          "typeName": "Grass, Electric, Fighting, Psychic, Ground, Water",
           "types": [
             {
-              "emoji": "⛰️",
-              "emojiKey": "type-ground",
-              "name": "Ground",
-              "typeId": 5
+              "emoji": "🌿",
+              "emojiKey": "type-grass",
+              "name": "Grass",
+              "typeId": 12
+            },
+            {
+              "emoji": "⚡",
+              "emojiKey": "type-electric",
+              "name": "Electric",
+              "typeId": 13
             },
             {
               "emoji": "👊",
@@ -14332,29 +14338,23 @@ export const testScenarios = {
               "typeId": 14
             },
             {
+              "emoji": "⛰️",
+              "emojiKey": "type-ground",
+              "name": "Ground",
+              "typeId": 5
+            },
+            {
               "emoji": "💧",
               "emojiKey": "type-water",
               "name": "Water",
               "typeId": 11
-            },
-            {
-              "emoji": "🌿",
-              "emojiKey": "type-grass",
-              "name": "Grass",
-              "typeId": 12
-            },
-            {
-              "emoji": "⚡",
-              "emojiKey": "type-electric",
-              "name": "Electric",
-              "typeId": 13
             }
           ],
           "value": 0.5
         }
       ],
       "weather": 1,
-      "weatherChangeTS": 1784455200,
+      "weatherChangeTS": 1784458800,
       "weatherForecastCurrent": 0,
       "weatherForecastNext": 0,
       "weight": "3.37",
@@ -14414,14 +14414,14 @@ export const testScenarios = {
       "cp": 80,
       "dawnTime": false,
       "def": 2,
-      "despawnTimestamp": 1784456927,
-      "disappearTime": "11:28:47",
-      "disappear_time": 1784456927,
+      "despawnTimestamp": 1784461242,
+      "disappearTime": "12:40:42",
+      "disappear_time": 1784461242,
       "disappear_time_verified": true,
       "display_pokemon_form": null,
       "display_pokemon_id": null,
       "distance": 0,
-      "distime": "11:28:47",
+      "distime": "12:40:42",
       "duskTime": false,
       "emoji": [
         "⭕"
@@ -14509,10 +14509,10 @@ export const testScenarios = {
       "name": "Bunnelby",
       "nameEng": "Bunnelby",
       "neighbourhood": "",
-      "nextHourTimestamp": 1784458800,
+      "nextHourTimestamp": 1784462400,
       "nightTime": false,
-      "now": "2026-07-19T10:18:47Z",
-      "nowISO": "2026-07-19T10:18:47.343Z",
+      "now": "2026-07-19T11:30:42Z",
+      "nowISO": "2026-07-19T11:30:42.972Z",
       "pokemonId": 659,
       "pokemon_id": 659,
       "pokemon_level": 7,
@@ -14993,7 +14993,7 @@ export const testScenarios = {
       "streetName": "St Francis Court",
       "streetNumber": "",
       "suburb": "South Ashford",
-      "time": "11:28:47",
+      "time": "12:40:42",
       "tth": {
         "days": 0,
         "hours": 0,
@@ -15059,7 +15059,7 @@ export const testScenarios = {
         }
       ],
       "weather": 0,
-      "weatherChangeTS": 1784455200,
+      "weatherChangeTS": 1784458800,
       "weatherForecastCurrent": 0,
       "weatherForecastNext": 0,
       "weight": "5.20",
@@ -15112,8 +15112,8 @@ export const testScenarios = {
       "monsterNamesEng": "",
       "name": "Department of Water and Power Facilities Plant",
       "neighbourhood": "Hewitt",
-      "now": "2026-07-19T10:18:47Z",
-      "nowISO": "2026-07-19T10:18:47.395Z",
+      "now": "2026-07-19T11:30:43Z",
+      "nowISO": "2026-07-19T11:30:43.026Z",
       "pokestopId": "fd736d3db37d490982dfdafc73080644.16",
       "pokestopName": "Department of Water and Power Facilities Plant",
       "pokestopUrl": "https://raw.githubusercontent.com/jfberry/PoracleNG/images/fallback/pokestop.png",
@@ -15147,15 +15147,15 @@ export const testScenarios = {
       "title": "quest_catch_feed_plural",
       "tth": {
         "days": 0,
-        "hours": 20,
-        "minutes": 41,
-        "seconds": 12,
+        "hours": 19,
+        "minutes": 29,
+        "seconds": 17,
         "firstDateWasLater": false
       },
       "tthd": 0,
-      "tthh": 20,
-      "tthm": 41,
-      "tths": 12,
+      "tthh": 19,
+      "tthm": 29,
+      "tths": 17,
       "type": 13,
       "updated": 1774471518,
       "url": "https://raw.githubusercontent.com/jfberry/PoracleNG/images/fallback/pokestop.png",
@@ -15199,8 +15199,8 @@ export const testScenarios = {
       "monsterNamesEng": "",
       "name": "Street Art",
       "neighbourhood": "",
-      "now": "2026-07-19T10:18:47Z",
-      "nowISO": "2026-07-19T10:18:47.442Z",
+      "now": "2026-07-19T11:30:43Z",
+      "nowISO": "2026-07-19T11:30:43.072Z",
       "pokestopId": "4273655acfdc4b5380f3d217232367ff.16",
       "pokestopName": "Street Art",
       "pokestopUrl": "https://raw.githubusercontent.com/jfberry/PoracleNG/images/fallback/pokestop.png",
@@ -15233,15 +15233,15 @@ export const testScenarios = {
       "title": "quest_catch_pokemon_plural",
       "tth": {
         "days": 0,
-        "hours": 20,
-        "minutes": 41,
-        "seconds": 12,
+        "hours": 19,
+        "minutes": 29,
+        "seconds": 16,
         "firstDateWasLater": false
       },
       "tthd": 0,
-      "tthh": 20,
-      "tthm": 41,
-      "tths": 12,
+      "tthh": 19,
+      "tthm": 29,
+      "tths": 16,
       "type": 4,
       "updated": 1774471518,
       "url": "https://raw.githubusercontent.com/jfberry/PoracleNG/images/fallback/pokestop.png",
@@ -15336,8 +15336,8 @@ export const testScenarios = {
       ],
       "name": "Lido Estates Community Playground",
       "neighbourhood": "",
-      "now": "2026-07-19T10:18:47Z",
-      "nowISO": "2026-07-19T10:18:47.490Z",
+      "now": "2026-07-19T11:30:43Z",
+      "nowISO": "2026-07-19T11:30:43.119Z",
       "pokestopId": "5097de24a7963096a02b4c74e8cf15d3.16",
       "pokestopName": "Lido Estates Community Playground",
       "pokestopUrl": "https://raw.githubusercontent.com/jfberry/PoracleNG/images/fallback/pokestop.png",
@@ -15372,15 +15372,15 @@ export const testScenarios = {
       "title": "quest_win_raid_singular",
       "tth": {
         "days": 0,
-        "hours": 20,
-        "minutes": 41,
-        "seconds": 12,
+        "hours": 19,
+        "minutes": 29,
+        "seconds": 16,
         "firstDateWasLater": false
       },
       "tthd": 0,
-      "tthh": 20,
-      "tthm": 41,
-      "tths": 12,
+      "tthh": 19,
+      "tthm": 29,
+      "tths": 16,
       "type": 8,
       "updated": 1774471518,
       "url": "https://raw.githubusercontent.com/jfberry/PoracleNG/images/fallback/pokestop.png",
@@ -15457,8 +15457,8 @@ export const testScenarios = {
       "monsterNamesEng": "",
       "name": "Historic Main Street",
       "neighbourhood": "",
-      "now": "2026-07-19T10:18:47Z",
-      "nowISO": "2026-07-19T10:18:47.538Z",
+      "now": "2026-07-19T11:30:43Z",
+      "nowISO": "2026-07-19T11:30:43.168Z",
       "pokestopId": "165f3490ca074a81991da14fbe476bf6.16",
       "pokestopName": "Historic Main Street",
       "pokestopUrl": "https://raw.githubusercontent.com/jfberry/PoracleNG/images/fallback/pokestop.png",
@@ -15492,15 +15492,15 @@ export const testScenarios = {
       "title": "quest_catch_type_water_plural",
       "tth": {
         "days": 0,
-        "hours": 20,
-        "minutes": 41,
-        "seconds": 12,
+        "hours": 19,
+        "minutes": 29,
+        "seconds": 16,
         "firstDateWasLater": false
       },
       "tthd": 0,
-      "tthh": 20,
-      "tthm": 41,
-      "tths": 12,
+      "tthh": 19,
+      "tthm": 29,
+      "tths": 16,
       "type": 4,
       "updated": 1774471518,
       "url": "https://raw.githubusercontent.com/jfberry/PoracleNG/images/fallback/pokestop.png",
@@ -15516,8 +15516,8 @@ export const testScenarios = {
       "count": 3,
       "imgUrl": "https://raw.githubusercontent.com/nileplumb/PkmnShuffleMap/master/UICONS/reward/stardust/1500.png",
       "matched": [],
-      "now": "2026-07-19T10:18:47Z",
-      "nowISO": "2026-07-19T10:18:47.598Z",
+      "now": "2026-07-19T11:30:43Z",
+      "nowISO": "2026-07-19T11:30:43.218Z",
       "quests": [
         {
           "addr": "100 West 1st Street, Los Angeles, California 90012",
@@ -15565,9 +15565,9 @@ export const testScenarios = {
           "suburb": "Downtown",
           "tth": {
             "days": 0,
-            "hours": 20,
-            "minutes": 41,
-            "seconds": 12,
+            "hours": 19,
+            "minutes": 29,
+            "seconds": 16,
             "firstDateWasLater": false
           },
           "wazeMapUrl": "https://www.waze.com/ul?ll=34.052235,-118.243683&navigate=yes&zoom=17",
@@ -15620,9 +15620,9 @@ export const testScenarios = {
           "suburb": "Downtown",
           "tth": {
             "days": 0,
-            "hours": 20,
-            "minutes": 41,
-            "seconds": 12,
+            "hours": 19,
+            "minutes": 29,
+            "seconds": 16,
             "firstDateWasLater": false
           },
           "wazeMapUrl": "https://www.waze.com/ul?ll=34.055100,-118.246200&navigate=yes&zoom=17",
@@ -15675,9 +15675,9 @@ export const testScenarios = {
           "suburb": "Downtown",
           "tth": {
             "days": 0,
-            "hours": 20,
-            "minutes": 41,
-            "seconds": 12,
+            "hours": 19,
+            "minutes": 29,
+            "seconds": 16,
             "firstDateWasLater": false
           },
           "wazeMapUrl": "https://www.waze.com/ul?ll=34.049500,-118.250700&navigate=yes&zoom=17",
@@ -15736,15 +15736,15 @@ export const testScenarios = {
       "county": "Kent",
       "cp": 2087,
       "dawnTime": false,
-      "disappearTime": "11:58:47",
-      "distime": "11:58:47",
+      "disappearTime": "13:10:43",
+      "distime": "13:10:43",
       "duskTime": false,
       "emoji": [
         "⚡"
       ],
       "emojiString": "⚡",
-      "end": 1784458727,
-      "endTimestamp": 1784458727,
+      "end": 1784463043,
+      "endTimestamp": 1784463043,
       "evolution": 0,
       "evolutions": [
         {
@@ -15829,7 +15829,7 @@ export const testScenarios = {
       "gym_url": "https://lh3.googleusercontent.com/Kg__1ZzDeyflefKKvjz6URWNVzpYlS6eR98u0czORuzO3PyJVqb_RsRYjLZrL7MgVwBSb67BfEqbhsrk1MjzbAteFQ",
       "hasEvolutions": true,
       "hasMegaEvolutions": false,
-      "hatchTimestamp": 1784456927,
+      "hatchTimestamp": 1784461243,
       "id": 921,
       "imgUrl": "https://raw.githubusercontent.com/nileplumb/PkmnShuffleMap/master/UICONS/pokemon/921.png",
       "is_exclusive": 0,
@@ -15851,10 +15851,10 @@ export const testScenarios = {
       "name": "Pawmi",
       "nameEng": "Pawmi",
       "neighbourhood": "",
-      "nextHourTimestamp": 1784458800,
+      "nextHourTimestamp": 1784462400,
       "nightTime": false,
-      "now": "2026-07-19T10:18:47Z",
-      "nowISO": "2026-07-19T10:18:47.655Z",
+      "now": "2026-07-19T11:30:43Z",
+      "nowISO": "2026-07-19T11:30:43.272Z",
       "partner_id": "",
       "pokemonId": 921,
       "pokemon_id": 921,
@@ -15874,7 +15874,7 @@ export const testScenarios = {
       "shinyPossible": false,
       "spawn": 1775472079,
       "sponsor_id": 0,
-      "start": 1784456927,
+      "start": 1784461243,
       "state": "England",
       "staticMap": "https://tiles.canterburypokemon.com/staticmap/pregenerated/o8lHQ9AXAhLdsV32RDrSmQ+RrKW+kpqBqDlwjWHjMaY=.png",
       "staticmap": "https://tiles.canterburypokemon.com/staticmap/pregenerated/o8lHQ9AXAhLdsV32RDrSmQ+RrKW+kpqBqDlwjWHjMaY=.png",
@@ -15889,7 +15889,7 @@ export const testScenarios = {
       "teamName": "Valor",
       "teamNameEng": "Valor",
       "team_id": 2,
-      "time": "11:58:47",
+      "time": "13:10:43",
       "tth": {
         "days": 0,
         "hours": 0,
@@ -15913,7 +15913,7 @@ export const testScenarios = {
         13
       ],
       "wazeMapUrl": "https://www.waze.com/ul?ll=51.313320,0.899989&navigate=yes&zoom=17",
-      "weaknessEmoji": "2x⛰️ 0.5x🐦🔩⚡ ",
+      "weaknessEmoji": "2x⛰️ 0.5x🔩⚡🐦 ",
       "weaknessList": [
         {
           "typeEmoji": "⛰️",
@@ -15932,20 +15932,14 @@ export const testScenarios = {
           "value": 2
         },
         {
-          "typeEmoji": "🐦🔩⚡",
+          "typeEmoji": "🔩⚡🐦",
           "typeEmojiKeys": [
-            "type-flying",
             "type-steel",
-            "type-electric"
+            "type-electric",
+            "type-flying"
           ],
-          "typeName": "Flying, Steel, Electric",
+          "typeName": "Steel, Electric, Flying",
           "types": [
-            {
-              "emoji": "🐦",
-              "emojiKey": "type-flying",
-              "name": "Flying",
-              "typeId": 3
-            },
             {
               "emoji": "🔩",
               "emojiKey": "type-steel",
@@ -15957,12 +15951,18 @@ export const testScenarios = {
               "emojiKey": "type-electric",
               "name": "Electric",
               "typeId": 13
+            },
+            {
+              "emoji": "🐦",
+              "emojiKey": "type-flying",
+              "name": "Flying",
+              "typeId": 3
             }
           ],
           "value": 0.5
         }
       ],
-      "weatherChangeTS": 1784455200,
+      "weatherChangeTS": 1784462400,
       "weatherForecastCurrent": 0,
       "weatherForecastNext": 0,
       "zipcode": "ME13 8BF"
@@ -16008,15 +16008,15 @@ export const testScenarios = {
       "county": "Kent",
       "cp": 28624,
       "dawnTime": false,
-      "disappearTime": "11:58:47",
-      "distime": "11:58:47",
+      "disappearTime": "13:10:43",
+      "distime": "13:10:43",
       "duskTime": false,
       "emoji": [
         "🐲"
       ],
       "emojiString": "🐲",
-      "end": 1784458727,
-      "endTimestamp": 1784458727,
+      "end": 1784463043,
+      "endTimestamp": 1784463043,
       "evolution": 0,
       "evolutions": null,
       "ex_raid_eligible": 0,
@@ -16062,7 +16062,7 @@ export const testScenarios = {
       "gym_url": "https://lh3.googleusercontent.com/G_JAaxOS90g-hVniIQuF9Tr5H1IIsrh_G3PDQI5Tm560YsKCu6u9V5UucRTr6vZnDgkANFp2QYvw_7ZF-2XA-Lgo9A",
       "hasEvolutions": false,
       "hasMegaEvolutions": false,
-      "hatchTimestamp": 1784456927,
+      "hatchTimestamp": 1784461243,
       "id": 895,
       "imgUrl": "https://raw.githubusercontent.com/nileplumb/PkmnShuffleMap/master/UICONS/pokemon/895.png",
       "is_exclusive": 0,
@@ -16084,10 +16084,10 @@ export const testScenarios = {
       "name": "Regidrago",
       "nameEng": "Regidrago",
       "neighbourhood": "",
-      "nextHourTimestamp": 1784458800,
+      "nextHourTimestamp": 1784462400,
       "nightTime": false,
-      "now": "2026-07-19T10:18:47Z",
-      "nowISO": "2026-07-19T10:18:47.709Z",
+      "now": "2026-07-19T11:30:43Z",
+      "nowISO": "2026-07-19T11:30:43.402Z",
       "partner_id": "",
       "pokemonId": 895,
       "pokemon_id": 895,
@@ -16107,7 +16107,7 @@ export const testScenarios = {
       "shinyPossible": false,
       "spawn": 1775471928,
       "sponsor_id": 0,
-      "start": 1784456927,
+      "start": 1784461243,
       "state": "England",
       "staticMap": "https://tiles.canterburypokemon.com/staticmap/pregenerated/y7pimuQo8J4SJt5OOGPM7_hIprpY_FGBL89ukVj3BEk=.png",
       "staticmap": "https://tiles.canterburypokemon.com/staticmap/pregenerated/y7pimuQo8J4SJt5OOGPM7_hIprpY_FGBL89ukVj3BEk=.png",
@@ -16122,7 +16122,7 @@ export const testScenarios = {
       "teamName": "Mystic",
       "teamNameEng": "Mystic",
       "team_id": 1,
-      "time": "11:58:47",
+      "time": "13:10:43",
       "tth": {
         "days": 0,
         "hours": 0,
@@ -16216,7 +16216,7 @@ export const testScenarios = {
           "value": 0.5
         }
       ],
-      "weatherChangeTS": 1784455200,
+      "weatherChangeTS": 1784462400,
       "weatherForecastCurrent": 0,
       "weatherForecastNext": 0,
       "zipcode": "TN25 4HH"
@@ -16264,16 +16264,16 @@ export const testScenarios = {
       "county": "Kent",
       "cp": 9847,
       "dawnTime": false,
-      "disappearTime": "11:58:47",
-      "distime": "11:58:47",
+      "disappearTime": "13:10:43",
+      "distime": "13:10:43",
       "duskTime": false,
       "emoji": [
         "💧",
         "🦋"
       ],
       "emojiString": "💧🦋",
-      "end": 1784458727,
-      "endTimestamp": 1784458727,
+      "end": 1784463043,
+      "endTimestamp": 1784463043,
       "evolution": 0,
       "evolutions": null,
       "ex_raid_eligible": 0,
@@ -16319,7 +16319,7 @@ export const testScenarios = {
       "gym_url": "https://lh3.googleusercontent.com/pSfYVusq5SXk9gD2lq0RI5eV7WMBBor3i9KHXSpRvGuEtIVlD_-3RqUoJ261yS7uKPMY-yAInQ4UDJzMxmKJbnnwUiM",
       "hasEvolutions": false,
       "hasMegaEvolutions": false,
-      "hatchTimestamp": 1784456927,
+      "hatchTimestamp": 1784461243,
       "id": 184,
       "imgUrl": "https://raw.githubusercontent.com/nileplumb/PkmnShuffleMap/master/UICONS/pokemon/184.png",
       "is_exclusive": 0,
@@ -16341,10 +16341,10 @@ export const testScenarios = {
       "name": "Azumarill",
       "nameEng": "Azumarill",
       "neighbourhood": "",
-      "nextHourTimestamp": 1784458800,
+      "nextHourTimestamp": 1784462400,
       "nightTime": false,
-      "now": "2026-07-19T10:18:47Z",
-      "nowISO": "2026-07-19T10:18:47.760Z",
+      "now": "2026-07-19T11:30:43Z",
+      "nowISO": "2026-07-19T11:30:43.474Z",
       "partner_id": "",
       "pokemonId": 184,
       "pokemon_id": 184,
@@ -16354,8 +16354,8 @@ export const testScenarios = {
       "prevEvolutions": [
         {
           "evolutionRequirement": "25 candies",
-          "form": 0,
-          "formName": "",
+          "form": 1196,
+          "formName": "Normal",
           "formNormalised": "",
           "fullName": "Marill",
           "id": 183,
@@ -16383,7 +16383,7 @@ export const testScenarios = {
       "shinyPossible": false,
       "spawn": 1775471989,
       "sponsor_id": 0,
-      "start": 1784456927,
+      "start": 1784461243,
       "state": "England",
       "staticMap": "https://tiles.canterburypokemon.com/staticmap/pregenerated/A4Aq5HO5m158k9c1n61jB8EowxFX169VlARq57NhwrQ=.png",
       "staticmap": "https://tiles.canterburypokemon.com/staticmap/pregenerated/A4Aq5HO5m158k9c1n61jB8EowxFX169VlARq57NhwrQ=.png",
@@ -16398,7 +16398,7 @@ export const testScenarios = {
       "teamName": "Valor",
       "teamNameEng": "Valor",
       "team_id": 2,
-      "time": "11:58:47",
+      "time": "13:10:43",
       "tth": {
         "days": 0,
         "hours": 0,
@@ -16425,28 +16425,28 @@ export const testScenarios = {
         18
       ],
       "wazeMapUrl": "https://www.waze.com/ul?ll=51.325332,0.908748&navigate=yes&zoom=17",
-      "weaknessEmoji": "2x⚡🌿☠ 0.5x❄👊🐛🌑🔥💧 0.25x🐲 ",
+      "weaknessEmoji": "2x🌿⚡☠ 0.5x🔥👊🐛🌑💧❄ 0.25x🐲 ",
       "weaknessList": [
         {
-          "typeEmoji": "⚡🌿☠",
+          "typeEmoji": "🌿⚡☠",
           "typeEmojiKeys": [
-            "type-electric",
             "type-grass",
+            "type-electric",
             "type-poison"
           ],
-          "typeName": "Electric, Grass, Poison",
+          "typeName": "Grass, Electric, Poison",
           "types": [
-            {
-              "emoji": "⚡",
-              "emojiKey": "type-electric",
-              "name": "Electric",
-              "typeId": 13
-            },
             {
               "emoji": "🌿",
               "emojiKey": "type-grass",
               "name": "Grass",
               "typeId": 12
+            },
+            {
+              "emoji": "⚡",
+              "emojiKey": "type-electric",
+              "name": "Electric",
+              "typeId": 13
             },
             {
               "emoji": "☠",
@@ -16458,22 +16458,22 @@ export const testScenarios = {
           "value": 2
         },
         {
-          "typeEmoji": "❄👊🐛🌑🔥💧",
+          "typeEmoji": "🔥👊🐛🌑💧❄",
           "typeEmojiKeys": [
-            "type-ice",
+            "type-fire",
             "type-fighting",
             "type-bug",
             "type-dark",
-            "type-fire",
-            "type-water"
+            "type-water",
+            "type-ice"
           ],
-          "typeName": "Ice, Fighting, Bug, Dark, Fire, Water",
+          "typeName": "Fire, Fighting, Bug, Dark, Water, Ice",
           "types": [
             {
-              "emoji": "❄",
-              "emojiKey": "type-ice",
-              "name": "Ice",
-              "typeId": 15
+              "emoji": "🔥",
+              "emojiKey": "type-fire",
+              "name": "Fire",
+              "typeId": 10
             },
             {
               "emoji": "👊",
@@ -16494,16 +16494,16 @@ export const testScenarios = {
               "typeId": 17
             },
             {
-              "emoji": "🔥",
-              "emojiKey": "type-fire",
-              "name": "Fire",
-              "typeId": 10
-            },
-            {
               "emoji": "💧",
               "emojiKey": "type-water",
               "name": "Water",
               "typeId": 11
+            },
+            {
+              "emoji": "❄",
+              "emojiKey": "type-ice",
+              "name": "Ice",
+              "typeId": 15
             }
           ],
           "value": 0.5
@@ -16525,10 +16525,367 @@ export const testScenarios = {
           "value": 0.25
         }
       ],
-      "weatherChangeTS": 1784455200,
+      "weatherChangeTS": 1784462400,
       "weatherForecastCurrent": 0,
       "weatherForecastNext": 0,
       "zipcode": "ME13 8HX"
+    }
+  },
+  "showcase": {
+    "type": {
+      "addr": "20 Best Lane, Canterbury, CT1 2JB, England",
+      "appleMapUrl": "https://maps.apple.com/place?coordinate=51.280000,1.080000",
+      "applemap": "https://maps.apple.com/place?coordinate=51.280000,1.080000",
+      "areas": "",
+      "city": "Canterbury",
+      "country": "United Kingdom",
+      "countryCode": "GB",
+      "county": "Kent",
+      "dawnTime": false,
+      "disappearTime": "12:40:43",
+      "displayType": 9,
+      "displayTypeId": 9,
+      "distime": "12:40:43",
+      "duskTime": false,
+      "expiration": 1784461243,
+      "expirationTimestamp": 1784461243,
+      "flag": "🇬🇧",
+      "formattedAddress": "20 Best Lane, Canterbury, CT1 2JB, England",
+      "gameWeatherId": 0,
+      "gameWeatherName": "",
+      "gameWeatherNameEng": "",
+      "gameweather": "",
+      "genderData": {
+        "emoji": "",
+        "name": "Any"
+      },
+      "genderDataEng": {
+        "emoji": "",
+        "name": "Any"
+      },
+      "genderEmojiKey": "",
+      "genderName": "Any",
+      "genderNameEng": "Any",
+      "googleMapUrl": "https://maps.google.com/maps?q=51.280000,1.080000",
+      "gruntGender": 0,
+      "gruntName": "Showcase",
+      "gruntType": "showcase",
+      "gruntTypeColor": "03AEB6",
+      "gruntTypeEmoji": "🏆",
+      "gruntTypeEmojiKey": "incident-showcase",
+      "gruntTypeID": 0,
+      "gruntTypeId": 0,
+      "gruntTypeName": "Showcase",
+      "imgUrl": "https://raw.githubusercontent.com/nileplumb/PkmnShuffleMap/master/UICONS/pokestop/0_i9.png",
+      "incidentExpiration": 1784461243,
+      "incident_expire_timestamp": 1784461243,
+      "latitude": 51.28,
+      "longitude": 1.08,
+      "mapurl": "https://maps.google.com/maps?q=51.280000,1.080000",
+      "matched": [],
+      "name": "Contest Hall",
+      "neighbourhood": "",
+      "nightTime": false,
+      "now": "2026-07-19T11:30:43Z",
+      "nowISO": "2026-07-19T11:30:43.542Z",
+      "pokestopId": "showcase-type-test.16",
+      "pokestopName": "Contest Hall",
+      "pokestopUrl": "http://lh3.googleusercontent.com/showcase-type",
+      "pokestop_id": "showcase-type-test.16",
+      "pokestop_name": "Contest Hall",
+      "pokestop_url": "http://lh3.googleusercontent.com/showcase-type",
+      "reactMapUrl": "https://canterburypokemon.com/id/pokestops/showcase-type-test.16",
+      "showcase": [
+        {
+          "alignment": 0,
+          "alignmentName": "",
+          "background": 0,
+          "badge": 0,
+          "costumeId": 0,
+          "costumeName": "",
+          "formId": 3042,
+          "formName": "Normal",
+          "fullName": "Honedge",
+          "genderEmojiKey": "gender-male",
+          "genderId": 1,
+          "genderName": "male",
+          "imgUrl": "https://raw.githubusercontent.com/nileplumb/PkmnShuffleMap/master/UICONS/pokemon/679.png",
+          "pokemonId": 679,
+          "pokemonName": "Honedge",
+          "rank": 1,
+          "score": 1032.54,
+          "scoreFormatted": "1032.54",
+          "shiny": false,
+          "shinyEmoji": "",
+          "tempEvolutionId": 0,
+          "tempEvolutionName": ""
+        },
+        {
+          "alignment": 0,
+          "alignmentName": "",
+          "background": 0,
+          "badge": 0,
+          "costumeId": 0,
+          "costumeName": "",
+          "formId": 62,
+          "formName": "Alola",
+          "fullName": "Dugtrio Alola",
+          "genderEmojiKey": "gender-male",
+          "genderId": 1,
+          "genderName": "male",
+          "imgUrl": "https://raw.githubusercontent.com/nileplumb/PkmnShuffleMap/master/UICONS/pokemon/51_f62.png",
+          "pokemonId": 51,
+          "pokemonName": "Dugtrio",
+          "rank": 2,
+          "score": 1032.2,
+          "scoreFormatted": "1032.20",
+          "shiny": false,
+          "shinyEmoji": "",
+          "tempEvolutionId": 0,
+          "tempEvolutionName": ""
+        },
+        {
+          "alignment": 0,
+          "alignmentName": "",
+          "background": 0,
+          "badge": 0,
+          "costumeId": 0,
+          "costumeName": "",
+          "formId": 0,
+          "formName": "",
+          "fullName": "Melmetal",
+          "genderEmojiKey": "gender-none",
+          "genderId": 3,
+          "genderName": "genderless",
+          "imgUrl": "https://raw.githubusercontent.com/nileplumb/PkmnShuffleMap/master/UICONS/pokemon/809_s.png",
+          "pokemonId": 809,
+          "pokemonName": "Melmetal",
+          "rank": 3,
+          "score": 789.8,
+          "scoreFormatted": "789.80",
+          "shiny": true,
+          "shinyEmoji": "✨",
+          "tempEvolutionId": 0,
+          "tempEvolutionName": ""
+        }
+      ],
+      "showcaseFirst": {
+        "alignment": 0,
+        "alignmentName": "",
+        "background": 0,
+        "badge": 0,
+        "costumeId": 0,
+        "costumeName": "",
+        "formId": 3042,
+        "formName": "Normal",
+        "fullName": "Honedge",
+        "genderEmojiKey": "gender-male",
+        "genderId": 1,
+        "genderName": "male",
+        "imgUrl": "https://raw.githubusercontent.com/nileplumb/PkmnShuffleMap/master/UICONS/pokemon/679.png",
+        "pokemonId": 679,
+        "pokemonName": "Honedge",
+        "rank": 1,
+        "score": 1032.54,
+        "scoreFormatted": "1032.54",
+        "shiny": false,
+        "shinyEmoji": "",
+        "tempEvolutionId": 0,
+        "tempEvolutionName": ""
+      },
+      "showcaseFocusCategory": "Type",
+      "showcaseFocusEmoji": "",
+      "showcaseFocusName": "Steel",
+      "showcaseFocusPresent": true,
+      "showcaseFocusType": "type",
+      "showcaseLastUpdate": 1784062072,
+      "showcaseLastUpdateFormatted": "20:47:52",
+      "showcasePresent": true,
+      "showcaseTotalEntries": 3,
+      "showcase_expiry": 1784084400,
+      "showcase_focus": {
+        "pokemon_type_1": 9,
+        "type": "type"
+      },
+      "showcase_pokemon_type_id": 9,
+      "showcase_ranking_standard": 2,
+      "showcase_rankings": {
+        "contest_entries": [
+          {
+            "alignment": 0,
+            "badge": 0,
+            "costume": 0,
+            "form": 3042,
+            "gender": 1,
+            "pokemon_id": 679,
+            "rank": 1,
+            "score": 1032.54,
+            "shiny": false,
+            "temp_evolution": 0,
+            "temp_evolution_finish_ms": 0
+          },
+          {
+            "alignment": 0,
+            "badge": 0,
+            "costume": 0,
+            "form": 62,
+            "gender": 1,
+            "pokemon_id": 51,
+            "rank": 2,
+            "score": 1032.2,
+            "shiny": false,
+            "temp_evolution": 0,
+            "temp_evolution_finish_ms": 0
+          },
+          {
+            "alignment": 0,
+            "badge": 0,
+            "costume": 0,
+            "form": 0,
+            "gender": 3,
+            "pokemon_id": 809,
+            "rank": 3,
+            "score": 789.8,
+            "shiny": true,
+            "temp_evolution": 0,
+            "temp_evolution_finish_ms": 0
+          }
+        ],
+        "last_update": 1784062072,
+        "total_entries": 3
+      },
+      "state": "England",
+      "staticMap": "https://tiles.canterburypokemon.com/staticmap/pregenerated/Jpk9TxcA258HMWKayevMn6EukB6OTc_dFCPayGSs2J4=.png",
+      "staticmap": "https://tiles.canterburypokemon.com/staticmap/pregenerated/Jpk9TxcA258HMWKayevMn6EukB6OTc_dFCPayGSs2J4=.png",
+      "stickerUrl": "https://raw.githubusercontent.com/bbdoc/tgUICONS/main/Shuffle/pokestop/0_i9.webp",
+      "streetName": "Best Lane",
+      "streetNumber": "20",
+      "suburb": "The King's Mile",
+      "time": "12:40:43",
+      "tth": {
+        "days": 0,
+        "hours": 0,
+        "minutes": 10,
+        "seconds": 0,
+        "firstDateWasLater": false
+      },
+      "tthd": 0,
+      "tthh": 0,
+      "tthm": 10,
+      "tths": 0,
+      "updated": 1784062072,
+      "url": "http://lh3.googleusercontent.com/showcase-type",
+      "wazeMapUrl": "https://www.waze.com/ul?ll=51.280000,1.080000&navigate=yes&zoom=17",
+      "zipcode": "CT1 2JB"
+    },
+    "buddy": {
+      "addr": "Broad Oak Road, Canterbury, CT2 7PX, England",
+      "appleMapUrl": "https://maps.apple.com/place?coordinate=51.290000,1.090000",
+      "applemap": "https://maps.apple.com/place?coordinate=51.290000,1.090000",
+      "areas": "",
+      "city": "Canterbury",
+      "country": "United Kingdom",
+      "countryCode": "GB",
+      "county": "Kent",
+      "dawnTime": false,
+      "disappearTime": "12:40:43",
+      "displayType": 9,
+      "displayTypeId": 9,
+      "distime": "12:40:43",
+      "duskTime": false,
+      "expiration": 1784461243,
+      "expirationTimestamp": 1784461243,
+      "flag": "🇬🇧",
+      "formattedAddress": "Broad Oak Road, Canterbury, CT2 7PX, England",
+      "gameWeatherId": 0,
+      "gameWeatherName": "",
+      "gameWeatherNameEng": "",
+      "gameweather": "",
+      "genderData": {
+        "emoji": "",
+        "name": "Any"
+      },
+      "genderDataEng": {
+        "emoji": "",
+        "name": "Any"
+      },
+      "genderEmojiKey": "",
+      "genderName": "Any",
+      "genderNameEng": "Any",
+      "googleMapUrl": "https://maps.google.com/maps?q=51.290000,1.090000",
+      "gruntGender": 0,
+      "gruntName": "Showcase",
+      "gruntType": "showcase",
+      "gruntTypeColor": "03AEB6",
+      "gruntTypeEmoji": "🏆",
+      "gruntTypeEmojiKey": "incident-showcase",
+      "gruntTypeID": 0,
+      "gruntTypeId": 0,
+      "gruntTypeName": "Showcase",
+      "imgUrl": "https://raw.githubusercontent.com/nileplumb/PkmnShuffleMap/master/UICONS/pokestop/0_i9.png",
+      "incidentExpiration": 1784461243,
+      "incident_expire_timestamp": 1784461243,
+      "latitude": 51.29,
+      "longitude": 1.09,
+      "mapurl": "https://maps.google.com/maps?q=51.290000,1.090000",
+      "matched": [],
+      "name": "Buddy Contest",
+      "neighbourhood": "",
+      "nightTime": false,
+      "now": "2026-07-19T11:30:43Z",
+      "nowISO": "2026-07-19T11:30:43.594Z",
+      "pokestopId": "showcase-buddy-test.16",
+      "pokestopName": "Buddy Contest",
+      "pokestopUrl": "http://lh3.googleusercontent.com/showcase-buddy",
+      "pokestop_id": "showcase-buddy-test.16",
+      "pokestop_name": "Buddy Contest",
+      "pokestop_url": "http://lh3.googleusercontent.com/showcase-buddy",
+      "reactMapUrl": "https://canterburypokemon.com/id/pokestops/showcase-buddy-test.16",
+      "showcase": [],
+      "showcaseFirst": null,
+      "showcaseFocusCategory": "Buddy",
+      "showcaseFocusEmoji": "",
+      "showcaseFocusName": "3+",
+      "showcaseFocusPresent": true,
+      "showcaseFocusType": "buddy",
+      "showcaseLastUpdate": 0,
+      "showcaseLastUpdateFormatted": "",
+      "showcasePresent": false,
+      "showcaseTotalEntries": 0,
+      "showcase_expiry": 1784084400,
+      "showcase_focus": {
+        "min_level": 3,
+        "type": "buddy"
+      },
+      "showcase_ranking_standard": 2,
+      "showcase_rankings": {
+        "contest_entries": [],
+        "last_update": 1784062072,
+        "total_entries": 0
+      },
+      "state": "England",
+      "staticMap": "https://tiles.canterburypokemon.com/staticmap/pregenerated/Y6BiRmGluGcYkpbNTT_5BBupGciL4bGMUVkkHDRljTk=.png",
+      "staticmap": "https://tiles.canterburypokemon.com/staticmap/pregenerated/Y6BiRmGluGcYkpbNTT_5BBupGciL4bGMUVkkHDRljTk=.png",
+      "stickerUrl": "https://raw.githubusercontent.com/bbdoc/tgUICONS/main/Shuffle/pokestop/0_i9.webp",
+      "streetName": "Broad Oak Road",
+      "streetNumber": "",
+      "suburb": "Hales Place",
+      "time": "12:40:43",
+      "tth": {
+        "days": 0,
+        "hours": 0,
+        "minutes": 10,
+        "seconds": 0,
+        "firstDateWasLater": false
+      },
+      "tthd": 0,
+      "tthh": 0,
+      "tthm": 10,
+      "tths": 0,
+      "updated": 1784062072,
+      "url": "http://lh3.googleusercontent.com/showcase-buddy",
+      "wazeMapUrl": "https://www.waze.com/ul?ll=51.290000,1.090000&navigate=yes&zoom=17",
+      "zipcode": "CT2 7PX"
     }
   },
   "weatherchange": {
@@ -16536,7 +16893,7 @@ export const testScenarios = {
       "activePokemons": [
         {
           "cp": 979,
-          "disappearTime": 1784456927,
+          "disappearTime": 1784461243,
           "form": 0,
           "formName": "",
           "formNormalised": "",
@@ -16552,7 +16909,7 @@ export const testScenarios = {
         },
         {
           "cp": 612,
-          "disappearTime": 1784456987,
+          "disappearTime": 1784461303,
           "form": 0,
           "formName": "",
           "formNormalised": "",
@@ -16568,7 +16925,7 @@ export const testScenarios = {
         },
         {
           "cp": 450,
-          "disappearTime": 1784457047,
+          "disappearTime": 1784461363,
           "form": 0,
           "formName": "",
           "formNormalised": "",
@@ -16641,7 +16998,7 @@ export const testScenarios = {
       "enrichedActivePokemons": [
         {
           "cp": 979,
-          "disappearTime": 1784456927,
+          "disappearTime": 1784461243,
           "form": 0,
           "formName": "",
           "formNormalised": "",
@@ -16657,7 +17014,7 @@ export const testScenarios = {
         },
         {
           "cp": 612,
-          "disappearTime": 1784456987,
+          "disappearTime": 1784461303,
           "form": 0,
           "formName": "",
           "formNormalised": "",
@@ -16673,7 +17030,7 @@ export const testScenarios = {
         },
         {
           "cp": 450,
-          "disappearTime": 1784457047,
+          "disappearTime": 1784461363,
           "form": 0,
           "formName": "",
           "formNormalised": "",
@@ -16697,8 +17054,8 @@ export const testScenarios = {
       "matched": [],
       "neighbourhood": "Borough Market",
       "nightTime": false,
-      "now": "2026-07-19T10:18:47Z",
-      "nowISO": "2026-07-19T10:18:47.822Z",
+      "now": "2026-07-19T11:30:43Z",
+      "nowISO": "2026-07-19T11:30:43.902Z",
       "oldWeatherEmoji": "☀",
       "oldWeatherEmojiKey": "weather-sunny",
       "oldWeatherName": "Sunny",
@@ -16721,8 +17078,8 @@ export const testScenarios = {
       "weatherTth": {
         "days": 0,
         "hours": 0,
-        "minutes": 41,
-        "seconds": 13,
+        "minutes": 29,
+        "seconds": 17,
         "firstDateWasLater": false
       },
       "weatheremoji": "🌧",

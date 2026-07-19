@@ -587,7 +587,7 @@ Note: the auto-generated banner intentionally omits a timestamp so regeneration 
 - [ ] **Step 2: Regenerate the fixtures against develop poracle**
 
 Run against a poracle that exposes `types` (the derived-types build): `PORACLE_URL=http://localhost:4200 PORACLE_SECRET=hello node scripts/capture-test-data.mjs`
-Expected: prints `✓` lines per scenario including `monster`, `monsterChanged`, `incident`, `questSummary`, `weatherchange`, `raid`, `egg`, `invasion`, `lure`, `quest`, `gym`, `maxbattle`, `fort-update`; writes `src/data/test-data.js`. (`showcase` currently `✗`es — its `/api/dts/enrich` returns 500 server-side; the script skips it gracefully and it's simply absent from the fixtures until the poracle bug is fixed.)
+Expected: prints `✓` lines per scenario including `monster`, `monsterChanged`, `incident`, `questSummary`, `weatherchange`, `raid`, `egg`, `invasion`, `lure`, `quest`, `gym`, `maxbattle`, `fort-update`, `showcase`; writes `src/data/test-data.js` (15 types). (The `showcase` `/api/dts/enrich` 500 was a poracle-side bug, since fixed upstream; `showcase` now enriches and is included.)
 
 - [ ] **Step 3: Verify the regenerated module loads and includes derived types**
 
