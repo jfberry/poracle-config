@@ -77,7 +77,10 @@ jobs:
         with:
           name: stable-dist
           path: dist
-      - name: Download preview build into dist/next/ (skipped if preview failed)
+      # If build-preview failed, no preview-dist artifact exists: this step then
+      # fails and shows a red ✗ in the UI, but continue-on-error tolerates it and
+      # the stable-only site still deploys. A red ✗ here on a green run is expected.
+      - name: Download preview build into dist/next/ (tolerated if preview build failed)
         uses: actions/download-artifact@v4
         continue-on-error: true
         with:
