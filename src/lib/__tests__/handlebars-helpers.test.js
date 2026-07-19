@@ -238,12 +238,14 @@ describe('renderDtsTemplate', () => {
     });
   });
 
-  it('returns null for invalid JSON output', () => {
+  it('throws a descriptive error for invalid JSON output', () => {
     const engine = createEngine();
-    // Template that produces invalid JSON when rendered
+    // An unescaped quote in a value makes the rendered template invalid JSON.
     const tpl = { title: '{{name}}' };
-    // name contains a quote that breaks JSON
-    const result = renderDtsTemplate(engine, tpl, { name: 'test"break' });
-    expect(result).toBeNull();
+    // renderDtsTemplate throws with a descriptive message (parse error + rendered
+    // output). useHandlebars.render catches it and degrades to a null result plus
+    // a renderError shown in the preview — that graceful null is the hook's
+    // contract, not renderDtsTemplate's.
+    expect(() => renderDtsTemplate(engine, tpl, { name: 'test"break' })).toThrow(/invalid JSON/i);
   });
 });
