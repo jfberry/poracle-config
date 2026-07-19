@@ -54,8 +54,11 @@ async function main() {
 
   // Discover DTS types from the server map.
   const root = await fetchJson('/api/dts/testdata');
-  if (!root.types) {
-    console.error('This poracle build does not expose a `types` map (needs develop / >= 5.2.0).');
+  if (!root.types || Object.keys(root.types).length === 0) {
+    console.error(
+      'The poracle `types` map is absent or empty — refusing to overwrite fixtures. ' +
+      'Check PORACLE_URL/PORACLE_SECRET point at a derived-types build (develop / >= 5.2.0).'
+    );
     process.exit(1);
   }
   const dtsTypes = Object.keys(root.types).filter(

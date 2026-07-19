@@ -126,9 +126,9 @@ Stays a transport layer; gains connection-capability state exactly as it already
 Once develop→main is promoted, one commit removes all legacy:
 
 - [ ] `src/lib/dts-types.js`: delete `DTS_TO_WEBHOOK`, `DTS_TO_ENRICH`, and every `!client.supportsDerivedTypes` branch. `fetchScenarios` / `resolveWebhookType` / `resolveEnrichType` collapse to the `?dtsType=` / `types` path.
-- [ ] `api-client.js`: `loadDtsTypes()` / `supportsDerivedTypes` may stay (harmless) or be simplified.
-- [ ] Delete the fallback-path unit tests in `dts-types.test.js`.
-- [ ] Optionally retire or repoint the `/next/` channel at the next feature branch.
+- [ ] `api-client.js`: `loadDtsTypes()` / `supportsDerivedTypes` may stay (harmless) or be simplified. Also drop `getTestdata`'s now-unused `else if (type)` branch — it exists only for the fallback path (kept out of `dts-types.js`, so note it here so the legacy sweep is complete).
+- [ ] Delete the fallback-path unit tests in `dts-types.test.js` (and the `oldClient` fixture).
+- [ ] Retire or repoint the `/next/` channel: update/remove `PREVIEW_BRANCH` in `deploy.yml`. Note that once the preview branch is deleted, `build-preview`'s checkout fails, `continue-on-error` tolerates it, and the stable site still ships — the red ✗ on that job is expected graceful degradation, not a regression.
 
 ## §7 — Testing
 
