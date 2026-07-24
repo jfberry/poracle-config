@@ -1,13 +1,14 @@
 #!/usr/bin/env node
 /**
- * Capture enriched test data from a running PoracleNG instance.
+ * Capture enriched test data from a running PoracleNG instance (on-demand only).
  *
  * Usage:
- *   PORACLE_URL=http://localhost:4200 PORACLE_SECRET=hello node scripts/capture-test-data.mjs
+ *   PORACLE_URL=http://localhost:4201 PORACLE_SECRET=flibble node scripts/capture-test-data.mjs
  *
- * Connects to PoracleNG, fetches all webhook scenarios from /api/dts/testdata,
- * runs each through /api/dts/enrich, and writes the enriched variable maps to
- * src/data/test-data.js for use in standalone mode.
+ * Uses the server-side DTS type map (GET /api/dts/testdata -> `types`) and
+ * per-DTS-type scenarios (?dtsType=), enriches each by DTS name, and writes the
+ * enriched variable maps to src/data/test-data.js for standalone/offline mode.
+ * Requires a poracle build that exposes `types` (develop / >= 5.2.0).
  */
 
 import { writeFileSync } from 'fs';
@@ -17,28 +18,16 @@ import { dirname, join } from 'path';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const URL = process.env.PORACLE_URL || 'http://localhost:3030';
+const URL = process.env.PORACLE_URL || 'http://localhost:4201';
 const SECRET = process.env.PORACLE_SECRET || '';
+
+// DTS types with no bundled webhook sample — skip (no scenarios to capture).
+const SKIP_TYPES = new Set(['rsvpChanges', 'greeting', 'help', 'nest']);
 
 if (!SECRET) {
   console.error('PORACLE_SECRET environment variable is required');
   process.exit(1);
 }
-
-// Mapping of DTS template type → testdata webhook type
-const dtsToWebhookType = {
-  monster: 'pokemon',
-  monsterNoIv: 'pokemon',
-  raid: 'raid',
-  egg: 'raid',
-  invasion: 'pokestop',
-  lure: 'pokestop',
-  quest: 'quest',
-  nest: 'nest',
-  gym: 'gym',
-  'fort-update': 'fort_update',
-  maxbattle: 'max_battle',
-};
 
 async function fetchJson(path, options = {}) {
   const res = await fetch(`${URL}${path}`, {
@@ -55,8 +44,6 @@ async function fetchJson(path, options = {}) {
 
 async function main() {
   console.log(`Connecting to ${URL}...`);
-
-  // Verify connectivity
   try {
     const res = await fetch(`${URL}/health`);
     if (!res.ok) throw new Error(`health check returned ${res.status}`);
@@ -65,57 +52,42 @@ async function main() {
     process.exit(1);
   }
 
-  const dtsTypes = [
-    'monster', 'monsterNoIv', 'raid', 'egg', 'invasion', 'lure',
-    'quest', 'nest', 'gym',
-  ];
+  // Discover DTS types from the server map.
+  const root = await fetchJson('/api/dts/testdata');
+  if (!root.types || Object.keys(root.types).length === 0) {
+    console.error(
+      'The poracle `types` map is absent or empty — refusing to overwrite fixtures. ' +
+      'Check PORACLE_URL/PORACLE_SECRET point at a derived-types build (develop / >= 5.2.0).'
+    );
+    process.exit(1);
+  }
+  const dtsTypes = Object.keys(root.types).filter(
+    (t) => root.types[t].templateType === t && !SKIP_TYPES.has(t)
+  );
 
   const result = {};
-
   for (const dtsType of dtsTypes) {
-    const webhookType = dtsToWebhookType[dtsType] || dtsType;
-    console.log(`\n=== ${dtsType} (webhook: ${webhookType}) ===`);
-
+    console.log(`\n=== ${dtsType} ===`);
     let scenarios;
     try {
-      const data = await fetchJson(`/api/dts/testdata?type=${webhookType}`);
+      const data = await fetchJson(`/api/dts/testdata?dtsType=${encodeURIComponent(dtsType)}`);
       scenarios = data.testdata || [];
     } catch (err) {
       console.warn(`  testdata fetch failed: ${err.message}`);
       continue;
     }
-
     if (scenarios.length === 0) {
-      console.log(`  no scenarios for ${webhookType}`);
+      console.log('  no scenarios');
       continue;
     }
 
-    // For pokestop-derived types, filter scenarios to only those matching this DTS type.
-    // Invasions have grunt_type/character/display_type set; lures have lure_id/lure_expiration.
-    const filtered = scenarios.filter((s) => {
-      if (webhookType !== 'pokestop') return true;
-      const w = s.webhook;
-      const isInvasion = w.grunt_type !== undefined || w.character !== undefined || w.display_type !== undefined || w.incident_grunt_type !== undefined;
-      const isLure = w.lure_id !== undefined || w.lure_expiration !== undefined || w.lure_type !== undefined;
-      if (dtsType === 'invasion') return isInvasion && !isLure;
-      if (dtsType === 'lure') return isLure;
-      return false;
-    });
-
     result[dtsType] = {};
-
-    for (const scenario of filtered) {
+    for (const scenario of scenarios) {
       const name = scenario.test;
       try {
-        // Send the DTS type (invasion/lure) to enrich, not the webhook type (pokestop).
-        // The enrich endpoint understands the specific DTS types directly.
         const enriched = await fetchJson('/api/dts/enrich', {
           method: 'POST',
-          body: JSON.stringify({
-            type: dtsType === 'monsterNoIv' ? 'pokemon' : (dtsType === 'egg' ? 'raid' : dtsType),
-            webhook: scenario.webhook,
-            language: 'en',
-          }),
+          body: JSON.stringify({ type: dtsType, webhook: scenario.webhook, language: 'en' }),
         });
         if (enriched.variables) {
           result[dtsType][name] = enriched.variables;
@@ -127,13 +99,10 @@ async function main() {
         console.warn(`  ✗ ${name}: ${err.message}`);
       }
     }
+    if (Object.keys(result[dtsType]).length === 0) delete result[dtsType];
   }
 
-  // Build the JS module
-  const totalScenarios = Object.values(result).reduce(
-    (sum, type) => sum + Object.keys(type).length,
-    0
-  );
+  const totalScenarios = Object.values(result).reduce((sum, t) => sum + Object.keys(t).length, 0);
   console.log(`\nCaptured ${totalScenarios} scenarios across ${Object.keys(result).length} types`);
 
   const banner = `/**
@@ -141,12 +110,9 @@ async function main() {
  *
  * AUTO-GENERATED — do not edit by hand.
  * Regenerate with: PORACLE_URL=... PORACLE_SECRET=... node scripts/capture-test-data.mjs
- *
- * Captured: ${new Date().toISOString()}
  */
 
 `;
-
   const body = `export const testScenarios = ${JSON.stringify(result, null, 2)};
 
 export function getTestScenario(type, scenario) {
@@ -157,7 +123,6 @@ export function getTestScenarioNames(type) {
   return Object.keys(testScenarios[type] || {});
 }
 `;
-
   const outputPath = join(__dirname, '..', 'src', 'data', 'test-data.js');
   writeFileSync(outputPath, banner + body);
   console.log(`Wrote ${outputPath}`);

@@ -17,7 +17,7 @@ try {
 
 export default defineConfig({
   plugins: [react()],
-  base: '/poracle-config/',
+  base: process.env.BASE_PATH || '/poracle-config/',
   define: {
     __APP_VERSION__: JSON.stringify(pkg.version),
     __APP_COMMIT__: JSON.stringify(gitSha),

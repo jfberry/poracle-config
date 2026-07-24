@@ -4,6 +4,8 @@ export class PoracleApiClient {
     this.secret = secret;
     // When using the Vite proxy, requests go through /poracle-api/ on the same origin
     this.useProxy = false;
+    // Set by loadDtsTypes() on connect. false = old poracle → fallback path.
+    this.supportsDerivedTypes = false;
   }
 
   get effectiveBase() {
@@ -55,9 +57,30 @@ export class PoracleApiClient {
     return this.fetch(`/api/dts/fields/${type}`);
   }
 
-  async getTestdata(type) {
-    const params = type ? `?type=${encodeURIComponent(type)}` : '';
-    return this.fetch(`/api/dts/testdata${params}`);
+  async getTestdata({ type, dtsType } = {}) {
+    const params = new URLSearchParams();
+    if (dtsType) params.set('dtsType', dtsType);
+    else if (type) params.set('type', type);
+    const query = params.toString();
+    return this.fetch(`/api/dts/testdata${query ? '?' + query : ''}`);
+  }
+
+  // Determine derived-DTS-types support and store it on `supportsDerivedTypes`.
+  // Prefers the explicit /health `capabilities.derivedDtsTypes` flag; for builds
+  // whose /health predates the flag, falls back to sniffing the testdata response
+  // shape (presence of the `types` map). Never throws. Returns the boolean.
+  async loadDtsTypes(capabilities) {
+    if (capabilities && 'derivedDtsTypes' in capabilities) {
+      this.supportsDerivedTypes = capabilities.derivedDtsTypes === true;
+      return this.supportsDerivedTypes;
+    }
+    try {
+      const res = await this.getTestdata();
+      this.supportsDerivedTypes = !!res.types;
+    } catch {
+      this.supportsDerivedTypes = false;
+    }
+    return this.supportsDerivedTypes;
   }
 
   async getPartials() {

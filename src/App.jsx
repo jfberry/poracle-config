@@ -20,37 +20,7 @@ import { useAutocreate } from './hooks/useAutocreate';
 import { useInsertAtCursor } from './hooks/useInsertAtCursor';
 import { useActions } from './hooks/useActions';
 import { tabClass } from './lib/styles';
-
-// DTS template type -> testdata webhook type (used for GET /api/dts/testdata).
-// The testdata.json file groups invasion/lure under "pokestop" because that's
-// the upstream webhook type, so we have to ask for that bucket.
-const dtsToWebhookType = {
-  monster: 'pokemon',
-  monsterNoIv: 'pokemon',
-  raid: 'raid',
-  egg: 'raid',
-  invasion: 'pokestop',
-  lure: 'pokestop',
-  quest: 'quest',
-  nest: 'nest',
-  gym: 'gym',
-  'fort-update': 'fort_update',
-  maxbattle: 'max_battle',
-};
-
-// DTS template type -> enrich type (used for POST /api/dts/enrich).
-// Enrich understands the specific DTS types directly, so invasion stays
-// as "invasion" (not "pokestop" which the enrich endpoint rejects).
-const dtsToEnrichType = {
-  monsterNoIv: 'pokemon',
-  egg: 'raid',
-  'fort-update': 'fort_update',
-  maxbattle: 'max_battle',
-};
-
-function getEnrichType(dtsType) {
-  return dtsToEnrichType[dtsType] || dtsType;
-}
+import { fetchScenarios, resolveEnrichType } from './lib/dts-types';
 
 export default function App() {
   const dts = useDts();
@@ -122,10 +92,8 @@ export default function App() {
         setApiBlockScopes(null);
         setApiSnippets(null);
       });
-    const webhookType = dtsToWebhookType[dts.filters.type] || dts.filters.type;
-    api.client.getTestdata(webhookType)
-      .then((result) => { if (!cancelled) setApiTestScenarios(result.testdata || null); })
-      .catch(() => { if (!cancelled) setApiTestScenarios(null); });
+    fetchScenarios(api.client, dts.filters.type)
+      .then((scenarios) => { if (!cancelled) setApiTestScenarios(scenarios.length ? scenarios : null); });
     return () => { cancelled = true; };
   }, [api.connected, api.client, dts.filters.type]);
 
@@ -142,6 +110,12 @@ export default function App() {
       autocreate.load();
     }
   }, [api.connected, activeTab, autocreate.loaded]);
+
+  // Clear enriched/custom test data when the template type changes, so the preview
+  // and Enrich reflect the newly selected type rather than the previous type's data.
+  useEffect(() => {
+    setCustomTestData(null);
+  }, [dts.filters.type]);
 
   // Reset active button when the selected template changes
   useEffect(() => {
@@ -244,7 +218,7 @@ export default function App() {
   const handleEnrich = useCallback(async (webhookData) => {
     if (!api.client) return;
     try {
-      const enrichType = getEnrichType(dts.filters.type);
+      const enrichType = resolveEnrichType(api.client, dts.filters.type);
       const result = await api.client.enrichWebhook(enrichType, webhookData || activeTestData, dts.filters.language);
       if (result.variables) {
         setCustomTestData(result.variables);
