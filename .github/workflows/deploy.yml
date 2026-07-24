@@ -15,9 +15,10 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  # Branch built into the /next/ preview channel. Update or remove when the
-  # preview work is promoted. See docs/superpowers/specs/2026-07-19-dts-derived-types-editor.md §5.
-  PREVIEW_BRANCH: feature/dts-derived-types
+  # Standing integration branch built into the /next/ preview channel, mirroring
+  # PoracleNG's develop -> main flow: work lands on `develop` (previewed at
+  # /poracle-config/next/), then promotes to `master` (the stable root site).
+  PREVIEW_BRANCH: develop
 
 jobs:
   # Stable site from the triggering ref (master). Independent of the preview
