@@ -99,6 +99,24 @@ export function useDts() {
     [currentTemplateIndex]
   );
 
+  const updateButtons = useCallback(
+    (newButtons) => {
+      setTemplates((prev) => {
+        if (currentTemplateIndex < 0 || currentTemplateIndex >= prev.length) return prev;
+        const updated = [...prev];
+        const entry = { ...updated[currentTemplateIndex] };
+        if (Array.isArray(newButtons) && newButtons.length > 0) {
+          entry.buttons = newButtons;
+        } else {
+          delete entry.buttons;
+        }
+        updated[currentTemplateIndex] = entry;
+        return updated;
+      });
+    },
+    [currentTemplateIndex]
+  );
+
   const updateTemplateFileContent = useCallback(
     (newContent) => {
       setTemplates((prev) => {
@@ -207,6 +225,6 @@ export function useDts() {
     currentTemplate, currentTestData,
     testScenario, setTestScenario,
     availableTypes, availableIds, availableLanguages, availableScenarios,
-    updateTemplate, updateTemplateFileContent, loadTemplates, importTemplates, selectTemplate,
+    updateTemplate, updateButtons, updateTemplateFileContent, loadTemplates, importTemplates, selectTemplate,
   };
 }

@@ -7,29 +7,6 @@ export default function ConfigEditor({ config }) {
   const [search, setSearch] = useState('');
   const [showDeprecated, setShowDeprecated] = useState(false);
 
-  const handleMigrate = async () => {
-    const confirmed = confirm(
-      'Migrate config.toml to overrides.json?\n\n' +
-      'This will:\n' +
-      '• Back up your current config.toml\n' +
-      '• Move all editable settings into overrides.json\n' +
-      '• Rewrite config.toml to contain only database, tokens, and connection settings\n\n' +
-      'This is reversible: delete overrides.json and restore from the backup file.'
-    );
-    if (!confirmed) return;
-    try {
-      const result = await config.migrate();
-      alert(
-        `Migration complete.\n\n` +
-        `Backup: ${result.backup}\n` +
-        `Moved ${result.fields_moved?.length || 0} fields to overrides.json\n` +
-        `Kept ${result.fields_kept?.length || 0} TOML-only fields`
-      );
-    } catch (err) {
-      alert('Migration failed: ' + err.message);
-    }
-  };
-
   const searchMatches = useMemo(() => {
     const set = new Set();
     if (!config.schema || !search) return set;
@@ -117,16 +94,6 @@ export default function ConfigEditor({ config }) {
         overviewCount={overviewCount}
       />
       <div className="flex-1 overflow-y-auto relative">
-        <div className="absolute top-2 right-3 z-10">
-          <button
-            type="button"
-            onClick={handleMigrate}
-            title="Migrate config.toml into overrides.json"
-            className="text-[11px] text-gray-400 hover:text-gray-200 border border-gray-700 rounded px-2 py-0.5 bg-gray-900/60"
-          >
-            Migrate config
-          </button>
-        </div>
         {isOverview ? (
           <ConfigOverview
             schema={config.schema}

@@ -140,14 +140,6 @@ export function useConfig(apiClient) {
     }
   }, [apiClient, dirtyFields, values]);
 
-  // Migrate config.toml to overrides.json
-  const migrate = useCallback(async () => {
-    if (!apiClient) throw new Error('Not connected');
-    const result = await apiClient.migrateConfig();
-    await load();
-    return result;
-  }, [apiClient, load]);
-
   // Resolve IDs — batch resolve and cache
   const resolveIds = useCallback(async (request) => {
     if (!apiClient) return {};
@@ -271,7 +263,6 @@ export function useConfig(apiClient) {
     resolveIds,
     geofenceAreas,
     overriddenFields,
-    migrate,
     validationIssues,
     hasValidationErrors,
   };

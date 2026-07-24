@@ -1,115 +1,92 @@
-import { useState, useCallback, useRef, useEffect } from 'react';
-import FormEditor from './FormEditor';
-import TelegramFormEditor from './TelegramFormEditor';
-import RawEditor from './RawEditor';
-import { tabClass } from '../lib/styles';
+import TemplateBodyEditor from './TemplateBodyEditor';
+import ButtonsEditor from './ButtonsEditor';
 
-export default function TemplateEditor({ template, templateFileContent, onChange, onFileContentChange, platform }) {
-  const [mode, setMode] = useState('form');
-  // In raw mode, keep local text state so the user can make multi-keystroke
-  // edits (including temporarily invalid JSON) without crashing. Only push
-  // valid JSON to the parent on a debounce.
-  const [rawText, setRawText] = useState('');
-  const debounceRef = useRef(null);
-  const userEditingRef = useRef(false);
-
-  // Sync rawText from parent when switching TO raw mode or when parent
-  // template changes while the user isn't actively editing
-  useEffect(() => {
-    if (mode === 'raw' && !userEditingRef.current && template) {
-      setRawText(JSON.stringify(template, null, 2));
-    }
-  }, [template, mode]);
-
-  // When switching to raw mode, snapshot the current template
-  const switchToRaw = useCallback(() => {
-    setRawText(JSON.stringify(template, null, 2));
-    userEditingRef.current = false;
-    setMode('raw');
-  }, [template]);
-
-  // When switching to form mode, try to apply any pending raw edits
-  const switchToForm = useCallback(() => {
-    if (userEditingRef.current) {
-      try {
-        const parsed = JSON.parse(rawText);
-        onChange(parsed);
-      } catch {
-        // If the JSON is invalid, keep the old template — user will see
-        // the form with whatever was last valid
-      }
-    }
-    userEditingRef.current = false;
-    setMode('form');
-  }, [rawText, onChange]);
-
-  const handleRawChange = useCallback(
-    (text) => {
-      setRawText(text);
-      userEditingRef.current = true;
-
-      // Debounce: apply valid JSON to parent after 800ms of no typing
-      if (debounceRef.current) clearTimeout(debounceRef.current);
-      debounceRef.current = setTimeout(() => {
-        try {
-          const parsed = JSON.parse(text);
-          onChange(parsed);
-          // Don't clear userEditingRef — the user might still be editing
-        } catch {
-          // Still invalid JSON, that's fine
-        }
-      }, 800);
-    },
-    [onChange]
+function FormatBadge({ format }) {
+  if (!format) return null;
+  const color = format === 'toml'
+    ? 'bg-purple-900/40 text-purple-300 border-purple-700'
+    : 'bg-gray-800 text-gray-400 border-gray-700';
+  return (
+    <span className={`text-[10px] font-mono uppercase border rounded px-1.5 py-0.5 ${color}`}>
+      {format}
+    </span>
   );
+}
 
-  // Cleanup debounce on unmount
-  useEffect(() => () => {
-    if (debounceRef.current) clearTimeout(debounceRef.current);
-  }, []);
-
-  const isTemplateFile = templateFileContent != null;
-  const isTelegram = platform === 'telegram';
-
-  // For templateFile entries: raw Handlebars text editor only
-  if (isTemplateFile) {
-    return (
-      <div className="flex flex-col h-full">
-        <div className="flex items-center gap-2 px-3 py-1.5 border-b border-gray-700 text-sm">
-          <span className="text-blue-400 text-xs font-medium">Template File</span>
-          <span className="text-gray-500 text-[10px]">Raw Handlebars — not structured JSON</span>
-        </div>
-        <div className="flex-1 overflow-y-auto">
-          <RawEditor
-            value={templateFileContent}
-            onChange={(text) => onFileContentChange?.(text)}
-          />
-        </div>
-      </div>
-    );
-  }
-
+/**
+ * Top-level editor for a DTS entry. Composes TemplateBodyEditor + ButtonsEditor
+ * with a sourceFormat badge.
+ */
+export default function TemplateEditor({
+  template,
+  templateFileContent,
+  templateFile,
+  onChange,
+  onFileContentChange,
+  platform,
+  entry,
+  onButtonsChange,
+  actions,
+  actionsError,
+  actionsReason,
+  templates,
+  fields,
+  onJumpToTemplate,
+  snapshotsEnabled = true,
+  canEdit = true,
+  buttonsSupported = true,
+}) {
+  const readOnly = entry?.readonly === true;
+  // Hide the buttons section entirely when the connected processor doesn't
+  // support buttons (caps.buttons === false). Existing entries on this server
+  // won't have a buttons field anyway, and authoring new ones here would
+  // silently vanish on save.
+  const hasExistingButtons = Array.isArray(entry?.buttons) && entry.buttons.length > 0;
   return (
     <div className="flex flex-col h-full">
-      <div className="flex gap-2 px-3 py-1.5 border-b border-gray-700 text-sm">
-        <button onClick={switchToForm} className={tabClass(mode === 'form')}>
-          Form
-        </button>
-        <button onClick={switchToRaw} className={tabClass(mode === 'raw')}>
-          Raw JSON
-        </button>
+      {(entry?.sourceFormat || readOnly) && (
+        <div className="flex items-center gap-2 px-3 py-1 border-b border-gray-700">
+          <FormatBadge format={entry?.sourceFormat} />
+          {entry?.sourceFile && (
+            <span className="text-[10px] text-gray-500 font-mono truncate" title={entry.sourceFile}>
+              {entry.sourceFile}
+            </span>
+          )}
+          {readOnly && (
+            <span className="text-[10px] uppercase tracking-wider text-purple-400 ml-auto">
+              Read-only (fallback)
+            </span>
+          )}
+        </div>
+      )}
+      <div className="flex-1 min-h-0">
+        <TemplateBodyEditor
+          template={template}
+          templateFileContent={templateFileContent}
+          templateFile={templateFile}
+          onChange={onChange}
+          onFileContentChange={onFileContentChange}
+          platform={platform}
+          readOnly={readOnly}
+        />
       </div>
-      <div className="flex-1 overflow-y-auto">
-        {mode === 'form' ? (
-          isTelegram ? (
-            <TelegramFormEditor template={template} onChange={onChange} />
-          ) : (
-            <FormEditor template={template} onChange={onChange} />
-          )
-        ) : (
-          <RawEditor value={rawText} onChange={handleRawChange} />
-        )}
-      </div>
+      {(buttonsSupported || hasExistingButtons) && (
+        <ButtonsEditor
+          buttons={entry?.buttons}
+          onChange={onButtonsChange}
+          actions={actions || []}
+          actionsError={actionsError}
+          actionsReason={actionsReason}
+          templates={templates || []}
+          platform={platform}
+          fields={fields || []}
+          onJumpTo={onJumpToTemplate}
+          readOnly={readOnly || !buttonsSupported}
+          snapshotsEnabled={snapshotsEnabled}
+          canEdit={canEdit && buttonsSupported}
+          unsupportedNotice={!buttonsSupported}
+        />
+      )}
     </div>
   );
 }

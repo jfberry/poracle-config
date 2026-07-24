@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Embed from './embed';
 import { parse, parseAllowLinks, jumboify } from './markdown';
+import { discordBtnBase, discordBtnClass } from '../lib/styles';
 
 const shortTime = new Intl.DateTimeFormat(undefined, { hour: 'numeric', minute: 'numeric' });
 
@@ -110,6 +111,82 @@ function DiscordViewWrapper({ darkTheme, children }) {
   );
 }
 
+function DiscordActionRows({ buttons, onClick, activeId }) {
+  if (!Array.isArray(buttons) || buttons.length === 0) return null;
+  const rows = [];
+  for (let i = 0; i < buttons.length; i += 5) rows.push(buttons.slice(i, i + 5));
+  return (
+    <div className="mt-2 space-y-1.5">
+      {rows.map((row, ri) => (
+        <div key={ri} className="flex flex-wrap gap-1.5">
+          {row.map((b) => {
+            const isActive = activeId === b.id;
+            const cls = `${discordBtnBase} ${discordBtnClass[b.style] || discordBtnClass.secondary} ${
+              isActive ? 'ring-2 ring-white ring-offset-1 ring-offset-discord-dark' : ''
+            } ${onClick ? 'cursor-pointer' : 'cursor-default'}`;
+            return (
+              <button
+                key={b.id}
+                type="button"
+                onClick={onClick ? () => onClick(b.id) : undefined}
+                className={cls}
+              >
+                {b.label}
+              </button>
+            );
+          })}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function ButtonResponseBlock({ response, username, avatarUrl, darkTheme, compactMode, webhookMode }) {
+  if (!response) return null;
+  if (response.kind === 'action') {
+    return (
+      <div className="mt-2 mx-2 px-3 py-2 bg-discord-dark border border-gray-700 rounded text-xs text-gray-300 italic">
+        ↳ {response.label}
+      </div>
+    );
+  }
+  if (response.kind === 'error') {
+    return (
+      <div className="mt-2 mx-2 px-3 py-2 bg-red-950/30 border border-red-800 rounded text-xs text-red-300">
+        ↳ {response.message}
+      </div>
+    );
+  }
+  // kind === 'message' — render a follow-up Discord message block.
+  const { content, embed, embeds } = response.data || {};
+  return (
+    <div className="mt-2 pl-3 border-l-2 border-gray-700 ml-3">
+      <div className="text-[10px] text-gray-500 uppercase tracking-wider mb-1">Button response</div>
+      <div className="message-group hide-overflow">
+        <Avatar url={avatarUrl} compactMode={compactMode} />
+        <div className="comment">
+          <div className="message first">
+            <CozyMessageHeader username={username} compactMode={compactMode} />
+            <div className="message-text">
+              <MessageBody
+                content={content}
+                username={username}
+                compactMode={compactMode}
+                webhookMode={webhookMode}
+              />
+            </div>
+            {embed ? (
+              <Embed {...embed} />
+            ) : (
+              embeds && embeds.map((e, i) => <Embed key={i} {...e} />)
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function DiscordView({
   username = 'Poracle',
   avatar_url = 'https://cdn.discordapp.com/embed/avatars/0.png',
@@ -118,6 +195,9 @@ export default function DiscordView({
   webhookMode = false,
   error = null,
   data = {},
+  activeButtonId = null,
+  buttonResponse = null,
+  onButtonClick = null,
 }) {
   const { content, embed } = data;
   const embeds = Array.isArray(data.embeds) ? data.embeds : null;
@@ -152,9 +232,22 @@ export default function DiscordView({
                 embeds &&
                 embeds.map((e, i) => <Embed key={i} {...e} />)
               )}
+              <DiscordActionRows
+                buttons={data.__buttons}
+                onClick={onButtonClick}
+                activeId={activeButtonId}
+              />
             </div>
           </div>
         </div>
+        <ButtonResponseBlock
+          response={buttonResponse}
+          username={username}
+          avatarUrl={avatar_url}
+          darkTheme={darkTheme}
+          compactMode={compactMode}
+          webhookMode={webhookMode}
+        />
       </DiscordViewWrapper>
     </div>
   );

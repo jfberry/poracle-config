@@ -18,17 +18,20 @@ import { useHandlebars } from './hooks/useHandlebars';
 import { useApi } from './hooks/useApi';
 import { useAutocreate } from './hooks/useAutocreate';
 import { useInsertAtCursor } from './hooks/useInsertAtCursor';
+import { useActions } from './hooks/useActions';
 import { tabClass } from './lib/styles';
 import { fetchScenarios, resolveEnrichType } from './lib/dts-types';
 
 export default function App() {
   const dts = useDts();
-  const { render, renderError, setPartials, setEmojis } = useHandlebars();
+  const actions = useActions();
+  const { render, renderButtons, renderButtonResponse, renderError, setPartials, setEmojis } = useHandlebars();
   const api = useApi();
   const { containerRef: editorContainerRef, insertAtCursor, blockContext } = useInsertAtCursor();
   const [middleTab, setMiddleTab] = useState('tags');
   const [showMiddle, setShowMiddle] = useState(true);
   const [customTestData, setCustomTestData] = useState(null);
+  const [activeButtonId, setActiveButtonId] = useState(null);
   const [apiFields, setApiFields] = useState(null);
   const [apiBlockScopes, setApiBlockScopes] = useState(null);
   const [apiSnippets, setApiSnippets] = useState(null);
@@ -72,6 +75,7 @@ export default function App() {
       setApiFields(null);
       setApiBlockScopes(null);
       setApiTestScenarios(null);
+      actions.reset();
       return;
     }
     let cancelled = false;
@@ -113,30 +117,50 @@ export default function App() {
     setCustomTestData(null);
   }, [dts.filters.type]);
 
+  // Reset active button when the selected template changes
+  useEffect(() => {
+    setActiveButtonId(null);
+  }, [dts.currentTemplate]);
+
   const activeTestData = customTestData || dts.currentTestData;
 
   const renderedData = useMemo(() => {
     if (!activeTestData || Object.keys(activeTestData).length === 0) return {};
 
-    // templateFile entries — render raw Handlebars text then parse as JSON
+    let body;
     if (dts.currentTemplate?.templateFileContent != null) {
       try {
-        return render(null, activeTestData, dts.filters.platform, dts.currentTemplate.templateFileContent) || {};
+        body = render(null, activeTestData, dts.filters.platform, dts.currentTemplate.templateFileContent) || {};
       } catch (err) {
         console.error('Render error (templateFile):', err);
-        return {};
+        body = {};
       }
+    } else if (dts.currentTemplate?.template) {
+      try {
+        body = render(dts.currentTemplate.template, activeTestData, dts.filters.platform) || {};
+      } catch (err) {
+        console.error('Render error:', err);
+        body = {};
+      }
+    } else {
+      body = {};
     }
 
-    // Inline template entries
-    if (!dts.currentTemplate?.template) return {};
-    try {
-      return render(dts.currentTemplate.template, activeTestData, dts.filters.platform) || {};
-    } catch (err) {
-      console.error('Render error:', err);
-      return {};
-    }
-  }, [dts.currentTemplate, activeTestData, render, dts.filters.platform]);
+    const rendered = renderButtons(dts.currentTemplate?.buttons, activeTestData, dts.filters.platform);
+    if (rendered.length > 0) body = { ...body, __buttons: rendered };
+    return body;
+  }, [dts.currentTemplate, activeTestData, render, renderButtons, dts.filters.platform]);
+
+  const buttonResponse = useMemo(() => {
+    if (!activeButtonId || !dts.currentTemplate?.buttons) return null;
+    const btn = dts.currentTemplate.buttons.find((b) => b.id === activeButtonId);
+    if (!btn) return null;
+    return renderButtonResponse(btn, dts.templates, activeTestData, dts.filters.platform);
+  }, [activeButtonId, dts.currentTemplate, dts.templates, activeTestData, dts.filters.platform, renderButtonResponse]);
+
+  const handleButtonClick = useCallback((id) => {
+    setActiveButtonId((current) => (current === id ? null : id));
+  }, []);
 
   const handleScenarioChange = useCallback((scenario) => {
     dts.setTestScenario(scenario);
@@ -154,6 +178,16 @@ export default function App() {
         }
       } catch (err) {
         console.error('Failed to load templates:', err);
+      }
+      // Only probe the action registry when the processor reports buttons support.
+      // Older binaries 404 on /api/dts/actions; the capabilities check at /health
+      // already told us whether the endpoint exists.
+      if (api.capabilities?.buttons) {
+        try {
+          await actions.load(client);
+        } catch (err) {
+          console.error('Failed to load action registry:', err);
+        }
       }
       try {
         const result = await client.getPartials();
@@ -319,9 +353,18 @@ export default function App() {
       if (dts.currentTemplate.name) entry.name = dts.currentTemplate.name;
       if (dts.currentTemplate.description) entry.description = dts.currentTemplate.description;
       if (dts.currentTemplate.default) entry.default = true;
+      if (dts.currentTemplate.hidden) entry.hidden = true;
+      if (Array.isArray(dts.currentTemplate.buttons) && dts.currentTemplate.buttons.length > 0) {
+        entry.buttons = dts.currentTemplate.buttons;
+      }
 
       const result = await api.client.saveTemplates([entry]);
-      alert(`Saved to PoracleNG (${result.saved || 0} template${result.saved !== 1 ? 's' : ''})`);
+      let msg = `Saved to PoracleNG (${result.saved || 0} template${result.saved !== 1 ? 's' : ''})`;
+      if (dts.currentTemplate.sourceFormat === 'toml') {
+        msg += '\n\nTOML notice: comments and key order may be lost in the round-trip. ' +
+               'The previous version was backed up to config/backups/.';
+      }
+      alert(msg);
     } catch (err) {
       alert('Failed to save: ' + err.message);
     }
@@ -369,13 +412,25 @@ export default function App() {
             className="min-w-0 shrink-0"
             style={{ width: `${leftWidth}px` }}
           >
-            <TemplateEditor
-              template={dts.currentTemplate?.template}
-              templateFileContent={dts.currentTemplate?.templateFileContent ?? null}
-              onChange={dts.updateTemplate}
-              onFileContentChange={dts.updateTemplateFileContent}
-              platform={dts.filters.platform}
-            />
+              <TemplateEditor
+                template={dts.currentTemplate?.template}
+                templateFileContent={dts.currentTemplate?.templateFileContent}
+                templateFile={dts.currentTemplate?.templateFile}
+                onChange={dts.updateTemplate}
+                onFileContentChange={dts.updateTemplateFileContent}
+                platform={dts.filters.platform}
+                entry={dts.currentTemplate}
+                onButtonsChange={dts.updateButtons}
+                actions={actions.actions}
+                actionsError={actions.error}
+                actionsReason={actions.reason}
+                templates={dts.templates}
+                fields={apiFields}
+                onJumpToTemplate={dts.selectTemplate}
+                snapshotsEnabled={config.values?.snapshots?.enabled !== false}
+                canEdit={dts.templates.includes(dts.currentTemplate)}
+                buttonsSupported={offlineMode || api.capabilities?.buttons === true}
+              />
           </div>
           <ResizeHandle onResize={resizeLeft} />
           {/* Middle panel — Tags / Test Data (collapsible) */}
@@ -433,7 +488,13 @@ export default function App() {
             {dts.filters.platform === 'telegram' ? (
               <TelegramPreview data={renderedData} />
             ) : (
-              <DiscordPreview data={renderedData} error={renderError} />
+              <DiscordPreview
+                    data={renderedData}
+                    error={renderError}
+                    activeButtonId={activeButtonId}
+                    buttonResponse={buttonResponse}
+                    onButtonClick={handleButtonClick}
+                  />
             )}
           </div>
         </div>
