@@ -30,30 +30,38 @@ describe('getTestdata query building', () => {
   });
 });
 
-describe('loadDtsTypes capability detection', () => {
-  it('stores the map and sets supportsDerivedTypes when types present', async () => {
+describe('loadDtsTypes support detection', () => {
+  it('uses the capability flag (true) without a testdata fetch', async () => {
     const c = makeClient();
-    c.fetch = vi.fn().mockResolvedValue({
-      types: { monster: { webhookType: 'pokemon', derived: false } },
-      testdata: [],
-    });
-    const supported = await c.loadDtsTypes();
+    const supported = await c.loadDtsTypes({ derivedDtsTypes: true });
     expect(supported).toBe(true);
     expect(c.supportsDerivedTypes).toBe(true);
-    expect(c.dtsTypes.monster.webhookType).toBe('pokemon');
+    expect(c.fetch).not.toHaveBeenCalled();
   });
-  it('falls back to false when types absent', async () => {
+  it('uses the capability flag (false) without a testdata fetch', async () => {
+    const c = makeClient();
+    await c.loadDtsTypes({ buttons: true, derivedDtsTypes: false });
+    expect(c.supportsDerivedTypes).toBe(false);
+    expect(c.fetch).not.toHaveBeenCalled();
+  });
+  it('sniffs testdata `types` when the flag key is absent (older /health)', async () => {
+    const c = makeClient();
+    c.fetch = vi.fn().mockResolvedValue({ types: { monster: {} }, testdata: [] });
+    const supported = await c.loadDtsTypes({ buttons: true });
+    expect(supported).toBe(true);
+    expect(c.fetch).toHaveBeenCalledWith('/api/dts/testdata');
+  });
+  it('sniffs and returns false when no flag and no types (old poracle)', async () => {
     const c = makeClient();
     c.fetch = vi.fn().mockResolvedValue({ testdata: [] });
-    await c.loadDtsTypes();
+    await c.loadDtsTypes(undefined);
     expect(c.supportsDerivedTypes).toBe(false);
-    expect(c.dtsTypes).toBe(null);
+    expect(c.fetch).toHaveBeenCalledWith('/api/dts/testdata');
   });
-  it('never throws and stays false on fetch error', async () => {
+  it('never throws and stays false when the sniff fetch errors', async () => {
     const c = makeClient();
     c.fetch = vi.fn().mockRejectedValue(new Error('network'));
     await expect(c.loadDtsTypes()).resolves.toBe(false);
     expect(c.supportsDerivedTypes).toBe(false);
-    expect(c.dtsTypes).toBe(null);
   });
 });

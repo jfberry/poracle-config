@@ -22,9 +22,10 @@ export function useApi() {
       // This prevents the UI from flashing the editor then bouncing back
       // to the connect screen when the secret is wrong.
       await client.getConfigSchema();
-      // Detect derived-types support before flipping `connected`, so the
-      // testdata effect never runs against an unset capability. Never throws.
-      await client.loadDtsTypes();
+      // Detect derived-types support before flipping `connected`, so the testdata
+      // effect never runs against an unset capability. Prefers the /health
+      // capability flag, falls back to sniffing testdata. Never throws.
+      await client.loadDtsTypes(health?.capabilities);
       clientRef.current = client;
       setUrl(baseUrl);
       setConnected(true);
