@@ -1,11 +1,15 @@
 import { useState, useCallback, useMemo } from 'react';
 import { defaultTemplates, getDefaultTemplate } from '../data/default-dts';
 import { getTestScenario, getTestScenarioNames } from '../data/test-data';
+import { isAgnostic } from '../lib/agnostic-types';
 
 function normalizeEntries(entries) {
   return entries
     .filter((e) => e.template || e.templateFile || e.templateFileContent)
-    .map((e) => ({ ...e, id: String(e.id ?? '1'), platform: e.platform || 'discord', language: e.language ?? '' }));
+    // Preserve an empty platform for platform-agnostic types (help). Coercing
+    // ""→"discord" turns the shared fallback into a discord-specific entry that
+    // can't shadow the server's "" original, which produces a duplicate on save.
+    .map((e) => ({ ...e, id: String(e.id ?? '1'), platform: e.platform || (isAgnostic(e.type) ? '' : 'discord'), language: e.language ?? '' }));
 }
 
 export function useDts() {
@@ -25,11 +29,11 @@ export function useDts() {
 
   // Find current template: match type+platform+id, prefer matching language but fall back
   const currentTemplate = useMemo(() => {
-    // Exact match first
+    // Exact match first (agnostic types match any platform filter)
     const exact = templates.find(
       (t) =>
         t.type === filters.type &&
-        t.platform === filters.platform &&
+        (isAgnostic(t.type) || t.platform === filters.platform) &&
         t.language === filters.language &&
         String(t.id) === String(filters.id)
     );
@@ -38,13 +42,13 @@ export function useDts() {
     const noLang = templates.find(
       (t) =>
         t.type === filters.type &&
-        t.platform === filters.platform &&
+        (isAgnostic(t.type) || t.platform === filters.platform) &&
         String(t.id) === String(filters.id)
     );
     if (noLang) return noLang;
     // Fallback to any template of this type+platform
     const anyId = templates.find(
-      (t) => t.type === filters.type && t.platform === filters.platform
+      (t) => t.type === filters.type && (isAgnostic(t.type) || t.platform === filters.platform)
     );
     if (anyId) return anyId;
     return getDefaultTemplate(filters.type);
@@ -67,7 +71,7 @@ export function useDts() {
     () => [
       ...new Set(
         templates
-          .filter((t) => t.type === filters.type && t.platform === filters.platform)
+          .filter((t) => t.type === filters.type && (isAgnostic(t.type) || t.platform === filters.platform))
           .map((t) => String(t.id))
       ),
     ],
@@ -78,7 +82,7 @@ export function useDts() {
     () => [
       ...new Set(
         templates
-          .filter((t) => t.type === filters.type && t.platform === filters.platform)
+          .filter((t) => t.type === filters.type && (isAgnostic(t.type) || t.platform === filters.platform))
           .map((t) => t.language ?? '')
       ),
     ],
@@ -139,7 +143,7 @@ export function useDts() {
         if (typeChanged || platformChanged) {
           // Auto-select first matching template
           const matches = templates.filter(
-            (t) => t.type === merged.type && t.platform === merged.platform
+            (t) => t.type === merged.type && (isAgnostic(t.type) || t.platform === merged.platform)
           );
           if (matches.length > 0) {
             merged.id = String(matches[0].id);
@@ -177,7 +181,7 @@ export function useDts() {
   const selectTemplate = useCallback((template) => {
     setFilters({
       type: template.type,
-      platform: template.platform || 'discord',
+      platform: template.platform || (isAgnostic(template.type) ? '' : 'discord'),
       language: template.language ?? '',
       id: String(template.id),
     });
