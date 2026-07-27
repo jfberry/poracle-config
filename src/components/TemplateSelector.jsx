@@ -1,4 +1,5 @@
 import { useState, useMemo, useEffect, useRef } from 'react';
+import { isAgnostic } from '../lib/agnostic-types';
 
 /**
  * Single unified template selector replacing the multi-dropdown approach.
@@ -45,7 +46,8 @@ export default function TemplateSelector({ templates, currentTemplate, onSelect 
   const grouped = useMemo(() => {
     const searchLower = search.toLowerCase();
     const filtered = templates.filter((t) => {
-      if (filterPlatform && t.platform !== filterPlatform) return false;
+      // Agnostic types (help, platform "") belong under every platform filter.
+      if (filterPlatform && !isAgnostic(t.type) && t.platform !== filterPlatform) return false;
       if (!search) return true;
       const text = `${t.type} ${t.id} ${t.name || ''} ${t.description || ''} ${t.platform} ${t.language}`.toLowerCase();
       return text.includes(searchLower);
@@ -149,7 +151,7 @@ export default function TemplateSelector({ templates, currentTemplate, onSelect 
                         {t.id || '1'}
                       </span>
                       <span className={`text-xs shrink-0 ${t.platform === 'telegram' ? 'text-blue-400' : 'text-gray-400'}`}>
-                        {t.platform}
+                        {t.platform || (isAgnostic(t.type) ? 'all' : '')}
                       </span>
                       <span className="text-gray-500 text-xs shrink-0">
                         {t.language || '(any lang)'}
@@ -164,6 +166,14 @@ export default function TemplateSelector({ templates, currentTemplate, onSelect 
                           title={t.sourceFile || ''}
                         >
                           {t.sourceFormat}
+                        </span>
+                      )}
+                      {t.readonly && (
+                        <span
+                          className="text-[9px] font-mono uppercase border rounded px-1 shrink-0 border-amber-700 text-amber-400"
+                          title="Read-only fallback default. Save to create an editable override that replaces it."
+                        >
+                          read-only
                         </span>
                       )}
                       {t.name && (

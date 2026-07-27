@@ -316,7 +316,7 @@ export default function App() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `${entry.type}-${entry.id || 'default'}-${entry.platform || 'discord'}.json`;
+    a.download = `${entry.type}-${entry.id || 'default'}${entry.platform ? '-' + entry.platform : ''}.json`;
     a.click();
     URL.revokeObjectURL(url);
   };
