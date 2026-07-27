@@ -171,9 +171,9 @@ export default function TemplateSelector({ templates, currentTemplate, onSelect 
                       {t.readonly && (
                         <span
                           className="text-[9px] font-mono uppercase border rounded px-1 shrink-0 border-amber-700 text-amber-400"
-                          title="Read-only fallback default. Save to create an editable override that replaces it."
+                          title="PoracleNG default (fallback). Editing and saving creates your own override that replaces it."
                         >
-                          read-only
+                          default
                         </span>
                       )}
                       {t.name && (

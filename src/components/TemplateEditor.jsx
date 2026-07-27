@@ -53,8 +53,8 @@ export default function TemplateEditor({
             </span>
           )}
           {readOnly && (
-            <span className="text-[10px] uppercase tracking-wider text-purple-400 ml-auto">
-              Read-only (fallback)
+            <span className="text-[10px] uppercase tracking-wider text-amber-400 ml-auto">
+              Fallback — Poracle default
             </span>
           )}
         </div>
