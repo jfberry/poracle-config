@@ -27,10 +27,10 @@ jobs:
   build-stable:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           ref: master
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: 20
           cache: npm
@@ -38,7 +38,7 @@ jobs:
       - name: Build stable site
         run: npm run build
       - name: Upload stable build
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: stable-dist
           path: dist
@@ -50,10 +50,10 @@ jobs:
     runs-on: ubuntu-latest
     continue-on-error: true
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           ref: ${{ env.PREVIEW_BRANCH }}
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: 20
           cache: npm
@@ -61,7 +61,7 @@ jobs:
       - name: Build preview site into /next/
         run: BASE_PATH=/poracle-config/next/ npm run build
       - name: Upload preview build
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: preview-dist
           path: dist
@@ -77,7 +77,7 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Download stable build into dist/
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: stable-dist
           path: dist
@@ -85,14 +85,14 @@ jobs:
       # fails and shows a red ✗ in the UI, but continue-on-error tolerates it and
       # the stable-only site still deploys. A red ✗ here on a green run is expected.
       - name: Download preview build into dist/next/ (tolerated if preview build failed)
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         continue-on-error: true
         with:
           name: preview-dist
           path: dist/next
       - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: dist
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
