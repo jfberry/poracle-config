@@ -21,11 +21,12 @@ import { useInsertAtCursor } from './hooks/useInsertAtCursor';
 import { useActions } from './hooks/useActions';
 import { tabClass } from './lib/styles';
 import { fetchScenarios, resolveEnrichType } from './lib/dts-types';
+import { isAgnostic } from './lib/agnostic-types';
 
 export default function App() {
   const dts = useDts();
   const actions = useActions();
-  const { render, renderButtons, renderButtonResponse, renderError, setPartials, setEmojis } = useHandlebars();
+  const { render, renderButtons, renderButtonResponse, setPartials, setEmojis } = useHandlebars();
   const api = useApi();
   const { containerRef: editorContainerRef, insertAtCursor, blockContext } = useInsertAtCursor();
   const [middleTab, setMiddleTab] = useState('tags');
@@ -124,32 +125,28 @@ export default function App() {
 
   const activeTestData = customTestData || dts.currentTestData;
 
-  const renderedData = useMemo(() => {
-    if (!activeTestData || Object.keys(activeTestData).length === 0) return {};
+  const { data: renderedData, error: renderError } = useMemo(() => {
+    // Webhook-driven types need test data to render. Agnostic types (help) have
+    // no webhook data and render from defaults (e.g. {{prefix}}) — don't bail.
+    const hasData = activeTestData && Object.keys(activeTestData).length > 0;
+    if (!hasData && !isAgnostic(dts.filters.type)) return { data: {}, error: null };
 
-    let body;
+    let body = {};
+    let error = null;
     if (dts.currentTemplate?.templateFileContent != null) {
-      try {
-        body = render(null, activeTestData, dts.filters.platform, dts.currentTemplate.templateFileContent) || {};
-      } catch (err) {
-        console.error('Render error (templateFile):', err);
-        body = {};
-      }
+      const r = render(null, activeTestData, dts.filters.platform, dts.currentTemplate.templateFileContent);
+      body = r.result || {};
+      error = r.error;
     } else if (dts.currentTemplate?.template) {
-      try {
-        body = render(dts.currentTemplate.template, activeTestData, dts.filters.platform) || {};
-      } catch (err) {
-        console.error('Render error:', err);
-        body = {};
-      }
-    } else {
-      body = {};
+      const r = render(dts.currentTemplate.template, activeTestData, dts.filters.platform);
+      body = r.result || {};
+      error = r.error;
     }
 
     const rendered = renderButtons(dts.currentTemplate?.buttons, activeTestData, dts.filters.platform);
     if (rendered.length > 0) body = { ...body, __buttons: rendered };
-    return body;
-  }, [dts.currentTemplate, activeTestData, render, renderButtons, dts.filters.platform]);
+    return { data: body, error };
+  }, [dts.currentTemplate, activeTestData, render, renderButtons, dts.filters.platform, dts.filters.type]);
 
   const buttonResponse = useMemo(() => {
     if (!activeButtonId || !dts.currentTemplate?.buttons) return null;
@@ -316,7 +313,7 @@ export default function App() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `${entry.type}-${entry.id || 'default'}-${entry.platform || 'discord'}.json`;
+    a.download = `${entry.type}-${entry.id || 'default'}${entry.platform ? '-' + entry.platform : ''}.json`;
     a.click();
     URL.revokeObjectURL(url);
   };
