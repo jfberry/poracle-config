@@ -1,5 +1,5 @@
 import { useState, useMemo, useCallback } from 'react';
-import { createEngine, renderDtsTemplate, renderTemplate, registerPartials, setEmojiMap, setActivePlatform } from '../lib/handlebars-engine';
+import { createEngine, renderDtsTemplate, renderTemplate, registerPartials, setEmojiMap, setActivePlatform, setCustomMaps } from '../lib/handlebars-engine';
 import { renderButtons as renderButtonsImpl } from '../lib/render-buttons';
 import { renderButtonResponse as renderButtonResponseImpl } from '../lib/render-button-response';
 
@@ -72,5 +72,11 @@ export function useHandlebars() {
     setEmojiVersion((v) => v + 1);
   }, []);
 
-  return { render, renderButtons, renderButtonResponse, setPartials, setEmojis };
+  // null = server lacks the customMaps capability (map/map2 echo the key).
+  const setMaps = useCallback((maps) => {
+    setCustomMaps(maps);
+    setEmojiVersion((v) => v + 1);
+  }, []);
+
+  return { render, renderButtons, renderButtonResponse, setPartials, setEmojis, setMaps };
 }

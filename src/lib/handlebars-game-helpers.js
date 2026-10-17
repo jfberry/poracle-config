@@ -1,8 +1,8 @@
 /**
  * Dummy game-data-dependent Handlebars helpers.
  * These return placeholder values since real game data is not available in the browser.
- * Some helpers (getEmoji) read from a runtime-mutable registry so the editor can
- * inject real data fetched from the PoracleNG API.
+ * Some helpers (getEmoji, map, map2) read from a runtime-mutable registry so the
+ * editor can inject real data fetched from the PoracleNG API.
  */
 
 // Mutable per-platform emoji registry. Populated via setEmojiMap from the
@@ -23,6 +23,61 @@ export function getEmojiMap(platform) {
 
 export function setActivePlatform(platform) {
   activePlatform = platform || 'discord';
+}
+
+// Custom maps fetched from GET /api/dts/custommaps, keyed by lookup key
+// ("name" or "name.language"). null = the connected PoracleNG predates the
+// customMaps capability (or we're offline): map/map2 keep the old behaviour of
+// echoing the key so previews stay readable.
+let customMaps = null;
+let mapLanguage = '';
+
+export function setCustomMaps(maps) {
+  customMaps = maps || null;
+}
+
+export function setMapLanguage(language) {
+  mapLanguage = language || '';
+}
+
+// lookupCustomMap mirrors PoracleNG: try "name.<lang>" then "name", each for
+// value then fallbackValue. Returns { found, value }.
+function lookupCustomMap(name, value, fallbackValue, language) {
+  for (const key of [`${name}.${language}`, String(name)]) {
+    const m = customMaps[key];
+    if (!m) continue;
+    if (Object.prototype.hasOwnProperty.call(m, value)) return { found: true, value: m[value] };
+    if (fallbackValue !== '' && Object.prototype.hasOwnProperty.call(m, fallbackValue)) {
+      return { found: true, value: m[fallbackValue] };
+    }
+  }
+  return { found: false, value: undefined };
+}
+
+// keyString converts a helper argument to a lookup key the way PoracleNG's
+// toString does (missing → '').
+function keyString(v) {
+  if (v == null || (typeof v === 'object' && !Array.isArray(v))) return '';
+  if (Array.isArray(v)) return v.length === 0 ? '' : String(v);
+  return String(v);
+}
+
+// customMapResult shapes a lookup like PoracleNG's customMapResult: block →
+// body with the value as context ({{else}} on a miss); inline/subexpression →
+// the value, empty on a miss. Handlebars can't tell inline from subexpression,
+// so object values come back with a toString of '' — truthy in {{#if (map …)}}
+// but rendering empty inline, as in PoracleNG.
+function customMapResult({ found, value }, options) {
+  if (typeof options.fn === 'function') {
+    return found ? options.fn(value) : options.inverse(this);
+  }
+  if (!found || value == null) return '';
+  if (typeof value === 'object') {
+    const wrapped = Array.isArray(value) ? [...value] : { ...value };
+    Object.defineProperty(wrapped, 'toString', { value: () => '', enumerable: false });
+    return wrapped;
+  }
+  return value;
 }
 
 export function registerGameHelpers(hbs) {
@@ -83,6 +138,14 @@ export function registerGameHelpers(hbs) {
     return rendered || '0 stardust, 0 candy, 0 XL candy';
   });
   hbs.registerHelper('calculateCp', () => 10);
-  hbs.registerHelper('map', (_name, value) => String(value));
-  hbs.registerHelper('map2', (_name, value) => String(value));
+  hbs.registerHelper('map', function (name, value, options) {
+    if (customMaps === null) return String(value);
+    const language = options.data?.language || mapLanguage;
+    return customMapResult.call(this, lookupCustomMap(name, keyString(value), '', language), options);
+  });
+  hbs.registerHelper('map2', function (name, value, value2, options) {
+    if (customMaps === null) return String(value);
+    const language = options.data?.language || mapLanguage;
+    return customMapResult.call(this, lookupCustomMap(name, keyString(value), keyString(value2), language), options);
+  });
 }

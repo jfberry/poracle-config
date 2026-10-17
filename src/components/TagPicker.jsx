@@ -292,6 +292,7 @@ export default function TagPicker({ type, platform, onInsertTag, apiFields, apiB
             control: 'text-gray-400',
             format: 'text-cyan-400',
             string: 'text-green-400',
+            customMap: 'text-emerald-300',
             iteration: 'text-purple-400',
             emoji: 'text-pink-400',
             link: 'text-blue-400',
