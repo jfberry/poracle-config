@@ -110,6 +110,38 @@ describe('string helpers', () => {
   it('concat with variables', () => expect(render('{{concat a b}}', { a: 'hello', b: ' world' })).toBe('hello world'));
 });
 
+// Ported from PoracleJS (@budibase/handlebars-helpers); must match PoracleNG.
+describe('PoracleJS string helpers', () => {
+  it('capitalizeAll capitalises every word', () =>
+    expect(render('{{capitalizeAll s}}', { s: 'the big gym' })).toBe('The Big Gym'));
+  it('capitalizeAll keeps spacing and skips leading punctuation', () =>
+    expect(render('{{capitalizeAll s}}', { s: '  (old)  church ' })).toBe('  (Old)  Church '));
+  it("capitalizeAll leaves the rest of the word alone", () =>
+    expect(render('{{capitalizeAll s}}', { s: "st. mary's park-gate McDONALD" })).toBe("St. Mary's Park-gate McDONALD"));
+  it('capitalizeAll is Unicode-aware', () =>
+    expect(render('{{capitalizeAll s}}', { s: 'über église' })).toBe('Über Église'));
+  it('capitalizeAll of a missing field is empty', () =>
+    expect(render('[{{capitalizeAll missing}}]')).toBe('[]'));
+
+  it('ellipsis truncates and appends …', () => expect(render('{{ellipsis "foo bar baz" 7}}')).toBe('foo bar…'));
+  it('ellipsis leaves short strings alone', () => expect(render('{{ellipsis "foo bar baz" 11}}')).toBe('foo bar baz'));
+  it('ellipsis counts characters, not UTF-16 units', () =>
+    expect(render('{{ellipsis s 3}}', { s: '😀😀😀😀' })).toBe('😀😀😀…'));
+  it('ellipsis 0', () => expect(render('{{ellipsis "abc" 0}}')).toBe('…'));
+
+  it('startsWith block true', () =>
+    expect(render('{{#startsWith "Hello" s}}yes{{else}}no{{/startsWith}}', { s: 'Hello, world!' })).toBe('yes'));
+  it('startsWith block false', () =>
+    expect(render('{{#startsWith "Bye" s}}yes{{else}}no{{/startsWith}}', { s: 'Hello, world!' })).toBe('no'));
+  it('startsWith is case-sensitive', () =>
+    expect(render('{{#startsWith "hello" s}}yes{{else}}no{{/startsWith}}', { s: 'Hello' })).toBe('no'));
+  it('startsWith as a subexpression', () =>
+    expect(render('{{#if (startsWith "EX" s)}}yes{{else}}no{{/if}}', { s: 'EX Gym' })).toBe('yes'));
+
+  it('remove deletes every occurrence', () => expect(render('{{remove "a b a b a b" "a "}}')).toBe('b b b'));
+  it('remove with empty substring is a no-op', () => expect(render('{{remove "abc" ""}}')).toBe('abc'));
+});
+
 // ─── Array helpers ───
 
 describe('each (overridden)', () => {

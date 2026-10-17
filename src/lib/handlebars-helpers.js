@@ -160,6 +160,45 @@ export function registerAllHelpers(hbs) {
     return s.slice(0, max) + suffix;
   });
 
+  // ─── PoracleJS string helpers (from @budibase/handlebars-helpers) ───
+  // Kept in step with PoracleNG processor/internal/dts/helpers.go.
+
+  // capitalizeAll — upper-case the first letter/digit of every word (run of
+  // non-space characters), leaving the rest untouched. Unicode-aware.
+  hbs.registerHelper('capitalizeAll', (str) => {
+    if (str == null || typeof str === 'object') return '';
+    return String(str).replace(/(^|\s)([^\s]*)/gu, (_m, space, word) =>
+      space + word.replace(/[\p{L}\p{N}_]/u, (c) => c.toUpperCase())
+    );
+  });
+
+  // ellipsis — first n characters plus "…" when longer (counts code points).
+  hbs.registerHelper('ellipsis', (str, limit) => {
+    const chars = Array.from(str == null || typeof str === 'object' ? '' : String(str));
+    const n = Math.max(Math.trunc(Number(limit)) || 0, 0);
+    if (chars.length <= n) return chars.join('');
+    return chars.slice(0, n).join('') + '…';
+  });
+
+  // startsWith — case-sensitive prefix test; block or subexpression.
+  hbs.registerHelper('startsWith', function (prefix, str, options) {
+    const result = typeof str === 'string' || typeof str === 'number'
+      ? String(str).startsWith(String(prefix))
+      : false;
+    if (options && typeof options.fn === 'function') {
+      return result ? options.fn(this) : options.inverse(this);
+    }
+    return result;
+  });
+
+  // remove — delete every occurrence of a substring.
+  hbs.registerHelper('remove', (str, sub) => {
+    if (str == null || typeof str === 'object') return '';
+    const s = String(str);
+    if (sub == null || typeof sub === 'object' || String(sub) === '') return s;
+    return s.split(String(sub)).join('');
+  });
+
   hbs.registerHelper('concat', function (...args) {
     // Last arg is always the Handlebars options object — filter it out
     const last = args[args.length - 1];

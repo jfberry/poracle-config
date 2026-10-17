@@ -26,6 +26,9 @@ export function useApi() {
       // effect never runs against an unset capability. Prefers the /health
       // capability flag, falls back to sniffing testdata. Never throws.
       await client.loadDtsTypes(health?.capabilities);
+      // Kept on the client so post-connect loaders can read them straight
+      // away — the `capabilities` state isn't visible until the next render.
+      client.capabilities = health?.capabilities || EMPTY_CAPS;
       clientRef.current = client;
       setUrl(baseUrl);
       setConnected(true);

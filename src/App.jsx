@@ -22,11 +22,12 @@ import { useActions } from './hooks/useActions';
 import { tabClass } from './lib/styles';
 import { fetchScenarios, resolveEnrichType } from './lib/dts-types';
 import { isAgnostic } from './lib/agnostic-types';
+import { setMapLanguage } from './lib/handlebars-engine';
 
 export default function App() {
   const dts = useDts();
   const actions = useActions();
-  const { render, renderButtons, renderButtonResponse, setPartials, setEmojis } = useHandlebars();
+  const { render, renderButtons, renderButtonResponse, setPartials, setEmojis, setMaps } = useHandlebars();
   const api = useApi();
   const { containerRef: editorContainerRef, insertAtCursor, blockContext } = useInsertAtCursor();
   const [middleTab, setMiddleTab] = useState('tags');
@@ -133,6 +134,8 @@ export default function App() {
 
     let body = {};
     let error = null;
+    // Language-specific custom maps (name.<lang>) follow the language filter.
+    setMapLanguage(dts.filters.language);
     if (dts.currentTemplate?.templateFileContent != null) {
       const r = render(null, activeTestData, dts.filters.platform, dts.currentTemplate.templateFileContent);
       body = r.result || {};
@@ -146,7 +149,7 @@ export default function App() {
     const rendered = renderButtons(dts.currentTemplate?.buttons, activeTestData, dts.filters.platform);
     if (rendered.length > 0) body = { ...body, __buttons: rendered };
     return { data: body, error };
-  }, [dts.currentTemplate, activeTestData, render, renderButtons, dts.filters.platform, dts.filters.type]);
+  }, [dts.currentTemplate, activeTestData, render, renderButtons, dts.filters.platform, dts.filters.type, dts.filters.language]);
 
   const buttonResponse = useMemo(() => {
     if (!activeButtonId || !dts.currentTemplate?.buttons) return null;
@@ -209,8 +212,10 @@ export default function App() {
       } catch (err) {
         console.error('Failed to load emojis:', err);
       }
+      // Custom maps for {{map}} / {{map2}} — null on older binaries.
+      setMaps(await client.loadCustomMaps(client.capabilities));
     }
-  }, [api.connect, dts.loadTemplates, setPartials, setEmojis]);
+  }, [api.connect, dts.loadTemplates, setPartials, setEmojis, setMaps]);
 
   const handleEnrich = useCallback(async (webhookData) => {
     if (!api.client) return;
@@ -512,7 +517,7 @@ export default function App() {
         error={activeTab === 'templates' ? (renderError || api.error) : api.error}
         configDirtyCount={activeTab === 'config' ? config.dirtyFields.count : 0}
         onConnect={handleConnect}
-        onDisconnect={() => { api.disconnect(); setOfflineMode(false); }}
+        onDisconnect={() => { api.disconnect(); setMaps(null); setOfflineMode(false); }}
       />
     </div>
   );

@@ -65,3 +65,29 @@ describe('loadDtsTypes support detection', () => {
     expect(c.supportsDerivedTypes).toBe(false);
   });
 });
+
+describe('loadCustomMaps', () => {
+  it('fetches /api/dts/custommaps when the capability is present', async () => {
+    const c = makeClient();
+    c.fetch.mockResolvedValue({ status: 'ok', maps: { generation: { 1: { genName: 'Kanto' } } } });
+    const maps = await c.loadCustomMaps({ customMaps: true });
+    expect(c.fetch).toHaveBeenCalledWith('/api/dts/custommaps');
+    expect(maps).toEqual({ generation: { 1: { genName: 'Kanto' } } });
+  });
+  it('returns null without fetching when the capability is absent (older PoracleNG)', async () => {
+    const c = makeClient();
+    expect(await c.loadCustomMaps({})).toBeNull();
+    expect(await c.loadCustomMaps(undefined)).toBeNull();
+    expect(c.fetch).not.toHaveBeenCalled();
+  });
+  it('returns an empty object when the server has no maps', async () => {
+    const c = makeClient();
+    c.fetch.mockResolvedValue({ status: 'ok', maps: {} });
+    expect(await c.loadCustomMaps({ customMaps: true })).toEqual({});
+  });
+  it('never throws; returns null when the fetch errors', async () => {
+    const c = makeClient();
+    c.fetch.mockRejectedValue(new Error('boom'));
+    expect(await c.loadCustomMaps({ customMaps: true })).toBeNull();
+  });
+});

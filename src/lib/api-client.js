@@ -83,6 +83,20 @@ export class PoracleApiClient {
     return this.supportsDerivedTypes;
   }
 
+  // Fetch the server's custom maps (config/customMaps/) so {{map}} / {{map2}}
+  // previews resolve like PoracleNG. Only when /health reports the customMaps
+  // capability; returns null otherwise (older binaries: keep echoing the key).
+  // Never throws.
+  async loadCustomMaps(capabilities) {
+    if (!capabilities?.customMaps) return null;
+    try {
+      const res = await this.fetch('/api/dts/custommaps');
+      return res.maps || {};
+    } catch {
+      return null;
+    }
+  }
+
   async getPartials() {
     return this.fetch('/api/dts/partials');
   }

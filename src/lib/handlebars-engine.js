@@ -1,8 +1,8 @@
 import Handlebars from 'handlebars';
 import { registerAllHelpers } from './handlebars-helpers';
-import { registerGameHelpers, setEmojiMap, getEmojiMap, setActivePlatform } from './handlebars-game-helpers';
+import { registerGameHelpers, setEmojiMap, getEmojiMap, setActivePlatform, setCustomMaps, setMapLanguage } from './handlebars-game-helpers';
 
-export { setEmojiMap, getEmojiMap, setActivePlatform };
+export { setEmojiMap, getEmojiMap, setActivePlatform, setCustomMaps, setMapLanguage };
 
 export function createEngine() {
   const hbs = Handlebars.create();
